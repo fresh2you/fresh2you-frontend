@@ -2,10 +2,10 @@ import Banner from './component/Banner';
 
 const HomePage = () => {
   return (
-    <>
-      <div>HomePage</div>
+    <div className="w-full h-full">
+      HomePage
       <Banner />
-    </>
+    </div>
   );
 };
 
