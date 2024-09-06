@@ -1,0 +1,11 @@
+.button-custom {
+  background-color: #d3d3d3;
+}
+.button-custom:hover {
+  background-color: #7d7d7d;
+  color: #fff;
+}
+.submit-button:hover {
+  background-color: #40a578;
+  color: #fff;
+}
