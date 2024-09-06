@@ -83,3 +83,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* 웹 접근성을 고려한 텍스트 숨기기 */
+.a11y-hidden {
+  @apply absolute w-1 h-1 -m-1 overflow-hidden;
+  clip-path: polygon(0 0, 0 0, 0 0);
+}
