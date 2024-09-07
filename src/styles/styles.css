@@ -1,0 +1,49 @@
+.button-custom {
+  background-color: #d3d3d3;
+}
+.button-custom:hover {
+  background-color: #7d7d7d;
+  color: #fff;
+}
+.submit-button:hover {
+  background-color: #40a578;
+  color: #fff;
+}
+.kakao-button {
+  background-color: #fae100;
+}
+
+.kakao-button:hover {
+  filter: grayscale(0.4);
+  transition: all 0.3s;
+}
+.login-button {
+  background-color: white;
+}
+.login-button:hover {
+  background-color: #277453;
+  transition: all 0.3s;
+  color: white;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake {
+  animation: shake 0.3s ease-in-out;
+}
