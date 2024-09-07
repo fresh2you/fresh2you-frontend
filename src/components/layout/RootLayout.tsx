@@ -6,7 +6,7 @@ const RootLayout = () => {
   return (
     <div className="w-full h-full flex flex-col justify-betwee">
       <Header />
-      <main className="w-full h-full">
+      <main className="w-full h-full overflow-hidden overflow-y-scroll scrollbar-hide">
         <Outlet />
       </main>
 
