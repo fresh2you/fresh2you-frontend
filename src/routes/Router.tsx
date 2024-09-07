@@ -3,6 +3,7 @@ import { memo } from 'react';
 import SignUpPage from '../pages/signUp/SignUpPage';
 import HomePage from '../pages/home/HomePage';
 import SignInPage from '../pages/signIn/SignInPage';
+import RootLayout from '../components/layout/RootLayout';
 
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
@@ -29,9 +30,12 @@ const Router = (): JSX.Element => {
       />
 
       {/* TODO: 여기 아래로는 ProtectedRoute 컴포넌트로 감쌀 예정 */}
-      {/* 홈페이지 & 검색페이지 */}
-      <Route path="/" element={<HomePage />} />
-      <Route path="/search" element={<div>검색</div>} />
+      {/* TODO: 홈/검색 외에도 루트 레이아웃으로 감쌀 예정 */}
+      <Route element={<RootLayout />}>
+        {/* 홈페이지 & 검색페이지 */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<div>검색</div>} />
+      </Route>
 
       {/* 제품 관련 페이지들 */}
       <Route
