@@ -25,18 +25,19 @@ export const api2 = {
 
       return result.success;
     } catch (error) {
-      console.error('닉네임 중복 확인 1111중 오류 발생:', error);
+      console.error('닉네임 중복 확인 중 오류 발생:', error);
       return false;
     }
   },
-  async loginUser(formData) {
+  async loginUser(email, password) {
     try {
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('password', password);
+
       const response = await fetch('/api/auth/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formData, // FormData 사용
       });
 
       const data = await response.json();
@@ -44,11 +45,10 @@ export const api2 = {
       if (response.ok) {
         return { success: true, token: data.token };
       } else {
-        // 서버에서 반환한 메시지가 있을 경우 사용
         let errorMessage = '로그인에 실패했습니다.';
 
         if (data.message) {
-          // 이메일 또는 비밀번호에 관련된 오류를 하나의 메시지로 묶음
+          // 이메일 또는 비밀번호 관련 오류 메시지 처리
           if (data.message.includes('email') || data.message.includes('password')) {
             errorMessage = '이메일 또는 비밀번호를 확인해주세요.';
           }
