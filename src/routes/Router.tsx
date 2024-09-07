@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { memo } from 'react';
 import SignUpPage from '../pages/signUp/SignUpPage';
 import HomePage from '../pages/home/HomePage';
+import SignInPage from '../pages/signIn/SignInPage';
 
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
@@ -16,7 +17,7 @@ const Router = (): JSX.Element => {
         path="/auth/*"
         element={
           <Routes>
-            <Route path="/signin" element={<div>로그인</div>} />
+            <Route path="/signin" element={<SignInPage />} />
             <Route path="/oauth" element={<div>소셜 로그인</div>} />
             {/* TODO: 약관동의의 경우 소셜에서 온것인지 판별 필요 */}
             <Route path="/signup/terms" element={<div>약관 동의</div>} />
