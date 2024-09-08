@@ -1,9 +1,9 @@
 import InputField from './InputField';
-import NextButton from './NextButton';
+import { NextButton } from './buttons/NextBtn';
 const StepFields = ({ steps, currentStep, validity, funnel, formData }) => (
   <>
     {steps[currentStep].map((field, index) => (
-      <div key={index} className={`flex flex-col ${'닉네임입력' === currentStep ? 'mb-4' : 'mb-11'} relative`}>
+      <div key={index} className={`flex flex-col relative`}>
         <div className="flex items-end mb-2">
           <InputField
             label={field.label}
@@ -15,14 +15,9 @@ const StepFields = ({ steps, currentStep, validity, funnel, formData }) => (
           />
           {field.button}
         </div>
-        <div
-          className="absolute -bottom-11"
-          style={{ right: currentStep === '비밀번호확인' || currentStep === '비밀번호입력' ? '85px' : '0' }}
-        >
-          {currentStep !== '닉네임입력' && 0 === index && (
-            <NextButton currentStep={currentStep} validity={validity} funnel={funnel} formData={formData} />
-          )}
-        </div>
+        {currentStep !== '닉네임입력' && 0 === index && (
+          <NextButton currentStep={currentStep} validity={validity} funnel={funnel} formData={formData} />
+        )}
       </div>
     ))}
   </>
