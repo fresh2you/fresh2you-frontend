@@ -1,8 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import { memo } from 'react';
-
+import SignUpPage from '../pages/signUp/SignUpPage';
 import HomePage from '../pages/home/HomePage';
 import SearchPage from '../pages/search/SearchPage';
+import SignInPage from '../pages/signIn/SignInPage';
 import RootLayout from '../components/layout/RootLayout';
 
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
@@ -18,11 +19,11 @@ const Router = (): JSX.Element => {
         path="/auth/*"
         element={
           <Routes>
-            <Route path="/signin" element={<div>로그인</div>} />
+            <Route path="/signin" element={<SignInPage />} />
             <Route path="/oauth" element={<div>소셜 로그인</div>} />
             {/* TODO: 약관동의의 경우 소셜에서 온것인지 판별 필요 */}
             <Route path="/signup/terms" element={<div>약관 동의</div>} />
-            <Route path="/signup/info" element={<div>회원가입 정보 입력</div>} />
+            <Route path="/signup/info" element={<SignUpPage />} />
             <Route path="/signup/complete" element={<div>회원가입 완료</div>} />
             <Route path="*" element={<div>404</div>} />
           </Routes>
