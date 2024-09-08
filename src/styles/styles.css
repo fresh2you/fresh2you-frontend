@@ -5,10 +5,10 @@
   background-color: #7d7d7d;
   color: #fff;
 }
-.submit-button:hover {
-  background-color: #40a578;
-  color: #fff;
+.resend-button {
+  background-color: #fff;
 }
+
 .kakao-button {
   background-color: #fae100;
 }
