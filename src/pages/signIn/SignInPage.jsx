@@ -8,7 +8,7 @@ export default function SignInPage() {
   return (
     <div className="bg-custom-green min-h-screen">
       <div className="flex flex-col justify-center items-center w-7/12 my-0 mx-auto min-h-screen">
-        <img src={logo} alt="Fresh 2 You" style={{ minWidth: '200px', minHeight: '200px' }} />
+        <img src={logo} alt="Fresh 2 You" className="max-w-52" />
         <SignInForm />
         <div className="my-6 whitespace-nowrap">
           <p className="text-base my-6 font-bold whitespace-nowrap inline">아직 계정이 없으신가요? </p>
