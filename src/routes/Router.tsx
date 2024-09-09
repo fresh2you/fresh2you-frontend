@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { memo } from 'react';
 import SignUpPage from '../pages/signUp/SignUpPage';
 import HomePage from '../pages/home/HomePage';
+import SearchPage from '../pages/search/SearchPage';
 import SignInPage from '../pages/signIn/SignInPage';
 import RootLayout from '../components/layout/RootLayout';
 
@@ -34,7 +35,7 @@ const Router = (): JSX.Element => {
       <Route element={<RootLayout />}>
         {/* 홈페이지 & 검색페이지 */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/search" element={<div>검색</div>} />
+        <Route path="/search" element={<SearchPage />} />
       </Route>
 
       {/* 제품 관련 페이지들 */}
