@@ -7,7 +7,7 @@ import { KAKAO_AUTH_URL } from './utils/authUtils';
 export default function SignInPage() {
   return (
     <div className="bg-custom-green min-h-screen">
-      <div className="flex flex-col items-center w-7/12 my-0 mx-auto min-h-screen">
+      <div className="flex flex-col justify-center items-center w-7/12 my-0 mx-auto min-h-screen">
         <img src={logo} alt="Fresh 2 You" style={{ minWidth: '200px', minHeight: '200px' }} />
         <SignInForm />
         <div className="my-6 whitespace-nowrap">
