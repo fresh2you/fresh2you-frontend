@@ -4,7 +4,7 @@ import SignUpPage from '../pages/signUp/SignUpPage';
 import HomePage from '../pages/home/HomePage';
 import SignInPage from '../pages/signIn/SignInPage';
 import RootLayout from '../components/layout/RootLayout';
-
+import TermsAgreement from '../pages/terms/TermsAgreement';
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
@@ -21,7 +21,7 @@ const Router = (): JSX.Element => {
             <Route path="/signin" element={<SignInPage />} />
             <Route path="/oauth" element={<div>소셜 로그인</div>} />
             {/* TODO: 약관동의의 경우 소셜에서 온것인지 판별 필요 */}
-            <Route path="/signup/terms" element={<div>약관 동의</div>} />
+            <Route path="/signup/terms" element={<TermsAgreement />} />
             <Route path="/signup/info" element={<SignUpPage />} />
             <Route path="/signup/complete" element={<div>회원가입 완료</div>} />
             <Route path="*" element={<div>404</div>} />
