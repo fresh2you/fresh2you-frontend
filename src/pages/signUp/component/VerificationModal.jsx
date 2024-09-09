@@ -36,7 +36,7 @@ export function VerificationModal({
   }, [timeLeft]);
 
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-75">
       <div className="relative bg-custom-green p-6 rounded-md shadow-lg w-80">
         <CloseBtn onClick={onClose} />
         <h2 className="text-lg font-bold mb-4" style={{ color: '#333333' }}>
