@@ -1,4 +1,4 @@
-import logoImg from '../../assets/logo.png';
+import logoImg from '../../assets/img/logo.png';
 import IconSearch from '../../assets/icons/icon-search.svg';
 import { Link } from 'react-router-dom';
 
