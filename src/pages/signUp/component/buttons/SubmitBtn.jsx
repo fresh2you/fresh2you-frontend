@@ -4,7 +4,7 @@ const SubmitBtn = (validity) => {
   return (
     <button
       type="submit"
-      className="px-4 py-2 rounded submit-button bg-custom-green mt-6 w-full"
+      className="px-4 py-2 rounded submit-button bg-custom-green mt-4 w-full"
       disabled={!isFormValid(validity)}
       style={{
         color: 'white',
