@@ -12,6 +12,7 @@ const StepFields = ({ steps, currentStep, validity, funnel, formData }) => (
             setValue={field.setValue}
             placeholder={field.placeholder}
             autoComplete={field.autoComplete}
+            onchange={field.onChange}
           />
           {field.button}
         </div>

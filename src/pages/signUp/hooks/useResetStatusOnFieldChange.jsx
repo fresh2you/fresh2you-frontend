@@ -16,12 +16,16 @@ export const useResetStatusOnNicknameChange = (nickname, setStatus) => {
     }));
   }, [nickname]);
 };
-export const useResetStatusOnTelChange = (phoneNo, setStatus) => {
+export const useResetStatusOnTelChange = (phoneNo, setStatus, setValidity) => {
   useEffect(() => {
     setStatus((prevStatus) => ({
       ...prevStatus,
       phoneNoStatus: '',
       requestStatus: '',
+    }));
+    setValidity((prevValidity) => ({
+      ...prevValidity,
+      isPhoneNoVerified: false,
     }));
   }, [phoneNo]);
 };

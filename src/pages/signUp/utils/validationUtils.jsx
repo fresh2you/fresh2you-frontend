@@ -10,9 +10,11 @@ export const isNextButtonDisabled = (currentStep, validity) => {
 };
 
 export const isFormValid = (validity) => {
-  validity.isEmailValid &&
+  return (
+    validity.isEmailValid &&
     validity.isPasswordCombinationValid &&
     validity.isConfirmPasswordValid &&
     validity.isPhoneNoVerified &&
-    validity.isNicknameValid;
+    validity.isNicknameValid
+  );
 };

@@ -14,6 +14,7 @@ import {
   useResetStatusOnNicknameChange,
   useResetStatusOnTelChange,
 } from './hooks/useResetStatusOnFieldChange';
+import { isFormValid } from './utils/validationUtils';
 export default function SignUpPage() {
   const funnel = useFunnel({
     id: 'user-signup',
@@ -59,7 +60,7 @@ export default function SignUpPage() {
 
   useResetStatusOnEmailChange(formData.email, setStatus);
   useResetStatusOnNicknameChange(formData.nickname, setStatus);
-  useResetStatusOnTelChange(formData.phoneNo, setStatus);
+  useResetStatusOnTelChange(formData.phoneNo, setStatus, setValidity);
 
   useEffect(() => {
     validationLogic.updateValidity(formData, status, setValidity, funnel);
@@ -75,7 +76,7 @@ export default function SignUpPage() {
 
   const steps = getStepsConfig(formData, setFormData, setStatus, validity, handleOpenModal, sendAttempts);
   const currentStep = funnel.step;
-
+  console.log(validity);
   return (
     <div className="flex">
       <form

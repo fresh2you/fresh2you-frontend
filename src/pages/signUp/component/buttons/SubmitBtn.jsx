@@ -1,16 +1,18 @@
 import { isFormValid } from '../../utils/validationUtils';
 import blockIcon from '../../../../assets/icons/block.svg';
-const SubmitBtn = (validity) => {
+import { handleSubmit } from '../../utils/handlers/handleSubmit';
+const SubmitBtn = ({ validity }) => {
+  const formIsValid = isFormValid(validity);
   return (
     <button
       type="submit"
       className="px-4 py-2 rounded submit-button bg-custom-green mt-4 w-full"
-      disabled={!isFormValid(validity)}
+      disabled={!formIsValid}
       style={{
         color: 'white',
         outline: 'none',
         borderColor: 'transparent',
-        cursor: !isFormValid(validity) ? `url(${blockIcon}), auto` : 'pointer',
+        cursor: formIsValid ? `pointer` : `url(${blockIcon}), auto`,
       }}
     >
       제출

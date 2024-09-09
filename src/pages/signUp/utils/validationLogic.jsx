@@ -4,16 +4,11 @@ export const validationLogic = {
   updateValidity: (formData, status, setValidity, funnel) => {
     setValidity((preValidity) => ({
       ...preValidity,
-      isEmailValid: status.emailStatus === 'SUCCESS' && !!formData.email,
+      isEmailValid: status.emailStatus === 'SUCCESS',
       isPasswordCombinationValid: validatePassword(formData.password).isValid,
-      isConfirmPasswordValid:
-        status.passwordStatus === 'SUCCESS' &&
-        !!formData.password &&
-        !!formData.confirmPassword &&
-        formData.confirmPassword === formData.password,
-      isPhoneNoValid: status.requestStatus === '테스트' && !!formData.phoneNo,
-      isNicknameValid: status.nicknameStatus === 'SUCCESS' && !!formData.nickname,
-      isPhoneNoVerified: status.phoneNoStatus === 'SUCCESS' && !!formData.phoneNo,
+      isConfirmPasswordValid: status.passwordStatus === 'SUCCESS',
+      isPhoneNoValid: status.requestStatus === '테스트',
+      isNicknameValid: status.nicknameStatus === 'SUCCESS',
     }));
   },
 

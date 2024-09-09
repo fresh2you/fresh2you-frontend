@@ -47,6 +47,7 @@ export function VerificationModal({
             verificationCode={verificationCode}
             setVerificationCode={setVerificationCode}
             setErrorMessage={setErrorMessage}
+            shake={shake}
           />
           <p className="text-sm ml-2" style={{ color: '#FFFFFF' }}>
             {formatTime(timeLeft)}
