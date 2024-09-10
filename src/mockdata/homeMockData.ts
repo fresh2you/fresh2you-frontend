@@ -1,6 +1,6 @@
 import { ProductCardProps } from '../pages/home/component/ProductCard';
 
-export const recommendedProcuts: { type: string; products: ProductCardProps[] } = {
+export const recommendedProducts: { type: string; products: ProductCardProps[] } = {
   type: 'user_based',
   products: [
     {

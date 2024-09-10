@@ -2,16 +2,17 @@
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
-    colors: {
-      'custom-green': '#40A578',
-      'custom-green-200': '#b9e1ca',
-      'custom-green-300': '#8bcaaa',
-      'custom-green-900': '#173d2f',
-      'custom-green-hover': '#3A956C',
-      'custom-gray-light': '#D3D3D3',
-      'custom-gray-dark': '#7D7D7D',
-      'custom-black': '#333333',
+    extend: {
+      colors: {
+        'custom-green': '#40A578',
+        'custom-green-200': '#b9e1ca',
+        'custom-green-300': '#8bcaaa',
+        'custom-green-900': '#173d2f',
+        'custom-green-hover': '#3A956C',
+        'custom-gray-light': '#D3D3D3',
+        'custom-gray-dark': '#7D7D7D',
+        'custom-black': '#333333',
+      },
     },
   },
   plugins: [
