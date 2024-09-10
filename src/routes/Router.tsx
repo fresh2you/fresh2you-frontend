@@ -9,6 +9,7 @@ import TermsAgreementPage from '../pages/terms/TermsAgreementPage';
 import RedirectionPage from '../pages/redirection/RedirectionPage';
 import SignUpCompletePage from '../pages/signUp/SignUpComplete';
 import NotFoundPage from '../pages/NotfoundPage';
+import ProductsPage from '../pages/product/ProductsPage';
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
@@ -42,7 +43,7 @@ const Router = (): JSX.Element => {
 
       {/* 제품 관련 페이지들 */}
       <Route path="/product/*" element={<RootLayout />}>
-        <Route index element={<div>전체 상품 페이지</div>} />
+        <Route index element={<ProductsPage />} />
         <Route path=":id" element={<div>특정 상품 상세</div>} />
         <Route path="register" element={<div>제품 등록</div>} />
         <Route path="modify" element={<div>등록한 제품 수정</div>} />
