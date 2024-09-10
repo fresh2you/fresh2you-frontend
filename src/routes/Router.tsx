@@ -5,7 +5,7 @@ import HomePage from '../pages/home/HomePage';
 import SearchPage from '../pages/search/SearchPage';
 import SignInPage from '../pages/signIn/SignInPage';
 import RootLayout from '../components/layout/RootLayout';
-import TermsAgreement from '../pages/terms/TermsAgreement';
+import TermsAgreement from '../pages/terms/components/TermsAgreement';
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
