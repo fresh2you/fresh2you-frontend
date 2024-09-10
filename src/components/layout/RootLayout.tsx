@@ -4,7 +4,7 @@ import FooterNavBar from './FooterNavBar';
 
 const RootLayout = () => {
   return (
-    <div className="w-full h-full flex flex-col justify-betwee">
+    <div className="w-full h-full flex flex-col justify-between">
       <Header />
       <main className="w-full h-full overflow-hidden overflow-y-scroll scrollbar-hide">
         <Outlet />

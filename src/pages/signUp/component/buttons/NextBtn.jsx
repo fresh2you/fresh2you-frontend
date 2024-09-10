@@ -1,7 +1,7 @@
-import blockIcon from '../../../assets/icons/block.svg';
-import { isNextButtonDisabled } from '../utils/validationUtils';
+import blockIcon from '../../../../assets/icons/block.svg';
+import { isNextButtonDisabled } from '../../utils/validationUtils';
 
-const NextButton = ({ currentStep, validity, funnel, formData }) => {
+export const NextButton = ({ currentStep, validity, funnel, formData }) => {
   return (
     <button
       type="button"
@@ -11,14 +11,15 @@ const NextButton = ({ currentStep, validity, funnel, formData }) => {
             ? '비밀번호입력'
             : currentStep === '비밀번호입력'
             ? '비밀번호확인'
+            : currentStep === '비밀번호확인'
+            ? '전화번호입력'
             : '닉네임입력',
-          formData.email,
-          formData.password,
         )
       }
       disabled={isNextButtonDisabled(currentStep, validity)}
-      className="button-custom text-custom-black hover:outline-none"
+      className="button-custom text-custom-black w-16 whitespace-nowrap px-2 self-end"
       style={{
+        outline: 'none',
         borderColor: 'transparent',
         cursor: isNextButtonDisabled(currentStep, validity) ? `url(${blockIcon}), auto` : 'pointer',
       }}
@@ -27,5 +28,3 @@ const NextButton = ({ currentStep, validity, funnel, formData }) => {
     </button>
   );
 };
-
-export default NextButton;

@@ -11,7 +11,7 @@ export default function InputField({ label, type, value, setValue, placeholder, 
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="h-10 rounded px-1 text-custom-black border outlin-none w-72 "
+        className="h-10 rounded px-1 text-custom-black border outline-none w-72 "
         style={{ borderColor: '#D3D3D3', outline: 'none' }}
       />
       {feedback && (
