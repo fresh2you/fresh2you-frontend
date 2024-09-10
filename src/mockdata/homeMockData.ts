@@ -1,6 +1,11 @@
 import { ProductCardProps } from '../pages/home/component/ProductCard';
-
-export const recommendedProcuts: { type: string; products: ProductCardProps[] } = {
+import itemImg1 from '../assets/img/fruits/Strawberry.png';
+import itemImg2 from '../assets/img/fruits/avocado.png';
+import itemImg3 from '../assets/img/fruits/banana.png';
+import itemImg4 from '../assets/img/fruits/berry.png';
+import itemImg5 from '../assets/img/fruits/blueberry.png';
+import itemImg6 from '../assets/img/fruits/grape.png';
+export const recommendedProducts: { type: string; products: ProductCardProps[] } = {
   type: 'user_based',
   products: [
     {
@@ -9,7 +14,7 @@ export const recommendedProcuts: { type: string; products: ProductCardProps[] } 
       seller: '판매자명',
       description: '상품에 대한 간단 설명입니다',
       price: 10000,
-      img: undefined,
+      img: itemImg1,
     },
     {
       product_id: 2,
@@ -17,7 +22,7 @@ export const recommendedProcuts: { type: string; products: ProductCardProps[] } 
       seller: '판매자명',
       description: '상품에 대한 간단 설명입니다',
       price: 10000,
-      img: undefined,
+      img: itemImg2,
     },
     {
       product_id: 3,
@@ -25,7 +30,7 @@ export const recommendedProcuts: { type: string; products: ProductCardProps[] } 
       seller: '판매자명',
       description: '상품에 대한 간단 설명입니다',
       price: 10000,
-      img: undefined,
+      img: itemImg3,
     },
     {
       product_id: 4,
@@ -33,7 +38,7 @@ export const recommendedProcuts: { type: string; products: ProductCardProps[] } 
       seller: '판매자명',
       description: '상품에 대한 간단 설명입니다',
       price: 10000,
-      img: undefined,
+      img: itemImg4,
     },
     {
       product_id: 5,
@@ -41,7 +46,7 @@ export const recommendedProcuts: { type: string; products: ProductCardProps[] } 
       seller: '판매자명',
       description: '상품에 대한 간단 설명입니다',
       price: 10000,
-      img: undefined,
+      img: itemImg5,
     },
     {
       product_id: 6,
@@ -49,7 +54,7 @@ export const recommendedProcuts: { type: string; products: ProductCardProps[] } 
       seller: '판매자명',
       description: '상품에 대한 간단 설명입니다',
       price: 10000,
-      img: undefined,
+      img: itemImg2,
     },
     {
       product_id: 7,
@@ -57,7 +62,7 @@ export const recommendedProcuts: { type: string; products: ProductCardProps[] } 
       seller: '판매자명',
       description: '상품에 대한 간단 설명입니다',
       price: 10000,
-      img: undefined,
+      img: itemImg3,
     },
     {
       product_id: 8,
@@ -65,7 +70,7 @@ export const recommendedProcuts: { type: string; products: ProductCardProps[] } 
       seller: '판매자명',
       description: '상품에 대한 간단 설명입니다',
       price: 10000,
-      img: undefined,
+      img: itemImg4,
     },
     {
       product_id: 9,
@@ -73,7 +78,7 @@ export const recommendedProcuts: { type: string; products: ProductCardProps[] } 
       seller: '판매자명',
       description: '상품에 대한 간단 설명입니다',
       price: 10000,
-      img: undefined,
+      img: itemImg1,
     },
     {
       product_id: 10,
@@ -81,7 +86,7 @@ export const recommendedProcuts: { type: string; products: ProductCardProps[] } 
       seller: '판매자명',
       description: '상품에 대한 간단 설명입니다',
       price: 10000,
-      img: undefined,
+      img: itemImg6,
     },
   ],
 };

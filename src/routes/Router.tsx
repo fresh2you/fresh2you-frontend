@@ -4,27 +4,29 @@ import SignUpPage from '../pages/signUp/SignUpPage';
 import HomePage from '../pages/home/HomePage';
 import SignInPage from '../pages/signIn/SignInPage';
 import RootLayout from '../components/layout/RootLayout';
-import TermsAgreement from '../pages/terms/TermsAgreement';
+import TermsAgreementPage from '../pages/terms/TermsAgreementPage';
+import RedirectionPage from '../pages/redirection/RedirectionPage';
+import SignUpCompletePage from '../pages/signUp/SignUpComplete';
+import NotFoundPage from '../pages/NotfoundPage';
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
   return (
     <Routes>
       {/* 404 Not Found */}
-      <Route path="*" element={<div>404</div>} />
-
+      <Route path="*" element={<NotFoundPage />} />
+      <Route path="/login/kakao" element={<RedirectionPage />} />
       {/* 로그인 & 회원가입 */}
       <Route
         path="/auth/*"
         element={
           <Routes>
             <Route path="/signin" element={<SignInPage />} />
-            <Route path="/oauth" element={<div>소셜 로그인</div>} />
             {/* TODO: 약관동의의 경우 소셜에서 온것인지 판별 필요 */}
-            <Route path="/signup/terms" element={<TermsAgreement />} />
+            <Route path="/signup/terms" element={<TermsAgreementPage />} />
             <Route path="/signup/info" element={<SignUpPage />} />
-            <Route path="/signup/complete" element={<div>회원가입 완료</div>} />
-            <Route path="*" element={<div>404</div>} />
+            <Route path="/signup/complete" element={<SignUpCompletePage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         }
       />
@@ -38,18 +40,13 @@ const Router = (): JSX.Element => {
       </Route>
 
       {/* 제품 관련 페이지들 */}
-      <Route
-        path="/product/*"
-        element={
-          <Routes>
-            <Route path="/" element={<div>전체 상품</div>} />
-            <Route path="/:id" element={<div>특정 상품 상세</div>} />
-            <Route path="/register" element={<div>제품 등록</div>} />
-            <Route path="/modify" element={<div>등록한 제품 수정</div>} />
-            <Route path="*" element={<div>404</div>} />
-          </Routes>
-        }
-      />
+      <Route path="/product/*" element={<RootLayout />}>
+        <Route index element={<div>전체 상품 페이지</div>} />
+        <Route path=":id" element={<div>특정 상품 상세</div>} />
+        <Route path="register" element={<div>제품 등록</div>} />
+        <Route path="modify" element={<div>등록한 제품 수정</div>} />
+        <Route path="*" element={<div>404</div>} />
+      </Route>
 
       {/* 구매 관련 페이지들 */}
       <Route
