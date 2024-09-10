@@ -13,7 +13,7 @@ const Menu = ({ to, iconComponent, name }: MenuProps) => {
   return (
     <Link
       to={to}
-      className={`flex flex-col justify-center items-center text-black hover:text-green-300   ${
+      className={`flex flex-col justify-center items-center text-black hover:text-green-300 ${
         pathname === to && 'text-green-300'
       }`}
     >
