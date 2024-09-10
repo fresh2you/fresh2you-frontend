@@ -1,6 +1,6 @@
 export default function InputField({ label, type, value, setValue, placeholder, autoComplete, feedback }) {
   return (
-    <div className="flex flex-col flex-start">
+    <div className="flex flex-col">
       <label htmlFor={label} className="font-semibold mb-1" style={{ color: '#333333' }}>
         {label}
       </label>
