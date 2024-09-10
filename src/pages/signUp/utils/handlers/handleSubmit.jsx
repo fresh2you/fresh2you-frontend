@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+
 export const handleSubmit = (e, validity, formData) => {
+  const navigate = useNavigate();
   e.preventDefault();
 
   let errorMessage = '';
@@ -31,5 +34,6 @@ export const handleSubmit = (e, validity, formData) => {
       formData.phoneNo,
       formData.nickname,
     );
+    navigate('/signup/complete');
   }
 };
