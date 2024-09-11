@@ -81,7 +81,7 @@ export default function SignUpPage() {
     <div className="flex">
       <form
         onSubmit={(e) => handleSubmit(e, validity, formData)}
-        className="flex flex-col justify-center min-h-screen bg-gray-100 my-0 mx-auto items-start"
+        className="flex flex-col justify-center min-h-screen my-0 mx-auto items-start"
         style={{ width: '376px' }}
       >
         <PasswordFeedback passwordFeedbacks={passwordFeedbacks} />
