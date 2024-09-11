@@ -11,13 +11,13 @@ const NotFoundPage = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-custom-green text-center">
       <div className="flex items-center justify-center">
-        <img src={logoImg} alt="Fresh 2 You" className="rounded-lg mr-10" />
+        <img src={logoImg} alt="Fresh 2 You" className="rounded-lg mr-10 w-48" />
         <div className="flex flex-col items-start">
-          <h1 className="text-7xl font-bold mb-4 text-custom-white">404</h1>
+          <h1 className="text-7xl font-bold mb-4 text-white">404</h1>
           <p className="text-2xl mb-8 font-medium">페이지를 찾을 수 없습니다.</p>
         </div>
       </div>
-      <HomeButton className="bg-custom-white text-custom-black hover:bg-custom-green-hover transition hover:text-custom-white" />
+      <HomeButton className="mt-4 bg-white text-custom-black hover:bg-custom-green-hover transition hover:text-white" />
     </div>
   );
 };
