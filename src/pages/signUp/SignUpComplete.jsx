@@ -58,7 +58,7 @@ const SignUpCompletePage = () => {
           />
         </Slider>
       </div>
-      <HomeButton className="mt-12 bg-custom-green text-custom-white hover:bg-custom-green-hover text-white" />
+      <HomeButton className="mt-12 bg-custom-green text-white hover:bg-custom-green-hover text-white" />
     </div>
   );
 };
