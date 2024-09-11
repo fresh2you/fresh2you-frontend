@@ -75,10 +75,7 @@ export default function SignInForm() {
 
       <button
         type="submit"
-        className="login-button mt-4 h-12 rounded-full font-semibold text-lg hover:border-transparent"
-        style={{
-          outline: 'none',
-        }}
+        className="login-button mt-4 h-12 rounded-full font-semibold text-lg hover:border-transparent focus:outline-none"
       >
         로그인
       </button>

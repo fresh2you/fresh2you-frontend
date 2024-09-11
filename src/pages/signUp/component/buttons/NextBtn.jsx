@@ -1,6 +1,8 @@
 import { isNextButtonDisabled } from '../../utils/validationUtils';
 
 export const NextButton = ({ currentStep, validity, funnel, formData }) => {
+  const isDisabled = isNextButtonDisabled(currentStep, validity);
+
   return (
     <button
       type="button"
@@ -15,12 +17,10 @@ export const NextButton = ({ currentStep, validity, funnel, formData }) => {
             : '닉네임입력',
         )
       }
-      disabled={isNextButtonDisabled(currentStep, validity)}
-      className="button-custom text-custom-black w-16 whitespace-nowrap px-2 self-end hover:border-transparent"
-      style={{
-        outline: 'none',
-        cursor: isNextButtonDisabled(currentStep, validity) ? `not-allowed` : 'pointer',
-      }}
+      disabled={isDisabled}
+      className={`button-custom text-custom-black w-16 whitespace-nowrap px-2 self-end hover:border-transparent focus:outline-none ${
+        isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+      }`}
     >
       다음
     </button>

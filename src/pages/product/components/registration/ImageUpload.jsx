@@ -33,8 +33,7 @@ const ImageUpload = ({ onImageChange, imagePreviews, onDeleteImage }) => {
             <button
               type="button"
               onClick={() => onDeleteImage(index)}
-              className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full w-6 h-6 flex justify-center items-center hover:border-transparent"
-              style={{ outline: 'none' }}
+              className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full w-6 h-6 flex justify-center items-center hover:border-transparent focus:outline-none"
             >
               &times;
             </button>
