@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TermsAgreement from './components/TermsAgreement';
 import logoImg from '../../assets/img/logo.png';
-import blockIcon from '../../assets/icons/block.svg';
 import '../../styles/styles.css';
 const TermsAgreementPage = () => {
   const navigate = useNavigate();
@@ -18,11 +17,10 @@ const TermsAgreementPage = () => {
         <img src={logoImg} alt="Fresh 2 You" className="max-w-52" />
         <TermsAgreement onAgree={handleAgree} />
         <button
-          className="text-custom-black font-semibold login-button"
+          className="text-custom-black font-semibold login-button hover:border-transparent"
           style={{
             outline: 'none',
-            borderColor: 'transparent',
-            cursor: !isAgreed ? `url(${blockIcon}), auto` : 'pointer',
+            cursor: !isAgreed ? `not-allowed` : 'pointer',
           }}
           onClick={() => {
             if (!isAgreed) {
