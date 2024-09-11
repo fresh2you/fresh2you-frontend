@@ -76,7 +76,7 @@ export default function SignUpPage() {
 
   const steps = getStepsConfig(formData, setFormData, setStatus, validity, handleOpenModal, sendAttempts);
   const currentStep = funnel.step;
-  console.log(validity);
+
   return (
     <div className="flex">
       <form
