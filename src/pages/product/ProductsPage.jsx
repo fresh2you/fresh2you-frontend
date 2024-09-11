@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import ProductCard from './components/ProductCard';
 import { mockProducts } from '../../mockdata/MockData';
 import ProductCardSkeleton from './components/skeletons/ProductCardSkeleton';
-import CategoryButtons from './components/CategoryButtons';
+import CategoryButtons from './components/buttons/CategoryButtons';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
