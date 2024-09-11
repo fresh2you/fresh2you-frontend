@@ -1,4 +1,3 @@
-import blockIcon from '../../../../assets/icons/block.svg';
 import { isNextButtonDisabled } from '../../utils/validationUtils';
 
 export const NextButton = ({ currentStep, validity, funnel, formData }) => {
@@ -17,11 +16,10 @@ export const NextButton = ({ currentStep, validity, funnel, formData }) => {
         )
       }
       disabled={isNextButtonDisabled(currentStep, validity)}
-      className="button-custom text-custom-black w-16 whitespace-nowrap px-2 self-end"
+      className="button-custom text-custom-black w-16 whitespace-nowrap px-2 self-end hover:border-transparent"
       style={{
         outline: 'none',
-        borderColor: 'transparent',
-        cursor: isNextButtonDisabled(currentStep, validity) ? `url(${blockIcon}), auto` : 'pointer',
+        cursor: isNextButtonDisabled(currentStep, validity) ? `not-allowed` : 'pointer',
       }}
     >
       다음
