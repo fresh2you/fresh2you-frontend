@@ -35,7 +35,7 @@ const RedirectionPage = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      {isLoading ? <img src={logoImg} alt="Fresh 2 You" className="animate-bounce rounded-full" /> : null}
+      {isLoading ? <img src={logoImg} alt="Fresh 2 You" className="animate-bounce rounded-md w-32" /> : null}
     </div>
   );
 };
