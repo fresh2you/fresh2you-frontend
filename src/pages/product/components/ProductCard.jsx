@@ -7,7 +7,8 @@ const ProductCard = forwardRef(({ product }, ref) => {
   return (
     <div
       ref={ref}
-      className="bg-custom-white shadow-lg rounded-xl overflow-hidden w-full max-w-xs border border-custom-gray-light h-[296px]"
+      className="bg-white shadow-lg rounded-xl overflow-hidden w-full max-w-xs border border-custom-gray-light h-[296px] cursor-pointer"
+      onClick={() => navigate(`./${product.product_id}`)}
     >
       <div className="flex justify-center items-center w-full mt-4">
         <img src={product.img} alt={product.name} className="object-contain w-28 h-28" />
@@ -16,11 +17,7 @@ const ProductCard = forwardRef(({ product }, ref) => {
         <h2 className="text-xl font-semibold">{product.name}</h2>
         <p className="text-xl text-custom-gray-dark">{product.seller}</p>
         <p className="text-custom-green font-semibold text-xl">{formatCurrency(product.price)} 원</p>
-        <button
-          className="mt-2 w-full bg-custom-green text-white py-2 rounded-lg hover:bg-custom-green-hover transition font-semibold"
-          style={{ borderColor: 'transparent', outline: 'none' }}
-          onClick={() => navigate(`./${product.product_id}`)}
-        >
+        <button className="mt-2 w-full bg-custom-green text-white py-2 rounded-lg hover:bg-custom-green-hover transition font-semibold hover:border-transparent focus:outline-none">
           구매하기
         </button>
       </div>
