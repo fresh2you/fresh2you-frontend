@@ -9,3 +9,8 @@
 
 - git 파일 대소문자 변경 감지
   `git config core.ignorecase false`
+
+## json-server 사용법
+
+- json-server 실행: `yarn json`
+- 사용방법: [참고문서 (출처: npm)](https://www.npmjs.com/package/json-server)
