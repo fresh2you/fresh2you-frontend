@@ -19,12 +19,10 @@ export const createTelFieldConfig = (formData, setFormData, handleOpenModal, val
             setStatus((prevStatus) => ({ ...prevStatus, phoneNoStatus: '전화번호를 입력하세요.' }));
           }
         }}
-        className="flex items-center justify-center min-w-20 h-10 ml-2 rounded-md px-2 whitespace-nowrap"
+        className="flex items-center justify-center min-w-20 h-10 ml-2 rounded-md px-2 whitespace-nowrap hover:border-transparent text-white"
         disabled={validity.isPhoneNoValid || sendAttempts === 5}
         style={{
           backgroundColor: validity.isPhoneNoVerified ? '#7D7D7D' : '#40A578',
-          color: 'white',
-          borderColor: 'transparent',
           outline: 'none',
         }}
       >
