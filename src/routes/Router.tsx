@@ -8,7 +8,7 @@ import RootLayout from '../components/layout/RootLayout';
 import TermsAgreementPage from '../pages/terms/TermsAgreementPage';
 import RedirectionPage from '../pages/redirection/RedirectionPage';
 import SignUpCompletePage from '../pages/signUp/SignUpComplete';
-import NotFoundPage from '../pages/NotFoundPage';
+import NotFoundPage from '../pages/NotfoundPage';
 import ProductsPage from '../pages/product/ProductsPage';
 import ProductDetailPage from '../pages/product/ProductDetailPage';
 import ProductRegistrationPage from '../pages/product/ProductRegistrationPage';
