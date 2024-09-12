@@ -8,8 +8,8 @@ const MyPage = () => {
   const { userInfo } = useMyPageLogics();
 
   return (
-    <div className="w-full h-full flex flex-col gap-6 overflow-y-hidden">
-      {userInfo && (
+    <div className="flex flex-col w-full h-full gap-6 overflow-y-hidden">
+      {userInfo ? (
         <>
           <MyPageHeader />
 
@@ -19,6 +19,8 @@ const MyPage = () => {
           {/* Menu */}
           <MyPageUserMenu role={userInfo.role} />
         </>
+      ) : (
+        <div className="flex items-center justify-center w-full h-full">로그인을 해주세요...</div>
       )}
     </div>
   );
