@@ -8,8 +8,11 @@ import RootLayout from '../components/layout/RootLayout';
 import TermsAgreementPage from '../pages/terms/TermsAgreementPage';
 import RedirectionPage from '../pages/redirection/RedirectionPage';
 import SignUpCompletePage from '../pages/signUp/SignUpComplete';
-import NotFoundPage from '../pages/NotfoundPage';
+import NotFoundPage from '../pages/NotFoundPage';
 import ProductsPage from '../pages/product/ProductsPage';
+import ProductDetailPage from '../pages/product/ProductDetailPage';
+import ProductRegistrationPage from '../pages/product/ProductRegistrationPage';
+import ProductPurchasePage from '../pages/product/ProductPurchasePage';
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
@@ -17,13 +20,13 @@ const Router = (): JSX.Element => {
     <Routes>
       {/* 404 Not Found */}
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/login/kakao" element={<RedirectionPage />} />
       {/* 로그인 & 회원가입 */}
       <Route
         path="/auth/*"
         element={
           <Routes>
             <Route path="/signin" element={<SignInPage />} />
+            <Route path="/login/kakao" element={<RedirectionPage />} />
             {/* TODO: 약관동의의 경우 소셜에서 온것인지 판별 필요 */}
             <Route path="/signup/terms" element={<TermsAgreementPage />} />
             <Route path="/signup/info" element={<SignUpPage />} />
@@ -42,20 +45,21 @@ const Router = (): JSX.Element => {
       </Route>
 
       {/* 제품 관련 페이지들 */}
-      <Route path="/product/*" element={<RootLayout />}>
+      <Route path="/product" element={<RootLayout />}>
         <Route index element={<ProductsPage />} />
-        <Route path=":id" element={<div>특정 상품 상세</div>} />
-        <Route path="register" element={<div>제품 등록</div>} />
-        <Route path="modify" element={<div>등록한 제품 수정</div>} />
-        <Route path="*" element={<div>404</div>} />
       </Route>
+
+      <Route path="/product/:id" element={<ProductDetailPage />} />
+      <Route path="/product/register" element={<ProductRegistrationPage />} />
+      <Route path="/product/modify" element={<div>등록한 제품 수정</div>} />
+      <Route path="*" element={<NotFoundPage />} />
 
       {/* 구매 관련 페이지들 */}
       <Route
         path="/purchase/*"
         element={
           <Routes>
-            <Route path="/:id" element={<div>상품 구매 진행</div>} />
+            <Route path="/:id" element={<ProductPurchasePage />} />
             <Route path="/complete" element={<div>상품 구매 완료</div>} />
           </Routes>
         }

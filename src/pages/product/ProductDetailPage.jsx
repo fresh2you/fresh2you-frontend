@@ -4,7 +4,7 @@ import { mockProducts } from '../../mockdata/MockData';
 import ProductImageSlider from './components/details/ProductImageSlider';
 import ProductDescription from './components/details/ProductDescription';
 import BackButton from './components/buttons/BackButton';
-import ProductInfo from './components/ProductInfo';
+import ProductInfo from './components/details/ProductInfo';
 import ProductDetailsSection from './components/details/ProductDetailSection';
 import ProductDetailSkeleton from './components/skeletons/ProductDetailSkeleton';
 const ProductDetailPage = () => {
