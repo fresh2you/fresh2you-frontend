@@ -100,5 +100,13 @@
       "img": null,
       "updated_at": "10시간전"
     }
-  ]
+  ],
+  "userInfo": {
+    "id": 0,
+    "nickname": "닉네임",
+    "email": "longUserName@provider.com",
+    "image": "https://dh.aks.ac.kr/Edu/wiki/images/3/3a/%ED%94%BC%EC%B9%B4.jpg",
+    "role": "seller",
+    "point": 100000
+  }
 }
