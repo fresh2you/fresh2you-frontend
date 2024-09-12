@@ -1,11 +1,17 @@
+import useHomePageLogics from '@/pages/home/hooks/useHomePageLogics';
 import Banner from './component/Banner';
-import { recommendedProducts } from '../../mockdata/homeMockData';
 
 const HomePage = () => {
+  const { mockProducts } = useHomePageLogics();
+
   return (
     <div className="w-full h-full">
-      <Banner title="이런 상품은 어떠세요?" products={recommendedProducts.products} />
-      <Banner title="이런 상품은 어떠세요?" products={recommendedProducts.products} />
+      {mockProducts && (
+        <>
+          <Banner title="이런 상품은 어떠세요?" products={mockProducts} />
+          <Banner title="이런 상품은 어떠세요?" products={mockProducts} />
+        </>
+      )}
     </div>
   );
 };
