@@ -1,11 +1,12 @@
-import { Routes, Route } from 'react-router-dom';
-import { memo } from 'react';
-import SignUpPage from '../pages/signUp/SignUpPage';
-import HomePage from '../pages/home/HomePage';
-import SearchPage from '../pages/search/SearchPage';
-import SignInPage from '../pages/signIn/SignInPage';
-import RootLayout from '../components/layout/RootLayout';
-import TermsAgreement from '../pages/terms/components/TermsAgreement';
+import { Routes, Route } from "react-router-dom";
+import { memo } from "react";
+import SignUpPage from "../pages/signUp/SignUpPage";
+import HomePage from "../pages/home/HomePage";
+import SearchPage from "../pages/search/SearchPage";
+import SignInPage from "../pages/signIn/SignInPage";
+import RootLayout from "../components/layout/RootLayout";
+import TermsAgreementPage from "@/pages/terms/TermsAgreementPage";
+import MyPage from "@/pages/mypage/mypage/MyPage";
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
@@ -22,7 +23,7 @@ const Router = (): JSX.Element => {
             <Route path="/signin" element={<SignInPage />} />
             <Route path="/oauth" element={<div>소셜 로그인</div>} />
             {/* TODO: 약관동의의 경우 소셜에서 온것인지 판별 필요 */}
-            <Route path="/signup/terms" element={<TermsAgreement />} />
+            <Route path="/signup/terms" element={<TermsAgreementPage />} />
             <Route path="/signup/info" element={<SignUpPage />} />
             <Route path="/signup/complete" element={<div>회원가입 완료</div>} />
             <Route path="*" element={<div>404</div>} />
@@ -36,6 +37,7 @@ const Router = (): JSX.Element => {
         {/* 홈페이지 & 검색페이지 */}
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Route>
 
       {/* 제품 관련 페이지들 */}
@@ -90,7 +92,6 @@ const Router = (): JSX.Element => {
         path="/mypage/*"
         element={
           <Routes>
-            <Route path="/" element={<div>마이페이지 메인 페이지</div>} />
             <Route path="/charge" element={<div>포인트 충전</div>} />
             <Route path="/profile" element={<div>프로필 수정</div>} />
             <Route path="/password" element={<div>비밀번호 수정</div>} />
