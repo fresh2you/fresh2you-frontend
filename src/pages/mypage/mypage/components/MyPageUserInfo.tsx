@@ -4,14 +4,14 @@ const MyPageUserInfo = ({ role }: { role: "buyer" | "seller" }) => {
   const { moveToPath, userInfo } = useMyPageLogics();
 
   return (
-    <section className="w-full flex flex-col gap-4">
-      <article className="w-full px-4 py-3 flex items-center gap-2 bg-custom-gray-light">
+    <section className="flex flex-col w-full gap-4">
+      <article className="flex items-center w-full gap-2 px-4 py-3 bg-custom-gray-light">
         <div
-          className="h-20 aspect-square flex justify-center items-center rounded-full bg-custom-gray-dark bg-center bg-no-repeat bg-cover"
+          className="flex items-center justify-center h-20 bg-center bg-no-repeat bg-cover rounded-full aspect-square bg-custom-gray-dark"
           style={userInfo?.image ? { backgroundImage: `url(${userInfo?.image})` } : {}}
         />
 
-        <div className="text-black">
+        <div>
           <div className="text-lg font-semibold">{userInfo?.nickname}</div>
           <div className="text-sm font-normal">{userInfo?.email}</div>
         </div>
@@ -28,13 +28,13 @@ const MyPageUserInfo = ({ role }: { role: "buyer" | "seller" }) => {
         <>
           {role === "buyer" ? (
             <button
-              className="w-auto max-w-36 h-auto max-h-10 ml-4 px-3 py-2 rounded-lg flex items-center justify-center bg-custom-green-300 text-white font-semibold"
+              className="flex items-center justify-center w-auto h-auto px-3 py-2 ml-4 font-semibold text-white rounded-lg max-w-36 max-h-10 bg-custom-green-300"
               onClick={() => moveToPath("/mypage/verify-seller")}
             >
               판매자 인증하기
             </button>
           ) : (
-            <div className="w-auto max-w-36 h-auto max-h-10 ml-4 px-3 py-2 rounded-lg flex items-center justify-center bg-custom-verify text-white font-semibold">
+            <div className="flex items-center justify-center w-auto h-auto px-3 py-2 ml-4 font-semibold text-white rounded-lg max-w-36 max-h-10 bg-custom-verify">
               판매자 인증완료
             </div>
           )}{" "}
