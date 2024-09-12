@@ -12,6 +12,12 @@ export default defineConfig({
       include: '**/*.svg',
     }),
   ],
+  resolve: {
+    alias: [
+      { find: 'public', replacement: '/public' },
+      { find: '@', replacement: '/src' },
+    ],
+  },
   server: {
     port: 3000,
   },

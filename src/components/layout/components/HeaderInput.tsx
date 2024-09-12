@@ -5,7 +5,7 @@ const HeaderInput = () => {
 
   return (
     <input
-      className="bg-gray-600 w-4/5 h-full px-4 py-2 rounded-lg text-white placeholder:text-white"
+      className="w-3/4 h-full px-2 py-2 border border-gray-300 outline-none rounded-lg text-xs text-black placeholder:text-gray-300"
       value={searchValue}
       placeholder="검색할 상품명을 입력하고 엔터키를 입력해주세요"
       onChange={searchInputOnChange}
