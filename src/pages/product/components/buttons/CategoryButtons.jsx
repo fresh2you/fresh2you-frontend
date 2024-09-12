@@ -21,7 +21,7 @@ const CategoryButtons = () => {
   };
 
   const renderItems = () => {
-    if (!selectedCategory) return null;
+    if (!selectedCategory || selectedCategory === '기타') return null;
 
     const items = categories[selectedCategory];
     if (!items) return null;
@@ -49,10 +49,10 @@ const CategoryButtons = () => {
         {Object.keys(categories).map((category) => (
           <button
             key={category}
-            className={`px-4 py-2 rounded-lg ${
+            className={`px-4 py-2 rounded-lg focus:outline-none hover:border-transparent ${
               selectedCategory === category
                 ? 'bg-custom-green text-white'
-                : 'bg-custom-gray-light text-custom-black hover:bg-custom-green-hover hover:text-white hover:border-transparent focus:outline-none'
+                : 'bg-custom-gray-light text-custom-black hover:bg-custom-green-hover hover:text-white'
             }`}
             onClick={() => handleCategoryClick(category)}
           >
