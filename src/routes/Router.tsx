@@ -6,6 +6,7 @@ import SearchPage from "../pages/search/SearchPage";
 import SignInPage from "../pages/signIn/SignInPage";
 import RootLayout from "../components/layout/RootLayout";
 import TermsAgreementPage from "@/pages/terms/TermsAgreementPage";
+import MyPageLayout from "@/pages/mypage/components/MyPageLayout";
 import MyPage from "@/pages/mypage/mypage/MyPage";
 import PointPage from "@/pages/mypage/charge/PointPage";
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
@@ -93,7 +94,6 @@ const Router = (): JSX.Element => {
         path="/mypage/*"
         element={
           <Routes>
-            <Route path="/charge" element={<PointPage />} />
             <Route path="/profile" element={<div>프로필 수정</div>} />
             <Route path="/password" element={<div>비밀번호 수정</div>} />
             <Route path="/verify-seller" element={<div>판매자 인증</div>} />
@@ -103,6 +103,10 @@ const Router = (): JSX.Element => {
           </Routes>
         }
       />
+
+      <Route path="/mypage/*" element={<MyPageLayout />}>
+        <Route path="charge" element={<PointPage />} />
+      </Route>
     </Routes>
   );
 };

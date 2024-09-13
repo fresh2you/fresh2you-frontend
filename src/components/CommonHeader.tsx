@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import IconLeft from "icons/arrow-left.svg";
+import { useAtomValue } from "jotai";
+import { myPageHeaderProps } from "@/stores/mypage";
 
 interface CommonHeaderBaseProps {
   title: string;
@@ -18,33 +20,34 @@ interface CommonHeaderWithoutConfirm extends CommonHeaderBaseProps {
   onConfirm?: null;
 }
 
-type CommonHeaderProps = CommonHeaderWithConfirm | CommonHeaderWithoutConfirm;
+export type CommonHeaderProps = CommonHeaderWithConfirm | CommonHeaderWithoutConfirm;
 
-const CommonHeader = ({ title, onBack, hasConfirm, confirmText, onConfirm }: CommonHeaderProps) => {
+const CommonHeader = () => {
   const navigate = useNavigate();
+  const { title, onBack, hasConfirm, confirmText, onConfirm } = useAtomValue(myPageHeaderProps);
 
   return (
-    <header className="relative w-full h-14 px-2 flex justify-between items-center">
+    <header className="relative flex items-center justify-between w-full px-2 h-14">
       {/* 헤더 좌측 버튼 */}
       <button
         onClick={() => {
           navigate(-1);
           if (onBack) onBack();
         }}
-        className="h-full px-4 py-0 flex items-center bg-transparent"
+        className="flex items-center h-full px-4 py-0 bg-transparent"
       >
         <IconLeft className="h-5 text-custom-gray-dark" />
       </button>
 
       {/* 헤더 중앙 제목 */}
-      <h1 className="absolute top-1/2 left-1/2 ransform -translate-x-1/2 -translate-y-1/2 text-xl font-bold">
+      <h1 className="absolute text-xl font-bold -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 ransform">
         {title}
       </h1>
 
       {/* 헤더 우측 버튼 */}
       {hasConfirm && (
         <button
-          className="h-full px-4 py-0 bg-transparent text-custom-gray-dark font-semibold"
+          className="h-full px-4 py-0 font-semibold bg-transparent text-custom-gray-dark"
           onClick={() => {
             if (onConfirm) onConfirm();
           }}
