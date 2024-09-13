@@ -1,6 +1,7 @@
-import CommonHeader from "@/components/CommonHeader";
 import usePointPagelogics from "@/pages/mypage/charge/hooks/usePointPagelogics";
-import { useState } from "react";
+import { myPageHeaderProps } from "@/stores/mypage";
+import { useSetAtom } from "jotai";
+import { useEffect, useState } from "react";
 
 const PointPage = () => {
   const [inputValue, setInputValue] = useState<number | "">("");
@@ -14,11 +15,18 @@ const PointPage = () => {
     setInputValue(value === "" ? "" : Number(value));
   };
 
-  return (
-    <div className="flex flex-col items-center justify-between w-full h-full pb-20">
-      <CommonHeader title={"포인트 충전하기"} onBack={() => {}} hasConfirm={false} />
+  const setHeaderProps = useSetAtom(myPageHeaderProps);
 
-      <div className="flex flex-col w-full px-[10%] gap-3">
+  useEffect(() => {
+    setHeaderProps({
+      title: "포인트 충전",
+      hasConfirm: false,
+    });
+  }, [setHeaderProps]);
+
+  return (
+    <div className="flex flex-col items-center w-full h-full pb-[4.5rem]">
+      <div className=" flex flex-col justify-center w-full h-full px-[10%] gap-3 self-">
         <div className="text-lg font-bold ">충전하실 포인트를 입력해주세요</div>
 
         <div className="flex w-full gap-4">
