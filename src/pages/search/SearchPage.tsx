@@ -17,7 +17,7 @@ const SearchPage = () => {
         <span className="ml-4 font-bold">{currentCategory || "선택된 카테고리 없음"}</span>
       </div>
 
-      <section className="px-6 py-2">
+      <section className="px-4 py-2">
         {searchedItems.length <= 0 && "검색 결과가 없습니다."}
 
         {searchedItems.map((item) => (
