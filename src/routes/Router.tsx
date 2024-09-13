@@ -9,6 +9,7 @@ import TermsAgreementPage from "@/pages/terms/TermsAgreementPage";
 import MyPageLayout from "@/pages/mypage/components/MyPageLayout";
 import MyPage from "@/pages/mypage/mypage/MyPage";
 import PointPage from "@/pages/mypage/charge/PointPage";
+import VerifySellerPage from "@/pages/mypage/verifySeller/VerifySellerPage";
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
@@ -90,13 +91,13 @@ const Router = (): JSX.Element => {
       />
 
       {/* 마이페이지 관련 페이지들 */}
+
       <Route
         path="/mypage/*"
         element={
           <Routes>
             <Route path="/profile" element={<div>프로필 수정</div>} />
             <Route path="/password" element={<div>비밀번호 수정</div>} />
-            <Route path="/verify-seller" element={<div>판매자 인증</div>} />
             <Route path="/likes" element={<div>찜 목록</div>} />
             <Route path="/deliveries" element={<div>배송지 관리</div>} />
             <Route path="/my-products" element={<div>내 판매 상품들</div>} />
@@ -106,6 +107,7 @@ const Router = (): JSX.Element => {
 
       <Route path="/mypage/*" element={<MyPageLayout />}>
         <Route path="charge" element={<PointPage />} />
+        <Route path="verify-seller" element={<VerifySellerPage />} />
       </Route>
     </Routes>
   );
