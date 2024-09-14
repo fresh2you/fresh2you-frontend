@@ -11,8 +11,7 @@ export default function InputField({ id, label, type, value, onChange, placehold
         onChange={onChange}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="h-10 rounded px-2 text-white border w-72 outline-none"
-        style={{ borderColor: '#D3D3D3' }}
+        className="h-10 rounded px-2 text-white border w-72 outline-none border-custom-gray-light"
       />
     </div>
   );

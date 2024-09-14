@@ -14,6 +14,10 @@ export default {
         "custom-gray-dark": "#7D7D7D",
         "custom-black": "#333333",
       },
+      screens: {
+        "2xs": { max: "375px" },
+        xs: { max: "425px" },
+      },
     },
   },
   plugins: [

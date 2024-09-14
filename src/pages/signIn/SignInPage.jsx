@@ -23,12 +23,7 @@ export default function SignInPage() {
         <hr className="w-72 rounded-full text-custom-gray-light" />
         <button
           onClick={() => (window.location.href = KAKAO_AUTH_URL)}
-          style={{
-            outline: 'none',
-            borderColor: 'transparent',
-            color: '#333333',
-          }}
-          className="kakao-button w-72 h-12 flex items-center justify-center space-x-2 mt-6 rounded-full kakao-button font-semibold"
+          className="text-custom-black w-72 h-12 flex items-center justify-center space-x-2 mt-6 rounded-full kakao-button font-semibold hover:border-transparent focus:outline-none"
         >
           <img src={kakao} alt="카카오톡" width="25px" />
           <span>카카오로 시작하기</span>

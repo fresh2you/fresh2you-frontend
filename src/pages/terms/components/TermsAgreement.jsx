@@ -61,7 +61,7 @@ const TermsAgreement = ({ onAgree }) => {
           <ArrowDownIcon className="ml-2 w-4 h-4" onClick={() => toggleOpen(id)} />
         )}
       </div>
-      {isOpen[id] && <div className="mt-2 text-sm bg-custom-white p-2 rounded-md">{content}</div>}
+      {isOpen[id] && <div className="mt-2 text-sm bg-white p-2 rounded-md">{content}</div>}
     </div>
   );
 
