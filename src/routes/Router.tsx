@@ -1,18 +1,19 @@
-import { Routes, Route } from 'react-router-dom';
-import { memo } from 'react';
-import SignUpPage from '../pages/signUp/SignUpPage';
-import HomePage from '../pages/home/HomePage';
-import SearchPage from '../pages/search/SearchPage';
-import SignInPage from '../pages/signIn/SignInPage';
-import RootLayout from '../components/layout/RootLayout';
-import TermsAgreementPage from '../pages/terms/TermsAgreementPage';
-import RedirectionPage from '../pages/redirection/RedirectionPage';
-import SignUpCompletePage from '../pages/signUp/SignUpComplete';
-import NotFoundPage from '../pages/NotfoundPage';
-import ProductsPage from '../pages/product/ProductsPage';
-import ProductDetailPage from '../pages/product/ProductDetailPage';
-import ProductRegistrationPage from '../pages/product/ProductRegistrationPage';
-import ProductPurchasePage from '../pages/product/ProductPurchasePage';
+import { Routes, Route } from "react-router-dom";
+import { memo } from "react";
+import SignUpPage from "../pages/signUp/SignUpPage";
+import HomePage from "../pages/home/HomePage";
+import SearchPage from "../pages/search/SearchPage";
+import SignInPage from "../pages/signIn/SignInPage";
+import RootLayout from "../components/layout/RootLayout";
+import TermsAgreementPage from "../pages/terms/TermsAgreementPage";
+import RedirectionPage from "../pages/redirection/RedirectionPage";
+import SignUpCompletePage from "../pages/signUp/SignUpComplete";
+import NotFoundPage from "../pages/NotfoundPage";
+import ProductsPage from "../pages/product/ProductsPage";
+import ProductDetailPage from "../pages/product/ProductDetailPage";
+import ProductRegistrationPage from "../pages/product/ProductRegistrationPage";
+import ProductPurchasePage from "../pages/product/ProductPurchasePage";
+import PaymentCompletePage from "@/pages/product/PaymentCompletePage";
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
@@ -60,7 +61,7 @@ const Router = (): JSX.Element => {
         element={
           <Routes>
             <Route path="/:id" element={<ProductPurchasePage />} />
-            <Route path="/complete" element={<div>상품 구매 완료</div>} />
+            <Route path="/complete" element={<PaymentCompletePage />} />
           </Routes>
         }
       />
