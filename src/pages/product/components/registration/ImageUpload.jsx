@@ -1,10 +1,10 @@
-import { CloseBtn } from '../../../signUp/component/buttons/CloseBtn';
+import { CloseBtn } from "../../../signUp/component/buttons/CloseBtn";
 
 const ImageUpload = ({ onImageChange, imagePreviews, onDeleteImage }) => {
   const handleImageChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
     if (selectedFiles.length + imagePreviews.length > 5) {
-      alert('최대 5장의 이미지만 업로드할 수 있습니다.');
+      alert("최대 5장의 이미지만 업로드할 수 있습니다.");
       return;
     }
 
@@ -24,7 +24,7 @@ const ImageUpload = ({ onImageChange, imagePreviews, onDeleteImage }) => {
         accept="image/*"
         onChange={handleImageChange}
         multiple
-        className="border p-2 rounded"
+        className="border p-2 rounded focus:outline-none"
       />
       <div className="flex flex-wrap gap-4 mt-4">
         {imagePreviews.map((preview, index) => (

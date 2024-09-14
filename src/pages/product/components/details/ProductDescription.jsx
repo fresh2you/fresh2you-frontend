@@ -12,7 +12,7 @@ const ProductDescription = () => {
     `;
 
   return (
-    <div className="mt-8">
+    <div className="mt-4">
       <p className="text-lg whitespace-pre-line">{description}</p>
     </div>
   );

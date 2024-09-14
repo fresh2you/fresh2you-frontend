@@ -1,33 +1,38 @@
-import React from 'react';
-import Button from '../buttons/Button';
-import { formatCurrency } from '../../../../utils/commonUtils';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import Button from "../buttons/Button";
+import { formatCurrency } from "../../../../utils/commonUtils";
+import { useNavigate } from "react-router-dom";
+
 const ProductInfo = ({ product }) => {
   const navigate = useNavigate();
+
   if (!product) {
     return <div className="text-center mt-20">No product data available.</div>;
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:gap-0 gap-8">
-      <div className="flex justify-center items-center w-full md:w-80">
-        <img src={product.img} alt={product.name} className="object-contain w-full h-80 border rounded-sm" />
+    <div className="flex items-center 2xs:flex-col gap-x-4 2xs:gap-y-2">
+      <div className="flex justify-center items-center">
+        <img
+          src={product.img}
+          alt={product.name}
+          className="object-contain border rounded-sm lg:max-w-[180px] md:max-w-[160px] max-w-[140px] xs:max-w-[120px]"
+        />
       </div>
-      <div className="flex flex-col justify-between w-full md:w-72">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">{product.name}</h1>
-        <p className="text-lg md:text-xl text-custom-gray-dark mb-2">{product.seller}</p>
-        <p className="text-lg md:text-2xl text-custom-green font-semibold mb-4">{formatCurrency(product.price)} 원</p>
-        <p className="text-base md:text-lg mb-4">{product.description}</p>
-        <div className="flex flex-col md:flex-row gap-2">
+      <div className="flex flex-col">
+        <h1 className="text-2xl font-bold md:mb-1 xs:text-xl">{product.name}</h1>
+        <p className="text-custom-gray-dark md:mb-1">{product.seller}</p>
+        <p className="text-xl text-custom-green font-semibold mb-1">{formatCurrency(product.price)} 원</p>
+        <div className="flex gap-2">
           <Button
-            className="bg-custom-green text-white hover:bg-custom-green-hover"
+            className="bg-custom-green text-white hover:bg-custom-green-hover whitespace-nowrap text-base md:text-lg xs:text-sm"
             text="구매하기"
-            onClick={() => navigate('/purchase/${product.id}')}
+            onClick={() => navigate(`/purchase/${product.product_id}`)}
           />
           <Button
-            className="bg-custom-gray-light text-custom-black hover:bg-custom-gray-dark"
+            className="bg-custom-gray-light text-custom-black hover:bg-custom-gray-dark whitespace-nowrap text-base md:text-lg xs:text-sm"
             text="협상하기"
-            onClick={() => navigate('/chatting/${product.id}')}
+            onClick={() => navigate(`/chatting/${product.product_id}`)}
           />
         </div>
       </div>

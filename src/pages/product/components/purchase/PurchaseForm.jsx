@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import DaumPostcodeEmbed from 'react-daum-postcode';
+import { useState } from "react";
+import DaumPostcodeEmbed from "react-daum-postcode";
 
 const PurchaseForm = ({ recipientDetails, setRecipientDetails, error }) => {
   const [isPostcodeVisible, setIsPostcodeVisible] = useState(false);
-  const [detailedAddress, setDetailedAddress] = useState('');
+  const [detailedAddress, setDetailedAddress] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,15 +18,15 @@ const PurchaseForm = ({ recipientDetails, setRecipientDetails, error }) => {
   };
 
   const completeHandler = (data) => {
-    const fullAddress = `${data.address} ${data.bname ? `(${data.bname})` : ''} ${
-      data.buildingName ? `(${data.buildingName})` : ''
+    const fullAddress = `${data.address} ${data.bname ? `(${data.bname})` : ""} ${
+      data.buildingName ? `(${data.buildingName})` : ""
     }`;
     setRecipientDetails((prevDetails) => ({
       ...prevDetails,
       address: `${fullAddress} ${detailedAddress}`,
     }));
     setIsPostcodeVisible(false);
-    setDetailedAddress('');
+    setDetailedAddress("");
   };
 
   const openPostcode = () => {
@@ -52,7 +52,7 @@ const PurchaseForm = ({ recipientDetails, setRecipientDetails, error }) => {
 
       <label className="block text-lg font-semibold mb-2">전화번호</label>
       <input
-        type="text"
+        type="tel"
         name="phoneNumber"
         value={recipientDetails.phoneNumber}
         onChange={handleChange}
@@ -92,8 +92,8 @@ const PurchaseForm = ({ recipientDetails, setRecipientDetails, error }) => {
             <button
               type="button"
               onClick={closePostcode}
-              className="absolute bottom-6 right-8 text-custom-black hover:border-transparent bg-custom-green 
-              hover:text-white hover:bg-custom-green-hover transition z-30 focus:outline-none"
+              className="absolute bottom-6 right-8 text-custom-black hover:border-transparent bg-custom-green text-white
+             hover:bg-custom-green-hover transition z-30 focus:outline-none"
             >
               뒤로 가기
             </button>

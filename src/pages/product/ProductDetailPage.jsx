@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { mockProducts } from '../../mockdata/MockData';
-import ProductImageSlider from './components/details/ProductImageSlider';
-import ProductDescription from './components/details/ProductDescription';
-import BackButton from './components/buttons/BackButton';
-import ProductInfo from './components/details/ProductInfo';
-import ProductDetailsSection from './components/details/ProductDetailSection';
-import ProductDetailSkeleton from './components/skeletons/ProductDetailSkeleton';
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { mockProducts } from "../../mockdata/MockData";
+import ProductImageSlider from "./components/details/ProductImageSlider";
+import ProductDescription from "./components/details/ProductDescription";
+import BackButton from "./components/buttons/BackButton";
+import ProductInfo from "./components/details/ProductInfo";
+import ProductDetailsSection from "./components/details/ProductDetailSection";
+import ProductDetailSkeleton from "./components/skeletons/ProductDetailSkeleton";
 const ProductDetailPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -17,11 +17,10 @@ const ProductDetailPage = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        console.log(loading);
         const productData = mockProducts.products.find((p) => p.product_id === parseInt(id));
         setProduct(productData);
       } catch (error) {
-        console.error('Failed to fetch product:', error);
+        console.error("Failed to fetch product:", error);
       } finally {
         setLoading(false);
       }
@@ -39,9 +38,12 @@ const ProductDetailPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen text-custom-black px-4 md:px-8 lg:px-20">
-      <div className="w-full max-w-4xl py-8 flex flex-col">
-        <div className="flex justify-start mb-4">
+    <div
+      className="flex flex-col items-center min-h-screen text-custom-black xl:min-w-[620px] lg:w-3/5 lg:max-w-[620px] md:w-3/5 md:min-w-[540px]
+     w-4/5 sm:max-w-[540px] mx-auto sm:px-8 py-8 px-10 min-w-[425px]"
+    >
+      <div className="w-full max-w-4xl flex flex-col">
+        <div className="flex justify-start mb-6">
           <BackButton />
         </div>
         <ProductInfo product={product} />

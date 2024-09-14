@@ -1,20 +1,20 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button from './components/buttons/Button';
-import { formatPriceInput } from '../../utils/commonUtils';
-import categories from '../../data/categories';
-import ProductForm from './components/registration/ProductForm';
-import ProductImages from './components/registration/ProductImages';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "./components/buttons/Button";
+import { formatPriceInput } from "../../utils/commonUtils";
+import categories from "../../data/categories";
+import ProductForm from "./components/registration/ProductForm";
+import ProductImages from "./components/registration/ProductImages";
 
 const ProductRegistrationPage = () => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
   const [images, setImages] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [category, setCategory] = useState('');
-  const [subCategory, setSubCategory] = useState('');
+  const [category, setCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const navigate = useNavigate();
 
@@ -27,19 +27,18 @@ const ProductRegistrationPage = () => {
     e.preventDefault();
     if (!isFormValid) return;
     else {
-      const rawPrice = price.replace(/,/g, '');
-
+      const rawPrice = price.replace(/,/g, "");
       // Upload image logic and submit product
 
       setLoading(false);
-      navigate('/mypage/my-products');
+      navigate("/mypage/my-products");
     }
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen text-custom-black px-4 md:px-8 lg:px-20">
-      <div className="w-full max-w-4xl py-20 flex flex-col">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center text-custom-green">상품을 등록해요</h1>
+    <div className="flex flex-col items-center min-h-screen text-custom-black">
+      <div className="w-2/5 py-20 flex flex-col">
+        <h1 className="text-4xl font-bold mb-8 text-center text-custom-green">상품을 등록해요</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <ProductForm
             name={name}
@@ -64,9 +63,9 @@ const ProductRegistrationPage = () => {
             <Button
               type="submit"
               className={`bg-custom-green text-white hover:bg-custom-green-hover ${
-                isFormValid ? 'cursor-pointer' : 'cursor-not-allowed'
+                isFormValid ? "cursor-pointer" : "cursor-not-allowed"
               }`}
-              text={loading ? '등록 중...' : '등록하기'}
+              text={loading ? "등록 중..." : "등록하기"}
               onClick={handleSubmit}
               disabled={loading || !isFormValid}
             />

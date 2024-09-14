@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import categories from '../../../../data/categories';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import categories from "../../../../data/categories";
+import { useNavigate } from "react-router-dom";
 
 const CategoryButtons = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const CategoryButtons = () => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category === selectedCategory ? null : category);
-    setSelectedSubCategory(null); // Reset subcategory when category changes
+    setSelectedSubCategory(null);
   };
 
   const handleSubCategoryClick = (subCategory) => {
@@ -21,7 +21,7 @@ const CategoryButtons = () => {
   };
 
   const renderItems = () => {
-    if (!selectedCategory || selectedCategory === '기타') return null;
+    if (!selectedCategory || selectedCategory === "기타") return null;
 
     const items = categories[selectedCategory];
     if (!items) return null;
@@ -32,7 +32,8 @@ const CategoryButtons = () => {
           {items.map((item, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/4 cursor-pointer hover:text-custom-green-hover transition-colors whitespace-nowrap hover:scale-105 font-semibold text-lg"
+              className="flex-shrink-0 w-1/3 lg:w-1/4 cursor-pointer hover:text-custom-green-hover transition-colors 
+              hover:scale-105 font-semibold text-lg mr-4 whitespace-nowrap"
               onClick={() => handleItemClick(item)}
             >
               {item}
@@ -45,14 +46,14 @@ const CategoryButtons = () => {
 
   return (
     <>
-      <div className="flex flex-wrap gap-4 mb-2 max-w-2xl">
+      <div className="flex gap-4 mb-2 w-full sm:flex-wrap overflow-x-scroll sm:overflow-x-visible">
         {Object.keys(categories).map((category) => (
           <button
             key={category}
-            className={`px-4 py-2 rounded-lg focus:outline-none hover:border-transparent ${
+            className={`px-4 py-2 rounded-lg focus:outline-none hover:border-transparent whitespace-nowrap ${
               selectedCategory === category
-                ? 'bg-custom-green text-white'
-                : 'bg-custom-gray-light text-custom-black hover:bg-custom-green-hover hover:text-white'
+                ? "bg-custom-green text-white"
+                : "bg-custom-gray-light text-custom-black hover:bg-custom-green-hover hover:text-white"
             }`}
             onClick={() => handleCategoryClick(category)}
           >
