@@ -5,7 +5,7 @@ import HomePage from "../pages/home/HomePage";
 import SearchPage from "../pages/search/SearchPage";
 import SignInPage from "../pages/signIn/SignInPage";
 import RootLayout from "../components/layout/RootLayout";
-import TermsAgreementPage from "../pages/terms/TermsAgreementPage";
+import TermsAgreementPage from "@/pages/terms/TermsAgreementPage";
 import RedirectionPage from "../pages/redirection/RedirectionPage";
 import SignUpCompletePage from "../pages/signUp/SignUpComplete";
 import NotFoundPage from "../pages/NotfoundPage";
@@ -14,6 +14,13 @@ import ProductDetailPage from "../pages/product/ProductDetailPage";
 import ProductRegistrationPage from "../pages/product/ProductRegistrationPage";
 import ProductPurchasePage from "../pages/product/ProductPurchasePage";
 import PaymentCompletePage from "@/pages/product/PaymentCompletePage";
+import MyPageLayout from "@/pages/mypage/components/MyPageLayout";
+import MyPage from "@/pages/mypage/mypage/MyPage";
+import PointPage from "@/pages/mypage/charge/PointPage";
+import VerifySellerPage from "@/pages/mypage/verifySeller/VerifySellerPage";
+import LikeListpage from "@/pages/mypage/likes/LikeListpage";
+import ChangePasswordPage from "@/pages/mypage/password/ChangePasswordPage";
+
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
@@ -43,6 +50,7 @@ const Router = (): JSX.Element => {
         {/* 홈페이지 & 검색페이지 */}
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Route>
 
       {/* 제품 관련 페이지들 */}
@@ -89,21 +97,24 @@ const Router = (): JSX.Element => {
       />
 
       {/* 마이페이지 관련 페이지들 */}
+
       <Route
         path="/mypage/*"
         element={
           <Routes>
-            <Route path="/" element={<div>마이페이지 메인 페이지</div>} />
-            <Route path="/charge" element={<div>포인트 충전</div>} />
             <Route path="/profile" element={<div>프로필 수정</div>} />
-            <Route path="/password" element={<div>비밀번호 수정</div>} />
-            <Route path="/verify-seller" element={<div>판매자 인증</div>} />
-            <Route path="/likes" element={<div>찜 목록</div>} />
             <Route path="/deliveries" element={<div>배송지 관리</div>} />
             <Route path="/my-products" element={<div>내 판매 상품들</div>} />
           </Routes>
         }
       />
+
+      <Route path="/mypage/*" element={<MyPageLayout />}>
+        <Route path="charge" element={<PointPage />} />
+        <Route path="verify-seller" element={<VerifySellerPage />} />
+        <Route path="likes" element={<LikeListpage />} />
+        <Route path="password" element={<ChangePasswordPage />} />
+      </Route>
     </Routes>
   );
 };

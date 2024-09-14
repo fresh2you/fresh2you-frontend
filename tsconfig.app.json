@@ -25,8 +25,9 @@
     "baseUrl": ".",
     "paths": {
       "public/*": ["public/*"],
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "icons/*": ["/src/assets/icons/*"]
     }
   },
-  "include": ["src", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+  "include": ["src", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "global.d.ts"]
 }

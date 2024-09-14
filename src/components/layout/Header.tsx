@@ -2,8 +2,11 @@ import IconSearch from '../../assets/icons/icon-search.svg';
 import { Link, useLocation } from 'react-router-dom';
 import HeaderInput from './components/HeaderInput';
 
+
 const Header = () => {
   const { pathname } = useLocation();
+
+  if (pathname === "/mypage") return null;
 
   return (
     /* TODO: 테두리 색 디자인 시스템 색상으로 변경 */
@@ -14,9 +17,9 @@ const Header = () => {
         </Link>
       </h1>
 
-      {pathname === '/search' && <HeaderInput />}
+      {pathname === "/search" && <HeaderInput />}
 
-      <Link to={'/search'}>
+      <Link to={"/search"}>
         <IconSearch />
       </Link>
     </header>
