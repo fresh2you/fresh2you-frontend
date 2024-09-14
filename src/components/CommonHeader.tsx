@@ -40,7 +40,7 @@ const CommonHeader = () => {
       </button>
 
       {/* 헤더 중앙 제목 */}
-      <h1 className="absolute text-xl font-bold -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 ransform">
+      <h1 className="absolute text-xl font-bold -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
         {title}
       </h1>
 

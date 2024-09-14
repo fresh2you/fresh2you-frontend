@@ -26,7 +26,7 @@ const PointPage = () => {
 
   return (
     <div className="flex flex-col items-center w-full h-full pb-[4.5rem]">
-      <div className=" flex flex-col justify-center w-full h-full px-[10%] gap-3 self-">
+      <div className=" flex flex-col justify-center w-full h-full px-[10%] gap-3">
         <div className="text-lg font-bold ">충전하실 포인트를 입력해주세요</div>
 
         <div className="flex w-full gap-4">
