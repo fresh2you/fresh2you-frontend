@@ -76,12 +76,12 @@ export default function SignUpPage() {
 
   const steps = getStepsConfig(formData, setFormData, setStatus, validity, handleOpenModal, sendAttempts);
   const currentStep = funnel.step;
-  console.log(validity);
+
   return (
     <div className="flex">
       <form
         onSubmit={(e) => handleSubmit(e, validity, formData)}
-        className="flex flex-col justify-center min-h-screen bg-gray-100 my-0 mx-auto items-start"
+        className="flex flex-col justify-center min-h-screen my-0 mx-auto items-start"
         style={{ width: '376px' }}
       >
         <PasswordFeedback passwordFeedbacks={passwordFeedbacks} />
