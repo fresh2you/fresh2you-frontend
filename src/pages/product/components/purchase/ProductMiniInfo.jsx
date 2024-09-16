@@ -1,4 +1,3 @@
-import React from "react";
 import { formatCurrency } from "../../../../utils/commonUtils";
 import { useNavigate } from "react-router-dom";
 import PlusImg from "../..//../../assets/img/plus.png";
