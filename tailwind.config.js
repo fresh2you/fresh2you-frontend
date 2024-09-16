@@ -14,8 +14,8 @@ export default {
         "custom-black": "#333333",
       },
       screens: {
-        "2xs": { max: "375px" },
-        xs: { max: "425px" },
+        "2xs": { min: "375px" },
+        xs: { min: "425px" },
       },
     },
   },
