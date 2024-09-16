@@ -14,6 +14,8 @@ import ProductDetailPage from "../pages/product/ProductDetailPage";
 import ProductRegistrationPage from "../pages/product/ProductRegistrationPage";
 import ProductPurchasePage from "../pages/product/ProductPurchasePage";
 import PaymentCompletePage from "@/pages/product/PaymentCompletePage";
+import ChatListPage from "@/pages/chat/ChatListPage";
+import ChatPage from "@/pages/chat/ChatPage";
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
@@ -78,15 +80,10 @@ const Router = (): JSX.Element => {
       />
 
       {/* 채팅 관련 페이지들 */}
-      <Route
-        path="/chatting/*"
-        element={
-          <Routes>
-            <Route path="/" element={<div>채팅 메인 페이지</div>} />
-            <Route path="/:id" element={<div>채팅방</div>} />
-          </Routes>
-        }
-      />
+      <Route element={<RootLayout />}>
+        <Route path="/chatting" element={<ChatListPage />} />
+      </Route>
+      <Route path="/chatting/:id" element={<ChatPage />} />
 
       {/* 마이페이지 관련 페이지들 */}
       <Route
