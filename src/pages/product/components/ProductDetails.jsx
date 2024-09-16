@@ -1,7 +1,9 @@
-import React from "react";
 import { formatCurrency } from "@/utils/commonUtils";
+import { useAtom } from "jotai";
+import { productAtom } from "@/stores/jotaiSample";
+const ProductDetails = () => {
+  const [product, setProduct] = useAtom(productAtom);
 
-const ProductDetails = ({ product }) => {
   return (
     <div className="flex items-center gap-4">
       <img
