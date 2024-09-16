@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 
 interface MenuProps {
   to: string;
@@ -13,8 +13,8 @@ const Menu = ({ to, iconComponent, name }: MenuProps) => {
   return (
     <Link
       to={to}
-      className={`flex flex-col justify-center items-center text-black hover:text-green-300 ${
-        pathname === to && 'text-green-300'
+      className={`flex flex-col justify-center items-center font-semibold text-black hover:text-custom-green-300 ${
+        pathname === to && "text-custom-green"
       }`}
     >
       {iconComponent}

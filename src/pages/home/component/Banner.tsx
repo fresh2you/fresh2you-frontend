@@ -1,19 +1,17 @@
-import ProductCard from './ProductCard';
-import { ProductCardProps } from './ProductCard';
+import ProductCard from "./ProductCard";
+import { ProductCardProps } from "./ProductCard";
 
 interface BannerProps {
   title: string;
   products: ProductCardProps[];
 }
 
-const Banner = ({ title = 'banner title', products = [] }: BannerProps) => {
-  console.log(products);
-
+const Banner = ({ title = "banner title", products = [] }: BannerProps) => {
   return (
     <section className="w-full h-auto px-4 py-4 flex flex-col items-center gap-4">
       <div className="font-bold">{title}</div>
 
-      <div className="w-full grid grid-rows-2 gap-4" style={{ gridTemplateRows: '1fr 1fr' }}>
+      <div className="w-full grid grid-rows-2 gap-4" style={{ gridTemplateRows: "1fr 1fr" }}>
         <article className="w-full h-auto flex lg:justify-center gap-4 overflow-x-auto scrollbar-hide">
           {products.slice(0, 5).map(({ product_id, name, seller, description, price, img }) => (
             <ProductCard
