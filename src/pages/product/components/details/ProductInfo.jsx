@@ -2,7 +2,7 @@ import Button from "../buttons/Button";
 import { formatCurrency } from "../../../../utils/commonUtils";
 import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
-import { productAtom } from "@/stores/jotaiSample";
+import { productAtom } from "@/stores/product";
 const ProductInfo = ({ inChat }) => {
   const navigate = useNavigate();
   const [product, setProduct] = useAtom(productAtom);

@@ -1,6 +1,6 @@
 import { formatCurrency } from "@/utils/commonUtils";
 import { useAtom } from "jotai";
-import { productAtom } from "@/stores/jotaiSample";
+import { productAtom } from "@/stores/product";
 const ProductDetails = () => {
   const [product, setProduct] = useAtom(productAtom);
 

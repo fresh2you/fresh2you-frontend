@@ -3,7 +3,7 @@ import data from "../../mockdata/db.json";
 import ChatHeader from "./components/ChatHeader";
 import ChatFooter from "./components/ChatFooter";
 import ProductInfo from "../product/components/details/ProductInfo";
-import { productAtom } from "@/stores/jotaiSample";
+import { productAtom } from "@/stores/product";
 import { groupMessagesByDateAndSender, isWithinOneMinute } from "@/utils/commonUtils";
 import MessageList from "./components/MessageList";
 

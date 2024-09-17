@@ -17,4 +17,3 @@ export const animeAtom = atom([
 ]);
 
 export const a = 1;
-export const productAtom = atom(null);

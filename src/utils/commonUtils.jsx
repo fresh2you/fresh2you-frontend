@@ -21,8 +21,8 @@ export const convertTo24HourFormat = (timeString) => {
 export const isWithinOneMinute = (prevTimestamp, currentTimestamp) => {
   if (!prevTimestamp) return false;
 
-  const prevTime = new Date(`1970-01-01T${convertTo24HourFormat(prevTimestamp)}`);
-  const currentTime = new Date(`1970-01-01T${convertTo24HourFormat(currentTimestamp)}`);
+  const prevTime = convertTo24HourFormat(prevTimestamp);
+  const currentTime = convertTo24HourFormat(currentTimestamp);
   return (currentTime - prevTime) / 1000 <= 60;
 };
 export const groupMessagesByDateAndSender = (messages) => {

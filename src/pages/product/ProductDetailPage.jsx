@@ -8,7 +8,7 @@ import ProductInfo from "./components/details/ProductInfo";
 import ProductDetailsSection from "./components/details/ProductDetailSection";
 import ProductDetailSkeleton from "./components/skeletons/ProductDetailSkeleton";
 import { useAtom } from "jotai";
-import { productAtom } from "@/stores/jotaiSample";
+import { productAtom } from "@/stores/product";
 const ProductDetailPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useAtom(productAtom);
