@@ -19,7 +19,7 @@ const ChatHeader = ({ nickname }) => {
         className="text-gray-600 hover:text-gray-900 hover:border-transparent focus:outline-none
     justify-self-start bg-transparent p-0"
       >
-        <ArrowLeftIcon className="w-8 h-8" />
+        <ArrowLeftIcon className="w-4 h-4" />
       </button>
       <span className="text-lg font-semibold justify-self-center">{nickname}</span>
       <button className="hover:border-transparent focus:outline-none bg-transparent p-0" onClick={toggleDropdown}>
