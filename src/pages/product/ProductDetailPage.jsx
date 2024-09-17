@@ -7,9 +7,11 @@ import BackButton from "./components/buttons/BackButton";
 import ProductInfo from "./components/details/ProductInfo";
 import ProductDetailsSection from "./components/details/ProductDetailSection";
 import ProductDetailSkeleton from "./components/skeletons/ProductDetailSkeleton";
+import { useAtom } from "jotai";
+import { productAtom } from "@/stores/product";
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useAtom(productAtom);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -46,7 +48,7 @@ const ProductDetailPage = () => {
         <div className="flex justify-start mb-6">
           <BackButton />
         </div>
-        <ProductInfo product={product} />
+        <ProductInfo />
         <ProductDetailsSection />
       </div>
     </div>

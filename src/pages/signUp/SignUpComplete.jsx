@@ -1,12 +1,11 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import slider1 from '../../assets/img/sliders/slider1.png';
-import slider2 from '../../assets/img/sliders/slider2.png';
-import slider3 from '../../assets/img/sliders/slider3.png';
-import HomeButton from '../../components/HomeButton';
+import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import slider1 from "../../assets/img/sliders/slider1.png";
+import slider2 from "../../assets/img/sliders/slider2.png";
+import slider3 from "../../assets/img/sliders/slider3.png";
+import HomeButton from "../../components/HomeButton";
 const settings = {
   dots: true,
   infinite: true,
@@ -31,7 +30,7 @@ const SignUpCompletePage = () => {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (

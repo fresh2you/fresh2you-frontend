@@ -92,7 +92,7 @@ const PurchaseForm = ({ recipientDetails, setRecipientDetails, error }) => {
             <button
               type="button"
               onClick={closePostcode}
-              className="absolute bottom-6 right-8 text-custom-black hover:border-transparent bg-custom-green text-white
+              className="absolute bottom-6 right-8 hover:border-transparent bg-custom-green text-white
              hover:bg-custom-green-hover transition z-30 focus:outline-none"
             >
               뒤로 가기

@@ -14,6 +14,8 @@ import ProductDetailPage from "../pages/product/ProductDetailPage";
 import ProductRegistrationPage from "../pages/product/ProductRegistrationPage";
 import ProductPurchasePage from "../pages/product/ProductPurchasePage";
 import PaymentCompletePage from "@/pages/product/PaymentCompletePage";
+import ChatListPage from "@/pages/chat/ChatListPage";
+import ChatPage from "@/pages/chat/ChatPage";
 import MyPageLayout from "@/pages/mypage/components/MyPageLayout";
 import MyPage from "@/pages/mypage/mypage/MyPage";
 import PointPage from "@/pages/mypage/charge/PointPage";
@@ -86,15 +88,10 @@ const Router = (): JSX.Element => {
       />
 
       {/* 채팅 관련 페이지들 */}
-      <Route
-        path="/chatting/*"
-        element={
-          <Routes>
-            <Route path="/" element={<div>채팅 메인 페이지</div>} />
-            <Route path="/:id" element={<div>채팅방</div>} />
-          </Routes>
-        }
-      />
+      <Route element={<RootLayout />}>
+        <Route path="/chatting" element={<ChatListPage />} />
+      </Route>
+      <Route path="/chatting/:id" element={<ChatPage />} />
 
       {/* 마이페이지 관련 페이지들 */}
 

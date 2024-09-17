@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import logoImg from '../../assets/img/logo.png';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import logoImg from "../../assets/img/logo.png";
 const RedirectionPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
@@ -9,7 +9,7 @@ const RedirectionPage = () => {
   useEffect(() => {
     // URL에서 authorization code나 필요한 데이터를 추출
     const queryParams = new URLSearchParams(window.location.search);
-    const authorizationCode = queryParams.get('code');
+    const authorizationCode = queryParams.get("code");
 
     if (authorizationCode) {
       // 백엔드로 authorization code를 보내서 유저 정보를 받아옴
