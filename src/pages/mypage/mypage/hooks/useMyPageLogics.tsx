@@ -49,7 +49,12 @@ const useMyPageLogics = () => {
 
   const sellerMenu = [
     { id: 1, name: "상품 등록", path: "/product/register", iconComponent: <IconBox /> },
-    { id: 2, name: "상품 목록 및 수정", path: "/mypage/my-products", iconComponent: <IconList /> },
+    {
+      id: 2,
+      name: "상품 목록 및 상품 수정",
+      path: "/mypage/my-products",
+      iconComponent: <IconList />,
+    },
   ];
 
   return { moveToPath, logout, commonMenu, sellerMenu, userInfo };
