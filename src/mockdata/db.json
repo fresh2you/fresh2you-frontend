@@ -101,6 +101,13 @@
       "updated_at": "10시간전"
     }
   ],
+  "userInfo": {
+    "nickname": "테스트",
+    "email": "longeusername@email.com",
+    "image": "https://blog.kakaocdn.net/dn/lzgJB/btr4JKTcA3k/o5PKrYIiyLroukkQdQqqk1/img.png",
+    "point": 10000,
+    "role": "seller"
+  },
   "chatMessages": [
     {
       "id": 1,
