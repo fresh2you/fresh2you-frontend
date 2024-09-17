@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import ProductBox from "@/components/ProductBox";
 import useLikeListPageLogics from "@/pages/mypage/likes/hooks/useLikeListPageLogics";
 
-const LikeListpage = () => {
+const LikeListPage = () => {
   const setHeaderProps = useSetAtom(myPageHeaderProps);
   const { mockProducts } = useLikeListPageLogics();
 
@@ -25,4 +25,4 @@ const LikeListpage = () => {
   );
 };
 
-export default LikeListpage;
+export default LikeListPage;
