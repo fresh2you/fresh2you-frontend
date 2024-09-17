@@ -3,7 +3,7 @@ import IconChange from "icons/change.svg";
 import IconDelivery from "icons/delivery.svg";
 import IconLogout from "icons/logout.svg";
 import IconBox from "icons/carbonBox.svg";
-import IconList from "icons/list.svg";
+import IconList from "icons/product-list.svg";
 import { useNavigate } from "react-router-dom";
 import { instance } from "@/instance";
 import { useQuery } from "@tanstack/react-query";
