@@ -27,7 +27,7 @@ const CommonHeader = () => {
   const { title, onBack, hasConfirm, confirmText, onConfirm } = useAtomValue(myPageHeaderProps);
 
   return (
-    <header className="relative flex items-center justify-between w-full px-2 h-14">
+    <header className="relative flex items-center justify-between w-full h-16 px-2">
       {/* 헤더 좌측 버튼 */}
       <button
         onClick={() => {
