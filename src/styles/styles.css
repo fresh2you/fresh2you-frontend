@@ -1,29 +1,31 @@
-.button-custom {
-  background-color: #d3d3d3;
+.custom-focus {
+  @apply outline-none focus-visible:ring-4 focus-visible:ring-custom-green-600;
 }
-.button-custom:hover {
-  background-color: #7d7d7d;
-  color: #fff;
+.custom-focus-light {
+  @apply custom-focus focus-visible:ring-2;
 }
-.resend-button {
-  background-color: #fff;
+.login-btn {
+  @apply bg-white hover:bg-custom-green-hover transition-all 
+  hover:text-white mt-4 h-12 rounded-full font-semibold text-lg hover:border-transparent;
 }
-
-.kakao-button {
-  background-color: #fae100;
+.sign-up-link {
+  @apply ml-2 text-base underline underline-offset-4 text-white 
+       hover:text-gray-200 transition-all outline-none relative
+        before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full before:h-1 before:rounded
+       focus:before:bg-custom-green-600 focus:text-custom-black;
 }
-
-.kakao-button:hover {
-  filter: grayscale(0.4);
-  transition: all 0.3s;
+.kakao-btn {
+  @apply bg-custom-kakako w-72 h-12 flex items-center justify-center space-x-2 mt-6 rounded-full 
+          font-semibold hover:border-transparent hover:grayscale-40 transition-all;
 }
-.login-button {
-  background-color: white;
+.next-btn {
+  @apply bg-custom-gray-light whitespace-nowrap px-4 py-2 h-10 self-end 
+  hover:border-transparent text-custom-black hover:bg-custom-gray-dark
+  hover:text-white transition-all;
 }
-.login-button:hover {
-  background-color: #277453;
-  transition: all 0.3s;
-  color: white;
+.action-btn {
+  @apply py-2 ml-2 rounded-md whitespace-nowrap h-10 hover:bg-custom-green-hover 
+  text-white custom-focus-light hover:border-transparent transition-all;
 }
 
 @keyframes shake {
@@ -46,4 +48,16 @@
 
 .shake {
   animation: shake 0.3s ease-in-out;
+}
+.modal-content h1 {
+  margin-top: 1rem;
+}
+.modal-content ul {
+  list-style-type: circle;
+}
+.modal-content ol {
+  list-style-type: decimal;
+}
+.modal-content .container {
+  padding-bottom: 1rem;
 }
