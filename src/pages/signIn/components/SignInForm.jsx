@@ -1,15 +1,21 @@
-import { useState, useEffect } from 'react';
-import { api2 } from '../../../services/api2';
-import '../../../styles/styles.css';
-import InputField from './InputField';
-
+import { useState, useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
+import "../../../styles/styles.css";
+import InputField from "./InputField";
+import { login } from "../api/signIn";
 export default function SignInForm() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [shake, setShake] = useState(false);
+
+  useEffect(() => {
+    if (formData.email && formData.password) {
+      setError("");
+    }
+  }, [formData.email, formData.password]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -19,35 +25,33 @@ export default function SignInForm() {
     }));
   };
 
-  useEffect(() => {
-    if (formData.email && formData.password) {
-      setError('');
-    }
-  }, [formData.email, formData.password]);
+  const mutation = useMutation({
+    mutationFn: login,
+    onSuccess: (data) => {
+      console.log("로그인 성공:", data);
+      window.location.href = "/";
+    },
+    onError: (error) => {
+      console.error("로그인 실패:", error);
+      setError("로그인에 실패했습니다.");
+      setShake(true);
+    },
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.email || !formData.password) {
-      setError('이메일과 비밀번호를 입력해주세요');
+      setError("이메일과 비밀번호를 입력해주세요");
       setShake(true);
       setTimeout(() => setShake(false), 500);
       return;
     }
-
-    const result = await api2.loginUser(formData);
-
-    if (result.success) {
-      localStorage.setItem('authToken', result.token);
-      // 로그인 성공 후 추가 작업 (예: 페이지 리다이렉트)
-    } else {
-      setError(result.message);
-      setShake(true);
-    }
+    mutation.mutate({ email: formData.email, password: formData.password });
   };
 
   return (
-    <form onSubmit={handleSubmit} className={`flex flex-col mt-2 ${shake ? 'shake' : ''}`}>
+    <form onSubmit={handleSubmit} className={`flex flex-col mt-2 ${shake ? "shake" : ""}`}>
       <InputField
         id="email"
         label="이메일 주소"
@@ -67,16 +71,9 @@ export default function SignInForm() {
         autoComplete="current-password"
       />
 
-      {error && (
-        <p className="mt-2 font-semibold" style={{ color: 'white' }}>
-          {error}
-        </p>
-      )}
+      {error && <p className="mt-2 font-semibold text-white">{error}</p>}
 
-      <button
-        type="submit"
-        className="login-button mt-4 h-12 rounded-full font-semibold text-lg hover:border-transparent focus:outline-none"
-      >
+      <button type="submit" className="login-btn custom-focus">
         로그인
       </button>
     </form>

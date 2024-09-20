@@ -1,12 +1,11 @@
 export const isNextButtonDisabled = (currentStep, validity) => {
   const conditions = {
-    이메일입력: !validity.isEmailValid,
-    비밀번호입력: !validity.isPasswordCombinationValid,
-    비밀번호확인: !validity.isConfirmPasswordValid,
-    전화번호입력: !validity.isPhoneNoVerified,
+    이메일입력: validity.isEmailValid,
+    비밀번호입력: validity.isPasswordCombinationValid,
+    비밀번호확인: validity.isConfirmPasswordValid,
   };
-
-  return conditions[currentStep] || false;
+  return conditions[currentStep];
+  //return !conditions[currentStep];
 };
 
 export const isFormValid = (validity) => {
@@ -14,7 +13,6 @@ export const isFormValid = (validity) => {
     validity.isEmailValid &&
     validity.isPasswordCombinationValid &&
     validity.isConfirmPasswordValid &&
-    validity.isPhoneNoVerified &&
     validity.isNicknameValid
   );
 };

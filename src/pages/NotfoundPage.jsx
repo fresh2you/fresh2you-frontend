@@ -13,7 +13,7 @@ const NotFoundPage = () => {
       <div className="flex items-center justify-center gap-x-4">
         <img src={logoImg} alt="Fresh 2 You" className="rounded-lg mobile:w-24 tablet-sm:w-36 desktop-sm:w-40" />
         <div className="flex flex-col items-start">
-          <h1 className=" text-white mobile:text-4xl tablet-sm:text-5xl desktop-sm:text-6xl">404</h1>
+          <h1 className=" text-white mobile:text-4xl tablet-sm:text-5xl desktop-sm:text-6xl font-semibold">404</h1>
           <p className="font-medium mobile:text-base tablet-sm:text-lg desktop-sm:text-lg">
             페이지를 찾을 수 없습니다.
           </p>

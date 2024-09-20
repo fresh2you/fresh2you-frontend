@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import TermsAgreement from './components/TermsAgreement';
-import logoImg from '../../assets/img/logo.png';
-import '../../styles/styles.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import TermsAgreement from "./components/TermsAgreement";
+import logoImg from "../../assets/img/logo.png";
+import "../../styles/styles.css";
 
 const TermsAgreementPage = () => {
   const navigate = useNavigate();
@@ -13,20 +13,23 @@ const TermsAgreementPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-custom-yellow">
-      <div className="w-96 flex flex-col items-center bg-custom-green py-4 rounded-lg">
-        <img src={logoImg} alt="Fresh 2 You" className="max-w-52" />
+    <div className="min-h-screen bg-custom-yellow flex items-center p-4">
+      <div
+        className="flex flex-col items-center mx-auto bg-custom-green rounded-lg py-4 desktop-sm:py-5 
+      mobile:px-2 tablet-sm:px-4 min-w-[288px]"
+      >
+        <img src={logoImg} alt="Fresh 2 You" className="mobile:w-32 mb-3 desktop-sm:w-40" />
         <TermsAgreement onAgree={handleAgree} />
         <button
-          className={`text-custom-black font-semibold login-button hover:border-transparent focus:outline-none ${
-            isAgreed ? 'cursor-pointer' : 'cursor-not-allowed'
+          className={`text-custom-black font-semibold hover:border-transparent rounded-md custom-focus ${
+            isAgreed ? "cursor-pointer" : "cursor-not-allowed"
           }`}
           onClick={() => {
             if (!isAgreed) {
-              alert('회원가입을 진행하기 위해서는 약관에 동의해야 합니다.');
+              alert("회원가입을 진행하기 위해서는 약관에 동의해야 합니다.");
               return;
             }
-            navigate('../signup/info');
+            navigate("../signup/info");
           }}
         >
           회원가입

@@ -1,7 +1,8 @@
+import "../../../styles/styles.css";
 export default function InputField({ id, label, type, value, onChange, placeholder, autoComplete }) {
   return (
-    <div className="mb-2 flex flex-col">
-      <label htmlFor={id} className="font-semibold mb-1" style={{ color: '#333333' }}>
+    <div className="mb-2 flex flex-col text-custom-black">
+      <label htmlFor={id} className="font-semibold mb-1">
         {label}
       </label>
       <input
@@ -11,7 +12,7 @@ export default function InputField({ id, label, type, value, onChange, placehold
         onChange={onChange}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="h-10 rounded px-2 text-white border w-72 outline-none border-custom-gray-light"
+        className="h-10 rounded px-2 border w-72 border-custom-gray-light custom-focus"
       />
     </div>
   );

@@ -1,19 +1,50 @@
-import { useState } from 'react';
-import ArrowDownIcon from '../../../assets/icons/arrow-down.svg';
-import ArrowUpIcon from '../../../assets/icons/arrow-up.svg';
+import { useState, useEffect } from "react";
+import { fetchTerms } from "../api/terms";
+import data from "../../../mockdata/db.json";
+import "../../../styles/styles.css";
+import { CloseBtn } from "@/pages/signUp/component/buttons/CloseBtn";
+import TermItemSkeleton from "./TermItemSkeleton";
+const Modal = ({ isOpen, onClose, content }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div
+        className="bg-white rounded-lg py-4 px-4 h-3/5 overflow-auto mobile:w-11/12 mobile:max-w-[394px]
+      tablet-sm:w-4/5  tablet-sm:max-w-[500px] tablet:w-3/5 tablet:max-w-[700px]"
+      >
+        <CloseBtn onClick={onClose} />
+        <div dangerouslySetInnerHTML={{ __html: content }} className="modal-content"></div>
+      </div>
+    </div>
+  );
+};
 
 const TermsAgreement = ({ onAgree }) => {
+  const [termsList, setTermsList] = useState([]);
   const [allChecked, setAllChecked] = useState(false);
-  const [termsChecked, setTermsChecked] = useState({
-    termsOfService: false,
-    privacyPolicy: false,
-    ecommerceContract: false,
-  });
-  const [isOpen, setIsOpen] = useState({
-    termsOfService: false,
-    privacyPolicy: false,
-    ecommerceContract: false,
-  });
+  const [termsChecked, setTermsChecked] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentTermContent, setCurrentTermContent] = useState("");
+
+  useEffect(() => {
+    const getTerms = async () => {
+      try {
+        // const data = await fetchTerms();
+        setTermsList(data.termsList);
+
+        const initialTermsChecked = {};
+        data.termsList.forEach((term) => {
+          initialTermsChecked[term.termsId] = false;
+        });
+        setTermsChecked(initialTermsChecked);
+      } catch (error) {
+        console.error("약관 데이터를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    getTerms();
+  }, []);
 
   const handleIndividualCheck = (e) => {
     const { name, checked } = e.target;
@@ -27,70 +58,68 @@ const TermsAgreement = ({ onAgree }) => {
   const handleAllCheck = (e) => {
     const { checked } = e.target;
     setAllChecked(checked);
-    setTermsChecked({
-      termsOfService: checked,
-      privacyPolicy: checked,
-      ecommerceContract: checked,
+    const updatedTerms = {};
+    termsList.forEach((term) => {
+      updatedTerms[term.termsId] = checked;
     });
+    setTermsChecked(updatedTerms);
     onAgree(checked);
   };
 
-  const toggleOpen = (term) => {
-    setIsOpen((prevState) => ({ ...prevState, [term]: !prevState[term] }));
+  const openModal = (content) => {
+    setCurrentTermContent(content);
+    setIsOpen(true);
   };
 
-  const renderTerm = (id, label, content) => (
-    <div className="mb-3 w-64">
+  const closeModal = () => {
+    setIsOpen(false);
+    setCurrentTermContent("");
+  };
+
+  const renderTerm = (term) => (
+    <div key={term.termsId} className="mb-3">
       <div className="flex items-center cursor-pointer justify-between">
         <div>
           <input
             type="checkbox"
-            id={id}
-            name={id}
-            checked={termsChecked[id]}
+            id={term.termsId}
+            name={term.termsId}
+            checked={termsChecked[term.termsId]}
             onChange={handleIndividualCheck}
-            className="outline-none"
+            className="custom-focus"
           />
-          <label htmlFor={id} className="ml-2 text-sm">
-            {label}
+          <label htmlFor={term.termsId} className="ml-1 text-sm">
+            {term.isRequired ? "(필수) " : "(선택) "} {term.title}
           </label>
         </div>
-        {isOpen[id] ? (
-          <ArrowUpIcon className="ml-2 w-4 h-4" onClick={() => toggleOpen(id)} />
-        ) : (
-          <ArrowDownIcon className="ml-2 w-4 h-4" onClick={() => toggleOpen(id)} />
-        )}
+        <button className="ml-2 text-sm whitespace-nowrap px-3 rounded-md" onClick={() => openModal(term.content)}>
+          보기
+        </button>
       </div>
-      {isOpen[id] && <div className="mt-2 text-sm bg-white p-2 rounded-md">{content}</div>}
     </div>
   );
 
   return (
-    <div className="p-4 bg-custom-green-200 rounded-lg mb-4 text-custom-black flex flex-col">
-      <div className="mb-4">
-        <input type="checkbox" id="all" checked={allChecked} onChange={handleAllCheck} className="outline-none" />
+    <div
+      className="py-3 pb-1 mobile:px-1.5 tablet-sm:px-2
+     bg-custom-green-200 rounded-md mb-4 text-custom-black flex flex-col"
+    >
+      <div className="mb-1">
+        <input type="checkbox" id="all" checked={allChecked} onChange={handleAllCheck} className="custom-focus" />
         <label htmlFor="all" className="ml-2 text-base font-semibold">
           전체 약관에 동의합니다
         </label>
       </div>
 
-      <div className="ml-4">
-        {renderTerm(
-          'termsOfService',
-          '(필수) 이용약관 동의',
-          '이 약관은 Fresh 2 You가 운영하는 사이트의 서비스 이용조건과 절차, 회사와 회원 간의 권리, 의무 및 책임사항 등을 규정함을 목적으로 합니다.',
-        )}
-        {renderTerm(
-          'privacyPolicy',
-          '(필수) 개인정보 처리방침 동의',
-          'Fresh 2 You는 회원의 개인정보를 보호하며, 관련 법령에 따라 개인정보를 처리하고 있습니다',
-        )}
-        {renderTerm(
-          'ecommerceContract',
-          '(필수) 전자상거래 계약 동의',
-          'Fresh 2 You는 전자상거래법에 따라 공정한 거래를 보장하고, 회원의 권리와 의무를 보호하기 위해 전자상거래 표준약관을 준수합니다. 회원은 본 약관에 동의함으로써, 회사와의 거래 절차에 따른 책임과 권리를 명확히 이해하고 이에 동의합니다.',
+      <div className="ml-1.5 mobile:w-[260px] tablet-sm:w-[280px]">
+        {termsList.length > 0 ? (
+          termsList.map((term) => renderTerm(term))
+        ) : (
+          <TermItemSkeleton count={termsList.length} />
         )}
       </div>
+
+      <Modal isOpen={isOpen} onClose={closeModal} content={currentTermContent} />
     </div>
   );
 };
