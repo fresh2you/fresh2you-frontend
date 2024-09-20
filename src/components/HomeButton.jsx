@@ -10,7 +10,9 @@ const HomeButton = ({ className }) => {
   return (
     <button
       onClick={handleGoHome}
-      className={`px-4 py-2 text-base md:text-lg font-semibold rounded-lg ${className} transition hover:border-transparent custom-focus`}
+      className={`px-2 py-2 text-xs tablet-sm:text-sm desktop-sm:text-base
+        tablet-sm:px-3 font-semibold rounded-lg ${className} transition 
+        hover:border-transparent custom-focus`}
     >
       홈으로 이동
     </button>
