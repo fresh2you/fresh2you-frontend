@@ -23,6 +23,7 @@ import VerifySellerPage from "@/pages/mypage/verifySeller/VerifySellerPage";
 import LikeListPage from "@/pages/mypage/likes/LikeListPage";
 import ChangePasswordPage from "@/pages/mypage/password/ChangePasswordPage";
 import ChangeProfilePage from "@/pages/mypage/profile/ChangeProfilePage";
+import DeliveriesPage from "@/pages/mypage/deliveries/DeliveriesPage";
 
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
@@ -101,7 +102,6 @@ const Router = (): JSX.Element => {
         element={
           <Routes>
             <Route path="/profile" element={<div>프로필 수정</div>} />
-            <Route path="/deliveries" element={<div>배송지 관리</div>} />
             <Route path="/my-products" element={<div>내 판매 상품들</div>} />
           </Routes>
         }
@@ -112,6 +112,7 @@ const Router = (): JSX.Element => {
         <Route path="profile" element={<ChangeProfilePage />} />
         <Route path="verify-seller" element={<VerifySellerPage />} />
         <Route path="likes" element={<LikeListPage />} />
+        <Route path="deliveries" element={<DeliveriesPage />} />
         <Route path="password" element={<ChangePasswordPage />} />
       </Route>
     </Routes>
