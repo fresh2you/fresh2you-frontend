@@ -1,5 +1,5 @@
 import "../../../styles/styles.css";
-export default function InputField({ label, type, value, setValue, placeholder, autoComplete, feedback }) {
+export default function InputField({ label, type, value, setValue, placeholder, autoComplete }) {
   const isPasswordField = label === "비밀번호" || label === "비밀번호 확인";
 
   return (
@@ -20,15 +20,6 @@ export default function InputField({ label, type, value, setValue, placeholder, 
         ${label === "닉네임" && "w-[205px]"}
         ${label === "비밀번호" && "placeholder:text-sm"}`}
       />
-      {feedback && (
-        <ul>
-          {feedback.map((msg, index) => (
-            <li key={index} className="text-red-500">
-              {msg}
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 }

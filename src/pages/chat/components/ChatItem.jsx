@@ -33,9 +33,7 @@ const ChatItem = ({ chat }) => {
       <img src={chat.avatar} alt={chat.nickname} className="w-14 h-14 rounded-full mr-3 2xs:w-12 2xs:h-12" />
       <div className="flex-grow">
         <h2 className="text-lg font-semibold 2xs:text-base">{chat.nickname}</h2>
-        <p className="text-gray-500 whitespace-nowrap w-28 2xs:text-sm" title={chat.lastMessage}>
-          {truncatedMessage}
-        </p>
+        <p className="text-gray-500 whitespace-nowrap w-28 2xs:text-sm">{truncatedMessage}</p>
       </div>
       <span className="text-gray-400 text-sm whitespace-nowrap 2xs:text-xs">{chat.timestamp}</span>
     </div>
