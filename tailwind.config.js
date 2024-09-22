@@ -15,8 +15,14 @@ export default {
         "custom-black": "#333333",
       },
       screens: {
-        "2xs": { min: "375px" },
-        xs: { min: "425px" },
+        mobile: { min: "320px" },
+        "tablet-sm": { min: "480px" },
+        tablet: { min: "768px" },
+        "desktop-sm": { min: "1024px" },
+        desktop: { min: "1280px" },
+      },
+      grayscale: {
+        40: "40%",
       },
     },
   },
@@ -42,6 +48,10 @@ export default {
           "&::-webkit-scrollbar": {
             display: "block",
           },
+        },
+        ".center": {
+          "justify-content": "center",
+          "align-items": "center",
         },
       };
       addUtilities(newUtilities, ["responsive"]);
