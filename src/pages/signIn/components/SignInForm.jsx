@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import "../../../styles/styles.css";
 import InputField from "./InputField";
-import { login } from "../api/signIn";
+import useLogin from "../hooks/useLogin";
+import { handleSubmit } from "../handler/handleSubmit";
+import { useNavigate } from "react-router-dom";
 export default function SignInForm() {
   const [formData, setFormData] = useState({
     email: "",
@@ -10,9 +12,10 @@ export default function SignInForm() {
   });
   const [error, setError] = useState("");
   const [shake, setShake] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (formData.email && formData.password) {
+    if (formData.email || formData.password) {
       setError("");
     }
   }, [formData.email, formData.password]);
@@ -25,33 +28,22 @@ export default function SignInForm() {
     }));
   };
 
-  const mutation = useMutation({
-    mutationFn: login,
-    onSuccess: (data) => {
-      console.log("로그인 성공:", data);
-      window.location.href = "/";
-    },
-    onError: (error) => {
-      console.error("로그인 실패:", error);
-      setError("로그인에 실패했습니다.");
-      setShake(true);
-    },
-  });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!formData.email || !formData.password) {
-      setError("이메일과 비밀번호를 입력해주세요");
-      setShake(true);
-      setTimeout(() => setShake(false), 500);
-      return;
-    }
-    mutation.mutate({ email: formData.email, password: formData.password });
+  const onSuccessCallback = () => {
+    navigate("/");
   };
 
+  const onErrorCallback = (error) => {
+    setError("이메일 또는 비밀번호가 일치하지 않습니다.");
+    setShake(true);
+    setTimeout(() => setShake(false), 500);
+  };
+  const mutation = useLogin(false, onSuccessCallback, onErrorCallback);
+
   return (
-    <form onSubmit={handleSubmit} className={`flex flex-col mt-2 ${shake ? "shake" : ""}`}>
+    <form
+      onSubmit={handleSubmit(formData, mutation, setError, setShake)}
+      className={`flex flex-col mt-2 ${shake ? "shake" : ""}`}
+    >
       <InputField
         id="email"
         label="이메일 주소"
