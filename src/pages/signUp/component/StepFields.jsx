@@ -4,7 +4,7 @@ const StepFields = ({ steps, currentStep, validity, funnel, formData }) => (
   <>
     {steps[currentStep].map((field, index) => (
       <div key={index} className="flex flex-col">
-        <div className="flex items-end mb-2">
+        <div className="flex items-end mb-3">
           <InputField
             label={field.label}
             type={field.type}
