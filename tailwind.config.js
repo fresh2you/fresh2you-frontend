@@ -15,15 +15,21 @@ export default {
         "custom-gray-light": "#D3D3D3",
         "custom-gray-dark": "#7D7D7D",
         "custom-black": "#333333",
-        "custom-kakako": "#fae100",
+        "custom-kakao": "#fae100",
         "custom-yellow": "#F9E076",
       },
       screens: {
-        mobile: { min: "320px" },
+        xs: { max: "374px" },
+        mobile: { min: "375px" },
         "tablet-sm": { min: "480px" },
         tablet: { min: "768px" },
         "desktop-sm": { min: "1024px" },
         desktop: { min: "1280px" },
+      },
+      fontSize: {
+        "custom-p": "clamp(1rem, 4vw, 1.25rem)",
+        "custom-h": "clamp(2.5rem, 9vw, 3.75rem)",
+        "custom-btn-text": "clamp(0.75rem, 3vw, 1rem)",
       },
       grayscale: {
         40: "40%",
