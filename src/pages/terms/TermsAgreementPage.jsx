@@ -1,40 +1,46 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import TermsAgreement from "./components/TermsAgreement";
-import logoImg from "../../assets/img/logo.png";
+import LogoImg from "../../assets/img/logo.svg";
 import "../../styles/styles.css";
+import { handleSubmit } from "./handler/handleSubmit";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TermsAgreementPage = () => {
-  const navigate = useNavigate();
   const [isAgreed, setIsAgreed] = useState(false);
+  const [termsChecked, setTermsChecked] = useState({});
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isSocialLoginRedirect = location.state;
 
   const handleAgree = (agreed) => {
     setIsAgreed(agreed);
   };
 
   return (
-    <div className="min-h-screen bg-custom-yellow flex items-center p-4">
+    <div className="min-h-screen bg-custom-yellow flex items-center p-4 w-full">
       <div
-        className="flex flex-col items-center mx-auto bg-custom-green rounded-lg py-4 desktop-sm:py-5 
-      mobile:px-2 tablet-sm:px-4 min-w-[288px]"
+        className="flex flex-col items-center mx-auto bg-custom-green rounded-lg py-5 
+        mobile:w-11/12 mobile:max-w-[340px] tablet:min-w-[340px] tablet:w-2/5"
       >
-        <img src={logoImg} alt="Fresh 2 You" className="mobile:w-32 mb-3 desktop-sm:w-40" />
-        <TermsAgreement onAgree={handleAgree} />
+        <div className="w-1/2 mb-3">
+          <LogoImg alt="Fresh 2 You" />
+        </div>
+        <TermsAgreement onAgree={handleAgree} termsChecked={termsChecked} setTermsChecked={setTermsChecked} />
         <button
-          className={`text-custom-black font-semibold hover:border-transparent rounded-md custom-focus ${
+          className={`text-custom-black font-semibold hover:border-transparent rounded-md custom-focus px-3 ${
             isAgreed ? "cursor-pointer" : "cursor-not-allowed"
           }`}
           onClick={() => {
-            if (!isAgreed) {
-              alert("회원가입을 진행하기 위해서는 약관에 동의해야 합니다.");
-              return;
-            }
-            navigate("../signup/info");
+            handleSubmit(isSocialLoginRedirect, isAgreed, location.state, termsChecked, navigate);
           }}
         >
-          회원가입
+          {isSocialLoginRedirect ? "회원가입 완료" : "회원가입 계속하기"}
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };
