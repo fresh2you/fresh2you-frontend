@@ -38,7 +38,7 @@ const Router = (): JSX.Element => {
         element={
           <Routes>
             <Route path="/signin" element={<SignInPage />} />
-            <Route path="/redirection" element={<RedirectionPage />} />
+            <Route path="/login/kakao" element={<RedirectionPage />} />
             {/* TODO: 약관동의의 경우 소셜에서 온것인지 판별 필요 */}
             <Route path="/signup/terms" element={<TermsAgreementPage />} />
             <Route path="/signup/info" element={<SignUpPage />} />
