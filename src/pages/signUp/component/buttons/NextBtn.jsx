@@ -1,8 +1,5 @@
-import { isNextButtonDisabled } from "../../utils/validationUtils";
 import "../../../../styles/styles.css";
 export const NextButton = ({ currentStep, validity, funnel, formData }) => {
-  const isDisabled = isNextButtonDisabled(currentStep, validity);
-
   return (
     <button
       type="button"
@@ -17,8 +14,7 @@ export const NextButton = ({ currentStep, validity, funnel, formData }) => {
             : "",
         )
       }
-      disabled={isDisabled}
-      className={`next-btn custom-focus-light ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
+      className={"next-btn custom-focus-light"}
     >
       다음
     </button>
