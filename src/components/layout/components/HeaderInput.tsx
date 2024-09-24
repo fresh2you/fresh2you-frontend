@@ -13,7 +13,7 @@ const HeaderInput = () => {
       <input
         className="inline-flex items-center w-full h-full py-2 text-base text-black outline-none placeholder:text-gray-300 mobile:placeholder:text-xs tablet-sm:placeholder:text-sm"
         value={searchValue}
-        placeholder="검색할 입력하고 엔터키를 입력해주세요"
+        placeholder="검색어를 입력해 주세요. "
         onChange={searchInputOnChange}
         onKeyDown={searchInputOnKeyDown}
       />
