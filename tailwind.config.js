@@ -59,6 +59,14 @@ export default {
             display: "block",
           },
         },
+        ".center": {
+          "justify-content": "center",
+          "align-items": "center",
+        },
+        ".separator": {
+          width: "2px",
+          height: "45%",
+        },
       };
       addUtilities(newUtilities, ["responsive"]);
     },
