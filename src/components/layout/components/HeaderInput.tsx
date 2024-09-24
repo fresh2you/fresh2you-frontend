@@ -1,16 +1,23 @@
-import useSearchPageLogics from '../../../pages/search/hooks/useSearchPageLogics';
+import IconSearch from "@/assets/icons/icon-search.svg";
+import useSearchPageLogics from "@/pages/search/hooks/useSearchPageLogics";
 
 const HeaderInput = () => {
   const { searchValue, searchInputOnChange, searchInputOnKeyDown } = useSearchPageLogics();
 
   return (
-    <input
-      className="w-3/4 h-full px-2 py-2 border border-gray-300 outline-none rounded-lg text-xs text-black placeholder:text-gray-300"
-      value={searchValue}
-      placeholder="검색할 상품명을 입력하고 엔터키를 입력해주세요"
-      onChange={searchInputOnChange}
-      onKeyDown={searchInputOnKeyDown}
-    />
+    <div className="flex items-center w-full max-w-xl gap-1 px-1 border border-gray-300 rounded-lg h-4/5 tablet-sm:px-2 tablet-sm:gap-2 tablet:gap-4">
+      <IconSearch className="h-2/3 aspect-square text-custom-gray-dark" />
+
+      <div className="separator bg-custom-gray-light" />
+
+      <input
+        className="inline-flex items-center w-full h-full py-2 text-base text-black outline-none placeholder:text-gray-300 mobile:placeholder:text-xs tablet-sm:placeholder:text-sm"
+        value={searchValue}
+        placeholder="검색할 입력하고 엔터키를 입력해주세요"
+        onChange={searchInputOnChange}
+        onKeyDown={searchInputOnKeyDown}
+      />
+    </div>
   );
 };
 

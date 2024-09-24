@@ -1,27 +1,27 @@
-import IconSearch from '../../assets/icons/icon-search.svg';
-import { Link, useLocation } from 'react-router-dom';
-import HeaderInput from './components/HeaderInput';
-
+import TextLogo from "@/assets/img/logo-text.svg";
+import { Link, useLocation } from "react-router-dom";
+import HeaderInput from "./components/HeaderInput";
+import HeaderRight from "@/components/layout/components/HeaderRight";
+import HeaderCenterMenus from "@/components/layout/components/HeaderCenterMenus";
 
 const Header = () => {
   const { pathname } = useLocation();
 
-  if (pathname === "/mypage") return null;
-
   return (
-    /* TODO: 테두리 색 디자인 시스템 색상으로 변경 */
-    <header className="w-full h-14 px-2 flex items-center justify-between border-b border-gray-300">
-      <h1 className="w-full h-full flex items-center">
-        <Link to={'/'} className="block h-3/4">
+    <header className="flex items-center justify-between w-full gap-2 px-2 py-1 border-gray-300 h-14 tablet-sm:px-4 tablet-sm:gap-4 desktop-sm:gap-8">
+      <h1 className="flex items-center h-4/5 tablet:h-full">
+        <Link to={"/"} className="h-full">
+          <TextLogo className="w-auto h-full aspect-auto text-custom-green" />
           <span className="a11y-hidden">1</span>
         </Link>
       </h1>
 
+      {/* desktop 이상일 경우에만 렌더링 */}
+      <HeaderCenterMenus />
+
       {pathname === "/search" && <HeaderInput />}
 
-      <Link to={"/search"}>
-        <IconSearch />
-      </Link>
+      <HeaderRight />
     </header>
   );
 };
