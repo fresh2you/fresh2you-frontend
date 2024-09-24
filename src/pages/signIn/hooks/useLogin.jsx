@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import { mockLogin } from "../api/signIn";
-import { kakaoMockLogin } from "../api/kakaoMockLogin";
+import { login } from "../api/signIn";
+import { kakaoLogin } from "../api/kakaoLogin";
 const useLogin = (isSocialLogin, onSuccessCallback, onErrorCallback) => {
   return useMutation({
-    mutationFn: isSocialLogin ? kakaoMockLogin : mockLogin,
+    mutationFn: isSocialLogin ? kakaoLogin : login,
     onSuccess: (data) => {
       if (data) {
         onSuccessCallback(data);

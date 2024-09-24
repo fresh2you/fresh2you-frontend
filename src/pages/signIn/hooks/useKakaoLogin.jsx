@@ -12,7 +12,6 @@ const useKakaoLogin = (onSuccessCallback, onErrorCallback) => {
         code: code,
         redirectUri: import.meta.env.VITE_SIGNIN_REDIRECT_URI,
         provider: "KAKAO",
-        email: "unavailable@naver.com", //test
       });
     }
   }, []);

@@ -15,12 +15,12 @@ export const signUpUser = async (isSocialLoginRedirect, state, termsAgreements, 
       password: formData.password,
       confirmPassword: formData.confirmPassword,
       nickname: formData.nickname,
-      termsAgreements: termsAgreements,
+      termsAgreements: state.termsAgreements,
       provider: "EMAIL",
     };
   }
   try {
-    const response = await instance.post("/memebrs/signup", payload);
+    const response = await instance.post("/members/signup", payload);
     return response.data.success;
   } catch (error) {
     throw error;

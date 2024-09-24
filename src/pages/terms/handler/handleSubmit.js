@@ -28,7 +28,7 @@ export const handleSubmit = async (isSocialLoginRedirect, isAgreed, state, terms
     }
   } else {
     navigate("/auth/signup/info", {
-      state: { termsAgreements },
+      state: { termsAgreements: termsAgreements },
     });
   }
 };
