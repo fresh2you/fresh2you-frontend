@@ -1,31 +1,7 @@
 import { instance } from "@/instance";
 
-interface Token {
-  accessToken: string;
-  accessExpiredAt: string;
-}
-
-interface LoginMember {
-  email: string;
-  provider: string;
-  providerId: string;
-}
-
-interface KakaoLoginResponse {
-  success: boolean;
-  code: string;
-  message: string;
-  data: {
-    token: Token;
-    loginMember: LoginMember;
-    isSignup: boolean;
-  };
-}
-
-type KakaoLoginResult = (LoginMember & { isSignup: false }) | { isSignup: true };
-
-export const kakaoLogin = async (accessToken: string): Promise<KakaoLoginResult> => {
-  const response = await instance.post<KakaoLoginResponse>("/members/login/kakao", { accessToken });
+export const kakaoLogin = async (accessToken) => {
+  const response = await instance.post("/members/login/kakao", { accessToken });
 
   if (response.data.success) {
     const { token, loginMember, isSignup } = response.data.data;
@@ -34,7 +10,7 @@ export const kakaoLogin = async (accessToken: string): Promise<KakaoLoginResult>
       localStorage.setItem("accessToken", token.accessToken);
       localStorage.setItem("accessExpiredAt", token.accessExpiredAt);
       localStorage.setItem("email", loginMember.email);
-      localStorage.setItem("userId", loginMember.providerId);
+      localStorage.setItem("providerId", loginMember.providerId);
       localStorage.setItem("provider", loginMember.provider);
       return { isSignup: isSignup };
     } else {
@@ -43,6 +19,7 @@ export const kakaoLogin = async (accessToken: string): Promise<KakaoLoginResult>
         provider: loginMember.provider,
         providerId: loginMember.providerId,
         isSignup: isSignup,
+        tempToken: token,
       };
     }
   } else {

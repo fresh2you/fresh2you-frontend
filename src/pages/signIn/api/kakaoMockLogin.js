@@ -3,7 +3,7 @@ export const kakaoMockLogin = async ({ code, email, redirectUri, provider }) => 
   try {
     const response = await instance.get("/kakaoMembers"); //test라 get사용
     const member = response.data.find((member) => member.loginMember.email === email);
-    console.log(member);
+
     if (member) {
       const { token, loginMember, isSignup } = member;
       if (isSignup) {
