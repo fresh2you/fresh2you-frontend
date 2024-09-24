@@ -5,7 +5,7 @@ import ProductMiniInfo from "./components/purchase/ProductMiniInfo";
 import PurchaseForm from "./components/purchase/PurchaseForm";
 import { mockProducts } from "../../mockdata/MockData";
 import { formatCurrency } from "../../utils/commonUtils";
-import logoImg from "../../assets/img/logo.png";
+import LogoImg from "../../assets/img/logo.svg";
 const ProductPurchasePage = () => {
   const { id: productId } = useParams();
   const [product, setProduct] = useState(null);
@@ -60,7 +60,7 @@ const ProductPurchasePage = () => {
   if (loading)
     return (
       <div className="flex justify-center items-center h-screen">
-        {loading ? <img src={logoImg} alt="Fresh 2 You" className="animate-bounce rounded-md w-32" /> : null}
+        {loading ? <LogoImg alt="Fresh 2 You" className="animate-bounce rounded-md w-32" /> : null}
       </div>
     );
   if (error) return <div>{error}</div>;
