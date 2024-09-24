@@ -20,6 +20,8 @@ export const handleSubmit = async (isSocialLoginRedirect, isAgreed, state, terms
         localStorage.setItem("accessToken", state.token.accessToken);
         localStorage.setItem("accessExpiredAt", state.token.accessExpiredAt);
         navigate("../signup/complete");
+      } else {
+        navigate("../signin");
       }
     } catch {
       navigate("../signin");

@@ -5,8 +5,8 @@
   @apply custom-focus focus-visible:ring-2;
 }
 .login-btn {
-  @apply bg-white hover:bg-custom-green-hover transition-all 
-  hover:text-white mt-4 h-12 rounded-full font-semibold text-lg hover:border-transparent;
+  @apply bg-white transition-all mt-4 h-12 rounded-full font-semibold text-lg hover:border-transparent
+  hover:bg-custom-green-hover hover:text-white;
 }
 .sign-up-link {
   @apply ml-2 text-base underline underline-offset-4 text-white 
@@ -15,7 +15,7 @@
        focus:before:bg-custom-green-600 focus:text-custom-black;
 }
 .kakao-btn {
-  @apply bg-custom-kakako w-72 h-12 flex items-center justify-center space-x-2 mt-6 rounded-full 
+  @apply bg-custom-kakao w-72 h-12 flex items-center justify-center space-x-2 mt-6 rounded-full 
           font-semibold hover:border-transparent hover:grayscale-40 transition-all;
 }
 .next-btn {

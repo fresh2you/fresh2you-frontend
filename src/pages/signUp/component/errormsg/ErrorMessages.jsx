@@ -1,4 +1,4 @@
-import ErrorMessage from "./errorMsgs/ErrorMessage";
+import ErrorMessage from "./ErrorMessage";
 const ErrorMessages = ({ status }) => (
   <>
     <ErrorMessage message={status.passwordStatus} />

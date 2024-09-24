@@ -5,7 +5,7 @@ export const createNicknameFieldConfig = (formData, setFormData, setStatus, vali
     if (formData.nickname) {
       try {
         const result = await checkNicknameDuplicate(formData.nickname);
-        if (result) {
+        if (!result) {
           setStatus((prevStatus) => ({ ...prevStatus, nicknameStatus: "닉네임이 이미 사용 중입니다." }));
         } else {
           setStatus((prevStatus) => ({ ...prevStatus, nicknameStatus: "SUCCESS" }));

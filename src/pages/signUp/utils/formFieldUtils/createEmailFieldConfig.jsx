@@ -1,16 +1,6 @@
 import { ActionButton } from "../../component/buttons/ActionButton";
-//import handleEmailCheck from "../handlers/handleEmailCheck";
-
+import handleEmailCheck from "../handlers/handleEmailCheck";
 export const createEmailFieldConfig = (formData, setFormData, validity, setStatus, handleOpenModal) => {
-  const handleMockEmailCheck = async () => {
-    if (!formData.email) {
-      setStatus((prevStatus) => ({ ...prevStatus, emailStatus: "이메일 주소를 입력해주세요." }));
-      return;
-    } else {
-      handleOpenModal();
-    }
-  };
-
   return {
     label: "이메일 주소",
     type: "email",
@@ -21,7 +11,7 @@ export const createEmailFieldConfig = (formData, setFormData, validity, setStatu
     button: (
       <ActionButton
         isValid={validity.isEmailValid}
-        onClick={handleMockEmailCheck}
+        onClick={() => handleEmailCheck(formData.email, setStatus, handleOpenModal)}
         text={{ valid: "완료", invalid: "인증" }}
         isSmallBtn={true}
       />
