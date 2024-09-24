@@ -3,22 +3,16 @@ import { CloseBtn } from "./buttons/CloseBtn";
 import "../../../styles/styles.css";
 import handleVerification from "../utils/handlers/handleVerification";
 
-const EmailVerificationModal = ({ onClose, email, setStatus, handleCloseModal, isEmailValid }) => {
+const EmailVerificationModal = ({ onClose, email, setStatus, isEmailValid }) => {
   const [verificationCode, setVerificationCode] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("인증 코드가 전송되었습니다.");
   const [shake, setShake] = useState(false);
 
   const handleVerifyClick = async () => {
     if (verificationCode) {
       try {
-        await handleVerification(verificationCode, email, setStatus, handleCloseModal);
-        setMessage("인증이 완료되었습니다.");
-        onClose();
-      } catch {
-        setMessage("인증 코드가 올바르지 않습니다.");
-        setShake(true);
-        setTimeout(() => setShake(false), 500);
-      }
+        await handleVerification(verificationCode, email, setStatus, onClose, setMessage, setShake);
+      } catch {}
     } else {
       setMessage("인증 코드를 입력하세요.");
       setShake(true);
@@ -28,9 +22,9 @@ const EmailVerificationModal = ({ onClose, email, setStatus, handleCloseModal, i
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 text-custom-black">
-      <div className="bg-custom-green py-10 px-3 rounded shadow-md relative">
+      <div className="bg-custom-green py-8 px-3 rounded shadow-md relative">
         <h2 className="text-lg font-semibold mb-2">이메일 인증</h2>
-        <div className="flex mb-2">
+        <div className="flex mb-3">
           <input
             type="text"
             value={verificationCode}
