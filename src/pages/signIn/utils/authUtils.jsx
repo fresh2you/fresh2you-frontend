@@ -4,6 +4,6 @@ export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id
 }&redirect_uri=${encodeURIComponent(import.meta.env.VITE_SIGNIN_REDIRECT_URI)}&response_type=code`;
 
 export const handleKakaoCallback = () => {
-  const { code } = useParams();
-  return code;
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("code");
 };
