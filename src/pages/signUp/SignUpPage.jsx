@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFunnel } from "@use-funnel/react-router-dom";
 import { getStepsConfig } from "./stepsConfig";
 import { handleSubmit } from "./utils/handlers/handleSubmit";
@@ -17,6 +17,14 @@ import { Loading } from "../redirection/component/Loading";
 export default function SignUpPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isAgreedToTerms, setIsAgreedToTerms] = useState(location.state?.termsAgreements || false);
+
+  useEffect(() => {
+    if (!isAgreedToTerms) {
+      navigate("/auth/signup/terms");
+    }
+  }, [isAgreedToTerms]);
+
   const funnel = useFunnel({
     id: "user-signup",
     initial: {
