@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../../../styles/styles.css";
 import TermItemSkeleton from "./TermItemSkeleton";
-import Modal from "./Modal";
+import TermModal from "./TermModal";
 import TermItem from "./TermItem";
 import { handleIndividualCheck, handleAllCheck } from "../utils/termsHelper";
 import useTerms from "../hook/useTerms";
@@ -54,7 +54,7 @@ const TermsAgreement = ({ onAgree, termsChecked, setTermsChecked }) => {
             />
           ))}
       </div>
-      <Modal isOpen={isOpen} onClose={closeModal} content={currentTermContent} />
+      <TermModal isOpen={isOpen} onClose={closeModal} content={currentTermContent} />
     </div>
   );
 };

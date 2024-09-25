@@ -1,6 +1,6 @@
 import { CloseBtn } from "@/pages/signUp/component/buttons/CloseBtn";
 
-const Modal = ({ isOpen, onClose, content }) => {
+const TermModal = ({ isOpen, onClose, content }) => {
   if (!isOpen) return null;
 
   return (
@@ -16,4 +16,4 @@ const Modal = ({ isOpen, onClose, content }) => {
   );
 };
 
-export default Modal;
+export default TermModal;
