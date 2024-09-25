@@ -1,17 +1,19 @@
-import { mockCheckEmailDuplicate } from '../mock/mockDuplicateCheck';
-import { DuplicateCheckButton } from '../../component/buttons/DuplicateCheckBtn';
-export const createEmailFieldConfig = (formData, setFormData, validity, setStatus) => {
+import { ActionButton } from "../../component/buttons/ActionButton";
+import handleEmailCheck from "../handlers/handleEmailCheck";
+export const createEmailFieldConfig = (formData, setFormData, validity, setStatus, handleOpenModal) => {
   return {
-    label: '이메일 주소',
-    type: 'email',
+    label: "이메일 주소",
+    type: "email",
     value: formData.email,
     setValue: (value) => setFormData((prevFormData) => ({ ...prevFormData, email: value })),
-    placeholder: '이메일을 입력하세요',
-    autoComplete: 'email',
+    placeholder: "이메일을 입력하세요",
+    autoComplete: "email",
     button: (
-      <DuplicateCheckButton
+      <ActionButton
         isValid={validity.isEmailValid}
-        onClick={() => mockCheckEmailDuplicate(formData.email, setStatus)}
+        onClick={() => handleEmailCheck(formData.email, setStatus, handleOpenModal)}
+        text={{ valid: "완료", invalid: "인증" }}
+        isSmallBtn={true}
       />
     ),
   };

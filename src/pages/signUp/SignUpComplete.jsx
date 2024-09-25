@@ -17,12 +17,12 @@ const settings = {
 };
 
 const Slide = ({ title, description, imgSrc, imgAlt }) => (
-  <div className="slide flex flex-col md:flex-row justify-center items-center md:items-start p-4">
-    <div className="flex flex-col items-center md:items-start text-center md:text-left mb-4 md:mb-0 mr-4">
-      <h1 className="text-2xl md:text-5xl font-bold text-custom-green mt-12">{title}</h1>
-      <p className="mt-2 text-base md:text-xl">{description}</p>
+  <div className="slide flex flex-col justify-center items-center desktop-sm:flex-row desktop-sm:items-start desktop-sm:gap-x-2">
+    <div className="flex flex-col mb-1 desktop-sm:w-96">
+      <h1 className="mobile:text-2xl font-bold text-custom-green tablet-sm:text-3xl">{title}</h1>
+      <p className="mt-1 mobile:text-sm tablet-sm:text-base">{description}</p>
     </div>
-    <img src={imgSrc} alt={imgAlt} className="w-full max-w-[360px] max-h-[360px] object-cover" />
+    <img src={imgSrc} alt={imgAlt} className="mobile:h-40 object-contain tablet-sm:h-52 desktop-sm:h-60" />
   </div>
 );
 
@@ -57,7 +57,7 @@ const SignUpCompletePage = () => {
           />
         </Slider>
       </div>
-      <HomeButton className="mt-12 bg-custom-green text-white hover:bg-custom-green-hover text-white" />
+      <HomeButton className="mt-10 bg-custom-green hover:bg-custom-green-hover text-white" />
     </div>
   );
 };
