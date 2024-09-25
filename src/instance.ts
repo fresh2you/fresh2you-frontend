@@ -18,16 +18,8 @@ export const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     // 아직 token 어떻게 주는 지 정의 X
-    const accessToken = localStorage.getItem("access_token");
-    const refreshToken = localStorage.getItem("refresh_token");
-    const refreshTokenUrl = "/auth/refreshtoken"; // 임시 url
+    // TODO: 백엔드에서 토큰 예외처리로 인해 토큰이 필요한 경우에만 보내주기
 
-    // 임시 로직
-    if (config.url === refreshTokenUrl) {
-      config.headers!.Authorization = `Bearer ${refreshToken}`;
-    } else {
-      config.headers!.Authorization = `Bearer ${accessToken}`;
-    }
     return config;
   },
   (error) => {
