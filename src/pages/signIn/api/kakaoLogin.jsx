@@ -1,9 +1,7 @@
 import { instance } from "@/instance";
 
 export const kakaoLogin = async (accessToken) => {
-  console.log(accessToken);
   const response = await instance.post("/members/login/kakao", accessToken);
-  console.log(response);
   if (response.data.success) {
     const { token, loginMember, isSignup } = response.data.data;
 

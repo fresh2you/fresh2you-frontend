@@ -7,9 +7,9 @@ import { KAKAO_AUTH_URL } from "./utils/authUtils";
 import "../../styles/styles.css";
 export default function SignInPage() {
   return (
-    <div className="bg-custom-green min-h-dvh px-4 text-custom-black pb-4 overflow-hidden py-8 tablet:py-0">
-      <div className="flex flex-col justify-center items-center min-h-screen">
-        <LogoImg alt="Fresh 2 You" className="mobile:w-1/2 mobile:max-w-44 mobile:max-h-44 mb-3" />
+    <div className="bg-custom-green px-4 text-custom-black">
+      <div className="flex flex-col justify-center items-center h-screen">
+        <LogoImg alt="Fresh 2 You" className="mobile:w-2/5 mobile:max-w-48 mb-3" />
         <SignInForm />
         <div className="my-6 whitespace-nowrap">
           <p className="text-base my-6 font-bold whitespace-nowrap inline">아직 계정이 없으신가요? </p>
