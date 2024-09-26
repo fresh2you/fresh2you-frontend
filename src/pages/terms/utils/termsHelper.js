@@ -23,6 +23,6 @@ export const handleAllCheck = (e, termsList, setAllChecked, setTermsChecked, onA
   onAgree(checked);
 };
 export const checkRequiredTermsAgreed = (termsChecked) => {
-  const requiredTerms = [0, 1, 2];
+  const requiredTerms = [1, 2, 3];
   return requiredTerms.every((termId) => termsChecked[termId]);
 };

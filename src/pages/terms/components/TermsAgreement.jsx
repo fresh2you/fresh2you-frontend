@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "../../../styles/styles.css";
 import TermItemSkeleton from "./TermItemSkeleton";
 import TermModal from "./TermModal";
@@ -13,6 +13,9 @@ const TermsAgreement = ({ onAgree, termsChecked, setTermsChecked }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentTermContent, setCurrentTermContent] = useState("");
   const termsList = useTerms(setTermsChecked, setIsLoading);
+  const skeletonRef = useRef(null);
+  const termListRef = useRef(null);
+
   const openModal = (content) => {
     setCurrentTermContent(content);
     setIsOpen(true);
@@ -42,12 +45,19 @@ const TermsAgreement = ({ onAgree, termsChecked, setTermsChecked }) => {
         </label>
       </div>
       <div className="ml-1.5 overflow-hidden">
-        <CSSTransition in={isLoading} timeout={500} classNames="fade" unmountOnExit>
-          <TermItemSkeleton count={termsList.length} />
+        <CSSTransition in={isLoading} timeout={500} classNames="fade" unmountOnExit nodeRef={skeletonRef}>
+          <div ref={skeletonRef}>
+            <TermItemSkeleton count={termsList.length} />
+          </div>
         </CSSTransition>
-
-        <CSSTransition in={!isLoading && termsList.length > 0} timeout={500} classNames="fade" unmountOnExit>
-          <div>
+        <CSSTransition
+          in={!isLoading && termsList.length > 0}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+          nodeRef={termListRef}
+        >
+          <div ref={termListRef}>
             {termsList.map((term) => (
               <TermItem
                 key={term.termsId}
