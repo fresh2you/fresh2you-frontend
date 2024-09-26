@@ -9,7 +9,7 @@ export default function SignInPage() {
   return (
     <div className="bg-custom-green px-4 text-custom-black">
       <div className="flex flex-col justify-center items-center h-screen">
-        <LogoImg alt="Fresh 2 You" className="mobile:w-2/5 mobile:max-w-48 mb-3" />
+        <LogoImg alt="Fresh 2 You" className="mobile:w-1/2 mobile:max-w-48 mb-3" />
         <SignInForm />
         <div className="my-6 whitespace-nowrap">
           <p className="text-base my-6 font-bold whitespace-nowrap inline">아직 계정이 없으신가요? </p>
