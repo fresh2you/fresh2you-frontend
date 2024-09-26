@@ -5,6 +5,7 @@ import TermModal from "./TermModal";
 import TermItem from "./TermItem";
 import { handleIndividualCheck, handleAllCheck } from "../utils/termsHelper";
 import useTerms from "../hook/useTerms";
+import { CSSTransition } from "react-transition-group";
 
 const TermsAgreement = ({ onAgree, termsChecked, setTermsChecked }) => {
   const [allChecked, setAllChecked] = useState(false);
@@ -25,7 +26,8 @@ const TermsAgreement = ({ onAgree, termsChecked, setTermsChecked }) => {
   return (
     <div
       className="p-3 pb-0 bg-custom-green-200 rounded-md mb-5 text-custom-black 
-    flex flex-col mobile:w-4/5 mobile:max-w-[280px] tablet:min-w-[280px]"
+    flex flex-col mobile:w-4/5 mobile:max-w-[280px] tablet:min-w-[280px] mobile:h-[178px]
+    tablet:h-[204px]"
     >
       <div className="mb-1">
         <input
@@ -39,20 +41,26 @@ const TermsAgreement = ({ onAgree, termsChecked, setTermsChecked }) => {
           전체 약관에 동의합니다
         </label>
       </div>
-      <div className="ml-1.5">
-        {isLoading && <TermItemSkeleton count={3} />}
-        {termsList.length > 0 &&
-          termsList.map((term) => (
-            <TermItem
-              key={term.termsId}
-              term={term}
-              isChecked={termsChecked[term.termsId]}
-              handleCheck={(e) =>
-                handleIndividualCheck(e, termsChecked, setTermsChecked, setAllChecked, onAgree, termsList)
-              }
-              openModal={openModal}
-            />
-          ))}
+      <div className="ml-1.5 overflow-hidden">
+        <CSSTransition in={isLoading} timeout={500} classNames="fade" unmountOnExit>
+          <TermItemSkeleton count={termsList.length} />
+        </CSSTransition>
+
+        <CSSTransition in={!isLoading && termsList.length > 0} timeout={500} classNames="fade" unmountOnExit>
+          <div>
+            {termsList.map((term) => (
+              <TermItem
+                key={term.termsId}
+                term={term}
+                isChecked={termsChecked[term.termsId]}
+                handleCheck={(e) =>
+                  handleIndividualCheck(e, termsChecked, setTermsChecked, setAllChecked, onAgree, termsList)
+                }
+                openModal={openModal}
+              />
+            ))}
+          </div>
+        </CSSTransition>
       </div>
       <TermModal isOpen={isOpen} onClose={closeModal} content={currentTermContent} />
     </div>
