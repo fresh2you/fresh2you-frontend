@@ -1,8 +1,8 @@
-import LogoImg from "../../../assets/img/circle-logo.svg";
+import logoImg from "../../../assets/img/circle-logo.png";
 export const Loading = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-      <LogoImg alt="Fresh 2 You" className="animate-bounce w-1/3 h-1/5 max-w-36 max-h-36" />
+      <img alt="Fresh 2 You" src={logoImg} className="animate-bounce mobile:w-1/3 mobile:max-w-36" />
     </div>
   );
 };
