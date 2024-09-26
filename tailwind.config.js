@@ -16,7 +16,6 @@ export default {
         "custom-gray-dark": "#7D7D7D",
         "custom-black": "#333333",
         "custom-kakao": "#fae100",
-        "custom-yellow": "#F9E076",
       },
       screens: {
         xs: { max: "374px" },

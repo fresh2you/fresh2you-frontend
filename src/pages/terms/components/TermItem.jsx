@@ -15,7 +15,10 @@ const TermItem = ({ term, isChecked, handleCheck, openModal }) => {
             {term.isRequired ? "(필수) " : "(선택) "} {term.title}
           </label>
         </div>
-        <button className="ml-2 text-sm whitespace-nowrap px-3 rounded-md" onClick={() => openModal(term.content)}>
+        <button
+          className="ml-2 text-sm whitespace-nowrap px-2 rounded-md py-1.5"
+          onClick={() => openModal(term.content)}
+        >
           보기
         </button>
       </div>

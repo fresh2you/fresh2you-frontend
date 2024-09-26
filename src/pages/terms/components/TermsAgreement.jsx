@@ -7,11 +7,11 @@ import { handleIndividualCheck, handleAllCheck } from "../utils/termsHelper";
 import useTerms from "../hook/useTerms";
 
 const TermsAgreement = ({ onAgree, termsChecked, setTermsChecked }) => {
-  const { termsList, isLoading } = useTerms(setTermsChecked);
   const [allChecked, setAllChecked] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentTermContent, setCurrentTermContent] = useState("");
-
+  const termsList = useTerms(setTermsChecked, setIsLoading);
   const openModal = (content) => {
     setCurrentTermContent(content);
     setIsOpen(true);
@@ -24,8 +24,8 @@ const TermsAgreement = ({ onAgree, termsChecked, setTermsChecked }) => {
 
   return (
     <div
-      className="p-3 pb-0 bg-custom-green-200 rounded-md mb-4 text-custom-black 
-    flex flex-col"
+      className="p-3 pb-0 bg-custom-green-200 rounded-md mb-5 text-custom-black 
+    flex flex-col mobile:w-4/5 mobile:max-w-[280px] tablet:min-w-[280px]"
     >
       <div className="mb-1">
         <input

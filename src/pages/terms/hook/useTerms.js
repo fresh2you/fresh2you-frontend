@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { fetchTerms } from "../api/terms";
 
-const useTerms = (setTermsChecked) => {
+const useTerms = (setTermsChecked, setIsLoading) => {
   const [termsList, setTermsList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getTerms = async () => {
@@ -28,7 +27,7 @@ const useTerms = (setTermsChecked) => {
     getTerms();
   }, []);
 
-  return { termsList, isLoading };
+  return termsList;
 };
 
 export default useTerms;
