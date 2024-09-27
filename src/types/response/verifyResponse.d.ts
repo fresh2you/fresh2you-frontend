@@ -1,5 +1,5 @@
 /* 이메일 인증 전송 */
-declare interface IResponse extends defaultApiResponse {
+declare interface ISendEmailResponse extends defaultApiResponse {
   data: object;
 }
 

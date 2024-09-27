@@ -68,7 +68,7 @@ declare interface IDeleteAllDeliveriesResponse extends defaultApiResponse {
 }
 
 /* 프로필 변경 */
-declare interface IResponse extends defaultApiResponse {
+declare interface IChangeProfileResponse extends defaultApiResponse {
   data: object;
 }
 
