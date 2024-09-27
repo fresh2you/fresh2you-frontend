@@ -27,6 +27,16 @@
   @apply py-1 ml-2 rounded-md whitespace-nowrap h-10 hover:bg-custom-green-hover 
   text-white custom-focus-light hover:border-transparent transition-all;
 }
+.product-page {
+  @apply mobile:w-full mobile:px-4 mobile:max-w-[447px]
+  tablet-sm:w-4/5 tablet-sm:min-w-[447px] tablet-sm:max-w-[550px]
+  tablet:min-w-[550px] tablet:max-w-[780px] desktop-sm:min-w-[780px]
+  desktop-sm:max-w-[820px] desktop:w-[820px];
+}
+.category-modal {
+  @apply mobile:w-full mobile:max-w-[387px] tablet-sm:w-4/5 tablet-sm:min-w-[387px] tablet-sm:max-w-[430px]
+        tablet:w-3/5 tablet:min-w-[430px] tablet:max-w-[600px];
+}
 
 @keyframes shake {
   0% {
