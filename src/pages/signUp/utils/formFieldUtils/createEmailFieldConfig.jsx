@@ -1,5 +1,5 @@
 import { ActionButton } from "../../component/buttons/ActionButton";
-import handleEmailCheck from "../handlers/handleEmailCheck";
+import { handleEmailCheck } from "../handlers/handleEmailCheck";
 export const createEmailFieldConfig = (formData, setFormData, validity, setStatus, handleOpenModal) => {
   return {
     label: "이메일 주소",

@@ -4,14 +4,10 @@ export const createNicknameFieldConfig = (formData, setFormData, setStatus, vali
   const handleNicknameCheck = async () => {
     if (formData.nickname) {
       try {
-        const result = await checkNicknameDuplicate(formData.nickname);
-        if (!result) {
-          setStatus((prevStatus) => ({ ...prevStatus, nicknameStatus: "닉네임이 이미 사용 중입니다." }));
-        } else {
-          setStatus((prevStatus) => ({ ...prevStatus, nicknameStatus: "SUCCESS" }));
-        }
+        await checkNicknameDuplicate(formData.nickname);
+        setStatus((prevStatus) => ({ ...prevStatus, nicknameStatus: "SUCCESS" }));
       } catch {
-        setStatus((prevStatus) => ({ ...prevStatus, nicknameStatus: "닉네임 확인에 실패했습니다." }));
+        setStatus((prevStatus) => ({ ...prevStatus, nicknameStatus: "닉네임이 이미 사용 중입니다." }));
       }
     } else {
       setStatus((prevStatus) => ({ ...prevStatus, nicknameStatus: "닉네임을 입력해주세요." }));
@@ -26,7 +22,13 @@ export const createNicknameFieldConfig = (formData, setFormData, setStatus, vali
     button: (
       <ActionButton
         isValid={validity.isNicknameValid}
-        onClick={handleNicknameCheck}
+        onClick={() => {
+          if (formData.nickname.length > 20) {
+            setStatus((prevStatus) => ({ ...prevStatus, nicknameStatus: "닉네임은 20자 미만이어야 합니다." }));
+          } else {
+            handleNicknameCheck();
+          }
+        }}
         text={{ valid: "완료", invalid: "중복 확인" }}
         isSmallBtn={false}
       />
