@@ -24,6 +24,9 @@ import LikeListPage from "@/pages/mypage/likes/LikeListPage";
 import ChangePasswordPage from "@/pages/mypage/password/ChangePasswordPage";
 import ChangeProfilePage from "@/pages/mypage/profile/ChangeProfilePage";
 import DeliveriesPage from "@/pages/mypage/deliveries/DeliveriesPage";
+import CommunityPage from "@/pages/community/CommunityPage";
+import CommunityPostPage from "@/pages/community/CommunityPostPage";
+import ProtectedRoute from "@/routes/ProtectedRoute";
 
 /* TODO: 라우트별 element를 임시로 채운 부분 해당 컴포넌트로 수정 */
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
@@ -49,71 +52,68 @@ const Router = (): JSX.Element => {
       />
 
       {/* TODO: 여기 아래로는 ProtectedRoute 컴포넌트로 감쌀 예정 */}
-      {/* TODO: 홈/검색 외에도 루트 레이아웃으로 감쌀 예정 */}
-      <Route element={<RootLayout />}>
-        {/* 홈페이지 & 검색페이지 */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/mypage" element={<MyPage />} />
-      </Route>
+      <Route element={<ProtectedRoute />}>
+        {/* TODO: 홈/검색 외에도 루트 레이아웃으로 감쌀 예정 */}
+        <Route element={<RootLayout />}>
+          {/* 홈페이지 & 검색페이지 */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/community" element={<CommunityPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+        </Route>
 
-      {/* 제품 관련 페이지들 */}
-      <Route path="/product" element={<RootLayout />}>
-        <Route index element={<ProductsPage />} />
-      </Route>
+        {/* 제품 관련 페이지들 */}
+        <Route path="/product" element={<RootLayout />}>
+          <Route index element={<ProductsPage />} />
+        </Route>
 
-      <Route path="/product/:id" element={<ProductDetailPage />} />
-      <Route path="/product/register" element={<ProductRegistrationPage />} />
-      <Route path="/product/modify" element={<div>등록한 제품 수정</div>} />
-      <Route path="*" element={<NotFoundPage />} />
+        <Route path="/product/:id" element={<ProductDetailPage />} />
+        <Route path="/product/register" element={<ProductRegistrationPage />} />
+        <Route path="/product/modify" element={<div>등록한 제품 수정</div>} />
+        <Route path="*" element={<NotFoundPage />} />
 
-      {/* 구매 관련 페이지들 */}
-      <Route
-        path="/purchase/*"
-        element={
-          <Routes>
-            <Route path="/:id" element={<ProductPurchasePage />} />
-            <Route path="/complete" element={<PaymentCompletePage />} />
-          </Routes>
-        }
-      />
+        {/* 구매 관련 페이지들 */}
+        <Route
+          path="/purchase/*"
+          element={
+            <Routes>
+              <Route path="/:id" element={<ProductPurchasePage />} />
+              <Route path="/complete" element={<PaymentCompletePage />} />
+            </Routes>
+          }
+        />
 
-      {/* 커뮤니티 관련 페이지들 */}
-      <Route
-        path="/community/*"
-        element={
-          <Routes>
-            <Route path="/" element={<div>커뮤니티 메인 페이지</div>} />
-            <Route path="/:id" element={<div>판매자 공지 톡방</div>} />
-          </Routes>
-        }
-      />
+        {/* 커뮤니티 관련 페이지들 */}
+        {/* 마이페이지 전용 레이아웃이었지만 다른 곳에도 사용할 예정 */}
+        <Route path="/*" element={<MyPageLayout />}>
+          <Route path="community/:id" element={<CommunityPostPage />} />
+        </Route>
 
-      {/* 채팅 관련 페이지들 */}
-      <Route element={<RootLayout />}>
-        <Route path="/chatting" element={<ChatListPage />} />
-      </Route>
-      <Route path="/chatting/:id" element={<ChatPage />} />
+        {/* 채팅 관련 페이지들 */}
+        <Route element={<RootLayout />}>
+          <Route path="/chatting" element={<ChatListPage />} />
+        </Route>
+        <Route path="/chatting/:id" element={<ChatPage />} />
 
-      {/* 마이페이지 관련 페이지들 */}
+        {/* 마이페이지 관련 페이지들 */}
 
-      <Route
-        path="/mypage/*"
-        element={
-          <Routes>
-            <Route path="/profile" element={<div>프로필 수정</div>} />
-            <Route path="/my-products" element={<div>내 판매 상품들</div>} />
-          </Routes>
-        }
-      />
+        <Route
+          path="/mypage/*"
+          element={
+            <Routes>
+              <Route path="/my-products" element={<div>내 판매 상품들</div>} />
+            </Routes>
+          }
+        />
 
-      <Route path="/mypage/*" element={<MyPageLayout />}>
-        <Route path="charge" element={<PointPage />} />
-        <Route path="profile" element={<ChangeProfilePage />} />
-        <Route path="verify-seller" element={<VerifySellerPage />} />
-        <Route path="likes" element={<LikeListPage />} />
-        <Route path="deliveries" element={<DeliveriesPage />} />
-        <Route path="password" element={<ChangePasswordPage />} />
+        <Route path="/mypage/*" element={<MyPageLayout />}>
+          <Route path="charge" element={<PointPage />} />
+          <Route path="profile" element={<ChangeProfilePage />} />
+          <Route path="verify-seller" element={<VerifySellerPage />} />
+          <Route path="likes" element={<LikeListPage />} />
+          <Route path="deliveries" element={<DeliveriesPage />} />
+          <Route path="password" element={<ChangePasswordPage />} />
+        </Route>
       </Route>
     </Routes>
   );
