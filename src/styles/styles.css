@@ -19,12 +19,12 @@
           font-semibold hover:border-transparent hover:grayscale-40 transition-all;
 }
 .next-btn {
-  @apply bg-custom-gray-light whitespace-nowrap px-4 py-2 h-10 self-end 
+  @apply bg-custom-gray-light whitespace-nowrap px-4 py-1 h-10 self-end 
   hover:border-transparent text-custom-black hover:bg-custom-gray-dark
   hover:text-white transition-all;
 }
 .action-btn {
-  @apply py-2 ml-2 rounded-md whitespace-nowrap h-10 hover:bg-custom-green-hover 
+  @apply py-1 ml-2 rounded-md whitespace-nowrap h-10 hover:bg-custom-green-hover 
   text-white custom-focus-light hover:border-transparent transition-all;
 }
 
