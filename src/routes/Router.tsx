@@ -16,7 +16,7 @@ import ProductPurchasePage from "../pages/product/ProductPurchasePage";
 import PaymentCompletePage from "@/pages/product/PaymentCompletePage";
 import ChatListPage from "@/pages/chat/ChatListPage";
 import ChatPage from "@/pages/chat/ChatPage";
-import PageLayout from "@/pages/mypage/components/PageLayout";
+import PageLayout from "@/components/pageLayout/PageLayout";
 import MyPage from "@/pages/mypage/mypage/MyPage";
 import PointPage from "@/pages/mypage/charge/PointPage";
 import VerifySellerPage from "@/pages/mypage/verifySeller/VerifySellerPage";

@@ -1,31 +1,11 @@
 import IconLeft from "icons/arrow-left.svg";
 import { useAtomValue } from "jotai";
-import { myPageHeaderProps } from "@/stores/mypage";
+import { pageLayoutHeaderProps } from "@/stores/mypage";
 import useCommon from "@/hooks/useCommon";
 
-interface CommonHeaderBaseProps {
-  title: string;
-  onBack?: () => void;
-  backRoute: string;
-}
-
-interface CommonHeaderWithConfirm extends CommonHeaderBaseProps {
-  hasConfirm: true; // hasConfirm이 true일 때
-  confirmText: string; // confirmText는 필수
-  onConfirm?: () => void;
-}
-
-interface CommonHeaderWithoutConfirm extends CommonHeaderBaseProps {
-  hasConfirm: false; // hasConfirm이 false일 때
-  confirmText?: null; // confirmText는 선택
-  onConfirm?: null;
-}
-
-export type CommonHeaderProps = CommonHeaderWithConfirm | CommonHeaderWithoutConfirm;
-
-const CommonHeader = () => {
+const PageLayoutHeader = () => {
   const { goBack } = useCommon();
-  const { title, onBack, backRoute, hasConfirm, confirmText, onConfirm } = useAtomValue(myPageHeaderProps);
+  const { title, onBack, backRoute, hasConfirm, confirmText, onConfirm } = useAtomValue(pageLayoutHeaderProps);
 
   return (
     <header className="relative flex items-center justify-between w-full h-16 px-2">
@@ -58,4 +38,4 @@ const CommonHeader = () => {
   );
 };
 
-export default CommonHeader;
+export default PageLayoutHeader;
