@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import IconLeft from "icons/arrow-left.svg";
 import { useAtomValue } from "jotai";
 import { myPageHeaderProps } from "@/stores/mypage";
+import useCommon from "@/hooks/useCommon";
 
 interface CommonHeaderBaseProps {
   title: string;
   onBack?: () => void;
+  backRoute: string;
 }
 
 interface CommonHeaderWithConfirm extends CommonHeaderBaseProps {
@@ -23,15 +24,15 @@ interface CommonHeaderWithoutConfirm extends CommonHeaderBaseProps {
 export type CommonHeaderProps = CommonHeaderWithConfirm | CommonHeaderWithoutConfirm;
 
 const CommonHeader = () => {
-  const navigate = useNavigate();
-  const { title, onBack, hasConfirm, confirmText, onConfirm } = useAtomValue(myPageHeaderProps);
+  const { goBack } = useCommon();
+  const { title, onBack, backRoute, hasConfirm, confirmText, onConfirm } = useAtomValue(myPageHeaderProps);
 
   return (
     <header className="relative flex items-center justify-between w-full h-16 px-2">
       {/* 헤더 좌측 버튼 */}
       <button
         onClick={() => {
-          navigate(-1);
+          goBack(backRoute);
           if (onBack) onBack();
         }}
         className="flex items-center h-full px-4 py-0 bg-transparent"
@@ -40,9 +41,7 @@ const CommonHeader = () => {
       </button>
 
       {/* 헤더 중앙 제목 */}
-      <h1 className="absolute text-xl font-bold -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-        {title}
-      </h1>
+      <h1 className="absolute text-xl font-bold -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">{title}</h1>
 
       {/* 헤더 우측 버튼 */}
       {hasConfirm && (
