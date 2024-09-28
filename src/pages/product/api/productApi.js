@@ -43,3 +43,17 @@ export const fetchProducts = async (categoryId, keyword, pageNumber = 0, itemsPe
     throw error;
   }
 };
+
+export const fetchProductById = async (productId) => {
+  try {
+    const response = await instance.get(`/products/${productId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: { productId },
+    });
+    return response.data.data;
+  } catch (error) {
+    throw error;
+  }
+};

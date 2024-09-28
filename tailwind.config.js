@@ -29,6 +29,7 @@ export default {
         "custom-p": "clamp(1rem, 4vw, 1.25rem)",
         "custom-h": "clamp(2.5rem, 9vw, 3.75rem)",
         "custom-h2": "clamp(1.5rem, 8vw, 2rem)",
+        "custom-h3": "clamp(0.7rem, 5vw, 1.5rem)",
         "custom-btn-text": "clamp(0.75rem, 3vw, 1rem)",
       },
       grayscale: {

@@ -9,7 +9,7 @@ const ProductList = ({ products, lastProductRef, itemsPerPage }) => {
         : products.map((product, index) => {
             const key = `${product.product_id}-${index}`;
             return (
-              <div ref={index === products.length - 1 ? lastProductRef : null}>
+              <div ref={index === products.length - 1 ? lastProductRef : null} key={key}>
                 <ProductCard product={product} />
               </div>
             );

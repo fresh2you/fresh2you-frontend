@@ -1,7 +1,9 @@
 const Button = ({ className, text, onClick }) => {
   return (
     <button
-      className={`py-2 px-4 rounded-lg transition font-semibold ${className} hover:border-transparent focus:outline-none`}
+      className={`mobile:py-1 px-2 rounded-lg 
+        tablet-sm:py-1.5
+        transition font-semibold ${className} custom-focus-light text-custom-btn-text whitespace-nowrap`}
       onClick={onClick}
     >
       {text}
