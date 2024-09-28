@@ -1,10 +1,10 @@
 import useVerifySellerPageLogics from "@/pages/mypage/verifySeller/hooks/useVerifySellerPageLogics";
-import { myPageHeaderProps } from "@/stores/mypage";
+import { pageLayoutHeaderProps } from "@/stores/mypage";
 import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 
 const VerifySellerPage = () => {
-  const setHeaderProps = useSetAtom(myPageHeaderProps);
+  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
   const { formData, onKeyDownCheckNumber, onClickPhoneConfirm, onChangeFormData, onSubmit } =
     useVerifySellerPageLogics();
 
@@ -12,6 +12,7 @@ const VerifySellerPage = () => {
     setHeaderProps({
       title: "판매자 인증",
       hasConfirm: false,
+      backRoute: "/mypage",
     });
   }, [setHeaderProps]);
 
