@@ -1,8 +1,9 @@
-import TextInput from './TextInput';
-import Textarea from './Textarea';
-import DropdownSelect from './DropDownSelect';
-import categories from '../../../../data/categories';
-import { formatPriceInput } from '../../../../utils/commonUtils';
+import TextInput from "./TextInput";
+import Textarea from "./Textarea";
+import DropdownSelect from "./DropDownSelect";
+import useFetchCategories from "../../hooks/useFetchCategories";
+import { formatPriceInput } from "../../../../utils/commonUtils";
+const categories = useFetchCategories;
 const ProductForm = ({
   name,
   setName,
@@ -22,10 +23,10 @@ const ProductForm = ({
   const handleCategoryChange = (e) => {
     const newCategory = e.target.value;
     setCategory(newCategory);
-    setSubCategory('');
+    setSubCategory("");
   };
   const handlePriceChange = (e) => {
-    const rawValue = e.target.value.replace(/[^0-9]/g, '');
+    const rawValue = e.target.value.replace(/[^0-9]/g, "");
     setPrice(formatPriceInput(rawValue));
   };
 

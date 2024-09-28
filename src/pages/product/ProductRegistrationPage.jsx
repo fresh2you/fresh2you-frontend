@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./components/buttons/Button";
 import { formatPriceInput } from "../../utils/commonUtils";
-import categories from "../../data/categories";
 import ProductForm from "./components/registration/ProductForm";
 import ProductImages from "./components/registration/ProductImages";
 
