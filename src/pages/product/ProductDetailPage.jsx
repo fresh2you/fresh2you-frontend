@@ -3,12 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { mockProducts } from "../../mockdata/MockData";
 import ProductImageSlider from "./components/details/ProductImageSlider";
 import ProductDescription from "./components/details/ProductDescription";
-import BackButton from "./components/buttons/BackButton";
 import ProductInfo from "./components/details/ProductInfo";
 import ProductDetailsSection from "./components/details/ProductDetailSection";
 import ProductDetailSkeleton from "./components/skeletons/ProductDetailSkeleton";
 import { useAtom } from "jotai";
 import { productAtom } from "@/stores/product";
+
 const ProductDetailPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useAtom(productAtom);
@@ -45,9 +45,7 @@ const ProductDetailPage = () => {
      w-4/5 sm:max-w-[540px] mx-auto sm:px-8 py-8 px-10 min-w-[425px]"
     >
       <div className="w-full max-w-4xl flex flex-col">
-        <div className="flex justify-start mb-6">
-          <BackButton />
-        </div>
+        <div className="flex justify-start mb-6"></div>
         <ProductInfo />
         <ProductDetailsSection />
       </div>

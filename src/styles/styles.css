@@ -35,7 +35,7 @@
 }
 .category-modal {
   @apply mobile:w-full mobile:max-w-[387px] tablet-sm:w-4/5 tablet-sm:min-w-[387px] tablet-sm:max-w-[430px]
-        tablet:w-3/5 tablet:min-w-[430px] tablet:max-w-[600px];
+        tablet:w-4/5 tablet:min-w-[430px] tablet:max-w-[580px];
 }
 
 @keyframes shake {
