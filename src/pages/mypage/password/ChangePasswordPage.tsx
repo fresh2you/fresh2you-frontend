@@ -1,4 +1,4 @@
-import { myPageHeaderProps } from "@/stores/mypage";
+import { pageLayoutHeaderProps } from "@/stores/mypage";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import InputWithLabel from "@/components/InputWithLabel";
@@ -9,7 +9,7 @@ const ChangePasswordPage = () => {
     newPassword: "",
     confirmNewPassword: "",
   });
-  const setHeaderProps = useSetAtom(myPageHeaderProps);
+  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.id;
@@ -22,6 +22,7 @@ const ChangePasswordPage = () => {
     setHeaderProps({
       title: "비밀번호 변경",
       hasConfirm: false,
+      backRoute: "/mypage",
     });
   }, [setHeaderProps]);
 
@@ -64,10 +65,7 @@ const ChangePasswordPage = () => {
           autoComplete={"off"}
         />
 
-        <button
-          type="submit"
-          className="absolute bottom-0 w-full py-2 font-bold text-white bg-custom-green"
-        >
+        <button type="submit" className="absolute bottom-0 w-full py-2 font-bold text-white bg-custom-green">
           비밀번호 변경하기
         </button>
       </form>
