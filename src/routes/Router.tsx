@@ -72,8 +72,8 @@ const Router = (): JSX.Element => {
               path="product/*"
               element={
                 <Routes>
-                  <Route path="product/:id" element={<ProductDetailPage />} />
-                  <Route path="product/register" element={<ProductRegistrationPage />} />
+                  <Route path="/:id" element={<ProductDetailPage />} />
+                  <Route path="/register" element={<ProductRegistrationPage />} />
                   {/* 제품 등록 페이지 재사용 예정 */}
                   <Route path="product/modify" element={<div>등록한 제품 수정</div>} />
                 </Routes>
