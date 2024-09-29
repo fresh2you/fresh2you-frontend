@@ -3,7 +3,6 @@ import IconProduct from "@/assets/icons/icon-product.svg";
 import IconHome from "@/assets/icons/icon-home.svg";
 import IconChat from "@/assets/icons/icon-chat.svg";
 import IconAccount from "@/assets/icons/icon-account.svg";
-import { removeLocalStorage } from "@/utils/storageUtils";
 
 interface HeaderMenusTypes {
   name: string;
@@ -29,12 +28,5 @@ export const headerMainMenus: { name: string; to: string }[] = [
 export const headerDropdownMenus: HeaderMenusTypes[] = [
   ...headerMainMenus,
   { name: "마이페이지", to: "/mypage" },
-  {
-    name: "로그아웃",
-    onClick: () => {
-      removeLocalStorage();
-      window.location.href = "auth/signin";
-    },
-    iconRemove: true,
-  },
+  { name: "로그아웃", onClick: () => console.log("로그아웃"), iconRemove: true },
 ];

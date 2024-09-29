@@ -10,8 +10,8 @@ const HeaderUserInfo = () => {
   return (
     <Link
       to={"/mypage"}
-      className={`items-center justify-center hidden w-7 h-7 bg-custom-gray-light bg-center bg-no-repeat bg-cover rounded-full border-custom-gray-dark aspect-square tablet:flex ${
-        !userInfo?.image && "border-none"
+      className={`items-center justify-center hidden w-6 h-6 bg-custom-gray-light bg-center bg-no-repeat bg-cover rounded-full border-custom-gray-dark aspect-square tablet:flex ${
+        !userInfo?.image && "border"
       }`}
       style={bGAvatarStyle}
     >
