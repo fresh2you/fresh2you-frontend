@@ -1,30 +1,33 @@
 import { useState, useEffect } from "react";
 import { fetchTerms } from "../api/terms";
 
-const useTerms = (setTermsChecked) => {
+const useTerms = (setTermsChecked, setIsLoading) => {
   const [termsList, setTermsList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getTerms = async () => {
       setIsLoading(true);
       try {
-        const data = await fetchTerms();
+        const response = await fetchTerms();
         const initialTermsChecked = {};
-        data.forEach((term) => {
+
+        const termsArray = response.data.termsList;
+
+        termsArray.forEach((term) => {
           initialTermsChecked[term.termsId] = false;
         });
+
         setTermsChecked(initialTermsChecked);
-        setTermsList(data);
+        setTermsList(termsArray);
       } finally {
         setIsLoading(false);
       }
     };
 
     getTerms();
-  }, [setTermsChecked]);
+  }, []);
 
-  return { termsList, isLoading };
+  return termsList;
 };
 
 export default useTerms;

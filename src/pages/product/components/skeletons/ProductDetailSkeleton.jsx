@@ -1,26 +1,25 @@
 const ProductDetailSkeleton = () => {
   return (
-    <div className="flex flex-col items-center min-h-screen text-custom-black px-4 md:px-8 lg:px-20">
-      <div className="w-full max-w-4xl py-8 flex flex-col">
-        <div className="flex justify-start mb-4">
-          <div className="w-24 h-6 bg-gray-200 animate-pulse rounded"></div>
+    <div className="flex flex-col">
+      <div className="flex items-center gap-x-4 h-1/3 w-full">
+        <div className="flex justify-center items-center w-1/3 h-full mobile:min-w-32">
+          <div className="animate-pulse bg-gray-300 w-full h-full aspect-square rounded-md" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:gap-0 gap-8">
-          <div className="flex justify-center items-center w-full md:w-80">
-            <div className="w-full h-80 bg-gray-200 animate-pulse border rounded"></div>
-          </div>
-          <div className="flex flex-col justify-between w-full md:w-72">
-            <div className="h-8 bg-gray-200 animate-pulse mb-4 rounded"></div>
-            <div className="h-6 bg-gray-200 animate-pulse mb-2 rounded"></div>
-            <div className="h-6 bg-gray-200 animate-pulse mb-4 rounded"></div>
-            <div className="h-4 bg-gray-200 animate-pulse mb-4 rounded"></div>
-            <div className="flex flex-col md:flex-row gap-2">
-              <div className="w-full h-12 bg-gray-200 animate-pulse rounded"></div>
-              <div className="w-full h-12 bg-gray-200 animate-pulse rounded"></div>
-            </div>
+        <div className="flex flex-col w-2/3">
+          <div className="animate-pulse bg-gray-300 h-6 mb-1 rounded-md w-3/4 max-w-52" />
+          <div className="animate-pulse bg-gray-300 h-4 mb-1 rounded-md w-1/2 max-w-28" />
+          <div className="animate-pulse bg-gray-300 h-6 rounded-md w-1/2 max-w-28" />
+          <div className="flex gap-2 mobile:mt-1 tablet-sm:mt-2">
+            <div className="animate-pulse bg-gray-300 h-10 w-1/2 rounded-md max-w-20" />
+            <div className="animate-pulse bg-gray-300 h-10 w-1/2 rounded-md max-w-20" />
           </div>
         </div>
-        <div className="w-full mt-8 bg-gray-200 animate-pulse py-4 px-4 md:px-6 rounded-xl shadow-sm h-[1000px]"></div>
+      </div>
+      <div className="animate-pulse bg-gray-300 h-96 py-4 px-6 rounded-xl mt-3.5 desktop-sm:h-[480px]">
+        <div className="flex items-center mb-2">
+          <div className="w-6 h-6 bg-gray-200 rounded-md animate-pulse" />
+          <div className="ml-1 h-6 w-24 animate-pulse bg-gray-200 rounded-md" />
+        </div>
       </div>
     </div>
   );

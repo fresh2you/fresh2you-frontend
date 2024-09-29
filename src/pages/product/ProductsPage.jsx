@@ -1,75 +1,58 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import ProductCard from "./components/ProductCard";
 import { mockProducts } from "../../mockdata/MockData";
-import ProductCardSkeleton from "./components/skeletons/ProductCardSkeleton";
 import CategoryButtons from "./components/buttons/CategoryButtons";
-
+import useInfiniteScroll from "./hooks/useInfiniteScroll";
+import ProductList from "./components/ProductList";
+import "../../styles/styles.css";
+import { fetchProducts } from "./api/productApis";
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(undefined);
   const itemsPerPage = 12;
 
   const observer = useRef();
 
-  const fetchProducts = useCallback(
+  const loadProducts = useCallback(
     async (pageNumber) => {
-      if (!hasMore) return;
-
+      if (!hasMore || loading) return;
       setLoading(true);
-      const startIndex = (pageNumber - 1) * itemsPerPage;
-      const newProducts = mockProducts.products.slice(startIndex, startIndex + itemsPerPage);
-
-      if (newProducts.length < itemsPerPage) {
-        setHasMore(false);
+      try {
+        const newProducts = await fetchProducts(selectedCategoryId, undefined, pageNumber, itemsPerPage);
+        console.log(newProducts.length);
+        if (newProducts.productList.length === 0 || newProducts.productList.length < itemsPerPage) {
+          setHasMore(false);
+        }
+        setProducts((prevProducts) => [...prevProducts, ...newProducts.productList]);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
       }
-
-      setProducts((prevProducts) => [...prevProducts, ...newProducts]);
       setLoading(false);
     },
-    [itemsPerPage, hasMore],
+    [itemsPerPage, hasMore, loading, selectedCategoryId],
   );
 
-  const lastProductRef = useCallback(
-    (node) => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber((prevPage) => prevPage + 1);
-        }
-      });
-      if (node) observer.current.observe(node);
-    },
-    [loading, hasMore],
-  );
+  const { lastProductRef } = useInfiniteScroll(loading, hasMore, setPageNumber);
+
+  const handleCategoryChange = (categoryId) => {
+    setSelectedCategoryId(categoryId);
+    setProducts([]);
+    setPageNumber(0);
+    setHasMore(true);
+  };
 
   useEffect(() => {
-    fetchProducts(pageNumber);
-  }, [pageNumber, fetchProducts]);
-
-  if (products.length === 0 && !loading) {
-    return <div className="text-center mt-20">등록된 상품이 없습니다.</div>;
-  }
+    loadProducts();
+  }, [pageNumber, loadProducts]);
 
   return (
-    <div className="mx-auto py-8 text-custom-black w-full px-8 sm:min-w-[600px] sm:px-8 md:w-3/5 lg:w-4/5 lg:max-w-[800px] xl:max-w-[830px]">
-      <CategoryButtons />
-      <h1 className="text-5xl font-bold text-center my-8 text-custom-green mt-0">갓 수확했어요!</h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 w-full gap-6 2xl:gap-y-8 xl:gap-x-0 justify-items-center">
-        {loading || products.length === 0
-          ? Array.from({ length: itemsPerPage }).map((_, index) => <ProductCardSkeleton key={index} />)
-          : products.map((product, index) => {
-              const key = `${product.product_id}-${index}`;
-              if (index === products.length - 1) {
-                return <ProductCard ref={lastProductRef} key={key} product={product} />;
-              } else {
-                return <ProductCard key={key} product={product} />;
-              }
-            })}
-      </div>
-      {loading && <div className="text-center mt-4">더 많은 상품을 불러오는 중입니다...</div>}
+    <div className="mx-auto py-2.5 text-custom-black product-page">
+      <CategoryButtons handleCategoryChange={handleCategoryChange} />
+      <h2 className="font-bold text-center mb-6 text-custom-green mt-0 text-custom-h2">갓 수확했어요!</h2>
+      <ProductList products={products} lastProductRef={lastProductRef} itemsPerPage={itemsPerPage} />
     </div>
   );
 };

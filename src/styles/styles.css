@@ -19,13 +19,23 @@
           font-semibold hover:border-transparent hover:grayscale-40 transition-all;
 }
 .next-btn {
-  @apply bg-custom-gray-light whitespace-nowrap px-4 py-2 h-10 self-end 
+  @apply bg-custom-gray-light whitespace-nowrap px-4 py-1 h-10 self-end 
   hover:border-transparent text-custom-black hover:bg-custom-gray-dark
   hover:text-white transition-all;
 }
 .action-btn {
-  @apply py-2 ml-2 rounded-md whitespace-nowrap h-10 hover:bg-custom-green-hover 
+  @apply py-1 ml-2 rounded-md whitespace-nowrap h-10 hover:bg-custom-green-hover 
   text-white custom-focus-light hover:border-transparent transition-all;
+}
+.product-page {
+  @apply mobile:w-full mobile:px-4 mobile:max-w-[447px]
+  tablet-sm:w-4/5 tablet-sm:min-w-[447px] tablet-sm:max-w-[660px]
+  tablet:min-w-[660px] tablet:max-w-[760px] desktop-sm:min-w-[860px]
+  desktop-sm:max-w-[900px];
+}
+.category-modal {
+  @apply mobile:w-full mobile:max-w-[387px] tablet-sm:w-4/5 tablet-sm:min-w-[387px] tablet-sm:max-w-[430px]
+        tablet:w-4/5 tablet:min-w-[430px] tablet:max-w-[580px];
 }
 
 @keyframes shake {

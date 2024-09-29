@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useFunnel } from "@use-funnel/react-router-dom";
 import { getStepsConfig } from "./stepsConfig";
 import { handleSubmit } from "./utils/handlers/handleSubmit";
@@ -14,16 +14,15 @@ import { useNavigate } from "react-router-dom";
 import ErrorModal from "./component/ErrorModal";
 import { useLocation } from "react-router-dom";
 import { Loading } from "../redirection/component/Loading";
+import useRedirectIfNotAgreed from "./hooks/useRedirectIfNotAgreed";
+import useLogin from "../signIn/hooks/useLogin";
+
 export default function SignUpPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isAgreedToTerms, setIsAgreedToTerms] = useState(location.state?.termsAgreements || false);
 
-  useEffect(() => {
-    if (!isAgreedToTerms) {
-      navigate("/auth/signup/terms");
-    }
-  }, [isAgreedToTerms]);
+  useRedirectIfNotAgreed(isAgreedToTerms);
 
   const funnel = useFunnel({
     id: "user-signup",
@@ -65,7 +64,10 @@ export default function SignUpPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOpenErrorModal = () => setIsErrorModalOpen(true);
-  const handleCloseErrorModal = () => setIsErrorModalOpen(false);
+  const handleCloseErrorModal = () => {
+    setIsErrorModalOpen(false);
+    setErrorModalMessage("");
+  };
 
   const handleOpenVerificationModal = () => setIsVerificationModalOpen(true);
   const handleCloseVerificationModal = () => setIsVerificationModalOpen(false);
@@ -75,8 +77,20 @@ export default function SignUpPage() {
   useFormValidation(formData, status, setValidity, funnel);
 
   const { passwordFeedbacks } = usePasswordValidation(formData, setFormData, setStatus);
-  const steps = getStepsConfig(formData, setFormData, setStatus, validity, handleOpenVerificationModal);
+  const steps = getStepsConfig(formData, setFormData, setStatus, validity, handleOpenVerificationModal, setIsLoading);
   const currentStep = funnel.step;
+
+  const onSuccessCallback = () => {
+    navigate("/auth/signup/complete");
+  };
+
+  const onErrorCallback = (error) => {
+    console.error("회원가입후 로그인 실패", error);
+    setErrorModalMessage("회원가입 후 로그인에 실패했습니다. 잠시 후 다시 시도해주세요");
+    handleOpenErrorModal();
+  };
+
+  const { mutate: login } = useLogin(false, onSuccessCallback, onErrorCallback);
 
   const handleFormSubmit = (e) => {
     handleSubmit(
@@ -92,6 +106,7 @@ export default function SignUpPage() {
       setStatus,
       setValidity,
       setIsLoading,
+      login,
     );
   };
 

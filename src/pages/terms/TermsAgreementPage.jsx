@@ -20,10 +20,10 @@ const TermsAgreementPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-custom-yellow flex items-center p-4 w-full">
+    <div className="min-h-screen flex items-center p-4 w-full">
       <div
         className="flex flex-col items-center mx-auto bg-custom-green rounded-lg py-5 
-        mobile:w-11/12 mobile:max-w-[340px] tablet:min-w-[340px] tablet:w-2/5"
+        mobile:w-11/12 mobile:max-w-[340px]"
       >
         <div className="w-1/2 mb-3">
           <LogoImg alt="Fresh 2 You" />
