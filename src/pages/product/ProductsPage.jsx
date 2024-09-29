@@ -5,43 +5,52 @@ import CategoryButtons from "./components/buttons/CategoryButtons";
 import useInfiniteScroll from "./hooks/useInfiniteScroll";
 import ProductList from "./components/ProductList";
 import "../../styles/styles.css";
-
+import { fetchProducts } from "./api/productApis";
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(undefined);
   const itemsPerPage = 12;
 
   const observer = useRef();
 
-  const fetchProducts = useCallback(
+  const loadProducts = useCallback(
     async (pageNumber) => {
-      if (!hasMore) return;
-
+      if (!hasMore || loading) return;
       setLoading(true);
-      const startIndex = (pageNumber - 1) * itemsPerPage;
-      const newProducts = mockProducts.products.slice(startIndex, startIndex + itemsPerPage);
-
-      if (newProducts.length < itemsPerPage) {
-        setHasMore(false);
+      try {
+        const newProducts = await fetchProducts(selectedCategoryId, undefined, pageNumber, itemsPerPage);
+        console.log(newProducts.length);
+        if (newProducts.productList.length === 0 || newProducts.productList.length < itemsPerPage) {
+          setHasMore(false);
+        }
+        setProducts((prevProducts) => [...prevProducts, ...newProducts.productList]);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
       }
-
-      setProducts((prevProducts) => [...prevProducts, ...newProducts]);
       setLoading(false);
     },
-    [itemsPerPage, hasMore],
+    [itemsPerPage, hasMore, loading, selectedCategoryId],
   );
 
   const { lastProductRef } = useInfiniteScroll(loading, hasMore, setPageNumber);
 
+  const handleCategoryChange = (categoryId) => {
+    setSelectedCategoryId(categoryId);
+    setProducts([]);
+    setPageNumber(0);
+    setHasMore(true);
+  };
+
   useEffect(() => {
-    fetchProducts(pageNumber);
-  }, [pageNumber, fetchProducts]);
+    loadProducts();
+  }, [pageNumber, loadProducts]);
 
   return (
     <div className="mx-auto py-2.5 text-custom-black product-page">
-      <CategoryButtons />
+      <CategoryButtons handleCategoryChange={handleCategoryChange} />
       <h2 className="font-bold text-center mb-6 text-custom-green mt-0 text-custom-h2">갓 수확했어요!</h2>
       <ProductList products={products} lastProductRef={lastProductRef} itemsPerPage={itemsPerPage} />
     </div>

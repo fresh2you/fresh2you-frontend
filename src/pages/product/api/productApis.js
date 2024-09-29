@@ -1,6 +1,7 @@
 import { instance } from "@/instance";
 import axios from "axios";
 const token = localStorage.getItem("accessToken");
+
 export const fetchCategories = async () => {
   try {
     const response = await instance.get("/categories", {
@@ -15,7 +16,7 @@ export const fetchCategories = async () => {
   }
 };
 
-export const fetchProducts = async (categoryId, keyword, pageNumber = 0, itemsPerPage = 3) => {
+export const fetchProducts = async (categoryId = "", keyword = "", pageNumber = 0, itemsPerPage = 3) => {
   try {
     const params = {
       page: pageNumber,
@@ -37,7 +38,7 @@ export const fetchProducts = async (categoryId, keyword, pageNumber = 0, itemsPe
       params,
     });
 
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error("Error fetching products:", error);
     throw error;

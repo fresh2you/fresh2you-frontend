@@ -14,6 +14,7 @@ const CategoryButtons = ({ handleCategoryChange }) => {
   const handleCategoryClick = (category) => {
     if (selectedCategory === category.categoryName) {
       setSelectedCategory(null);
+      handleCategoryChange(null);
     } else {
       handleCategoryChange(category.categoryId);
       setSelectedCategory(category.categoryName);
