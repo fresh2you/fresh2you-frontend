@@ -31,7 +31,7 @@ const MenuDropDown = ({ options }: MenuDropDownProps) => {
   return (
     <div className="flex flex-col h-full gap-2" ref={dropDownRef}>
       <button onClick={() => setIsOpen((prev) => !prev)} className="h-full bg-white">
-        {isOpen ? <IconClose className="w-7 h-7 text-custom-gray-dark" /> : <IconMenu className="w-7 h-7" />}
+        {isOpen ? <IconClose className="w-6 h-6 text-custom-gray-dark" /> : <IconMenu className="w-6 h-6" />}
       </button>
 
       <div
