@@ -1,4 +1,5 @@
 import useLogin from "@/pages/signIn/hooks/useLogin";
+import { signUpUser } from "../../api/signUpUser";
 export const handleSubmit = async (
   e,
   validity,
@@ -12,6 +13,7 @@ export const handleSubmit = async (
   setStatus,
   setValidity,
   setIsLoading,
+  login,
 ) => {
   e.preventDefault();
 
@@ -35,19 +37,10 @@ export const handleSubmit = async (
   } else {
     setIsLoading(true);
     try {
-      const result = await signUpUser(false, state, termsAgreements, formData);
-      if (result) {
-        const onSuccessCallback = () => {
-          navigate("/auth/signup/complete");
-        };
-
-        const onErrorCallback = (error) => {
-          console.error("회원가입후 로그인 실패", error);
-        };
-        const mutation = useLogin(false, onSuccessCallback, onErrorCallback);
-      }
-    } catch {
-      console.error("회원가입 실패");
+      await signUpUser(false, state, state.termsAgreements, formData);
+      await login({ email: formData.email, password: formData.password });
+    } catch (error) {
+      console.error("회원가입 실패", error.response ? error.response.data : error);
     } finally {
       setIsLoading(false);
     }

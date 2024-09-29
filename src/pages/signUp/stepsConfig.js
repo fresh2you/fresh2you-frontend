@@ -2,13 +2,14 @@ import { createEmailFieldConfig } from "./utils/formFieldUtils/createEmailFieldC
 import { createPassWordFieldConfig } from "./utils/formFieldUtils/createPasswordFieldConfig";
 import { createConfirmPwdFieldConfig } from "./utils/formFieldUtils/createConfirmPwdFieldConfig";
 import { createNicknameFieldConfig } from "./utils/formFieldUtils/createNicknameFieldConfig";
-export function getStepsConfig(formData, setFormData, setStatus, validity, handleOpenVerificationModal) {
+export function getStepsConfig(formData, setFormData, setStatus, validity, handleOpenVerificationModal, setIsLoading) {
   const emailFieldConfig = createEmailFieldConfig(
     formData,
     setFormData,
     validity,
     setStatus,
     handleOpenVerificationModal,
+    setIsLoading,
   );
   const passwordFieldConfig = createPassWordFieldConfig(formData, setFormData);
   const confirmPasswordFieldConfig = createConfirmPwdFieldConfig(formData, setFormData, setStatus);

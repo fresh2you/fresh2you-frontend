@@ -1,6 +1,6 @@
 import { ActionButton } from "../../component/buttons/ActionButton";
 import { handleEmailCheck } from "../handlers/handleEmailCheck";
-export const createEmailFieldConfig = (formData, setFormData, validity, setStatus, handleOpenModal) => {
+export const createEmailFieldConfig = (formData, setFormData, validity, setStatus, handleOpenModal, setIsLoading) => {
   return {
     label: "이메일 주소",
     type: "email",
@@ -11,7 +11,7 @@ export const createEmailFieldConfig = (formData, setFormData, validity, setStatu
     button: (
       <ActionButton
         isValid={validity.isEmailValid}
-        onClick={() => handleEmailCheck(formData.email, setStatus, handleOpenModal)}
+        onClick={() => handleEmailCheck(formData.email, setStatus, handleOpenModal, setIsLoading)}
         text={{ valid: "완료", invalid: "인증" }}
         isSmallBtn={true}
       />

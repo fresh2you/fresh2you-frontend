@@ -25,10 +25,12 @@ const sendVerificationCodeAndHandleModal = async (email, setStatus, handleOpenMo
   }
 };
 
-export const handleEmailCheck = async (email, setStatus, handleOpenModal) => {
+export const handleEmailCheck = async (email, setStatus, handleOpenModal, setIsLoading) => {
+  setIsLoading(true);
   const isEmailValid = await checkEmailAndSetStatus(email, setStatus);
-
   if (isEmailValid) {
+    setIsLoading(true);
     await sendVerificationCodeAndHandleModal(email, setStatus, handleOpenModal);
+    setIsLoading(false);
   }
 };

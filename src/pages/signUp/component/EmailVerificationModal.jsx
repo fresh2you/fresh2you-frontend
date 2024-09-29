@@ -30,7 +30,7 @@ const EmailVerificationModal = ({ onClose, email, setStatus, isEmailValid }) => 
             value={verificationCode}
             onChange={(e) => setVerificationCode(e.target.value)}
             placeholder="인증 코드를 입력하세요"
-            className={`border p-2 rounded custom-focus-light ${shake ? "shake" : ""}`}
+            className={`border p-2 rounded custom-focus ${shake ? "shake" : ""}`}
           />
           <button
             type="button"
