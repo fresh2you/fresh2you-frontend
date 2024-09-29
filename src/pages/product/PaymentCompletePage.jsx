@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { mockProducts } from "../../mockdata/MockData";
 import { formatCurrency } from "@/utils/commonUtils";
-import ProductDetails from "./components/ProductDetails";
 import HomeButton from "@/components/HomeButton";
 
 const PaymentCompletePage = () => {

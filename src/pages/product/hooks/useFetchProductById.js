@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { fetchProductById } from "../api/productApi";
+import { fetchProductById } from "../api/productApis";
 export const useFetchProductById = (id, setLoading, setProduct) => {
   useEffect(() => {
     const getProduct = async () => {
-      setLoading(true);
       try {
+        setLoading(true);
         const fetchedProduct = await fetchProductById(id);
         setProduct(fetchedProduct);
       } catch (err) {

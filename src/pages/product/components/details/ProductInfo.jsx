@@ -2,8 +2,9 @@ import Button from "../buttons/Button";
 import { formatCurrency } from "../../../../utils/commonUtils";
 import { useNavigate } from "react-router-dom";
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
+import ProductActionButtons from "../buttons/ProductActionButtons";
 
-const ProductInfo = ({ inChat = false, product }) => {
+const ProductInfo = ({ inChat = false, product, noBtn = false }) => {
   const navigate = useNavigate();
   return (
     <div className={`flex items-center gap-x-4`}>
@@ -18,24 +19,9 @@ const ProductInfo = ({ inChat = false, product }) => {
         <h3 className={`font-bold text-custom-h3 mb-1`}>{product.productName}</h3>
         <p className="text-custom-gray-dark text-custom-p">{product.sellerName}</p>
         <p className={`text-custom-green font-semibold text-custom-p`}>{formatCurrency(product.price)} 원</p>
-        {!inChat && (
-          <div className="flex gap-2 mobile:mt-1 tablet-sm:mt-2">
-            <Button
-              className="bg-custom-green text-white hover:bg-custom-green-hover"
-              text="구매하기"
-              onClick={() => navigate(`/purchase/${product.productId}`)}
-            />
-            <Button
-              className="bg-custom-gray-light text-custom-black hover:bg-custom-gray-dark"
-              text="협상하기"
-              onClick={() => {
-                navigate(`/chatting/${product.productId}`);
-              }}
-            />
-          </div>
-        )}
+        {!inChat && !noBtn && <ProductActionButtons productId={product.productId} navigate={navigate} />}
       </div>
-      {inChat && (
+      {inChat && !noBtn && (
         <Button
           className="bg-custom-green text-white hover:bg-custom-green-hover absolute right-4"
           text="구매하기"

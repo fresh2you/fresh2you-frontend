@@ -2,7 +2,9 @@ import { formatCurrency } from "../../../../utils/commonUtils";
 import { useNavigate } from "react-router-dom";
 import PlusImg from "../..//../../assets/img/plus.png";
 import MinusImg from "../../../../assets/img/minus.png";
-import ProductDetails from "../ProductDetails";
+import ProductInfo from "../details/ProductInfo";
+import "../../../../styles/styles.css";
+import QuantitySelector from "./QuantitySelector";
 const ProductMiniInfo = ({ product, quantity, setQuantity }) => {
   const navigate = useNavigate();
 
@@ -16,29 +18,13 @@ const ProductMiniInfo = ({ product, quantity, setQuantity }) => {
   };
 
   return (
-    <div className="flex w-4/5 flex-col md:flex-row gap-4 md:gap-0 md:items-center">
-      <ProductDetails product={product} />
-      <div className="flex items-center gap-4 md:ml-auto ml-0">
-        <label htmlFor="quantity" className="text-lg font-semibold">
+    <div className="flex flex-col tablet:flex-row tablet:items-center w-full">
+      <ProductInfo product={product} noBtn={true} />
+      <div className="flex items-center gap-4 mobile:mt-4 tablet:mt-0 tablet:ml-2">
+        <label htmlFor="quantity" className="text-custom-p font-semibold whitespace-nowrap">
           수량
         </label>
-        <div className="flex items-center border border-gray-200 rounded-sm">
-          <button
-            type="button"
-            onClick={() => handleQuantityChange(quantity - 1)}
-            className="flex items-center justify-center w-12 h-12 bg-custom-gray-light hover:bg-gray-300 hover:border-transparent focus:outline-none p-0 rounded-sm"
-          >
-            <img src={MinusImg} alt="Decrease quantity" className="w-6 h-6" />
-          </button>
-          <p className="text-center w-12 text-lg font-semibold">{quantity}</p>
-          <button
-            type="button"
-            onClick={() => handleQuantityChange(quantity + 1)}
-            className="flex items-center justify-center w-12 h-12 bg-custom-gray-light hover:bg-gray-300 hover:border-transparent focus:outline-none p-0 rounded-sm"
-          >
-            <img src={PlusImg} alt="Increase quantity" className="w-6 h-6" />
-          </button>
-        </div>
+        <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
       </div>
     </div>
   );
