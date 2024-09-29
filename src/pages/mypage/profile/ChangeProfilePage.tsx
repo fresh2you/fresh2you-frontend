@@ -1,6 +1,6 @@
 import InputWithLabel from "@/components/InputWithLabel";
 
-import { pageLayoutHeaderProps } from "@/stores/mypage";
+import { myPageHeaderProps } from "@/stores/mypage";
 import { useSetAtom } from "jotai";
 import { useEffect, useRef } from "react";
 import IconCamera from "icons/camera.svg";
@@ -8,18 +8,25 @@ import useChangeProfilePageLogics from "@/pages/mypage/profile/hooks/useChangePr
 import BackButton from "@/components/BackButton";
 
 const ChangeProfilePage = () => {
-  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
-  const { userInfo, newProfile, previewAvatar, onChangeFileChange, onChangeNicknameChange, patchUserProfile } =
-    useChangeProfilePageLogics();
+  const setHeaderProps = useSetAtom(myPageHeaderProps);
+  const {
+    userInfo,
+    newProfile,
+    previewAvatar,
+    onChangeFileChange,
+    onChangeNicknameChange,
+    patchUserProfile,
+  } = useChangeProfilePageLogics();
   const avatarRef = useRef<HTMLInputElement>(null);
   const backgroundImageStyle =
-    previewAvatar || userInfo?.image ? { backgroundImage: `url('${previewAvatar || userInfo?.image}')` } : undefined;
+    previewAvatar || userInfo?.image
+      ? { backgroundImage: `url('${previewAvatar || userInfo?.image}')` }
+      : undefined;
 
   useEffect(() => {
     setHeaderProps({
       title: "프로필 수정",
       hasConfirm: false,
-      backRoute: "/mypage",
     });
   }, [setHeaderProps]);
 
@@ -61,7 +68,10 @@ const ChangeProfilePage = () => {
           placeholder={userInfo?.nickname || "변경하실 닉네임을 알려주세요"}
           onChange={onChangeNicknameChange}
         />
-        <button type="submit" className="absolute bottom-0 w-full py-2 font-bold text-white bg-custom-green">
+        <button
+          type="submit"
+          className="absolute bottom-0 w-full py-2 font-bold text-white bg-custom-green"
+        >
           프로필 변경하기
         </button>
         <BackButton extraStyle="absolute bottom-14" />

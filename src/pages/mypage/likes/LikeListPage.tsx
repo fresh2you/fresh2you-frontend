@@ -1,18 +1,17 @@
-import { pageLayoutHeaderProps } from "@/stores/mypage";
+import { myPageHeaderProps } from "@/stores/mypage";
 import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 import ProductBox from "@/components/ProductBox";
 import useLikeListPageLogics from "@/pages/mypage/likes/hooks/useLikeListPageLogics";
 
 const LikeListPage = () => {
-  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
+  const setHeaderProps = useSetAtom(myPageHeaderProps);
   const { mockProducts } = useLikeListPageLogics();
 
   useEffect(() => {
     setHeaderProps({
       title: "찜 목록",
       hasConfirm: false,
-      backRoute: "/mypage",
     });
   }, [setHeaderProps]);
 
