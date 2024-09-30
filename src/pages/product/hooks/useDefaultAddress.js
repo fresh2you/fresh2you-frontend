@@ -5,16 +5,21 @@ const useDefaultAddress = (setRecipientDetails, setAddressList) => {
   useEffect(() => {
     const fetchDefaultAddress = async () => {
       try {
-        const addresses = await fetchDeliveryAddresses();
+        const { addressList: addresses } = await fetchDeliveryAddresses();
+
+        console.log(1, addresses);
+
         if (addresses && addresses.length > 0) {
           const defaultAddress = addresses.find((address) => address.isDefault);
           setAddressList(addresses);
           if (defaultAddress) {
             setRecipientDetails({
               recipientName: defaultAddress.recipientName,
-              phoneNumber: "",
+              phoneNumber: defaultAddress.phoneNumber,
               addressId: defaultAddress.deliveryAddressId,
-              address: `${defaultAddress.address} ${defaultAddress.detailedAddress}`,
+              address: defaultAddress.address,
+              detailedAddress: defaultAddress.detailedAddress,
+              postalCode: defaultAddress.postalCode,
             });
           }
         }

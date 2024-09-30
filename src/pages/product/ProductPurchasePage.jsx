@@ -23,6 +23,7 @@ const ProductPurchasePage = () => {
     addressId: "",
     address: "",
     detailedAddress: "",
+    postalCode: "",
   });
   const [addressList, setAddressList] = useState([]);
   const navigate = useNavigate();
@@ -36,15 +37,15 @@ const ProductPurchasePage = () => {
   const totalAmount = product.price * quantity;
 
   return (
-    <div className="flex flex-col items-center min-h-screen text-custom-black w-full px-4">
+    <div className="flex flex-col items-center w-full min-h-screen text-custom-black">
       <div
         className="mobile:w-11/12 tablet-sm:w-4/5 tablet-sm:min-w-[380px] mobile:max-w-[380px] tablet-sm:max-w-[450px]
       flex flex-col items-center tablet:min-w-[570px] tablet:max-w-[630px]"
       >
-        <h1 className="text-custom-h2 font-bold mobile:mb-6 text-center text-custom-green tablet:mb-8">
+        <h1 className="font-bold text-center text-custom-h2 mobile:mb-6 text-custom-green tablet:mb-8">
           구매를 진행해볼까요?
         </h1>
-        <div className="w-full flex flex-col items-center">
+        <div className="flex flex-col items-center w-full">
           <ProductMiniInfo product={product} quantity={quantity} setQuantity={setQuantity} />
           <PurchaseForm
             recipientDetails={recipientDetails}
@@ -52,10 +53,10 @@ const ProductPurchasePage = () => {
             addressList={addressList}
           />
         </div>
-        <div className="text-custom-h3 font-semibold mt-6">총금액: {formatCurrency(totalAmount)} 원</div>
+        <div className="mt-6 font-semibold text-custom-h3">총금액: {formatCurrency(totalAmount)} 원</div>
         <div className="flex justify-center gap-4 mobile:mt-4 tablet-sm:mt-6">
           <Button
-            className="bg-custom-green text-white hover:bg-custom-green-hover"
+            className="text-white bg-custom-green hover:bg-custom-green-hover"
             text="결제하기"
             onClick={() => handlePurchase(recipientDetails, quantity, productId, setLoading, navigate, product)}
           />
