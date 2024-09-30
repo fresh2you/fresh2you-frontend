@@ -8,22 +8,28 @@ import { registerProduct } from "./api/productApis";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const ProductRegistrationPage = () => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [images, setImages] = useState([]);
-  const [imagePreviews, setImagePreviews] = useState([]);
+  const [productData, setProductData] = useState({
+    name: "",
+    description: "",
+    price: "",
+    images: [],
+    imagePreviews: [],
+    category: "",
+  });
   const [loading, setLoading] = useState(false);
-  const [category, setCategory] = useState("");
-  const [subCategory, setSubCategory] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const [selectedCatId, setSelectedCatId] = useState(undefined);
   const navigate = useNavigate();
 
   useEffect(() => {
+    const { name, description, price, images } = productData;
     const isValid = name && description && price && selectedCatId && images.length > 0;
     setIsFormValid(isValid);
-  }, [name, description, price, selectedCatId, images]);
+  }, [productData]);
+
+  const handleInputChange = (field, value) => {
+    setProductData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,18 +38,17 @@ const ProductRegistrationPage = () => {
       return;
     }
 
-    const rawPrice = price.replace(/,/g, "");
+    const rawPrice = productData.price.replace(/,/g, "");
     setLoading(true);
 
     try {
-      const productData = {
-        name: name,
-        description: description,
+      const productPayload = {
+        ...productData,
         price: rawPrice,
         categoryId: selectedCatId,
         quantity: 1,
       };
-      await registerProduct(productData, images[0]);
+      await registerProduct(productPayload, images[0]);
       navigate("/mypage/my-products");
     } catch (error) {
       toast.error("상품 등록에 실패했습니다. 다시 시도해주세요.");
@@ -57,24 +62,8 @@ const ProductRegistrationPage = () => {
       <div className="flex flex-col mobile:w-full tablet-sm:w-3/5 tablet-sm:min-w-[447px] tablet-sm:max-w-[540px]">
         <h1 className="text-custom-h2 font-bold text-center text-custom-green mb-8">상품을 등록해요</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-          <ProductForm
-            name={name}
-            setName={setName}
-            description={description}
-            setDescription={setDescription}
-            price={price}
-            setPrice={setPrice}
-            category={category}
-            setCategory={setCategory}
-            isFormValid={isFormValid}
-            setSelectedCatId={setSelectedCatId}
-          />
-          <ProductImages
-            images={images}
-            setImages={setImages}
-            imagePreviews={imagePreviews}
-            setImagePreviews={setImagePreviews}
-          />
+          <ProductForm productData={productData} setProductData={setProductData} setSelectedCatId={setSelectedCatId} />
+          <ProductImages productData={productData} setProductData={setProductData} />
           <div className="flex justify-center gap-2">
             <Button
               type="submit"
@@ -82,7 +71,6 @@ const ProductRegistrationPage = () => {
                 isFormValid ? "cursor-pointer" : "cursor-not-allowed"
               }`}
               text={"등록하기"}
-              onClick={handleSubmit}
               disabled={loading || !isFormValid}
             />
             <Button

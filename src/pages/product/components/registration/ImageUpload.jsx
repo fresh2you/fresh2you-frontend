@@ -1,6 +1,8 @@
 import "../../.././../styles/styles.css";
 import { toast } from "react-toastify";
-const ImageUpload = ({ onImageChange, imagePreviews, onDeleteImage }) => {
+const ImageUpload = ({ productData, setProductData, onImageChange, onDeleteImage }) => {
+  const imagePreviews = productData.imagePreviews;
+
   const handleImageChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
     if (selectedFiles.length + imagePreviews.length > 1) {
@@ -8,7 +10,6 @@ const ImageUpload = ({ onImageChange, imagePreviews, onDeleteImage }) => {
       return;
     }
 
-    const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
     onImageChange(selectedFiles);
   };
 
@@ -26,7 +27,7 @@ const ImageUpload = ({ onImageChange, imagePreviews, onDeleteImage }) => {
         className="border p-2 rounded custom-focus"
       />
       <div className="flex flex-wrap gap-4 mt-4">
-        {imagePreviews.map((preview, index) => (
+        {productData.imagePreviews.map((preview, index) => (
           <div key={index} className="relative w-1/3">
             <img src={preview} alt={`상품 이미지 미리보기 ${index}`} className="rounded object-cover" />
             <button
