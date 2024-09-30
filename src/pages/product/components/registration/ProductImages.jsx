@@ -1,9 +1,8 @@
-import ImageUpload from './ImageUpload';
+import ImageUpload from "./ImageUpload";
 
 const ProductImages = ({ images, setImages, imagePreviews, setImagePreviews }) => {
   const handleImageChange = (selectedFiles) => {
     const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
-
     setImages((prevImages) => [...prevImages, ...selectedFiles]);
     setImagePreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
   };

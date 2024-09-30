@@ -3,7 +3,7 @@ import Textarea from "./Textarea";
 import DropdownSelect from "./DropDownSelect";
 import useFetchCategories from "../../hooks/useFetchCategories";
 import { formatPriceInput } from "../../../../utils/commonUtils";
-const categories = useFetchCategories;
+
 const ProductForm = ({
   name,
   setName,
@@ -13,17 +13,20 @@ const ProductForm = ({
   setPrice,
   category,
   setCategory,
-  subCategory,
-  setSubCategory,
   isFormValid,
+  setSelectedCatId,
 }) => {
-  const mainCategories = Object.keys(categories);
-  const subCategories = category ? categories[category] : [];
-
+  const categories = useFetchCategories();
+  const mainCategories = categories.map((cat) => cat.categoryName);
+  const mainCategoryIds = categories.map((cat) => cat.categoryId);
   const handleCategoryChange = (e) => {
     const newCategory = e.target.value;
     setCategory(newCategory);
-    setSubCategory("");
+
+    const selectedIndex = mainCategories.indexOf(newCategory);
+    if (selectedIndex !== -1) {
+      setSelectedCatId(mainCategoryIds[selectedIndex]);
+    }
   };
   const handlePriceChange = (e) => {
     const rawValue = e.target.value.replace(/[^0-9]/g, "");
@@ -38,7 +41,6 @@ const ProductForm = ({
         value={name}
         onChange={(e) => setName(e.target.value)}
         maxLength={15}
-        className="border px-2 py-2 rounded outline-none w-60"
         showLength={true}
       />
       <Textarea
@@ -46,17 +48,9 @@ const ProductForm = ({
         label="상품 설명"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        maxLength={1000}
-        className="border p-2 rounded outline-none"
+        maxLength={500}
       />
-      <TextInput
-        id="price"
-        label="가격"
-        value={price}
-        onChange={handlePriceChange}
-        className="border p-2 rounded outline-none w-60"
-        showLength={false}
-      />
+      <TextInput id="price" label="가격" value={price} onChange={handlePriceChange} showLength={false} />
       <DropdownSelect
         id="category"
         label="카테고리"
@@ -65,16 +59,6 @@ const ProductForm = ({
         onChange={handleCategoryChange}
         required
       />
-      {category && (
-        <DropdownSelect
-          id="subCategory"
-          label="하위 카테고리"
-          options={subCategories}
-          value={subCategory}
-          onChange={(e) => setSubCategory(e.target.value)}
-          required
-        />
-      )}
     </>
   );
 };
