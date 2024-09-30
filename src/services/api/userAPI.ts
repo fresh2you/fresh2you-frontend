@@ -115,7 +115,7 @@ const userAPI = {
   },
 
   verifySMSCode: async ({ phoneNumber, verificationCode }: { phoneNumber: string; verificationCode: string }) => {
-    const { data: response } = await instance.post("/auth/sms", {
+    const { data: response } = await instance.post("/auth/sms/verify", {
       params: {
         phoneNumber,
         verificationCode,

@@ -66,7 +66,7 @@ const authAPI = {
   },
 
   validateNickname: async (nickname: string) => {
-    const { data: response } = await instance.get("/auth/email", {
+    const { data: response } = await instance.get("/auth/check-nickname", {
       params: {
         nickname,
       },
@@ -76,7 +76,7 @@ const authAPI = {
   },
 
   validateEmail: async (email: string) => {
-    const { data: response } = await instance.get("/auth/email", {
+    const { data: response } = await instance.get("/auth/check-email", {
       params: {
         email,
       },
@@ -96,7 +96,7 @@ const authAPI = {
   },
 
   verifyEmailCode: async ({ email, verificationCode }: { email: string; verificationCode: string }) => {
-    const { data: response } = await instance.post("/auth/email", {
+    const { data: response } = await instance.post("/auth/email/verify", {
       params: {
         email,
         verificationCode,
