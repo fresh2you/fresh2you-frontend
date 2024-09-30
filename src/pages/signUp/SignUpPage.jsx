@@ -113,7 +113,7 @@ export default function SignUpPage() {
   return (
     <>
       {isLoading ? (
-        <Loading />
+        <Loading isLayoutApplied={false} />
       ) : (
         <>
           <form
