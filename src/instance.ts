@@ -17,8 +17,9 @@ export const instance = axios.create({
 // 요청 인터셉터
 instance.interceptors.request.use(
   (config) => {
-    // 아직 token 어떻게 주는 지 정의 X
     // TODO: 백엔드에서 토큰 예외처리로 인해 토큰이 필요한 경우에만 보내주기
+    const accessToken = localStorage.getItem("accessToken");
+    config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : ``;
 
     return config;
   },
@@ -35,9 +36,6 @@ instance.interceptors.response.use(
   },
   (error) => {
     const axiosError = error as AxiosError;
-    const errorMessage = axiosError.message;
-
-    console.log("응답에러 메세지: ", errorMessage);
 
     return Promise.reject(axiosError);
   },
