@@ -8,7 +8,6 @@ import slider3 from "../../assets/img/sliders/slider3.png";
 import HomeButton from "../../components/HomeButton";
 import { useRef } from "react";
 import { useState } from "react";
-
 const settings = {
   dots: true,
   infinite: false,

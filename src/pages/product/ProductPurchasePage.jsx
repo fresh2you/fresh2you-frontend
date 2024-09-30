@@ -31,7 +31,7 @@ const ProductPurchasePage = () => {
 
   useDefaultAddress(setRecipientDetails, setAddressList);
 
-  if (loading || !product) return <Loading />;
+  if (loading || !product) return <Loading isLayoutApplied={true} />;
 
   const totalAmount = product.price * quantity;
 
