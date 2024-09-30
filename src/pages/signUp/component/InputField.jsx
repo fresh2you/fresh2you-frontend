@@ -15,10 +15,10 @@ export default function InputField({ label, type, value, setValue, placeholder, 
         placeholder={placeholder}
         autoComplete={autoComplete}
         className={`h-10 rounded px-1 text-custom-black border custom-focus-light
-        border-custom-gray-light ${isPasswordField && "w-[250px]"} 
+        border-custom-gray-light ${isPasswordField && "w-[260px]"} 
         ${label === "이메일 주소" && "w-[220px]"}
         ${label === "닉네임" && "w-[205px]"}
-        ${label === "비밀번호" && "placeholder:text-sm"}`}
+        ${label === "비밀번호" && "placeholder:mobile:text-[0.8rem]"}`}
       />
     </div>
   );

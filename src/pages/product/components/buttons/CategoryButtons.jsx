@@ -1,19 +1,24 @@
 import { useState } from "react";
-import categories from "../../../../data/categories";
 import { useNavigate } from "react-router-dom";
-
-const CategoryButtons = () => {
+import useFetchCategories from "../../hooks/useFetchCategories";
+import SubCategoryItems from "../SubCategoryItems";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+const CategoryButtons = ({ handleCategoryChange }) => {
   const navigate = useNavigate();
+  const categories = useFetchCategories();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+  const isLoading = !categories.length;
 
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category === selectedCategory ? null : category);
-    setSelectedSubCategory(null);
-  };
-
-  const handleSubCategoryClick = (subCategory) => {
-    setSelectedSubCategory(subCategory === selectedSubCategory ? null : subCategory);
+    if (selectedCategory === category.categoryName) {
+      setSelectedCategory(null);
+      handleCategoryChange(null);
+    } else {
+      handleCategoryChange(category.categoryId);
+      setSelectedCategory(category.categoryName);
+    }
   };
 
   const handleItemClick = (item) => {
@@ -21,47 +26,41 @@ const CategoryButtons = () => {
   };
 
   const renderItems = () => {
-    if (!selectedCategory || selectedCategory === "기타") return null;
+    const selectedCat = categories.find((cat) => cat.categoryName === selectedCategory);
+    const items = selectedCat.subCategories;
 
-    const items = categories[selectedCategory];
-    if (!items) return null;
-
-    return (
-      <div className="flex flex-col pl-4 pb-3">
-        <div className="flex flex-wrap gap-2 p-4 max-w-xl">
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-1/3 lg:w-1/4 cursor-pointer hover:text-custom-green-hover transition-colors 
-              hover:scale-105 font-semibold text-lg mr-4 whitespace-nowrap"
-              onClick={() => handleItemClick(item)}
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-    );
+    return <SubCategoryItems items={items} onItemClick={handleItemClick} />;
   };
 
   return (
     <>
-      <div className="flex gap-4 mb-2 w-full sm:flex-wrap overflow-x-scroll sm:overflow-x-visible">
-        {Object.keys(categories).map((category) => (
-          <button
-            key={category}
-            className={`px-4 py-2 rounded-lg focus:outline-none hover:border-transparent whitespace-nowrap ${
-              selectedCategory === category
-                ? "bg-custom-green text-white"
-                : "bg-custom-gray-light text-custom-black hover:bg-custom-green-hover hover:text-white"
-            }`}
-            onClick={() => handleCategoryClick(category)}
-          >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
-          </button>
-        ))}
+      <div className="flex tablet:gap-4 w-full mobile:gap-2 justify-center">
+        {isLoading
+          ? Array.from({ length: 5 }).map((_, index) => (
+              <Skeleton
+                key={index}
+                className={`mobile:h-[34px] tablet:h-[42px] rounded-lg ${
+                  index === 2 ? "mobile:w-[94px] tablet:w-[126px] " : "mobile:w-[44px] tablet:w-[55px]"
+                }`}
+              />
+            ))
+          : categories.map((category) => (
+              <button
+                key={category.categoryId}
+                className={`px-2.5 py-1 rounded-lg custom-focus whitespace-nowrap
+                text-custom-btn-text
+                ${
+                  selectedCategory === category.categoryName
+                    ? "bg-custom-green text-white"
+                    : "bg-custom-gray-light text-custom-black hover:bg-custom-green-hover hover:text-white"
+                }`}
+                onClick={() => handleCategoryClick(category)}
+              >
+                {category.categoryName}
+              </button>
+            ))}
       </div>
-      <div className="inline-flex rounded-lg shadow-lg overflow-hidden bg-custom-green-200">
+      <div className="mx-auto rounded-lg shadow-lg overflow-hidden bg-custom-green-200 mt-2 mb-4 category-modal">
         {selectedCategory && renderItems()}
       </div>
     </>

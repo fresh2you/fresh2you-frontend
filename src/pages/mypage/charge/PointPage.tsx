@@ -1,5 +1,5 @@
 import usePointPagelogics from "@/pages/mypage/charge/hooks/usePointPagelogics";
-import { myPageHeaderProps } from "@/stores/mypage";
+import { pageLayoutHeaderProps } from "@/stores/mypage";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 
@@ -15,18 +15,19 @@ const PointPage = () => {
     setInputValue(value === "" ? "" : Number(value));
   };
 
-  const setHeaderProps = useSetAtom(myPageHeaderProps);
+  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
 
   useEffect(() => {
     setHeaderProps({
       title: "포인트 충전",
       hasConfirm: false,
+      backRoute: "/mypage/2",
     });
   }, [setHeaderProps]);
 
   return (
-    <div className="flex flex-col items-center w-full h-full pb-[4.5rem]">
-      <div className=" flex flex-col justify-center w-full h-full px-[10%] gap-3">
+    <div className="flex flex-col items-center w-full h-full tablet:pb-[4.5rem] max-w-2xl">
+      <div className="flex flex-col justify-center w-full h-full gap-3">
         <div className="text-lg font-bold ">충전하실 포인트를 입력해주세요</div>
 
         <div className="flex w-full gap-4">
@@ -36,9 +37,11 @@ const PointPage = () => {
             value={inputValue}
             placeholder="충전할 포인트 입력"
             onChange={onChangePoint}
+            pattern="\d*"
+            inputMode="numeric"
           />
 
-          <button className="p-2 text-white bg-custom-gray-dark" onClick={() => setInputValue("")}>
+          <button className="p-2 text-white rounded-lg bg-custom-gray-dark" onClick={() => setInputValue("")}>
             초기화
           </button>
         </div>
@@ -46,7 +49,7 @@ const PointPage = () => {
         <div className="flex flex-wrap items-center w-full gap-2">
           {[1000, 2000, 5000, 10000, 50000].map((num) => (
             <button
-              className="p-2 bg-custom-gray-light"
+              className="p-2 rounded-lg bg-custom-gray-light"
               key={num}
               onClick={() => {
                 setInputValue((inputValue || 0) + num);
@@ -59,7 +62,7 @@ const PointPage = () => {
       </div>
 
       <button
-        className="w-3/4 font-bold text-white bg-custom-green"
+        className="w-3/4 p-2 font-bold text-white rounded-lg bg-custom-green"
         onClick={async () => {
           if (inputValue !== "" && inputValue !== 0) await patchUserPoint(inputValue);
           else console.log("0원 이상을 충전하시오");

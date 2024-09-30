@@ -1,21 +1,21 @@
-import { CloseBtn } from "../../../signUp/component/buttons/CloseBtn";
+import "../../.././../styles/styles.css";
+import { toast } from "react-toastify";
+const ImageUpload = ({ productData, setProductData, onImageChange, onDeleteImage }) => {
+  const imagePreviews = productData.imagePreviews;
 
-const ImageUpload = ({ onImageChange, imagePreviews, onDeleteImage }) => {
   const handleImageChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
-    if (selectedFiles.length + imagePreviews.length > 5) {
-      alert("최대 5장의 이미지만 업로드할 수 있습니다.");
+    if (selectedFiles.length + imagePreviews.length > 1) {
+      toast.error("최대 1장의 이미지만 업로드할 수 있습니다.");
       return;
     }
-
-    const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
 
     onImageChange(selectedFiles);
   };
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor="images" className="text-lg font-semibold">
+      <label htmlFor="images" className="text-custom-p font-semibold">
         상품 이미지
       </label>
       <input
@@ -24,16 +24,17 @@ const ImageUpload = ({ onImageChange, imagePreviews, onDeleteImage }) => {
         accept="image/*"
         onChange={handleImageChange}
         multiple
-        className="border p-2 rounded focus:outline-none"
+        className="border p-2 rounded custom-focus"
       />
       <div className="flex flex-wrap gap-4 mt-4">
-        {imagePreviews.map((preview, index) => (
-          <div key={index} className="relative">
-            <img src={preview} alt={`상품 이미지 미리보기 ${index}`} className="w-56 h-56 rounded object-cover" />
+        {productData.imagePreviews.map((preview, index) => (
+          <div key={index} className="relative w-1/3">
+            <img src={preview} alt={`상품 이미지 미리보기 ${index}`} className="rounded object-cover" />
             <button
               type="button"
               onClick={() => onDeleteImage(index)}
-              className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full w-6 h-6 flex justify-center items-center hover:border-transparent focus:outline-none"
+              className="absolute top-1 right-1 bg-red-500 text-white p-1 pb-1.5 rounded-full w-6 h-6 flex justify-center 
+              items-center custom-focus hover:text-custom-gray-light"
             >
               &times;
             </button>

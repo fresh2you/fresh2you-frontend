@@ -1,32 +1,25 @@
-import TextInput from './TextInput';
-import Textarea from './Textarea';
-import DropdownSelect from './DropDownSelect';
-import categories from '../../../../data/categories';
-import { formatPriceInput } from '../../../../utils/commonUtils';
-const ProductForm = ({
-  name,
-  setName,
-  description,
-  setDescription,
-  price,
-  setPrice,
-  category,
-  setCategory,
-  subCategory,
-  setSubCategory,
-  isFormValid,
-}) => {
-  const mainCategories = Object.keys(categories);
-  const subCategories = category ? categories[category] : [];
+import TextInput from "./TextInput";
+import Textarea from "./Textarea";
+import DropdownSelect from "./DropDownSelect";
+import useFetchCategories from "../../hooks/useFetchCategories";
+import { formatPriceInput } from "../../../../utils/commonUtils";
 
+const ProductForm = ({ productData, setProductData, setSelectedCatId }) => {
+  const categories = useFetchCategories();
+  const mainCategories = categories.map((cat) => cat.categoryName);
+  const mainCategoryIds = categories.map((cat) => cat.categoryId);
   const handleCategoryChange = (e) => {
     const newCategory = e.target.value;
-    setCategory(newCategory);
-    setSubCategory('');
+    setProductData((prev) => ({ ...prev, category: newCategory }));
+
+    const selectedIndex = mainCategories.indexOf(newCategory);
+    if (selectedIndex !== -1) {
+      setSelectedCatId(mainCategoryIds[selectedIndex]);
+    }
   };
   const handlePriceChange = (e) => {
-    const rawValue = e.target.value.replace(/[^0-9]/g, '');
-    setPrice(formatPriceInput(rawValue));
+    const rawValue = e.target.value.replace(/[^0-9]/g, "");
+    setProductData((prev) => ({ ...prev, price: formatPriceInput(rawValue) }));
   };
 
   return (
@@ -34,46 +27,27 @@ const ProductForm = ({
       <TextInput
         id="name"
         label="상품명"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={productData.name}
+        onChange={(e) => setProductData((prev) => ({ ...prev, name: e.target.value }))}
         maxLength={15}
-        className="border px-2 py-2 rounded outline-none w-60"
         showLength={true}
       />
       <Textarea
         id="description"
         label="상품 설명"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        maxLength={1000}
-        className="border p-2 rounded outline-none"
+        value={productData.description}
+        onChange={(e) => setProductData((prev) => ({ ...prev, description: e.target.value }))}
+        maxLength={500}
       />
-      <TextInput
-        id="price"
-        label="가격"
-        value={price}
-        onChange={handlePriceChange}
-        className="border p-2 rounded outline-none w-60"
-        showLength={false}
-      />
+      <TextInput id="price" label="가격" value={productData.price} onChange={handlePriceChange} showLength={false} />
       <DropdownSelect
         id="category"
         label="카테고리"
         options={mainCategories}
-        value={category}
+        value={productData.category}
         onChange={handleCategoryChange}
         required
       />
-      {category && (
-        <DropdownSelect
-          id="subCategory"
-          label="하위 카테고리"
-          options={subCategories}
-          value={subCategory}
-          onChange={(e) => setSubCategory(e.target.value)}
-          required
-        />
-      )}
     </>
   );
 };

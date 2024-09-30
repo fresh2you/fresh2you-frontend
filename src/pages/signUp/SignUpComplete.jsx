@@ -8,7 +8,6 @@ import slider3 from "../../assets/img/sliders/slider3.png";
 import HomeButton from "../../components/HomeButton";
 import { useRef } from "react";
 import { useState } from "react";
-import "../../styles/styles.css";
 const settings = {
   dots: true,
   infinite: false,
@@ -78,7 +77,7 @@ const SignUpCompletePage = () => {
         ) : (
           <button
             className="bg-custom-green hover:bg-custom-green-hover text-white px-6 rounded-lg 
-          font-semibold text-custom-btn-text py-2 tablet:py-1.5 custom-focus"
+          font-semibold text-custom-btn-text py-2 tablet:py-1.5"
             onClick={handleNextSlide}
           >
             다음

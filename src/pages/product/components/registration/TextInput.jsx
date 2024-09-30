@@ -1,6 +1,6 @@
-import { useState } from 'react';
-
-const TextInput = ({ id, label, value, onChange, maxLength, type = 'text', className, showLength = true }) => {
+import { useState } from "react";
+import "../../../../styles/styles.css";
+const TextInput = ({ id, label, value, onChange, maxLength, type = "text", className, showLength = true }) => {
   const displayLength = maxLength ? Math.min(value.length, maxLength) : value.length;
 
   const handleChange = (e) => {
@@ -13,7 +13,7 @@ const TextInput = ({ id, label, value, onChange, maxLength, type = 'text', class
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-lg font-semibold">
+      <label htmlFor={id} className="text-custom-p font-semibold ">
         {label}
       </label>
       <input
@@ -22,7 +22,7 @@ const TextInput = ({ id, label, value, onChange, maxLength, type = 'text', class
         value={value}
         onChange={handleChange}
         maxLength={maxLength}
-        className={className}
+        className={`rounded custom-focus border px-2 py-1 ${id === "price" ? "w-1/2" : "w-full"}`}
         required
       />
       {showLength && maxLength && (

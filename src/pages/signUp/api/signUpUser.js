@@ -2,12 +2,15 @@ import { instance } from "@/instance";
 
 export const signUpUser = async (isSocialLoginRedirect, state, termsAgreements, formData) => {
   let payload;
+  console.log(isSocialLoginRedirect);
   if (isSocialLoginRedirect) {
     payload = {
       email: state.email,
       termsAgreements: termsAgreements,
       provider: state.provider,
       providerId: state.providerId,
+      password: null,
+      confirmPassword: null,
     };
   } else {
     payload = {
@@ -15,8 +18,9 @@ export const signUpUser = async (isSocialLoginRedirect, state, termsAgreements, 
       password: formData.password,
       confirmPassword: formData.confirmPassword,
       nickname: formData.nickname,
-      termsAgreements: state.termsAgreements,
+      termsAgreements: termsAgreements,
       provider: "EMAIL",
+      providerId: null,
     };
   }
   try {

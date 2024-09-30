@@ -1,20 +1,35 @@
-import ImageUpload from './ImageUpload';
+import ImageUpload from "./ImageUpload";
 
-const ProductImages = ({ images, setImages, imagePreviews, setImagePreviews }) => {
+const ProductImages = ({ productData, setProductData }) => {
   const handleImageChange = (selectedFiles) => {
     const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
-
-    setImages((prevImages) => [...prevImages, ...selectedFiles]);
-    setImagePreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
+    setProductData((prev) => ({
+      ...prev,
+      images: [...prev.images, ...selectedFiles],
+      imagePreviews: [...prev.imagePreviews, ...newPreviews],
+    }));
   };
 
   const handleDeleteImage = (index) => {
-    setImages(images.filter((_, i) => i !== index));
-    setImagePreviews(imagePreviews.filter((_, i) => i !== index));
+    setProductData((prev) => {
+      const updatedImages = prev.images.filter((_, i) => i !== index);
+      const updatedPreviews = prev.imagePreviews.filter((_, i) => i !== index);
+
+      return {
+        ...prev,
+        images: updatedImages,
+        imagePreviews: updatedPreviews,
+      };
+    });
   };
 
   return (
-    <ImageUpload onImageChange={handleImageChange} imagePreviews={imagePreviews} onDeleteImage={handleDeleteImage} />
+    <ImageUpload
+      productData={productData}
+      setProductData={setProductData}
+      onImageChange={handleImageChange}
+      onDeleteImage={handleDeleteImage}
+    />
   );
 };
 

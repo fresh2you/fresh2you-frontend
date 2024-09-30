@@ -7,7 +7,7 @@ const HeaderRight = () => {
     <div className="items-center hidden h-full gap-4 tablet:flex">
       <HeaderUserInfo />
 
-      <div className="hidden tablet:block desktop:hidden">
+      <div className="hidden h-full tablet:block desktop:hidden">
         <MenuDropDown options={headerDropdownMenus} />
       </div>
     </div>

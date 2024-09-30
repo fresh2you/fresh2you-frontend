@@ -1,4 +1,5 @@
-const Textarea = ({ id, label, value, onChange, maxLength, className }) => {
+import "../././../../../styles/styles.css";
+const Textarea = ({ id, label, value, onChange, maxLength }) => {
   const displayLength = maxLength ? Math.min(value.length, maxLength) : value.length;
   const handleChange = (e) => {
     const newValue = e.target.value;
@@ -9,7 +10,7 @@ const Textarea = ({ id, label, value, onChange, maxLength, className }) => {
   };
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-lg font-semibold">
+      <label htmlFor={id} className="text-custom-p font-semibold">
         {label}
       </label>
       <textarea
@@ -18,7 +19,7 @@ const Textarea = ({ id, label, value, onChange, maxLength, className }) => {
         onChange={handleChange}
         maxLength={maxLength}
         rows="4"
-        className={className}
+        className="border rounded custom-focus px-2 py-1"
         required
       />
       <p className="text-sm text-gray-500">
