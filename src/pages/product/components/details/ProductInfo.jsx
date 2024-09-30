@@ -20,7 +20,7 @@ const ProductInfo = ({ inChat = false, product, noBtn = false }) => {
         <h3 className={`font-bold text-custom-h3 mb-1`}>{product.productName}</h3>
         <p className="text-custom-gray-dark text-custom-p">{product.sellerName}</p>
         <p className={`text-custom-green font-semibold text-custom-p`}>{formatCurrency(product.price)} 원</p>
-        {!inChat && !noBtn && <ProductActionButtons productId={product.productId} navigate={navigate} />}
+        {!inChat && !noBtn && <ProductActionButtons product={product} navigate={navigate} />}
       </div>
       {inChat && !noBtn && (
         <Button
