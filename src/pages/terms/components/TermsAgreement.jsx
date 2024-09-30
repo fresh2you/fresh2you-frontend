@@ -17,7 +17,8 @@ const TermsAgreement = ({ onAgree, termsChecked, setTermsChecked }) => {
   const termListRef = useRef(null);
 
   const openModal = (content) => {
-    setCurrentTermContent(content);
+    const unescapedData = JSON.parse(`"${content}"`);
+    setCurrentTermContent(unescapedData);
     setIsOpen(true);
   };
 
