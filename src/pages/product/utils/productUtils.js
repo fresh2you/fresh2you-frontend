@@ -10,7 +10,7 @@ export const getCategories = async () => {
   }
 };
 
-export const handlePurchase = async (recipientDetails, quantity, productId, navigate) => {
+export const handlePurchase = async (recipientDetails, quantity, productId, navigate, product) => {
   const { recipientName, phoneNumber, addressId, address } = recipientDetails;
 
   if (!recipientName || !phoneNumber || !address) {
@@ -18,14 +18,20 @@ export const handlePurchase = async (recipientDetails, quantity, productId, navi
     return;
   }
 
-  const purchaseData = {
-    deliveryAddressId: addressId,
-    quantity: quantity,
-  };
-
   try {
-    await buyProduct(productId, purchaseData.quantity, purchaseData.deliveryAddressId);
-    navigate("/purchase/complete");
+    await buyProduct(productId, quantity, addressId);
+    navigate("/purchase/complete", {
+      state: {
+        product: {
+          id: productId,
+          name: product.productName,
+          img: product.imageUrl,
+          price: product.price,
+          seller: product.sellerName,
+        },
+        quantity: quantity,
+      },
+    });
   } catch (error) {
     console.error("구매 실패:", error);
     toast.error("결제 도중 오류가 발생했습니다.");
