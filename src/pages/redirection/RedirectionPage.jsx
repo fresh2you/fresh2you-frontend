@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useKakaoLogin from "../signIn/hooks/useKakaoLogin";
-import { Loading } from "./component/Loading";
-
+import logoImg from "../../assets/img/circle-logo.png";
 const RedirectionPage = () => {
   const navigate = useNavigate();
 
@@ -23,7 +22,9 @@ const RedirectionPage = () => {
 
   return (
     <>
-      <Loading />
+      <div className="flex justify-center items-center w-full h-screen">
+        <img alt="Fresh 2 You" src={logoImg} className="animate-bounce w-1/3 max-w-36" />
+      </div>
     </>
   );
 };
