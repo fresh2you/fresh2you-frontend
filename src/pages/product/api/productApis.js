@@ -92,3 +92,20 @@ export const fetchDeliveryAddresses = async (userId) => {
     throw error;
   }
 };
+export const registerProduct = async (productData, img) => {
+  const formData = new FormData();
+  formData.append("file", img);
+  formData.append("request", new Blob([JSON.stringify(productData)], { type: "application/json" }));
+
+  try {
+    const response = await instance.post("/products", formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

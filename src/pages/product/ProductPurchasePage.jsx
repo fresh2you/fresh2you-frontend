@@ -38,7 +38,7 @@ const ProductPurchasePage = () => {
   return (
     <div className="flex flex-col items-center min-h-screen text-custom-black w-full px-4">
       <div
-        className="mobile:w-11/12 pt-20 tablet-sm:w-4/5 tablet-sm:min-w-[380px] mobile:max-w-[380px] tablet-sm:max-w-[450px]
+        className="mobile:w-11/12 tablet-sm:w-4/5 tablet-sm:min-w-[380px] mobile:max-w-[380px] tablet-sm:max-w-[450px]
       flex flex-col items-center tablet:min-w-[570px] tablet:max-w-[630px]"
       >
         <h1 className="text-custom-h2 font-bold mobile:mb-6 text-center text-custom-green tablet:mb-8">
@@ -57,7 +57,7 @@ const ProductPurchasePage = () => {
           <Button
             className="bg-custom-green text-white hover:bg-custom-green-hover"
             text="결제하기"
-            onClick={() => handlePurchase(recipientDetails, quantity, productId, setLoading, navigate)}
+            onClick={() => handlePurchase(recipientDetails, quantity, productId, setLoading, navigate, product)}
           />
           <Button
             className="bg-custom-gray-light text-custom-black hover:bg-custom-gray-dark"
