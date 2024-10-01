@@ -35,12 +35,13 @@ const ChatPage = () => {
   };
 
   useScrollToBottom(messagesEndRef, [messages]);
-
+  console.log(product);
   return (
     <div className="bg-white mx-auto text-custom-black relative">
       <div
         className={`fixed opacity-95 left-4 max-w-[450px] border rounded-md mr-4 p-1.5 transition-transform 
-          duration-300 border-transparent flex ${showProductInfo ? "translate-x-0" : "-translate-x-[96%]"} bg-gray-100`}
+          duration-300 border-transparent flex ${showProductInfo ? "translate-x-0" : "-translate-x-[96%]"}
+          ${!product ? "bg-gray-100" : "bg-white"}`}
       >
         {product && Object.keys(product).length > 0 && (
           <div className="flex items-start">
@@ -54,7 +55,7 @@ const ChatPage = () => {
           </div>
         )}
       </div>
-      {messages.length ? (
+      {chat.messages.length ? (
         <div className="pt-2 max-w-lg w-full mx-auto tablet-sm:border rounded mobile:pb-16">
           <MessageList messages={chat.messages} />
           <div ref={messagesEndRef} />
