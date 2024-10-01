@@ -20,7 +20,7 @@ const ProductDetailPage = () => {
       className="flex flex-col items-center min-h-screen text-custom-black px-4 mobile:w-full 
     desktop-sm:min-w-[549px] desktop-sm: max-w-[850px]"
     >
-      <div className="flex flex-col mobile:w-11/12 pt-8 tablet-sm:w-3/5 tablet-sm:min-w-[380px]">
+      <div className="flex flex-col mobile:w-11/12 pt-2 tablet-sm:w-3/5 tablet-sm:min-w-[380px]">
         {loading ? (
           <ProductDetailSkeleton />
         ) : (
