@@ -9,7 +9,7 @@ const ProductInfo = ({ inChat = false, product, noBtn = false }) => {
   const navigate = useNavigate();
   return (
     <div className={`flex items-center gap-x-4`}>
-      <div className="flex justify-center items-center w-1/3 mobile:min-w-32">
+      <div className="flex justify-center items-center w-1/3 mobile:min-w-32 max-w-[160px]">
         <img
           src={product.imageUrl || fallbackImg}
           alt={product.productName}
