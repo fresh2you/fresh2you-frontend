@@ -5,11 +5,11 @@ import ProductActionButtons from "../buttons/ProductActionButtons";
 
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 
-const ProductInfo = ({ inChat = false, product, noBtn = false }) => {
+const ProductInfo = ({ inChat = false, product, noBtn = false, className = "" }) => {
   const navigate = useNavigate();
   return (
-    <div className={`flex items-center gap-x-4`}>
-      <div className="flex justify-center items-center w-1/3 mobile:min-w-32">
+    <div className={`flex items-center gap-x-4 ${className} relative`}>
+      <div className="flex justify-center items-center w-1/3 mobile:min-w-[135px]">
         <img
           src={product.imageUrl || fallbackImg}
           alt={product.productName}
@@ -24,7 +24,7 @@ const ProductInfo = ({ inChat = false, product, noBtn = false }) => {
       </div>
       {inChat && !noBtn && (
         <Button
-          className="bg-custom-green text-white hover:bg-custom-green-hover absolute right-4"
+          className="bg-custom-green text-white hover:bg-custom-green-hover absolute left-0 bottom-0 opacity-85"
           text="구매하기"
           onClick={() => navigate(`/purchase/${product.productId}`)}
         />

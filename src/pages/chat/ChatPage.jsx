@@ -1,60 +1,70 @@
-import { useAtom } from "jotai";
+import { useState, useRef, useEffect, useId } from "react";
 import data from "../../mockdata/db.json";
-import ChatHeader from "./components/ChatHeader";
 import ChatFooter from "./components/ChatFooter";
 import ProductInfo from "../product/components/details/ProductInfo";
-import { productAtom } from "@/stores/product";
-import { groupMessagesByDateAndSender, isWithinOneMinute } from "@/utils/commonUtils";
 import MessageList from "./components/MessageList";
+import { useNavigate, useLocation } from "react-router-dom";
+import "../../styles/styles.css";
+import ArrowLeftIcon from "../../assets/icons/arrow-left-sm.svg";
+import ArrowRightIcon from "../../assets/icons/arrow-right-sm.svg";
+import useScrollToBottom from "./hooks/useScrollToBottom";
+import ArrowDownIcon from "../../assets/icons/arrow-down.svg";
+import { useParams } from "react-router-dom";
+import useChatMessages from "./hooks/useChatMessages";
 
 const ChatPage = () => {
-  const [product] = useAtom(productAtom);
+  const { id: chatRoomId } = useParams();
+  const userId = localStorage.getItem("id");
+  const location = useLocation();
+  const product = location.state ? location.state : [];
   const chatMessages = data.chatMessages;
-  const chat = chatMessages.find((chatItem) => chatItem.id == product.product_id);
-  const today = new Date().toISOString().split("T")[0];
+  const chat = chatMessages.find((chatItem) => chatItem.id == 2);
+  const navigate = useNavigate();
+  const chatInfo = {
+    chatRoomId: chatRoomId,
+    userId: userId,
+    chatPartnerId: 3,
+  };
 
-  if (!chat) {
-    console.log("유효하지 않은 대화 ID입니다.");
-    return;
-  }
+  const [showProductInfo, setShowProductInfo] = useState(true);
+  const messages = useChatMessages(chatRoomId, userId);
+  const messagesEndRef = useRef(null);
 
-  if (chat.messages.length === 0) {
-    return (
-      <div className="bg-white max-w-md mx-auto text-custom-black relative">
-        <ChatHeader nickname={chat.nickname} />
-        <ProductInfo inChat={true} />
-        <div className="pt-[164px] pb-16">
-          <ChatFooter />
-        </div>
-      </div>
-    );
-  }
+  const toggleProductInfo = () => {
+    setShowProductInfo((prev) => !prev);
+  };
 
-  const messagesGroupedByDateAndSender = groupMessagesByDateAndSender(chat.messages);
-  const messagesWithTimestamps = messagesGroupedByDateAndSender.flatMap(({ date, messages }) => {
-    return messages.flatMap((group) => {
-      return group.map((message, index, array) => {
-        const prevTimestamp = index > 0 ? array[index - 1].timestamp : null;
-        const nextTimestamp = index < array.length - 1 ? array[index + 1].timestamp : null;
-
-        const showTimestamp =
-          (index > 0 && !isWithinOneMinute(prevTimestamp, message.timestamp)) || // 이전 메시지와 1분 이상 차이
-          index === array.length - 1 || // 마지막 메시지에 타임스탬프 표시
-          (index > 0 && !isWithinOneMinute(message.timestamp, nextTimestamp)); // 현재 메시지와 다음 메시지 사이에 1분 이상 차이
-
-        return { ...message, showTimestamp, chatNickname: chat.nickname, chatSenderAvatar: chat.sender_avatar };
-      });
-    });
-  });
+  useScrollToBottom(messagesEndRef, [messages]);
 
   return (
-    <div className="bg-white max-w-md mx-auto text-custom-black relative">
-      <ChatHeader nickname={chat.nickname} />
-      <ProductInfo inChat={true} />
-      <div className="pt-[164px] pb-16">
-        <MessageList messagesWithTimestamps={messagesWithTimestamps} today={today} />
-        <ChatFooter />
+    <div className="bg-white mx-auto text-custom-black relative">
+      <div
+        className={`fixed opacity-95 left-4 max-w-[450px] border rounded-md mr-4 p-1.5 transition-transform 
+          duration-300 border-transparent flex ${showProductInfo ? "translate-x-0" : "-translate-x-[96%]"} bg-gray-100`}
+      >
+        {product && Object.keys(product).length > 0 && (
+          <div className="flex items-start">
+            <ProductInfo inChat={true} product={product} noBtn={false} className="mr-12" />
+            <button
+              onClick={toggleProductInfo}
+              className="p-0 bg-gray-200 custom-focus-light fixed right-0 top-0 bottom-0 rounded-none"
+            >
+              {showProductInfo ? <ArrowLeftIcon /> : <ArrowRightIcon />}
+            </button>
+          </div>
+        )}
       </div>
+      {messages.length ? (
+        <div className="pt-2 max-w-lg w-full mx-auto tablet-sm:border rounded mobile:pb-16">
+          <MessageList messages={chat.messages} />
+          <div ref={messagesEndRef} />
+        </div>
+      ) : (
+        <div className="flex items-center justify-center h-full">
+          <p className="text-gray-500 text-custom-p">채팅을 시작해 보세요!</p>
+        </div>
+      )}
+      <ChatFooter chatInfo={chatInfo} navigate={navigate} />
     </div>
   );
 };

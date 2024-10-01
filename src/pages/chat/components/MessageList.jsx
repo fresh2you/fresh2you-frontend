@@ -1,20 +1,11 @@
 import MessageItem from "./MessageItem";
 
-const MessageList = ({ messagesWithTimestamps, today }) => {
+const MessageList = ({ messages }) => {
   return (
-    <div className="px-4 flex flex-col">
-      {messagesWithTimestamps.length > 0 &&
-        messagesWithTimestamps.map((message, index) => {
-          const showDate = index === 0 || messagesWithTimestamps[index - 1].date !== message.date;
-          const messageDate = message.date === today ? "오늘" : message.date;
-
-          return (
-            <div key={`${message.timestamp}-${index}`} className="flex flex-col">
-              {showDate && <span className="text-center text-sm self-center m-1 text-gray-600">{messageDate}</span>}
-              <MessageItem message={message} showTimestamp={message.showTimestamp} />
-            </div>
-          );
-        })}
+    <div className="flex flex-col px-2 w-full">
+      {messages.map((message, index) => (
+        <MessageItem key={index} message={message} />
+      ))}
     </div>
   );
 };
