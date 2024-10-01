@@ -13,7 +13,7 @@ const authAPI = {
     const { data: response } = await instance.post<ISignUpResponse>("/members/signup", {
       email,
       password: provider !== "EMAIL" ? null : password,
-      confirmPassword,
+      confirmPassword: provider !== "EMAIL" ? null : confirmPassword,
       nickname,
       termsAgreements,
       provider,
