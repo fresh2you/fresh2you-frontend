@@ -133,7 +133,7 @@
   ],
   "chatMessages": [
     {
-      "id": 1,
+      "id": 2,
       "sender_avatar": "https://i.postimg.cc/y6h7zyLF/1.png",
       "nickname": "농부철수",
       "messages": [
@@ -278,12 +278,6 @@
           "date": "2024-09-14"
         }
       ]
-    },
-    {
-      "id": 2,
-      "sender_avatar": "https://i.postimg.cc/y6h7zyLF/1.png",
-      "nickname": "토마토장인",
-      "messages": []
     }
   ]
 }
