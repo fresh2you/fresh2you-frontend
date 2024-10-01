@@ -11,10 +11,12 @@ const useLogin = (isSocialLogin, onSuccessCallback, onErrorCallback) => {
     onSuccess: (data) => {
       const { token, loginMember } = data;
 
-      localStorage.setItem("accessToken", token.accessToken);
-      localStorage.setItem("accessExpiredAt", token.accessExpiredAt);
+      if (token) {
+        localStorage.setItem("accessToken", token.accessToken);
+        localStorage.setItem("accessExpiredAt", token.accessExpiredAt);
+      }
 
-      queryClient.setQueryData("userInfo", loginMember);
+      queryClient.setQueryData(["userInfo"], loginMember);
 
       if (isSocialLogin) onSuccessCallback(data);
       else onSuccessCallback();

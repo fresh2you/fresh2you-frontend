@@ -8,9 +8,17 @@ const RedirectionPage = () => {
     if (data.isSignup) {
       navigate("/");
     } else {
-      navigate("/auth/signup/terms", {
-        state: { email: data.email, provider: data.provider, providerId: data.providerId, tempToken: data.tempToken },
-      });
+      sessionStorage.setItem(
+        "socialInfo",
+        JSON.stringify({
+          email: data.loginMember.email,
+          nickname: data.loginMember.nickname,
+          provider: data.loginMember.provider,
+          providerId: data.loginMember.providerId,
+        }),
+      );
+
+      navigate("/auth/signup/terms");
     }
   };
 
