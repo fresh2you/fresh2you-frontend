@@ -1,12 +1,24 @@
-declare interface ISignUpRequest {
+interface BasicSignUpRequest {
   email: string;
-  password: string;
-  confirmPassword: string;
   nickname: string;
   termsAgreements: {
     termsId: number;
     isAgreed: boolean;
   }[];
-  provider: "EMAIL" | "KAKAO" | "NAVER";
-  providerId: `${number}` | null;
 }
+
+interface EmailSignUpRequest extends BasicSignUpRequest {
+  password: string;
+  confirmPassword: string;
+  provider: "EMAIL";
+  providerId: null;
+}
+
+interface SocialSignUpRequest extends BasicSignUpRequest {
+  password: null;
+  confirmPassword: null;
+  provider: "KAKAO" | "NAVER";
+  providerId: `${number}`;
+}
+
+declare type ISignUpRequest = EmailSignUpRequest | SocialSignUpRequest;
