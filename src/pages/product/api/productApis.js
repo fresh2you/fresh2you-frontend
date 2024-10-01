@@ -80,11 +80,12 @@ export const buyProduct = async (productId, quantity, deliveryAddressId) => {
 
 export const fetchDeliveryAddresses = async (userId) => {
   try {
-    const response = await instance.get(`/members/delivery-addresses`, {
+    const { data: response } = await instance.get(`/members/delivery-addresses`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
     return response.data;
   } catch (error) {
     console.error("Error fetching delivery addresses:", error);

@@ -17,10 +17,12 @@ const PurchaseForm = ({ recipientDetails, setRecipientDetails, addressList }) =>
 
   const handleAddressSelect = (address) => {
     setRecipientDetails((prevDetails) => ({
-      ...prevDetails,
-      address: address.address,
+      recipientName: address.recipientName,
+      phoneNumber: address.phoneNumber,
       addressId: address.deliveryAddressId,
+      address: address.address,
       detailedAddress: address.detailedAddress,
+      postalCode: address.postalCode,
     }));
   };
 
@@ -32,8 +34,10 @@ const PurchaseForm = ({ recipientDetails, setRecipientDetails, addressList }) =>
     setShowAddressList(false);
   };
 
+  console.log(2, recipientDetails);
+
   return (
-    <div className="mobile:mt-4 w-full tablet:mt-6">
+    <div className="flex flex-col w-full gap-4 mobile:mt-4 tablet:mt-6">
       <InputField
         label="받는 사람"
         name="recipientName"
@@ -49,22 +53,32 @@ const PurchaseForm = ({ recipientDetails, setRecipientDetails, addressList }) =>
         type="tel"
       />
 
-      <label className="block text-custom-p font-semibold">배송지 주소</label>
-      <div className="flex flex-row items-center w-full mb-2">
-        <InputField name="address" value={recipientDetails.address} onChange={handleChange} readOnly={true} />
+      <div className="flex items-center gap-4">
+        <label className="block font-semibold text-custom-p">배송지 주소</label>
         <Button
           onClick={() => openPostcode()}
-          className="bg-custom-green text-white hover:bg-custom-green-hover ml-2 mt-2"
-          text="내 주소 목록"
+          className="px-2 py-2 text-xs text-white bg-custom-green hover:bg-custom-green-hover"
+          text="내 배송지 목록"
         />
       </div>
-      <TextInput
-        value={recipientDetails.detailedAddress}
-        onChange={handleChange}
-        type="text"
-        name="detailedAddress"
-        readOnly={true}
-      />
+
+      <div className="flex flex-col w-4/5 gap-2">
+        <TextInput
+          value={recipientDetails.address}
+          onChange={handleChange}
+          type="text"
+          name="address"
+          readOnly={true}
+        />
+        <TextInput
+          value={recipientDetails.detailedAddress}
+          onChange={handleChange}
+          type="text"
+          name="detailedAddress"
+          readOnly={true}
+        />
+      </div>
+
       <AddressModal
         isOpen={showAddressList}
         onClose={closePostcode}
