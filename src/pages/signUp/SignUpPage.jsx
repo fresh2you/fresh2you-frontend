@@ -117,7 +117,7 @@ export default function SignUpPage() {
         <div className="px-4">
           <form
             onSubmit={handleFormSubmit}
-            className="flex flex-col justify-center min-h-screen mx-auto w-[290px] items-start py-8"
+            className="flex flex-col justify-center min-h-screen mx-auto w-[300px] items-start"
           >
             <PasswordFeedback passwordFeedbacks={passwordFeedbacks} />
             <ErrorMessages status={status} />
