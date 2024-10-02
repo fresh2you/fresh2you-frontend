@@ -1,28 +1,40 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export interface ProductCardProps {
-  product_id: number;
-  name: string;
-  seller: string;
+  productId: number;
+  productName: string;
+  sellerName: string;
   description: string;
   price: number;
-  img?: string;
+  productImage?: string;
 }
 
-const ProductCard = ({ product_id, name, seller, description, price = 0, img }: ProductCardProps) => {
+const ProductCard = ({
+  productId,
+  productName,
+  sellerName,
+  description,
+  price = 0,
+  productImage,
+}: ProductCardProps) => {
   const navigate = useNavigate();
 
   const onClickCard = () => {
-    navigate(`/product/${product_id}`);
+    navigate(`/product/${productId}`);
   };
 
   return (
-    <button className="w-auto  h-auto p-2 flex flex-col gap-2 shrink-0 rounded-lg border border-black" onClick={onClickCard}>
-      <div className="w-16 h-16 aspect-square rounded-lg border border-black bg-gray-300">{img && <img src={img} alt={name} />}</div>
-      <div>
-        {name} <span>{seller}</span>
+    <button
+      className="flex flex-col h-auto gap-2 p-2 border border-black rounded-lg w-44 shrink-0"
+      onClick={onClickCard}
+    >
+      <div className="w-16 h-16 overflow-hidden bg-gray-300 border border-black rounded-lg aspect-square">
+        {productImage && <img src={productImage} alt={productName} className="w-full h-full rounded-lg" />}
       </div>
-      <div>{description}</div>
+      <div>
+        {productName} <span>{sellerName}</span>
+      </div>
+      <div className="flex items-center w-full truncate">{description}</div>
       <div>{price.toLocaleString()} 원</div>
     </button>
   );

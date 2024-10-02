@@ -5,15 +5,15 @@ const MyPageHeader = () => {
   const { moveToPath, userInfo } = useMyPageLogics();
 
   return (
-    <header className="w-full f-auto p-6 flex justify-between items-center">
+    <header className="flex items-center justify-between w-full p-6 pb-0 f-auto">
       <h2 className="text-2xl font-bold">마이 페이지</h2>
 
       <button
         onClick={() => moveToPath("charge")}
-        className="p-2 pr-1 flex items-center gap-1 rounded-lg bg-custom-gray-light text-sm text-gray-100 font-semibold"
+        className="flex items-center gap-1 p-2 pl-3 pr-2 text-sm font-semibold bg-white rounded-lg border-custom-gray-light"
       >
         포인트: {userInfo ? userInfo?.point.toLocaleString() : 0}
-        <div className="h-full flex justify-center items-center rotate-90">
+        <div className="flex items-center justify-center h-full rotate-90 ">
           <IconRight />
         </div>
       </button>

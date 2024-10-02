@@ -49,7 +49,7 @@ const userAPI = {
   },
 
   getUserInfo: async () => {
-    const { data: response } = await instance.get("/members/profiles");
+    const { data: response } = await instance.get("/members/profile");
 
     return response;
   },
