@@ -3,7 +3,7 @@ import Textarea from "./Textarea";
 import DropdownSelect from "./DropDownSelect";
 import useFetchCategories from "../../hooks/useFetchCategories";
 import { formatPriceInput } from "../../../../utils/commonUtils";
-
+import QuantitySelector from "../purchase/QuantitySelector";
 const ProductForm = ({ productData, setProductData, setSelectedCatId }) => {
   const categories = useFetchCategories();
   const mainCategories = categories.map((cat) => cat.categoryName);
@@ -20,6 +20,10 @@ const ProductForm = ({ productData, setProductData, setSelectedCatId }) => {
   const handlePriceChange = (e) => {
     const rawValue = e.target.value.replace(/[^0-9]/g, "");
     setProductData((prev) => ({ ...prev, price: formatPriceInput(rawValue) }));
+  };
+
+  const handleQuantityChange = (newQuantity) => {
+    setProductData((prev) => ({ ...prev, quantity: newQuantity }));
   };
 
   return (
@@ -40,6 +44,12 @@ const ProductForm = ({ productData, setProductData, setSelectedCatId }) => {
         maxLength={500}
       />
       <TextInput id="price" label="가격" value={productData.price} onChange={handlePriceChange} showLength={false} />
+      <div className="flex items-center gap-4">
+        <label htmlFor="quantity" className="text-custom-p font-semibold whitespace-nowrap">
+          수량
+        </label>
+        <QuantitySelector quantity={productData.quantity} setQuantity={handleQuantityChange} />
+      </div>
       <DropdownSelect
         id="category"
         label="카테고리"
