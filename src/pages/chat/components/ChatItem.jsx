@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useMaxLengthByScreenRatio from "../hooks/useMaxLenByScreenRation";
-import imgFallback from "../../../assets/img/circle-logo.png";
-
+import imgFallback from "../../../assets/img/fallback.png";
 const ChatItem = ({ chat }) => {
   const navigate = useNavigate();
   const maxLength = useMaxLengthByScreenRatio();
