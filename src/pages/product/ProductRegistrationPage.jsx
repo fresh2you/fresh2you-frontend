@@ -15,6 +15,7 @@ const ProductRegistrationPage = () => {
     images: [],
     imagePreviews: [],
     category: "",
+    quantity: 1,
   });
   const [loading, setLoading] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
@@ -22,8 +23,8 @@ const ProductRegistrationPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const { name, description, price, images } = productData;
-    const isValid = name && description && price && selectedCatId && images.length > 0;
+    const { name, description, price, images, quantity } = productData;
+    const isValid = name && description && price && selectedCatId && images.length > 0 && quantity > 0;
     setIsFormValid(isValid);
   }, [productData]);
 
@@ -43,13 +44,14 @@ const ProductRegistrationPage = () => {
 
     try {
       const productPayload = {
-        ...productData,
+        name: productData.name,
         price: rawPrice,
+        description: productData.description,
         categoryId: selectedCatId,
-        quantity: 1,
+        quantity: productData.quantity,
       };
-      await registerProduct(productPayload, images[0]);
-      navigate("/mypage/my-products");
+      const response = await registerProduct(productPayload, productData.images[0]);
+      navigate(`/product/${response.data.id}`);
     } catch (error) {
       toast.error("상품 등록에 실패했습니다. 다시 시도해주세요.");
     } finally {
@@ -61,7 +63,7 @@ const ProductRegistrationPage = () => {
     <div className="flex flex-col items-center min-h-screen text-custom-black pt-2 w-full">
       <div className="flex flex-col mobile:w-full tablet-sm:w-3/5 tablet-sm:min-w-[447px] tablet-sm:max-w-[540px]">
         <h1 className="text-custom-h2 font-bold text-center text-custom-green mb-8">상품을 등록해요</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <ProductForm productData={productData} setProductData={setProductData} setSelectedCatId={setSelectedCatId} />
           <ProductImages productData={productData} setProductData={setProductData} />
           <div className="flex justify-center gap-2">
@@ -79,7 +81,7 @@ const ProductRegistrationPage = () => {
               text="취소"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/mypage/my-products");
+                navigate("/mypage");
               }}
             />
           </div>

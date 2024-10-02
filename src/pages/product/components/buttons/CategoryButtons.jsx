@@ -8,16 +8,22 @@ const CategoryButtons = ({ handleCategoryChange }) => {
   const navigate = useNavigate();
   const categories = useFetchCategories();
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const isLoading = !categories.length;
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleCategoryClick = (category) => {
-    if (selectedCategory === category.categoryName) {
-      setSelectedCategory(null);
-      handleCategoryChange(null);
+    if (category.categoryId === undefined) {
+      handleCategoryChange(undefined);
+      setSelectedCategory("전체");
+      setIsOpen(false);
     } else {
-      handleCategoryChange(category.categoryId);
-      setSelectedCategory(category.categoryName);
+      if (selectedCategory !== category.categoryName) {
+        handleCategoryChange(category.categoryId);
+        setSelectedCategory(category.categoryName);
+        setIsOpen(true);
+      } else {
+        setIsOpen((prevIsOpen) => !prevIsOpen);
+      }
     }
   };
 
@@ -31,7 +37,7 @@ const CategoryButtons = ({ handleCategoryChange }) => {
 
     return <SubCategoryItems items={items} onItemClick={handleItemClick} />;
   };
-
+  const allCategories = [{ categoryId: undefined, categoryName: "전체" }, ...categories];
   return (
     <>
       <div className="flex tablet:gap-4 w-full mobile:gap-2 justify-center">
@@ -44,9 +50,9 @@ const CategoryButtons = ({ handleCategoryChange }) => {
                 }`}
               />
             ))
-          : categories.map((category) => (
+          : allCategories.map((category, index) => (
               <button
-                key={category.categoryId}
+                key={category.categoryId ? category.categoryId : `${category.categoryName}-${index}`}
                 className={`px-2.5 py-1 rounded-lg custom-focus whitespace-nowrap
                 text-custom-btn-text
                 ${
@@ -60,9 +66,8 @@ const CategoryButtons = ({ handleCategoryChange }) => {
               </button>
             ))}
       </div>
-      <div className="mx-auto rounded-lg shadow-lg overflow-hidden bg-custom-green-200 mt-2 mb-4 category-modal">
-        {selectedCategory && renderItems()}
-      </div>
+
+      {selectedCategory && isOpen && renderItems()}
     </>
   );
 };

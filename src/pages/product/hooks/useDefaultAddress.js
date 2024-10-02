@@ -7,8 +7,6 @@ const useDefaultAddress = (setRecipientDetails, setAddressList) => {
       try {
         const { addressList: addresses } = await fetchDeliveryAddresses();
 
-        console.log(1, addresses);
-
         if (addresses && addresses.length > 0) {
           const defaultAddress = addresses.find((address) => address.isDefault);
           setAddressList(addresses);
