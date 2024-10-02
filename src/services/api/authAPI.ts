@@ -1,18 +1,5 @@
 import { instance } from "@/instance";
 
-interface ISignUpRequest {
-  email: string;
-  password: string;
-  confirmPassword: string;
-  nickname: string;
-  termsAgreements: {
-    termsId: number;
-    isAgreed: boolean;
-  }[];
-  provider: "EMAIL" | "KAKAO" | "NAVER";
-  providerId: `${number}` | null;
-}
-
 const authAPI = {
   signUp: async ({
     email,
@@ -26,7 +13,7 @@ const authAPI = {
     const { data: response } = await instance.post<ISignUpResponse>("/members/signup", {
       email,
       password: provider !== "EMAIL" ? null : password,
-      confirmPassword,
+      confirmPassword: provider !== "EMAIL" ? null : confirmPassword,
       nickname,
       termsAgreements,
       provider,
@@ -38,10 +25,8 @@ const authAPI = {
 
   emailLogin: async ({ email, password }: { email: string; password: string }) => {
     const { data: response } = await instance.post("/members/login", {
-      params: {
-        email,
-        password,
-      },
+      email,
+      password,
     });
 
     return response;
@@ -102,6 +87,12 @@ const authAPI = {
         verificationCode,
       },
     });
+
+    return response;
+  },
+
+  withdrawAccount: async () => {
+    const { data: response } = await instance.delete("/members/withdraw");
 
     return response;
   },

@@ -1,6 +1,7 @@
 import { signUpUser } from "@/pages/signUp/api/signUpUser";
 import { checkRequiredTermsAgreed } from "../utils/termsHelper";
 import { toast } from "react-toastify";
+
 export const handleSubmit = async (isSocialLoginRedirect, isAgreed, state, termsChecked, navigate) => {
   const areAllRequiredTermsAgreed = checkRequiredTermsAgreed(termsChecked);
   if (!areAllRequiredTermsAgreed) {
@@ -15,15 +16,16 @@ export const handleSubmit = async (isSocialLoginRedirect, isAgreed, state, terms
 
   if (isSocialLoginRedirect && state) {
     try {
-      const result = await signUpUser(true, state, termsAgreements);
-      if (result) {
-        localStorage.setItem("accessToken", state.token.accessToken);
-        localStorage.setItem("accessExpiredAt", state.token.accessExpiredAt);
+      const { success, token } = await signUpUser(true, state, termsAgreements);
+
+      if (success) {
+        sessionStorage.clear();
+        localStorage.setItem("accessToken", token.accessToken);
+        localStorage.setItem("accessExpiredAt", token.accessExpiredAt);
         navigate("/auth/signup/complete");
-      } else {
-        navigate("/auth/signin");
       }
-    } catch {
+    } catch (error) {
+      console.log(error);
       navigate("/auth/signin");
     }
   } else {
