@@ -1,6 +1,6 @@
 import { instance } from "@/instance";
 const token = localStorage.getItem("accessToken");
-export const fetchOrCreateChatRooms = async (params) => {
+export const createChatRoom = async (params) => {
   try {
     const response = await instance.post("/chat/one-to-one", params, {
       headers: {
@@ -55,6 +55,19 @@ export const fetchChatMessages = async (userId) => {
     return response.data;
   } catch (error) {
     console.error("메시지 리스트를 가져오는 중 에러 발생:", error);
+    throw error;
+  }
+};
+export const fetchChatRooms = async () => {
+  try {
+    const response = await axios.get("/api/chat/rooms", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("채팅방 리스트 불러오기 실패:", error);
     throw error;
   }
 };
