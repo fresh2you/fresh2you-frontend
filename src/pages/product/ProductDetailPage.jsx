@@ -6,13 +6,14 @@ import ProductInfo from "./components/details/ProductInfo";
 import ProductDetailsSection from "./components/details/ProductDetailSection";
 import ProductDetailSkeleton from "./components/skeletons/ProductDetailSkeleton";
 import { useFetchProductById } from "./hooks/useFetchProductById";
-
+import useMyPageLogics from "../mypage/mypage/hooks/useMyPageLogics";
 const ProductDetailPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
+  const { userInfo } = useMyPageLogics();
+  console.log(userInfo);
   useFetchProductById(id, setLoading, setProduct);
 
   return (
@@ -25,7 +26,7 @@ const ProductDetailPage = () => {
           <ProductDetailSkeleton />
         ) : (
           <>
-            <ProductInfo product={product} />
+            <ProductInfo product={product} userInfo={userInfo} />
             <ProductDetailsSection description={product.description} />
           </>
         )}
