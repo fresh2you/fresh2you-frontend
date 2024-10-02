@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ProductActionButtons from "../buttons/ProductActionButtons";
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 
-const ProductInfo = ({ inChat = false, product, noBtn = false, className = "", userInfo }) => {
+const ProductInfo = ({ inChat = false, product, noBtn = false, className = "" }) => {
   const navigate = useNavigate();
   return (
     <div className={`flex items-center gap-x-4 ${className} relative`}>
@@ -19,7 +19,7 @@ const ProductInfo = ({ inChat = false, product, noBtn = false, className = "", u
         <h3 className={`font-bold text-custom-h3 mb-1`}>{product.productName}</h3>
         <p className="text-custom-gray-dark text-custom-p">{product.sellerName}</p>
         <p className={`text-custom-green font-semibold text-custom-p`}>{formatCurrency(product.price)} 원</p>
-        {!inChat && !noBtn && <ProductActionButtons product={product} navigate={navigate} userInfo={userInfo} />}
+        {!inChat && !noBtn && <ProductActionButtons product={product} navigate={navigate} />}
       </div>
       {inChat && !noBtn && (
         <Button

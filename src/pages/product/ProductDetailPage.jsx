@@ -12,8 +12,6 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { userInfo } = useMyPageLogics();
-  console.log(userInfo);
   useFetchProductById(id, setLoading, setProduct);
 
   return (
@@ -26,7 +24,7 @@ const ProductDetailPage = () => {
           <ProductDetailSkeleton />
         ) : (
           <>
-            <ProductInfo product={product} userInfo={userInfo} />
+            <ProductInfo product={product} />
             <ProductDetailsSection description={product.description} />
           </>
         )}
