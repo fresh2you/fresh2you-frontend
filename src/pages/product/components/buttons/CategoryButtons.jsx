@@ -12,17 +12,17 @@ const CategoryButtons = ({ handleCategoryChange }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCategoryClick = (category) => {
-    if (selectedCategory !== category.categoryName) {
-      console.log(selectedCategory);
-      console.log(category.categoryName);
-      handleCategoryChange(category.categoryId);
-      setSelectedCategory(category.categoryName);
-      setIsOpen(true);
+    if (category.categoryId === undefined) {
+      handleCategoryChange(undefined);
+      setSelectedCategory("전체");
+      setIsOpen(false);
     } else {
-      if (!isOpen) {
+      if (selectedCategory !== category.categoryName) {
+        handleCategoryChange(category.categoryId);
+        setSelectedCategory(category.categoryName);
         setIsOpen(true);
       } else {
-        setIsOpen(false);
+        setIsOpen((prevIsOpen) => !prevIsOpen);
       }
     }
   };
@@ -37,7 +37,7 @@ const CategoryButtons = ({ handleCategoryChange }) => {
 
     return <SubCategoryItems items={items} onItemClick={handleItemClick} />;
   };
-
+  const allCategories = [{ categoryId: undefined, categoryName: "전체" }, ...categories];
   return (
     <>
       <div className="flex tablet:gap-4 w-full mobile:gap-2 justify-center">
@@ -50,7 +50,7 @@ const CategoryButtons = ({ handleCategoryChange }) => {
                 }`}
               />
             ))
-          : categories.map((category) => (
+          : allCategories.map((category) => (
               <button
                 key={category.categoryId}
                 className={`px-2.5 py-1 rounded-lg custom-focus whitespace-nowrap
