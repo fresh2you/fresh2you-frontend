@@ -8,36 +8,39 @@ interface BannerProps {
 
 const Banner = ({ title = "banner title", products = [] }: BannerProps) => {
   return (
-    <section className="w-full h-auto px-4 py-4 flex flex-col items-center gap-4">
+    <section className="flex flex-col items-center w-full h-auto gap-4 px-4 py-4">
       <div className="font-bold">{title}</div>
 
-      <div className="w-full grid grid-rows-2 gap-4" style={{ gridTemplateRows: "1fr 1fr" }}>
-        <article className="w-full h-auto flex lg:justify-center gap-4 overflow-x-auto scrollbar-hide">
-          {products.slice(0, 5).map(({ product_id, name, seller, description, price, img }) => (
+      <div
+        className={`grid w-full ${products.length > 5 ? "grid-rows-2" : "grid-rows-1"} gap-4`}
+        style={products.length > 5 ? { gridTemplateRows: "1fr 1fr" } : undefined}
+      >
+        <article className="flex w-full h-auto gap-4 overflow-x-auto desktop:justify-center scrollbar-hide">
+          {products.slice(0, 5).map(({ productId, productName, sellerName, description, price, productImage }) => (
             <ProductCard
-              key={product_id}
-              product_id={product_id}
-              name={name}
-              seller={seller}
+              key={productId}
+              productId={productId}
+              productName={productName}
+              sellerName={sellerName}
               description={description}
               price={price}
-              img={img}
+              productImage={productImage}
             />
           ))}
         </article>
 
         {/* 5개 이상일 경우 아래줄로 보냄 */}
         {products.length > 5 && (
-          <article className="w-full h-auto flex lg:justify-center gap-4 overflow-x-auto scrollbar-hide">
-            {products.slice(5).map(({ product_id, name, seller, description, price, img }) => (
+          <article className="flex w-full h-auto gap-4 overflow-x-auto desktop:justify-center scrollbar-hide">
+            {products.slice(5).map(({ productId, productName, sellerName, description, price, productImage }) => (
               <ProductCard
-                key={product_id}
-                product_id={product_id}
-                name={name}
-                seller={seller}
+                key={productId}
+                productId={productId}
+                productName={productName}
+                sellerName={sellerName}
                 description={description}
                 price={price}
-                img={img}
+                productImage={productImage}
               />
             ))}
           </article>

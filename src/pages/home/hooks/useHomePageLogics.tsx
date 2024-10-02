@@ -1,21 +1,20 @@
-import { useQuery } from '@tanstack/react-query';
-import { instance } from '@/instance';
-import { ProductCardProps } from '@/pages/home/component/ProductCard';
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@/services/api";
 
 const useHomePageLogics = () => {
   // 필터별로 쿼리 분리하기
-  const { data: mockProducts } = useQuery({
-    queryKey: ['mockProducts'],
+  const { data: recommendProductsByHistory } = useQuery({
+    queryKey: ["recommendProductsByHistory"],
     queryFn: async () => {
-      const { data: result } = await instance.get<ProductCardProps[]>('/mockProducts');
+      const { data: result } = await api.product.getRecommendProductsByHistory();
 
-      return result;
+      return result.products;
     },
     enabled: true,
     staleTime: 60 * 1000,
   });
 
-  return { mockProducts };
+  return { recommendProductsByHistory };
 };
 
 export default useHomePageLogics;
