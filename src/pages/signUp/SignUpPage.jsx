@@ -115,7 +115,7 @@ export default function SignUpPage() {
       {isLoading ? (
         <Loading isLayoutApplied={false} />
       ) : (
-        <>
+        <div className="px-4">
           <form
             onSubmit={handleFormSubmit}
             className="flex flex-col justify-center min-h-screen mx-auto w-[290px] items-start py-8"
@@ -140,7 +140,7 @@ export default function SignUpPage() {
               isEmailValid={validity.isEmailValid}
             />
           )}
-        </>
+        </div>
       )}
     </>
   );

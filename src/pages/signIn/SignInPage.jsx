@@ -7,7 +7,10 @@ import { KAKAO_AUTH_URL } from "./utils/authUtils";
 import "../../styles/styles.css";
 export default function SignInPage() {
   return (
-    <div className="flex justify-center h-full px-4 py-4 overflow-hidden bg-custom-green text-custom-black">
+    <div
+      className="flex justify-center px-4 py-4 bg-custom-green text-custom-black 
+    fixed top-0 bottom-0 left-0 right-0"
+    >
       <div className="flex flex-col items-center justify-center">
         <LogoImg alt="Fresh 2 You" className="mb-3 mobile:w-3/5 mobile:max-w-48" />
         <SignInForm />
