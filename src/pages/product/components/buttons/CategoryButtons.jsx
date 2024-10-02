@@ -8,16 +8,22 @@ const CategoryButtons = ({ handleCategoryChange }) => {
   const navigate = useNavigate();
   const categories = useFetchCategories();
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const isLoading = !categories.length;
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleCategoryClick = (category) => {
-    if (selectedCategory === category.categoryName) {
-      setSelectedCategory(null);
-      handleCategoryChange(null);
-    } else {
+    if (selectedCategory !== category.categoryName) {
+      console.log(selectedCategory);
+      console.log(category.categoryName);
       handleCategoryChange(category.categoryId);
       setSelectedCategory(category.categoryName);
+      setIsOpen(true);
+    } else {
+      if (!isOpen) {
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
     }
   };
 
@@ -60,9 +66,8 @@ const CategoryButtons = ({ handleCategoryChange }) => {
               </button>
             ))}
       </div>
-      <div className="mx-auto rounded-lg shadow-lg overflow-hidden bg-custom-green-200 mt-2 mb-4 category-modal">
-        {selectedCategory && renderItems()}
-      </div>
+
+      {selectedCategory && isOpen && renderItems()}
     </>
   );
 };

@@ -38,6 +38,7 @@ const ProductsPage = () => {
   const { lastProductRef } = useInfiniteScroll(loading, hasMore, setPageNumber);
 
   const handleCategoryChange = (categoryId) => {
+    if (selectedCategoryId === categoryId) return;
     setSelectedCategoryId(categoryId);
     setProducts([]);
     setPageNumber(0);
@@ -51,7 +52,7 @@ const ProductsPage = () => {
   return (
     <div className="mx-auto py-2.5 text-custom-black product-page">
       <CategoryButtons handleCategoryChange={handleCategoryChange} />
-      <h2 className="font-bold text-center mb-6 text-custom-green mt-0 text-custom-h2">갓 수확했어요!</h2>
+      <h2 className="font-bold text-center mb-6 text-custom-green mt-4 text-custom-h2">갓 수확했어요!</h2>
       <ProductList products={products} lastProductRef={lastProductRef} itemsPerPage={itemsPerPage} />
     </div>
   );
