@@ -3,14 +3,35 @@ import SendIcon from "../../../assets/icons/send.svg";
 import ListIcon from ".././.././../assets/icons/list.svg";
 import DropDownMenu from "./DropDownMenu";
 import "../../../styles/styles.css";
-const ChatFooter = ({ chatInfo, navigate }) => {
+import { chatService } from "../api/stomp";
+const ChatFooter = ({ chatInfo, navigate, isConnected }) => {
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
+  const handleSendMessage = () => {
+    if (inputValue.trim()) {
+      const messageBody = {
+        chatRoomId: chatInfo.chatRoomId,
+        senderId: chatInfo.userId,
+        content: inputValue,
+      };
+      if (isConnected) {
+        chatService.sendMessage(messageBody);
+      } else {
+        console.error("Cannot send message, STOMP client is not connected.");
+      }
+      setInputValue("");
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
   return (
     <div
       className="bg-white py-2  flex items-center 
@@ -25,8 +46,9 @@ const ChatFooter = ({ chatInfo, navigate }) => {
         value={inputValue}
         className="bg-gray-200 w-8/12 p-2 rounded custom-focus"
         onChange={(e) => setInputValue(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
-      <button className="p-0 custom-focus ml-2 bg-white">
+      <button className="p-0 custom-focus ml-2 bg-white" onClick={handleSendMessage}>
         <SendIcon className="w-7 h-7 tablet-sm:w-9 tablet:h-9" />
       </button>
     </div>
