@@ -3,17 +3,17 @@ import { createChatRoom } from "@/pages/chat/api/chatApis";
 import useMyPageLogics from "@/pages/mypage/mypage/hooks/useMyPageLogics";
 import { toast } from "react-toastify";
 
-const ProductActionButtons = ({ product, navigate, userInfo }) => {
+const ProductActionButtons = ({ product, navigate }) => {
+  const { userInfo } = useMyPageLogics();
   const handleNegotiation = async () => {
     try {
       const params = {
-        buyerId: userInfo.id,
-        sellerId: 2, // 닉네임 들어갈 곳
+        buyerId: userInfo.userId,
+        sellerId: 50, // 닉네임 들어갈 곳
         productId: product.productId,
         categoryId: null,
       };
       const response = await createChatRoom(params);
-
       const chatRoomId = response.data.chatRoomId;
 
       navigate(`/chatting/${chatRoomId}`, { state: { ...product } });

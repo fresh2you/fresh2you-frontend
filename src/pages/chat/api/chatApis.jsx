@@ -60,7 +60,8 @@ export const fetchChatMessages = async (userId) => {
 };
 export const fetchChatRooms = async () => {
   try {
-    const response = await axios.get("/api/chat/rooms", {
+    const response = await axios.get("/chat/rooms", {
+      //수정 필요
       headers: {
         Authorization: `Bearer ${token}`,
       },
