@@ -13,6 +13,7 @@ const StepFields = ({ steps, currentStep, validity, funnel, formData }) => (
             placeholder={field.placeholder}
             autoComplete={field.autoComplete}
             onchange={field.onChange}
+            onButtonClick={field.button ? field.button.props.onClick : null}
           />
           {field.button}
           {currentStep !== "닉네임입력" && 0 === index && (
