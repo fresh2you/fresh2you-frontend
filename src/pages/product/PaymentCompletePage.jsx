@@ -2,12 +2,14 @@ import { useLocation } from "react-router-dom";
 import { mockProducts } from "../../mockdata/MockData";
 import { formatCurrency } from "@/utils/commonUtils";
 import HomeButton from "@/components/HomeButton";
+import { useNavigate } from "react-router-dom";
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 
 const PaymentCompletePage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { product, quantity } = location.state || {};
-  if (!product) return <div className="pt-4">상품 정보를 불러올 수 없습니다.</div>;
+  if (!product) navigate("/");
   const totalAmount = product.price * quantity;
 
   return (
