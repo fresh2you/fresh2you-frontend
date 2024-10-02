@@ -43,13 +43,14 @@ const ProductRegistrationPage = () => {
 
     try {
       const productPayload = {
-        ...productData,
+        name: productData.name,
         price: rawPrice,
+        description: productData.description,
         categoryId: selectedCatId,
         quantity: 1,
       };
-      await registerProduct(productPayload, images[0]);
-      navigate("/mypage/my-products");
+      const response = await registerProduct(productPayload, productData.images[0]);
+      navigate(`/product/${response.data.id}`);
     } catch (error) {
       toast.error("상품 등록에 실패했습니다. 다시 시도해주세요.");
     } finally {
@@ -79,7 +80,7 @@ const ProductRegistrationPage = () => {
               text="취소"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/mypage/my-products");
+                navigate("/mypage");
               }}
             />
           </div>
