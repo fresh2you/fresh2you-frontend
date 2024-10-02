@@ -21,7 +21,7 @@ const PaymentCompletePage = () => {
          bg-neutral-100 mobile:w-3/5 max-w-[300px] py-2 px-4"
         >
           <img
-            src={product.imageUrl || fallbackImg}
+            src={product.img || fallbackImg}
             alt={product.name}
             className="object-contain border mobile:w-4/5 tablet-sm:max-w-[190px] rounded-md"
           />

@@ -47,7 +47,7 @@ const ProductsPage = () => {
   useEffect(() => {
     loadProducts(pageNumber);
   }, [pageNumber, loadProducts]);
-  console.log(products);
+
   return (
     <div className="mx-auto py-2.5 text-custom-black product-page">
       <CategoryButtons handleCategoryChange={handleCategoryChange} />

@@ -73,7 +73,7 @@ export const buyProduct = async (productId, quantity, deliveryAddressId) => {
         },
       },
     );
-    return response.data.data;
+    return response.data;
   } catch (error) {
     throw error;
   }
@@ -95,8 +95,8 @@ export const fetchDeliveryAddresses = async (userId) => {
 };
 export const registerProduct = async (productData, img) => {
   const formData = new FormData();
-  formData.append("file", img);
-  formData.append("request", new Blob([JSON.stringify(productData)], { type: "application/json" }));
+  formData.append("image", img);
+  formData.append("request", JSON.stringify(productData));
 
   try {
     const response = await instance.post("/products", formData, {
