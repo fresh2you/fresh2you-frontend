@@ -50,9 +50,9 @@ const CategoryButtons = ({ handleCategoryChange }) => {
                 }`}
               />
             ))
-          : allCategories.map((category) => (
+          : allCategories.map((category, index) => (
               <button
-                key={category.categoryId}
+                key={category.categoryId ? category.categoryId : `${category.categoryName}-${index}`}
                 className={`px-2.5 py-1 rounded-lg custom-focus whitespace-nowrap
                 text-custom-btn-text
                 ${
