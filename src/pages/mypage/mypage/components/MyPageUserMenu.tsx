@@ -1,16 +1,14 @@
 import MenuButton from "@/pages/mypage/mypage/components/MenuButton";
 import useMyPageLogics from "@/pages/mypage/mypage/hooks/useMyPageLogics";
 
-const MyPageUserMenu = ({ role }: { role: "buyer" | "seller" }) => {
+const MyPageUserMenu = ({ isSeller }: { isSeller: boolean }) => {
   const { commonMenu, sellerMenu } = useMyPageLogics();
 
   return (
-    <section className="w-full pb-4 flex flex-col gap-6 overflow-y-scroll scrollbar-hide">
+    <section className="flex flex-col w-full gap-6 py-4">
       {/* 공통 메뉴 */}
-      <article className="w-full flex flex-col">
-        <header className="px-6 pb-6 border-b border-custom-gray-light text-xl font-bold">
-          내 정보
-        </header>
+      <article className="flex flex-col w-full">
+        <header className="p-4 text-xl font-bold border-b border-custom-gray-light">내 정보</header>
 
         {commonMenu.map((menu) => (
           <MenuButton key={menu.id} menu={menu} />
@@ -18,11 +16,9 @@ const MyPageUserMenu = ({ role }: { role: "buyer" | "seller" }) => {
       </article>
 
       {/* 판매자 전용 메뉴 */}
-      {role === "seller" && (
-        <article className="w-full flex flex-col">
-          <header className="px-6 pb-6 border-b border-custom-gray-light text-xl font-bold">
-            나의 물품 관리
-          </header>
+      {isSeller && (
+        <article className="flex flex-col w-full">
+          <header className="p-4 text-xl font-bold border-b border-custom-gray-light">나의 물품 관리</header>
 
           {sellerMenu.map((menu) => (
             <MenuButton key={menu.id} menu={menu} />
