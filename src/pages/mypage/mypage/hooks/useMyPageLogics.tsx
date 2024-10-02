@@ -5,17 +5,9 @@ import IconLogout from "icons/logout.svg";
 import IconBox from "icons/carbonBox.svg";
 import IconList from "icons/product-list.svg";
 import { useNavigate } from "react-router-dom";
-import { instance } from "@/instance";
 import { useQuery } from "@tanstack/react-query";
-
-interface UserInfoTypes {
-  id: number;
-  nickname: number;
-  email: number;
-  point: number;
-  image: string | null;
-  role: "buyer" | "seller";
-}
+import { removeLocalStorage } from "@/utils/storageUtils";
+import { api } from "@/services/api";
 
 const useMyPageLogics = () => {
   const navigate = useNavigate();
@@ -26,15 +18,16 @@ const useMyPageLogics = () => {
 
   const logout = () => {
     // 로그아웃 로직
-    console.log("로그아웃");
+    removeLocalStorage();
+    window.location.href = "auth/signin";
   };
 
   const { data: userInfo } = useQuery({
     queryKey: ["userInfo"],
     queryFn: async () => {
-      const { data: result } = await instance.get<UserInfoTypes>("/userInfo");
+      const { data: result } = await api.user.getUserInfo();
 
-      return result;
+      return result.loginMember;
     },
     enabled: true,
     staleTime: 60 * 1000,
