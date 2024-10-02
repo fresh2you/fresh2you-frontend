@@ -18,21 +18,21 @@ const ProductsPage = () => {
 
   const loadProducts = useCallback(
     async (pageNumber) => {
-      if (!hasMore || loading) return;
+      if (!hasMore) return;
       setLoading(true);
       try {
         const newProducts = await fetchProducts(selectedCategoryId, undefined, pageNumber, itemsPerPage);
-        console.log(newProducts.length);
         if (newProducts.productList.length === 0 || newProducts.productList.length < itemsPerPage) {
           setHasMore(false);
         }
-        setProducts((prevProducts) => [...prevProducts, ...newProducts.productList]);
+        setProducts([...products, ...newProducts.productList]);
       } catch (error) {
         console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     },
-    [itemsPerPage, hasMore, loading, selectedCategoryId],
+    [hasMore, selectedCategoryId, pageNumber],
   );
 
   const { lastProductRef } = useInfiniteScroll(loading, hasMore, setPageNumber);
@@ -45,9 +45,9 @@ const ProductsPage = () => {
   };
 
   useEffect(() => {
-    loadProducts();
+    loadProducts(pageNumber);
   }, [pageNumber, loadProducts]);
-
+  console.log(products);
   return (
     <div className="mx-auto py-2.5 text-custom-black product-page">
       <CategoryButtons handleCategoryChange={handleCategoryChange} />
