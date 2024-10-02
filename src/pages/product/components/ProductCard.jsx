@@ -10,7 +10,7 @@ const ProductCard = forwardRef(({ product }, ref) => {
       ref={ref}
       className="bg-white shadow-lg rounded-xl overflow-hidden max-w-xs border border-custom-gray-light 
       cursor-pointer pt-2 mobile:w-40 mobile:h-[200px]
-     tablet-sm:w-44 tablet-sm:h-[210px] tablet:h-[222px]"
+     tablet-sm:w-44 tablet-sm:h-[223px] tablet:h-[240px]"
       onClick={() => navigate(`./${product.productId}`)}
     >
       <div className="flex justify-center items-center w-full">
@@ -22,8 +22,8 @@ const ProductCard = forwardRef(({ product }, ref) => {
            border rounded"
         />
       </div>
-      <div className="py-2 px-4 flex flex-col text-custom-btn-text leading-5">
-        <h2 className="font-semibold">{product.productName}</h2>
+      <div className="py-2 px-4 flex flex-col text-custom-btn-text mobile:leading-5 tablet-sm:leading-6">
+        <h2 className="font-bold ">{product.productName}</h2>
         <p className="text-custom-gray-dark">{product.sellerName}</p>
         <p className="text-custom-green font-semibold text-custom-span">{formatCurrency(product.price)} 원</p>
       </div>

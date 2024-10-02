@@ -5,17 +5,17 @@ import IconAccount from "@/assets/icons/icon-account.svg";
 const HeaderUserInfo = () => {
   const { userInfo } = useMyPageLogics();
 
-  const bGAvatarStyle = userInfo?.image ? { backgroundImage: `url(${userInfo?.image})` } : {};
+  const bgAvatarStyle = userInfo?.profileImage ? { backgroundImage: `url(${userInfo?.profileImage})` } : {};
 
   return (
     <Link
       to={"/mypage"}
       className={`items-center justify-center hidden w-7 h-7 bg-custom-gray-light bg-center bg-no-repeat bg-cover rounded-full border-custom-gray-dark aspect-square tablet:flex ${
-        !userInfo?.image && "border-none"
+        !userInfo?.profileImage && "border-none"
       }`}
-      style={bGAvatarStyle}
+      style={bgAvatarStyle}
     >
-      {!userInfo?.image && <IconAccount className="text-custom-gray-dark" />}
+      {!userInfo?.profileImage && <IconAccount className="text-custom-gray-dark" />}
     </Link>
   );
 };

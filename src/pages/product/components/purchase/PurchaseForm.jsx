@@ -34,8 +34,6 @@ const PurchaseForm = ({ recipientDetails, setRecipientDetails, addressList }) =>
     setShowAddressList(false);
   };
 
-  console.log(2, recipientDetails);
-
   return (
     <div className="flex flex-col w-full gap-4 mobile:mt-4 tablet:mt-6">
       <InputField

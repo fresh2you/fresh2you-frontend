@@ -35,7 +35,6 @@ const ProductPurchasePage = () => {
   if (loading || !product) return <Loading isLayoutApplied={true} />;
 
   const totalAmount = product.price * quantity;
-
   return (
     <div className="flex flex-col items-center w-full min-h-screen text-custom-black">
       <div
@@ -58,7 +57,7 @@ const ProductPurchasePage = () => {
           <Button
             className="text-white bg-custom-green hover:bg-custom-green-hover"
             text="결제하기"
-            onClick={() => handlePurchase(recipientDetails, quantity, productId, setLoading, navigate, product)}
+            onClick={() => handlePurchase(recipientDetails, quantity, productId, navigate, product)}
           />
           <Button
             className="bg-custom-gray-light text-custom-black hover:bg-custom-gray-dark"
