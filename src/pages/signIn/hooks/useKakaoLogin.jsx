@@ -7,6 +7,7 @@ const useKakaoLogin = (onSuccessCallback, onErrorCallback) => {
 
   useEffect(() => {
     const code = handleKakaoCallback();
+
     if (code) {
       mutation.mutate({
         code: code,

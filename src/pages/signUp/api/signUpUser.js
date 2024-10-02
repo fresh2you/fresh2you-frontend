@@ -2,10 +2,11 @@ import { instance } from "@/instance";
 
 export const signUpUser = async (isSocialLoginRedirect, state, termsAgreements, formData) => {
   let payload;
-  console.log(isSocialLoginRedirect);
+  console.log("isSocialLoginRedirect", isSocialLoginRedirect);
   if (isSocialLoginRedirect) {
     payload = {
       email: state.email,
+      nickname: state.nickname,
       termsAgreements: termsAgreements,
       provider: state.provider,
       providerId: state.providerId,
@@ -24,8 +25,9 @@ export const signUpUser = async (isSocialLoginRedirect, state, termsAgreements, 
     };
   }
   try {
-    const response = await instance.post("/members/signup", payload);
-    return response.data.success;
+    const { data: response } = await instance.post("/members/signup", payload);
+
+    return { success: response.success, token: response.data.token };
   } catch (error) {
     throw error;
   }

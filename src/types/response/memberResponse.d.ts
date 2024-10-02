@@ -11,6 +11,16 @@ declare interface IPointChargeResponse extends defaultApiResponse {
   };
 }
 
+declare interface ILoginMember {
+  id: number;
+  email: string;
+  isSeller: boolean;
+  nickname: string;
+  point: number;
+  profileImage: string;
+  provider: "EMAIL" | "KAKAO" | "NAVER";
+}
+
 /* 로그인(이메일) */
 declare interface IEmailLoginResponse extends defaultApiResponse {
   data: null | {
@@ -18,13 +28,12 @@ declare interface IEmailLoginResponse extends defaultApiResponse {
       accessToken: string;
       accessExpiredAt: string;
     };
-    loginMember: {
-      id: number;
-      email: string;
-      nickname: string;
-      provider: "EMAIL" | "KAKAO" | "NAVER";
-    };
+    loginMember: ILoginMember;
   };
+}
+
+declare interface ISocialLoginMember extends ILoginMember {
+  providerId: `${number}`;
 }
 
 /* 소셜(카카오) 로그인 */
@@ -34,11 +43,7 @@ declare interface ISocialLoginResponse extends defaultApiResponse {
       accessToken: string;
       accessExpiredAt: string;
     };
-    loginMember: {
-      email: string;
-      provider: "EMAIL" | "KAKAO" | "NAVER";
-      providerId: `${number}`;
-    };
+    loginMember: ISocialLoginMember;
     isSignup: boolean;
   };
 }
