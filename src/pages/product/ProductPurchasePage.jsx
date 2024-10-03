@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "./components/buttons/Button";
 import ProductMiniInfo from "./components/purchase/ProductMiniInfo";
@@ -11,8 +11,20 @@ import ProductInfo from "./components/details/ProductInfo";
 import useDefaultAddress from "./hooks/useDefaultAddress";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { pageLayoutHeaderProps } from "@/stores/mypage";
+import { useSetAtom } from "jotai";
 
 const ProductPurchasePage = () => {
+  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
+
+  useEffect(() => {
+    setHeaderProps({
+      title: "제품 구매하기",
+      hasConfirm: false,
+      backRoute: "../",
+    });
+  }, [setHeaderProps]);
+
   const { id: productId } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -35,6 +47,7 @@ const ProductPurchasePage = () => {
   if (loading || !product) return <Loading isLayoutApplied={true} />;
 
   const totalAmount = product.price * quantity;
+
   return (
     <div className="flex flex-col items-center w-full min-h-screen text-custom-black">
       <div
