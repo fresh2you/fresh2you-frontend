@@ -3,7 +3,7 @@ const ProductDetailSkeleton = () => {
     <div className="flex flex-col">
       <div className="flex items-center gap-x-4 h-1/3 w-full">
         <div className="flex justify-center items-center w-1/3 h-full mobile:min-w-32">
-          <div className="animate-pulse bg-gray-300 w-full  aspect-square rounded-md" />
+          <div className="animate-pulse bg-gray-300 w-full aspect-square rounded-md" />
         </div>
         <div className="flex flex-col w-2/3">
           <div className="animate-pulse bg-gray-300 h-6 mb-1 rounded-md w-3/4 max-w-52" />
