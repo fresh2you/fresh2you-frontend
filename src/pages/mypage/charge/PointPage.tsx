@@ -21,7 +21,7 @@ const PointPage = () => {
     setHeaderProps({
       title: "포인트 충전",
       hasConfirm: false,
-      backRoute: "/mypage/2",
+      backRoute: "/mypage",
     });
   }, [setHeaderProps]);
 
