@@ -2,7 +2,6 @@ import Button from "../buttons/Button";
 import { formatCurrency } from "../../../../utils/commonUtils";
 import { useNavigate } from "react-router-dom";
 import ProductActionButtons from "../buttons/ProductActionButtons";
-
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 
 const ProductInfo = ({ inChat = false, product, noBtn = false, className = "" }) => {

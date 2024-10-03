@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchChatMessages } from "../api/chatApis";
 
-const useChatMessages = (chatRoomId, userId) => {
-  const [messages, setMessages] = useState([]);
-
+const useChatMessages = (chatRoomId, userId, setMessages) => {
   useEffect(() => {
     const getMessages = async () => {
       try {
@@ -18,8 +16,6 @@ const useChatMessages = (chatRoomId, userId) => {
       getMessages();
     }
   }, [chatRoomId, userId]);
-
-  return messages;
 };
 
 export default useChatMessages;
