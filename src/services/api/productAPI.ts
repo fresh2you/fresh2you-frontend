@@ -11,6 +11,16 @@ const productAPI = {
     return response;
   },
 
+  getRecommendProductsByRandom: async () => {
+    const { data: response } = await instance.get("/recommendations/random", {
+      params: {
+        size: 10,
+      },
+    });
+
+    return response;
+  },
+
   getAllProducts: async ({ page = 0, size = 20 }: { page: number; size: number }) => {
     const { data: response } = await instance.get("/products", {
       params: {
