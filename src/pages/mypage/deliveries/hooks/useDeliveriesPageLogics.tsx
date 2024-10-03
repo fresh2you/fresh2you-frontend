@@ -1,14 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { instance } from "@/instance";
 import { overlay } from "overlay-kit";
 import AddDeliveryModal from "@/pages/mypage/deliveries/components/AddDeliveryModal";
+import { api } from "@/services/api";
 
 type DeliveryTypes = {
-  id: number;
+  deliveryAddressId: number;
   name: string;
   phone: string;
   address: string;
-  recipient: string;
+  detailedAddress: string;
+  recipientName: string;
+  postalCode: `${number}`;
 };
 
 const useDeliveriesPageLogics = () => {
@@ -24,9 +26,9 @@ const useDeliveriesPageLogics = () => {
   const { data: deliveries } = useQuery({
     queryKey: ["deliveries"],
     queryFn: async () => {
-      const { data: result } = await instance.get("/deliveries");
+      const { data: result } = await api.user.getDeliveries();
 
-      return result as DeliveryTypes[];
+      return result.addressList as DeliveryTypes[];
     },
     enabled: true,
     staleTime: 60 * 1000,

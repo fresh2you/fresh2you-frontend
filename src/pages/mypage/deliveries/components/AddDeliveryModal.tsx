@@ -1,5 +1,6 @@
 import InputWithLabel from "@/components/InputWithLabel";
 import useAddDeliveryModalLogics from "@/pages/mypage/deliveries/hooks/useAddDeliveryModalLogics";
+import IconClose from "@/assets/icons/x-close.svg";
 
 interface AddDeliveryModal {
   isOpen: boolean;
@@ -19,8 +20,8 @@ const AddDeliveryModal = ({ isOpen, unmount }: AddDeliveryModal) => {
             className="relative flex flex-col items-center justify-center w-full h-full gap-0 p-0 pb-20 max-w-80"
           >
             <header className="flex items-center justify-end w-full">
-              <button type="button" onClick={unmount}>
-                X
+              <button type="button" onClick={unmount} className="p-0 bg-white">
+                <IconClose />
               </button>
             </header>
 
@@ -37,8 +38,11 @@ const AddDeliveryModal = ({ isOpen, unmount }: AddDeliveryModal) => {
               />
             ))}
 
-            <button type="submit" className="absolute bottom-0 w-full py-2 font-bold text-white bg-custom-green">
-              프로필 변경하기
+            <button
+              type="submit"
+              className="absolute bottom-0 w-full py-2 font-bold text-white rounded-lg bg-custom-green"
+            >
+              배송지 추가하기
             </button>
           </form>
         </div>
