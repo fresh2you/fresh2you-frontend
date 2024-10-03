@@ -14,7 +14,18 @@ const useHomePageLogics = () => {
     staleTime: 60 * 1000,
   });
 
-  return { recommendProductsByHistory };
+  const { data: recommendProductsByRandom } = useQuery({
+    queryKey: ["recommendProductsByRandom"],
+    queryFn: async () => {
+      const { data: result } = await api.product.getRecommendProductsByRandom();
+
+      return result.products;
+    },
+    enabled: true,
+    staleTime: 60 * 1000,
+  });
+
+  return { recommendProductsByHistory, recommendProductsByRandom };
 };
 
 export default useHomePageLogics;
