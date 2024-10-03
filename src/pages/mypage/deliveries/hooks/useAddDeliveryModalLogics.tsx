@@ -2,20 +2,31 @@ import { overlay } from "overlay-kit";
 import { Address } from "react-daum-postcode";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { instance } from "@/instance";
 import DaumAddressModal from "@/pages/mypage/deliveries/components/DaumAddressModal";
+import { api } from "@/services/api";
 
 const useAddDeliveryModalLogics = () => {
   const queryClient = useQueryClient();
 
-  const [formData, setFormData] = useState({ name: "", recipient: "", phone: "", mainAddress: "", subAddress: "" });
+  const [formData, setFormData] = useState({
+    recipientName: "",
+    phone: "",
+    postalCode: "",
+    address: "",
+    detailedAddress: "",
+    isDefault: false,
+  });
 
   const completeHandler = (data: Address) => {
     // 우편번호: data.zonecode
     const fullAddress = `${data.address} ${data.bname ? `(${data.bname})` : ""} ${
       data.buildingName ? `(${data.buildingName})` : ""
     }`;
-    setFormData((prev) => ({ ...prev, mainAddress: fullAddress }));
+    const postalCode = data.zonecode;
+
+    //console.log(data.zonecode, fullAddress);
+
+    setFormData((prev) => ({ ...prev, address: fullAddress, postalCode }));
   };
 
   const openDaumAddressModal = () => {
@@ -28,47 +39,57 @@ const useAddDeliveryModalLogics = () => {
   };
 
   const inputs = [
-    { id: "name", label: "배송지 이름", value: formData.name, placeholder: "" },
+    /* { id: "name", label: "배송지 이름", value: formData.name, placeholder: "" }, */
     {
-      id: "recipient",
+      id: "recipientName",
       label: "받는 사람 이름",
-      value: formData.recipient,
+      value: formData.recipientName,
       placeholder: "",
     },
     { id: "phone", label: "받는 사람 전화번호", value: formData.phone, placeholder: "" },
     {
-      id: "mainAddress",
+      id: "address",
       label: "주소",
-      value: formData.mainAddress,
+      value: formData.address,
       placeholder: "",
       onfocus: openDaumAddressModal,
     },
     {
-      id: "subAddress",
+      id: "detailedAddress",
       label: "",
-      value: formData.subAddress,
+      value: formData.detailedAddress,
       placeholder: "",
     },
   ];
 
   const { mutateAsync: patchDeliveries } = useMutation({
     mutationFn: async ({
-      name,
-      recipient,
+      recipientName,
       phone,
       address,
+      detailedAddress,
+      postalCode,
+      isDefault,
     }: {
-      name: string;
-      recipient: string;
-      phone: string;
+      recipientName: string;
+      phone: `${string}`;
       address: string;
+      detailedAddress: string;
+      postalCode: `${string}`;
+      isDefault: boolean;
     }) => {
-      const result = await instance.post("/deliveries", {
-        name,
-        recipient,
+      const data = {
+        recipientName,
         phone,
         address,
-      });
+        detailedAddress,
+        postalCode,
+        isDefault: false,
+      };
+
+      const result = await api.user.addDelivery(data);
+
+      console.log(result);
 
       return result;
     },
@@ -81,20 +102,18 @@ const useAddDeliveryModalLogics = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await patchDeliveries({
-      name: formData.name,
-      recipient: formData.recipient,
-      phone: formData.phone,
-      address: `${formData.mainAddress}${formData.subAddress}`,
-    });
+
     console.log(formData);
+
+    await patchDeliveries(formData);
   };
 
   const onChangeFormData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.id;
-    if (id === "mainAddress") return;
+    if (id === "address") return;
 
     const value = e.target.value;
+
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 

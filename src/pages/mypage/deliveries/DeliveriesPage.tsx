@@ -21,7 +21,7 @@ const DeliveriesPage = () => {
   }, [setHeaderProps, openAddDeliveryModal]);
 
   return (
-    <div className="flex flex-col w-full h-full gap-4 p-4 overflow-y-scroll">
+    <div className="flex flex-col w-full h-full gap-4 p-4 overflow-y-scroll scrollbar-hide">
       {deliveries?.length === 0 && <div>등록된 배송지가 없습니다.</div>}
 
       {deliveries?.map((delivery) => (
