@@ -19,7 +19,7 @@ const ProductPurchasePage = () => {
 
   useEffect(() => {
     setHeaderProps({
-      title: "제품 구매하기",
+      title: "",
       hasConfirm: false,
       backRoute: "../",
     });
