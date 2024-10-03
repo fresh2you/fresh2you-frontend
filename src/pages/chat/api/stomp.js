@@ -39,12 +39,13 @@ export const chatService = {
   },
 
   sendMessage: (messageBody) => {
+    console.log(chatService.client.connected);
     if (chatService.client && chatService.client.connected) {
-      // 연결 상태 확인
       chatService.client.publish({
         destination: "/pub/message",
         body: JSON.stringify(messageBody),
       });
+      console.log("발신한 메시지:", message);
     } else {
       console.error("Cannot send message, STOMP client is not connected.");
     }

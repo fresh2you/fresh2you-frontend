@@ -16,20 +16,17 @@ const ChatPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const product = location.state ? location.state : [];
-  // const {userInfo} = useMyPageLogics()
-  const userId = 21; // 테스트용 하드코딩된 userId
+  const { userInfo } = useMyPageLogics();
+  const userId = userInfo.userId;
   const chatInfo = {
     chatRoomId: chatRoomId,
     userId: userId,
-    chatPartnerId: 3, // chatPartnerId
+    chatPartnerId: 80, // chatPartnerId
   };
 
   const [messages, setMessages] = useState([]);
   const [showProductInfo, setShowProductInfo] = useState(true);
   const messagesEndRef = useRef(null);
-  const [isConnected, setIsConnected] = useState(false);
-
-  // 초기 메시지 불러오기
 
   useEffect(() => {
     fetchChatMessages(userId);
@@ -43,12 +40,10 @@ const ChatPage = () => {
 
     const handleConnect = () => {
       console.log("Connected to chat room");
-      setIsConnected(true);
     };
 
     const handleError = (error) => {
       console.error("WebSocket error:", error);
-      setIsConnected(false);
     };
 
     chatService.connect(chatRoomId, handleMessageReceived, handleConnect, handleError);
@@ -67,13 +62,13 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="bg-white mx-auto text-custom-black relative">
+    <div className="bg-white mx-auto text-custom-black relative w-full">
       <div
-        className={`fixed opacity-95 left-4 max-w-[450px] border rounded-md mr-4 p-1.5 transition-transform 
+        className={`fixed opacity-95 left-4 max-w-[450px] rounded-md mr-4 p-1.5 transition-transform 
           duration-300 overflow-hidden flex ${showProductInfo ? "translate-x-0" : "-translate-x-[96%]"}
-          ${product ? "bg-gray-100" : "bg-white"}`}
+          ${Object.keys(product).length > 0 ? "bg-gray-100 border" : "bg-white border-none"}`}
       >
-        {product && Object.keys(product).length > 0 && (
+        {Object.keys(product).length > 0 && (
           <div className="flex items-start">
             <ProductInfo inChat={true} product={product} noBtn={false} className="mr-12" />
             <button
@@ -86,7 +81,7 @@ const ChatPage = () => {
         )}
       </div>
       {messages.length ? (
-        <div className="pt-2 max-w-lg w-full mx-auto tablet-sm:border rounded mobile:pb-16">
+        <div className="pt-2 max-w-lg w-full mx-auto tablet-sm:border rounded mobile:pb-16 h-screen">
           <MessageList messages={messages} />
           <div ref={messagesEndRef} />
         </div>
@@ -95,7 +90,7 @@ const ChatPage = () => {
           <p className="text-gray-500 text-custom-p">채팅을 시작해 보세요!</p>
         </div>
       )}
-      <ChatFooter chatInfo={chatInfo} navigate={navigate} isConnected={isConnected} />
+      <ChatFooter chatInfo={chatInfo} navigate={navigate} setMessages={setMessages} />
     </div>
   );
 };

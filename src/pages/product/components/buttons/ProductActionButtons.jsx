@@ -9,7 +9,7 @@ const ProductActionButtons = ({ product, navigate }) => {
     try {
       const params = {
         buyerId: userInfo.userId,
-        sellerId: 50, // 닉네임 들어갈 곳
+        sellerId: 110, // 닉네임 들어갈 곳
         productId: product.productId,
         categoryId: null,
       };

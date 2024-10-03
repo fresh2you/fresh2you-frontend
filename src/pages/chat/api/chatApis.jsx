@@ -44,13 +44,13 @@ export const handleLeaveChatRoom = async (chatRoomId, userId) => {
     console.error("채팅방 나가기 중 에러 발생:", error);
   }
 };
-export const fetchChatMessages = async (userId) => {
+export const fetchChatMessages = async (chatRoomId) => {
   try {
-    const response = await instance.get(`/chat/${userId}`, {
+    const response = await instance.get(`/chat/${chatRoomId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      params: { id: userId },
+      params: { id: chatRoomId },
     });
     return response.data;
   } catch (error) {

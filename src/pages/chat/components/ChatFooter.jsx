@@ -4,7 +4,7 @@ import ListIcon from ".././.././../assets/icons/list.svg";
 import DropDownMenu from "./DropDownMenu";
 import "../../../styles/styles.css";
 import { chatService } from "../api/stomp";
-const ChatFooter = ({ chatInfo, navigate, isConnected }) => {
+const ChatFooter = ({ chatInfo, navigate, setMessages }) => {
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -18,14 +18,21 @@ const ChatFooter = ({ chatInfo, navigate, isConnected }) => {
         senderId: chatInfo.userId,
         content: inputValue,
       };
-      if (isConnected) {
-        chatService.sendMessage(messageBody);
-      } else {
-        console.error("Cannot send message, STOMP client is not connected.");
-      }
+
+      chatService.sendMessage(messageBody);
+
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          ...messageBody,
+          timestamp: new Date().toISOString(),
+        },
+      ]);
+
       setInputValue("");
     }
   };
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
