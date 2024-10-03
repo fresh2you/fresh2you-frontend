@@ -1,4 +1,5 @@
 import { instance } from "@/instance";
+import { api } from "@/services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const useVerifySellerPageLogics = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [formData, setFormData] = useState({ name: "", phone: "", code: "" });
+  const [formData, setFormData] = useState({ phone: "", code: "" });
 
   const { mutateAsync: patchUserRole } = useMutation({
     mutationFn: async () => {
@@ -38,13 +39,17 @@ const useVerifySellerPageLogics = () => {
     return result;
   };
 
-  const onClickPhoneConfirm = () => {
+  const onClickPhoneConfirm = async () => {
     const isCorrect = checkPhoneFormat(formData.phone);
     if (!isCorrect) {
       return alert("올바르지 않은 전화번호 입니다.");
     }
 
-    // TODO: 이메일 인증 로직 예정
+    const result = await api.user.requestSMSCode(formData.phone);
+
+    if (result.success) {
+      alert("인증 문자가 전송되었습니다");
+    }
   };
 
   const onChangeFormData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +65,7 @@ const useVerifySellerPageLogics = () => {
     }
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (Object.values(formData).some((value) => value === "")) {
@@ -68,7 +73,19 @@ const useVerifySellerPageLogics = () => {
       return;
     }
 
-    patchUserRole();
+    /* patchUserRole(); */
+    try {
+      const result = await api.user.verifySMSCode({ phoneNumber: formData.phone, verificationCode: formData.code });
+
+      if (result.success) {
+        alert("휴대전화 인증이 완료되었습니다!");
+
+        queryClient.invalidateQueries({ queryKey: ["userInfo"] });
+        navigate(-1);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return {

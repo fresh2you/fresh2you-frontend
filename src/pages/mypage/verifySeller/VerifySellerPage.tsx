@@ -18,8 +18,8 @@ const VerifySellerPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full ">
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
+      <form onSubmit={onSubmit} className="flex flex-col gap-4 pb-8">
+        {/* <div className="flex flex-col gap-2">
           <label htmlFor="name" className="text-lg font-bold">
             이름
           </label>
@@ -30,7 +30,7 @@ const VerifySellerPage = () => {
             onChange={onChangeFormData}
             className="px-3 py-2 border border-black rounded-lg"
           />
-        </div>
+        </div> */}
 
         <div>
           <label htmlFor="name" className="block mb-2 text-lg font-bold">
