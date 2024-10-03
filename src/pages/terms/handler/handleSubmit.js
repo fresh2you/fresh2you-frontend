@@ -29,7 +29,8 @@ export const handleSubmit = async (isSocialLoginRedirect, isAgreed, state, terms
       navigate("/auth/signin");
     }
   } else {
-    sessionStorage.setItem("termsAgreement", true);
-    navigate("/auth/signup/info");
+    navigate("/auth/signup/info", {
+      state: { termsAgreements: termsAgreements },
+    });
   }
 };
