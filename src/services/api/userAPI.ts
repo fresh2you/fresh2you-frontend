@@ -55,15 +55,17 @@ const userAPI = {
   },
 
   patchUserProfile: async ({ nickname, image }: { nickname: string; image: File | null }) => {
-    const { data: response } = await instance.patch(
-      "/members/profile",
-      { nickname, image },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+    const request = { nickname: nickname };
+
+    const formData = new FormData();
+    formData.append("request", JSON.stringify(request));
+    if (image) formData.append("image", image);
+
+    const { data: response } = await instance.patch("/members/profile", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
       },
-    );
+    });
 
     return response;
   },

@@ -24,7 +24,8 @@ const useChangeProfilePageLogics = () => {
       // 빈 객체가 아닌 경우에만 PATCH 요청을 보냄
       if (Object.keys(updateData).length > 0) {
         const result = await api.user.patchUserProfile(updateData);
-        return result;
+
+        return result.success;
       }
 
       // 빈 문자열인 경우에는 null 반환
