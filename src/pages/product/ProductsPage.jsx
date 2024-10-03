@@ -9,6 +9,7 @@ import { fetchProducts } from "./api/productApis";
 import { useQueryClient } from "@tanstack/react-query";
 import PlusIcon from "../../assets/icons/plus.svg";
 import { useNavigate } from "react-router-dom";
+import useMyPageLogics from "../mypage/mypage/hooks/useMyPageLogics";
 const ProductsPage = () => {
   const queryClient = useQueryClient();
   const [products, setProducts] = useState([]);
@@ -54,8 +55,8 @@ const ProductsPage = () => {
     loadProducts(pageNumber);
   }, [pageNumber, loadProducts]);
 
-  const userInfo = queryClient.getQueryData("userInfo"); //need to check
-  const isSeller = userInfo ? userInfo.isSeller : false;
+  const { userInfo } = useMyPageLogics();
+  const isSeller = userInfo.isSeller;
 
   return (
     <div className="mx-auto py-2.5 text-custom-black product-page">
