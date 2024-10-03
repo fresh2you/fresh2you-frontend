@@ -107,7 +107,7 @@ const userAPI = {
 
   /* 판매자 인증에 사용되는 API */
   requestSMSCode: async (phoneNumber: string) => {
-    const { data: response } = await instance.post("/auth/sms", {
+    const { data: response } = await instance.post("/auth/sms", undefined, {
       params: {
         phoneNumber,
       },
@@ -117,7 +117,7 @@ const userAPI = {
   },
 
   verifySMSCode: async ({ phoneNumber, verificationCode }: { phoneNumber: string; verificationCode: string }) => {
-    const { data: response } = await instance.post("/auth/sms/verify", {
+    const { data: response } = await instance.post("/auth/sms/verify", undefined, {
       params: {
         phoneNumber,
         verificationCode,

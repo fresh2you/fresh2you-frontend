@@ -28,21 +28,17 @@ const MyPageUserInfo = ({ isSeller }: { isSeller: boolean }) => {
         </button>
       </article>
 
-      {isSeller && (
-        <>
-          {isSeller ? (
-            <div className="flex items-center justify-center w-auto h-auto px-3 py-2 ml-4 font-semibold text-white rounded-lg max-w-36 max-h-10 bg-custom-verify">
-              판매자 인증완료
-            </div>
-          ) : (
-            <button
-              className="flex items-center justify-center w-auto h-auto px-3 py-2 ml-4 font-semibold text-white rounded-lg max-w-36 max-h-10 bg-custom-green-300"
-              onClick={() => moveToPath("/mypage/verify-seller")}
-            >
-              판매자 인증하기
-            </button>
-          )}
-        </>
+      {isSeller ? (
+        <div className="flex items-center justify-center w-auto h-auto px-3 py-2 ml-4 font-semibold text-white rounded-lg max-w-36 max-h-10 bg-custom-verify">
+          판매자 인증완료
+        </div>
+      ) : (
+        <button
+          className="flex items-center justify-center w-auto h-auto px-3 py-2 ml-4 font-semibold text-white rounded-lg max-w-36 max-h-10 bg-custom-green-300"
+          onClick={() => moveToPath("/mypage/verify-seller")}
+        >
+          판매자 인증하기
+        </button>
       )}
     </section>
   );
