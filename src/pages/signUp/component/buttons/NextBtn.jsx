@@ -14,7 +14,7 @@ export const NextButton = ({ currentStep, validity, funnel, formData }) => {
             : "",
         )
       }
-      className={"next-btn custom-focus-light"}
+      className="next-btn text-custom-span-text"
     >
       다음
     </button>

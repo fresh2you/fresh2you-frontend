@@ -19,12 +19,13 @@
           font-semibold hover:border-transparent hover:grayscale-40 transition-all;
 }
 .next-btn {
-  @apply bg-custom-gray-light whitespace-nowrap px-4 py-1 h-10 self-end 
-  hover:border-transparent text-custom-black hover:bg-custom-gray-dark
-  hover:text-white transition-all;
+  @apply bg-custom-gray-light whitespace-nowrap px-4 tablet:py-1 tablet:h-10 self-end 
+ text-custom-black hover:bg-custom-gray-dark custom-focus-light 
+  hover:text-white transition-all mobile:fixed mobile:w-11/12 mobile:bottom-4 mobile:left-1/2 mobile:-translate-x-1/2 
+  mobile:max-w-[400px] tablet:static tablet:-translate-x-0 tablet:w-auto font-semibold mobile:py-3;
 }
 .action-btn {
-  @apply py-1 ml-2 rounded-md whitespace-nowrap h-10 hover:bg-custom-green-hover 
+  @apply py-1 rounded-md whitespace-nowrap h-10 hover:bg-custom-green-hover 
   text-white custom-focus-light hover:border-transparent transition-all;
 }
 .product-page {

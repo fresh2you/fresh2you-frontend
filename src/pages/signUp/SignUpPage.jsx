@@ -20,8 +20,7 @@ import useLogin from "../signIn/hooks/useLogin";
 export default function SignUpPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isAgreedToTerms, setIsAgreedToTerms] = useState(location.state?.termsAgreements || false);
-
+  const [isAgreedToTerms, setIsAgreedToTerms] = useState(sessionStorage.getItem("termsAgreement") || false);
   useRedirectIfNotAgreed(isAgreedToTerms);
 
   const funnel = useFunnel({
@@ -115,10 +114,10 @@ export default function SignUpPage() {
       {isLoading ? (
         <Loading isLayoutApplied={false} />
       ) : (
-        <>
+        <div className="px-4">
           <form
             onSubmit={handleFormSubmit}
-            className="flex flex-col justify-center min-h-screen mx-auto w-[290px] items-start py-8"
+            className="flex flex-col justify-center min-h-screen mx-auto w-[300px] items-start"
           >
             <PasswordFeedback passwordFeedbacks={passwordFeedbacks} />
             <ErrorMessages status={status} />
@@ -140,7 +139,7 @@ export default function SignUpPage() {
               isEmailValid={validity.isEmailValid}
             />
           )}
-        </>
+        </div>
       )}
     </>
   );

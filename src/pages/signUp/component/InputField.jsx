@@ -1,6 +1,14 @@
 import "../../../styles/styles.css";
-export default function InputField({ label, type, value, setValue, placeholder, autoComplete }) {
+export default function InputField({ label, type, value, setValue, placeholder, autoComplete, onButtonClick }) {
   const isPasswordField = label === "비밀번호" || label === "비밀번호 확인";
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (onButtonClick) {
+        onButtonClick();
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col">
@@ -14,6 +22,7 @@ export default function InputField({ label, type, value, setValue, placeholder, 
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
         autoComplete={autoComplete}
+        onKeyDown={handleKeyDown}
         className={`h-10 rounded px-1 text-custom-black border custom-focus-light
         border-custom-gray-light ${isPasswordField && "w-[260px]"} 
         ${label === "이메일 주소" && "w-[220px]"}

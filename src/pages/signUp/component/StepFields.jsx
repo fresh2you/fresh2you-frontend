@@ -3,8 +3,8 @@ import { NextButton } from "./buttons/NextBtn";
 const StepFields = ({ steps, currentStep, validity, funnel, formData }) => (
   <>
     {steps[currentStep].map((field, index) => (
-      <div key={index} className="flex flex-col">
-        <div className="flex items-end mb-3">
+      <div key={index} className="flex items-center">
+        <div className="flex items-end mb-3 gap-2">
           <InputField
             label={field.label}
             type={field.type}
@@ -13,12 +13,13 @@ const StepFields = ({ steps, currentStep, validity, funnel, formData }) => (
             placeholder={field.placeholder}
             autoComplete={field.autoComplete}
             onchange={field.onChange}
+            onButtonClick={field.button ? field.button.props.onClick : null}
           />
           {field.button}
+          {currentStep !== "닉네임입력" && 0 === index && (
+            <NextButton currentStep={currentStep} validity={validity} funnel={funnel} formData={formData} />
+          )}
         </div>
-        {currentStep !== "닉네임입력" && 0 === index && (
-          <NextButton currentStep={currentStep} validity={validity} funnel={funnel} formData={formData} />
-        )}
       </div>
     ))}
   </>

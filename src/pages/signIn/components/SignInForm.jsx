@@ -36,6 +36,7 @@ export default function SignInForm() {
     setShake(true);
     setTimeout(() => setShake(false), 500);
   };
+
   const mutation = useLogin(false, onSuccessCallback, onErrorCallback);
 
   return (
@@ -60,6 +61,7 @@ export default function SignInForm() {
         onChange={handleChange}
         placeholder="비밀번호를 입력하세요"
         autoComplete="current-password"
+        onButtonClick={() => document.querySelector(".login-btn").click()}
       />
 
       {error && <p className="mt-2 font-semibold text-white">{error}</p>}

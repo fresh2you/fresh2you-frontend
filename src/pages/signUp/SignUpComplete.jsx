@@ -71,13 +71,16 @@ const SignUpCompletePage = () => {
           />
         </Slider>
       </div>
-      <div className="flex space-x-4 mt-10">
+      <div className="flex space-x-4 mt-10 mobile:w-full tablet-sm:w-auto">
         {currentSlide === 2 ? (
-          <HomeButton className="bg-custom-green hover:bg-custom-green-hover text-white" onClick={handleGoHome} />
+          <HomeButton
+            className="bg-custom-green hover:bg-custom-green-hover text-white w-full py-2 text-custom-span"
+            onClick={handleGoHome}
+          />
         ) : (
           <button
             className="bg-custom-green hover:bg-custom-green-hover text-white px-6 rounded-lg 
-          font-semibold text-custom-btn-text py-2 tablet:py-1.5"
+          font-semibold text-custom-span py-2 tablet:py-1.5 mobile:px-4 mobile:w-full tablet-sm:w-auto"
             onClick={handleNextSlide}
           >
             다음

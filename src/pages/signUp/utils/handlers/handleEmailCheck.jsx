@@ -20,13 +20,22 @@ const sendVerificationCodeAndHandleModal = async (email, setStatus, handleOpenMo
     await sendEmailVerificationCode(email);
     setStatus((prevStatus) => ({ ...prevStatus, emailStatus: "" }));
     handleOpenModal();
-  } catch {
-    setStatus((prevStatus) => ({ ...prevStatus, emailStatus: "이메일 인증 코드 전송을 실패했습니다." }));
+  } catch (error) {
+    if (error.response.data.code === "1400") {
+      setStatus((prevStatus) => ({
+        ...prevStatus,
+        emailStatus: "하루 인증 요청 횟수를 초과했습니다.",
+      }));
+    } else {
+      setStatus((prevStatus) => ({
+        ...prevStatus,
+        emailStatus: "이메일 인증 코드 전송에 실패했습니다.",
+      }));
+    }
   }
 };
 
 export const handleEmailCheck = async (email, setStatus, handleOpenModal, setIsLoading) => {
-  setIsLoading(true);
   const isEmailValid = await checkEmailAndSetStatus(email, setStatus);
   if (isEmailValid) {
     setIsLoading(true);

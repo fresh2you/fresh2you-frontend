@@ -6,10 +6,9 @@ export const sendEmailVerificationCode = async (userEmail) => {
         email: userEmail,
       },
     });
-    return verifyResponse.data.success;
+    return verifyResponse.data;
   } catch (error) {
-    console.error("Error sending email verification code:", error.response.data);
-    throw new Error("Failed to send email verification code");
+    throw error;
   }
 };
 
@@ -33,8 +32,8 @@ export const verifyEmailCode = async (email, verificationCode) => {
       },
     });
     return response.data.success;
-  } catch {
-    throw new Error("Email code verification failed");
+  } catch (error) {
+    return error;
   }
 };
 export const checkNicknameDuplicate = async (nickname) => {
