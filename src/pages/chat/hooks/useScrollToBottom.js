@@ -1,11 +1,19 @@
 import { useEffect } from "react";
 
-const useScrollToBottom = (ref, dependencyArray) => {
+const useScrollToBottom = (ref, dependencies) => {
   useEffect(() => {
     if (ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" });
+      const { scrollHeight, clientHeight } = ref.current;
+      const isAtBottom = scrollHeight <= clientHeight + ref.current.scrollTop + 1;
+
+      if (isAtBottom) {
+        ref.current.scrollTo({
+          top: scrollHeight,
+          behavior: "smooth",
+        });
+      }
     }
-  }, dependencyArray);
+  }, dependencies);
 };
 
 export default useScrollToBottom;
