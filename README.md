@@ -1,4 +1,4 @@
-# Fresh 2 You, 농산물 직거래 플랫폼
+# Fresh 2 You, 농산물 직거래 플랫폼 프론트엔드 Repository 입니다.
 
 <!--프로젝트 버튼-->
 [![View Demo][view-demo-shield]][view-demo-url] [![Report bug][report-bug-shield]][report-bug-url] [![Request feature][request-feature-shield]][request-feature-url]
