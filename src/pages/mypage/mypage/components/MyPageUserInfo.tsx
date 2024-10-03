@@ -8,7 +8,11 @@ const MyPageUserInfo = ({ isSeller }: { isSeller: boolean }) => {
       <article className="flex items-center w-full gap-2 px-4 py-3 bg-white">
         <div
           className="flex items-center justify-center h-16 bg-center bg-no-repeat bg-cover rounded-full aspect-square bg-custom-gray-dark"
-          style={userInfo?.profileImage ? { backgroundImage: `url(${userInfo?.profileImage})` } : {}}
+          style={
+            userInfo?.profileImage
+              ? { backgroundImage: `url(${userInfo?.profileImage})`, backgroundColor: "white" }
+              : {}
+          }
         />
 
         <div>

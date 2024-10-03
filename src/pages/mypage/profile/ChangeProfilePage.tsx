@@ -1,5 +1,4 @@
 import InputWithLabel from "@/components/InputWithLabel";
-
 import { pageLayoutHeaderProps } from "@/stores/mypage";
 import { useSetAtom } from "jotai";
 import { useEffect, useRef } from "react";
@@ -13,7 +12,9 @@ const ChangeProfilePage = () => {
     useChangeProfilePageLogics();
   const avatarRef = useRef<HTMLInputElement>(null);
   const backgroundImageStyle =
-    previewAvatar || userInfo?.image ? { backgroundImage: `url('${previewAvatar || userInfo?.image}')` } : undefined;
+    previewAvatar || userInfo?.profileImage
+      ? { backgroundImage: `url('${previewAvatar || userInfo?.profileImage}')` }
+      : undefined;
 
   useEffect(() => {
     setHeaderProps({
@@ -24,19 +25,19 @@ const ChangeProfilePage = () => {
   }, [setHeaderProps]);
 
   return (
-    <div className="flex justify-center w-full h-full pb-[4.5rem]">
+    <div className="flex justify-center w-full h-full">
       <form
         onSubmit={async (e) => {
           e.preventDefault();
 
-          await patchUserProfile({ nickname: newProfile.nickname, avatar: previewAvatar });
+          await patchUserProfile(newProfile);
         }}
-        className="relative flex flex-col items-center justify-center w-2/3 h-full gap-6 pb-20 max-w-80"
+        className="relative flex flex-col items-center justify-center w-2/3 h-full gap-6 pb-[4.5rem] max-w-80"
       >
         <label
           htmlFor="avatar"
           className={`relative w-40 bg-cover border rounded-full aspect-square ${
-            previewAvatar || userInfo?.image || "bg-custom-gray-light border-custom-gray-dark"
+            previewAvatar || userInfo?.profileImage || "bg-custom-gray-light border-custom-gray-dark"
           }`}
           style={backgroundImageStyle}
         >
@@ -61,10 +62,10 @@ const ChangeProfilePage = () => {
           placeholder={userInfo?.nickname || "변경하실 닉네임을 알려주세요"}
           onChange={onChangeNicknameChange}
         />
-        <button type="submit" className="absolute bottom-0 w-full py-2 font-bold text-white bg-custom-green">
+        <button type="submit" className="w-full py-2 mt-auto font-bold text-white bg-custom-green">
           프로필 변경하기
         </button>
-        <BackButton extraStyle="absolute bottom-14" />
+        <BackButton extraStyle=" " />
       </form>
     </div>
   );

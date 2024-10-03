@@ -54,9 +54,9 @@ const userAPI = {
     return response;
   },
 
-  patchUserProfile: async ({ nickname, image }: { nickname: string; image: File }) => {
+  patchUserProfile: async ({ nickname, image }: { nickname: string; image: File | null }) => {
     const { data: response } = await instance.patch(
-      "/members/profiles",
+      "/members/profile",
       { nickname, image },
       {
         headers: {

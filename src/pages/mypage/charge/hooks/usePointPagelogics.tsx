@@ -1,4 +1,4 @@
-import { instance } from "@/instance";
+import { api } from "@/services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
@@ -8,15 +8,13 @@ const usePointPagelogics = () => {
 
   const { mutateAsync: patchUserPoint } = useMutation({
     mutationFn: async (chargingPoint: number) => {
-      const {
-        data: { point: currentPoint },
-      } = await instance.patch("/userInfo");
+      try {
+        const { data: result } = await api.user.chargePoint(chargingPoint);
 
-      const result = await instance.patch("/userInfo", {
-        point: currentPoint + chargingPoint,
-      });
-
-      return result;
+        return result;
+      } catch (error: unknown) {
+        console.log("포인트 충전 에러!");
+      }
     },
 
     onSuccess: () => {
