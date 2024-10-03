@@ -14,11 +14,28 @@
 - API 응답이 오래 걸릴 경우, **스켈레톤 UI**를 활용하여 사용자에게 로딩 중임을 시각적으로 표시함으로써 보다 나은 **UX**를 제공했습니다.
 
 ## Technologies
-***언어, 프레임워크, 주요 라이브러리**를 **버전**과 함께 나열하세요.*
-
-- [Maven](https://maven.apache.org/) 3.6.3
-- [MySQL](https://www.mysql.com/) 8.0
-- [Spring](https://spring.io/) 2.4.3
+- Language: Javascript & Typescript
+- Build Tool : Vite
+- Libraries
+    - React
+        - react-dom
+        - react-router-dom
+    - 상태 관리
+        - Tanstack-Query
+        - Jotai
+    - StompJs
+    - Json-Server
+    - 스타일링
+        - Tailwind CSS
+        - CSS 3
+    - Toss tools
+        - use-funnel: 단계별 상태 관리 라이브러리
+        - overaly-kit(userOverlay): Modal창을 위한 state 관리 라이브러리
+- ETC
+    - Convention
+        - Prettier
+        - ESLint
+    - Kakao API
 
 
 
@@ -65,32 +82,20 @@ const API_KEY = "<Your API key>";
 
 
 
-# [4] Contribution
+# [4] Trouble Shooting
 기여해주신 모든 분들께 대단히 감사드립니다.[`contributing guide`][contribution-url]를 참고해주세요.
 이 프로젝트의 기여하신 분들을 소개합니다! 🙆‍♀️
 *이모티콘 쓰는 것을 좋아한다면, 버그 수정에 🐞, 아이디어 제공에 💡, 새로운 기능 구현에 ✨를 사용할 수 있습니다.*
 - 🐞 [dev-ujin](https://github.com/dev-ujin): 메인페이지 버그 수정
 
 
-
-# [5] Acknowledgement
-***유사한 프로젝트의 레포지토리** 혹은 **블로그 포스트** 등 프로젝트 구현에 영감을 준 출처에 대해 링크를 나열하세요.*
-
-- [Readme Template - Embedded Artistry](https://embeddedartistry.com/blog/2017/11/30/embedded-artistry-readme-template/)
-- [How to write a kickass Readme - James.Scott](https://dev.to/scottydocs/how-to-write-a-kickass-readme-5af9)
-- [Best-README-Template - othneildrew](https://github.com/othneildrew/Best-README-Template#prerequisites)
-- [Img Shields](https://shields.io/)
-- [Github Pages](https://pages.github.com/)
-
-
-
-# [6] Contact
+# [5] Contact
 - 📧 dev.ujin518@gmail.com
 - 📋 [https://dev-ujin.github.io/contact](https://dev-ujin.github.io/contact)
 
 
 
-# [7] License
+# [6] License
 MIT 라이센스
 라이센스에 대한 정보는 [`LICENSE`][license-url]에 있습니다.
 
