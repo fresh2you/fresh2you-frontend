@@ -13,7 +13,7 @@ const CommunityPostPage = () => {
     });
   }, [setHeaderProps]);
 
-  return <div className="w-full h-full bg-red-300">CommunityPostPage</div>;
+  return <div className="w-full h-full bg-red-300">기능 구현 중...</div>;
 };
 
 export default CommunityPostPage;
