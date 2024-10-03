@@ -8,11 +8,14 @@ const ProductInfo = ({ inChat = false, product, noBtn = false, className = "" })
   const navigate = useNavigate();
   return (
     <div className={`flex items-center gap-x-4 ${className} relative`}>
-      <div className="flex justify-center items-center w-1/3 mobile:min-w-[135px]">
+      <div
+        className="flex justify-center items-center w-1/3 h-1/3 mobile:min-w-[135px]
+       mobile:min-h-[135px]"
+      >
         <img
           src={product.imageUrl || fallbackImg}
           alt={product.productName}
-          className={`object-contain border rounded-md`}
+          className={`object-contain border rounded-md aspect-square`}
         />
       </div>
       <div className="flex flex-col">
