@@ -5,8 +5,8 @@
   @apply custom-focus focus-visible:ring-2;
 }
 .login-btn {
-  @apply bg-white transition-all mt-4 h-12 rounded-full font-semibold text-lg hover:border-transparent
-  hover:bg-custom-green-hover hover:text-white;
+  @apply bg-white transition-all mt-4 rounded-full font-semibold text-lg hover:border-transparent
+  hover:bg-custom-green-hover hover:text-white text-custom-span py-2;
 }
 .sign-up-link {
   @apply ml-2 text-base underline underline-offset-4 text-white 
@@ -15,8 +15,8 @@
        focus:before:bg-custom-green-600 focus:text-custom-black;
 }
 .kakao-btn {
-  @apply bg-custom-kakao w-72 h-12 flex items-center justify-center space-x-2 mt-6 rounded-full 
-          font-semibold hover:border-transparent hover:grayscale-40 transition-all;
+  @apply bg-custom-kakao w-72 flex items-center justify-center space-x-2 mt-6 rounded-full 
+          font-semibold hover:border-transparent hover:grayscale-40 transition-all text-custom-span py-2.5;
 }
 .next-btn {
   @apply bg-custom-gray-light whitespace-nowrap px-4 tablet:py-1 tablet:h-10 self-end 
