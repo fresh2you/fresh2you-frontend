@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import useKakaoLogin from "../signIn/hooks/useKakaoLogin";
 import { Loading } from "./component/Loading";
+
 const RedirectionPage = () => {
   const navigate = useNavigate();
 
-  const onSuccessCallback = (data) => {
-    if (data.isSignup) {
+  const onSuccessCallback = (data: ISocialLoginResponse["data"] | null) => {
+    if (data && data.isSignup) {
       navigate("/");
-    } else {
+    } else if (data) {
       sessionStorage.setItem(
         "socialInfo",
         JSON.stringify({
@@ -22,11 +23,11 @@ const RedirectionPage = () => {
     }
   };
 
-  const onErrorCallback = (error) => {
+  const onErrorCallback = () => {
     navigate("/auth/signin");
   };
 
-  useKakaoLogin(onSuccessCallback, onErrorCallback);
+  useKakaoLogin({ onSuccessCallback, onErrorCallback });
 
   return (
     <>
