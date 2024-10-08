@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import { memo } from "react";
-import SignUpPage from "../pages/signUp/SignUpPage";
+import SignUpPage from "@/pages/signUp/SignUpPage";
 import HomePage from "../pages/home/HomePage";
 import SearchPage from "../pages/search/SearchPage";
 import SignInPage from "../pages/signIn/SignInPage";
 import RootLayout from "../components/layout/RootLayout";
 import TermsAgreementPage from "@/pages/terms/TermsAgreementPage";
-import RedirectionPage from "../pages/redirection/RedirectionPage";
+import RedirectionPage from "@/pages/redirection/RedirectionPage";
 import SignUpCompletePage from "../pages/signUp/SignUpComplete";
 import NotFoundPage from "../pages/NotfoundPage";
 import ProductsPage from "../pages/product/ProductsPage";
