@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Pretendard", Inter, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
@@ -24,13 +24,13 @@
 
 * {
   box-sizing: border-box;
-  font-family: "Pretendard", sans-serif;
+  font-family: "Pretendard", Inter, sans-serif;
   margin: 0;
   padding: 0;
+  color: #333333;
 }
 
 body {
-  margin: 0;
   display: flex;
   place-items: center;
   min-width: 100vw;
