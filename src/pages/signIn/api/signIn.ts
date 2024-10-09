@@ -1,4 +1,4 @@
-import { api } from "@/services/api";
+import authAPI from "@/services/api/authAPI";
 
 interface LoginCredentials {
   email: string;
@@ -7,7 +7,7 @@ interface LoginCredentials {
 
 export const login = async (credentials: LoginCredentials): Promise<IEmailLoginResponse> => {
   try {
-    const response = await api.auth.emailLogin({
+    const response = await authAPI.emailLogin({
       email: credentials.email,
       password: credentials.password,
     });

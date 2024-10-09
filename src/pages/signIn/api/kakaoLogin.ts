@@ -1,4 +1,4 @@
-import { api } from "@/services/api";
+import authAPI from "@/services/api/authAPI";
 interface KakaoLoginParams {
   code: string;
   redirectUri: string;
@@ -7,7 +7,7 @@ interface KakaoLoginParams {
 
 export const kakaoLogin = async (accessToken: KakaoLoginParams): Promise<ISocialLoginResponse> => {
   try {
-    const response = await api.auth.socialLogin(accessToken);
+    const response = await authAPI.socialLogin(accessToken);
     const { token, loginMember, isSignup } = response.data;
 
     if (response.success) {
