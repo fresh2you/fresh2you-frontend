@@ -14,9 +14,9 @@ const SignInPage = () => {
       <div className="flex flex-col items-center justify-center mobile:w-11/12 max-w-[340px]">
         <LogoImg aria-label="Fresh 2 You" className="mb-3 mobile:w-3/5 mobile:max-w-40" />
         <SignInForm />
-        <div className="my-6 whitespace-nowrap">
-          <p className="inline my-6 text-custom-span font-bold whitespace-nowrap">아직 계정이 없으신가요? </p>
-          <Link to="../signup/terms" className="sign-up-link text-custom-span">
+        <div className="my-6">
+          <p className="inline font-bold text-custom-span">아직 계정이 없으신가요? </p>
+          <Link to="../signup/terms" className="sign-up-link">
             가입하기
           </Link>
         </div>

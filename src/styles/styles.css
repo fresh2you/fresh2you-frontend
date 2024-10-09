@@ -1,5 +1,5 @@
 .custom-focus {
-  @apply outline-none focus-visible:ring-4 focus-visible:ring-custom-green-600;
+  @apply outline-none focus-visible:ring-4 focus-visible:ring-custom-green-700;
 }
 .custom-focus-light {
   @apply custom-focus focus-visible:ring-2;
@@ -9,14 +9,12 @@
   hover:bg-custom-green-hover hover:text-white text-custom-span py-2;
 }
 .sign-up-link {
-  @apply ml-2 text-base underline underline-offset-4 text-white 
-       hover:text-gray-200 transition-all outline-none relative
-        before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full before:h-1 before:rounded
-       focus:before:bg-custom-green-600 focus:text-custom-black;
+  @apply ml-2 text-custom-span underline underline-offset-4 text-white 
+       hover:text-gray-200 transition-all custom-focus rounded-sm;
 }
 .kakao-btn {
-  @apply bg-custom-kakao w-72 flex items-center justify-center space-x-2 mt-6 rounded-full 
-          font-semibold hover:border-transparent hover:grayscale-40 transition-all text-custom-span py-2.5;
+  @apply bg-custom-kakao flex items-center justify-center space-x-2 mt-6 rounded-full 
+          font-semibold hover:grayscale-40 transition-all text-custom-span py-2.5 custom-focus;
 }
 .next-btn {
   @apply bg-custom-gray-light whitespace-nowrap px-4 tablet:py-1 tablet:h-10 self-end 
