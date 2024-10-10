@@ -16,11 +16,13 @@ const ChatPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const product = location.state ? location.state : [];
+
   const { userInfo } = useMyPageLogics();
-  const userId = userInfo.userId;
+  const userId = userInfo?.userId;
+
   const chatInfo = {
     chatRoomId: chatRoomId,
-    userId: userId,
+    userId: userId || undefined,
     chatPartnerId: 80, // chatPartnerId
   };
 
@@ -29,7 +31,7 @@ const ChatPage = () => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    fetchChatMessages(userId);
+    if (use) fetchChatMessages(userId);
   }, [chatRoomId]);
 
   // WebSocket 연결
@@ -62,7 +64,7 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="bg-white mx-auto text-custom-black relative w-full">
+    <div className="relative w-full mx-auto bg-white text-custom-black">
       <div
         className={`fixed opacity-95 left-4 max-w-[450px] rounded-md mr-4 p-1.5 transition-transform 
           duration-300 overflow-hidden flex ${showProductInfo ? "translate-x-0" : "-translate-x-[96%]"}
@@ -73,7 +75,7 @@ const ChatPage = () => {
             <ProductInfo inChat={true} product={product} noBtn={false} className="mr-12" />
             <button
               onClick={toggleProductInfo}
-              className="p-0 bg-gray-200 custom-focus-light fixed right-0 top-0 bottom-0 rounded-none"
+              className="fixed top-0 bottom-0 right-0 p-0 bg-gray-200 rounded-none custom-focus-light"
             >
               {showProductInfo ? <ArrowLeftIcon /> : <ArrowRightIcon />}
             </button>
@@ -81,7 +83,7 @@ const ChatPage = () => {
         )}
       </div>
       {messages.length ? (
-        <div className="pt-2 max-w-lg w-full mx-auto tablet-sm:border rounded mobile:pb-16 h-screen">
+        <div className="w-full h-screen max-w-lg pt-2 mx-auto rounded tablet-sm:border mobile:pb-16">
           <MessageList messages={messages} />
           <div ref={messagesEndRef} />
         </div>
