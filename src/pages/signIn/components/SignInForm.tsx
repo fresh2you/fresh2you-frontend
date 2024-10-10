@@ -3,7 +3,7 @@ import "../../../styles/styles.css";
 import { useNavigate } from "react-router-dom";
 import { useFormHandlers } from "../handler/useFromHandlers";
 import useLogin from "../hooks/useLogin";
-import InputField from "./InputField";
+import InputWithLabel from "@/components/InputWithLabel";
 import { handleSubmit } from "../handler/handleSubmit";
 
 interface FormData {
@@ -36,23 +36,23 @@ export default function SignInForm() {
       onSubmit={(e) => handleSubmit(formData, setError, setShake, e, loginMutate)}
       className={`flex flex-col mt-2 w-full ${shake ? "shake" : ""}`}
     >
-      <InputField
+      <InputWithLabel
         id="email"
         label="이메일 주소"
         type="email"
         value={formData.email}
         onChange={handleChange}
         placeholder="이메일을 입력하세요"
-        autoComplete="email"
+        autoComplete="on"
       />
-      <InputField
+      <InputWithLabel
         id="password"
         label="비밀번호"
         type="password"
         value={formData.password}
         onChange={handleChange}
         placeholder="비밀번호를 입력하세요"
-        autoComplete="current-password"
+        autoComplete="on"
         onButtonClick={() => document.querySelector<HTMLButtonElement>(".login-btn")?.click()}
       />
 
