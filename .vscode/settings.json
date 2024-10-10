@@ -4,5 +4,6 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
-  }
+  },
+  "cSpell.words": ["KAKAO", "kakaotalk", "NAVER", "SIGNIN", "signup", "tanstack"]
 }
