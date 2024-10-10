@@ -5,7 +5,7 @@ import useMyPageLogics from "../mypage/mypage/hooks/useMyPageLogics";
 import useChatRooms from "./hooks/useChatRooms";
 const ChatListPage = () => {
   const { userInfo } = useMyPageLogics();
-  const chatRooms = useChatRooms(userInfo.userId);
+  const chatRooms = useChatRooms(userInfo?.userId);
 
   return (
     <div
@@ -13,7 +13,7 @@ const ChatListPage = () => {
     shadow-lg"
     >
       {chatRooms.length === 0 ? (
-        <div className="p-4 text-center text-gray-500 h-screen mt-4 text-custom-h3">협상을 시작해보세요!</div>
+        <div className="h-screen p-4 mt-4 text-center text-gray-500 text-custom-h3">협상을 시작해보세요!</div>
       ) : (
         chatRooms.map((chat) => <ChatItem key={chat.id} chat={chat} />)
       )}
