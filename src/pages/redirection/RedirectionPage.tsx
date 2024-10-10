@@ -6,7 +6,7 @@ const RedirectionPage = () => {
   const navigate = useNavigate();
 
   const onSuccessCallback = (data: ISocialLoginResponse["data"] | null) => {
-    if (data && data.isSignup) {
+    if (data?.isSignup) {
       navigate("/");
     } else if (data) {
       sessionStorage.setItem(
