@@ -32,35 +32,40 @@ export default function SignInForm() {
   );
 
   return (
-    <form
-      onSubmit={(e) => handleSubmit(formData, setError, setShake, e, loginMutate)}
-      className={`flex flex-col mt-2 w-full ${shake ? "shake" : ""}`}
-    >
-      <InputWithLabel
-        id="email"
-        label="이메일 주소"
-        type="email"
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="이메일을 입력하세요"
-        autoComplete="on"
-      />
-      <InputWithLabel
-        id="password"
-        label="비밀번호"
-        type="password"
-        value={formData.password}
-        onChange={handleChange}
-        placeholder="비밀번호를 입력하세요"
-        autoComplete="on"
-        onButtonClick={() => document.querySelector<HTMLButtonElement>(".login-btn")?.click()}
-      />
+    <section aria-labelledby="sign-in-form" className="w-full">
+      <h2 id="sign-in-form" className="sr-only">
+        로그인 폼
+      </h2>
+      <form
+        onSubmit={(e) => handleSubmit(formData, setError, setShake, e, loginMutate)}
+        className={`flex flex-col mt-2 w-full ${shake ? "shake" : ""}`}
+      >
+        <InputWithLabel
+          id="email"
+          label="이메일 주소"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="이메일을 입력하세요"
+          autoComplete="on"
+        />
+        <InputWithLabel
+          id="password"
+          label="비밀번호"
+          type="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="비밀번호를 입력하세요"
+          autoComplete="on"
+          onButtonClick={() => document.querySelector<HTMLButtonElement>(".login-btn")?.click()}
+        />
 
-      {error && <p className="mt-2 font-semibold text-white">{error}</p>}
+        {error && <p className="mt-2 font-semibold text-white">{error}</p>}
 
-      <button type="submit" className="login-btn custom-focus">
-        로그인
-      </button>
-    </form>
+        <button type="submit" className="login-btn custom-focus" aria-label="로그인 하기">
+          로그인
+        </button>
+      </form>
+    </section>
   );
 }
