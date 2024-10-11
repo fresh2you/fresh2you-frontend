@@ -27,7 +27,6 @@
   font-family: "Pretendard", Inter, sans-serif;
   margin: 0;
   padding: 0;
-  color: #333333;
 }
 
 body {
@@ -46,6 +45,7 @@ body {
 a {
   font-weight: 500;
 }
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -57,6 +57,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
