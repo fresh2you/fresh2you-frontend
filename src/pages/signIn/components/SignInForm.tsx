@@ -62,7 +62,7 @@ export default function SignInForm() {
 
         {error && <p className="mt-2 font-semibold text-white">{error}</p>}
 
-        <button type="submit" className="login-btn custom-focus" aria-label="로그인 하기">
+        <button type="submit" className="login-btn custom-focus text-custom-span" aria-label="로그인 하기">
           로그인
         </button>
       </form>

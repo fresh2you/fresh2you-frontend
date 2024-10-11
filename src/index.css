@@ -9,7 +9,7 @@
   font-size: 16px;
   letter-spacing: 0.3px;
   @apply text-base;
-  @apply tablet:text-lg;
+  /* @apply tablet:text-lg; */
   /* @apply desktop:text-xl; */
 
   color-scheme: light dark;

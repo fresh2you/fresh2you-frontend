@@ -45,8 +45,8 @@ const InputWithLabel = ({
   };
 
   return (
-    <section className="flex flex-col w-full mb-2">
-      <label htmlFor={id} className="mb-1 font-semibold text-custom-black text-custom-span">
+    <section className="flex flex-col w-full mb-2.5">
+      <label htmlFor={id} className="mb-1 font-semibold text-custom-black text-custom-input">
         {label}
       </label>
       <div
@@ -64,8 +64,8 @@ const InputWithLabel = ({
           onFocus={onFocus}
           onBlur={onBlur}
           onKeyDown={handleKeyDown}
-          className="w-full text-custom-black max-h-10 p-2 rounded 
-          text-custom-span custom-focus
+          className="w-full text-custom-black mobile:p-2.5 rounded 
+          text-custom-input custom-focus leading-4
           "
         />
         {type === "password" && (

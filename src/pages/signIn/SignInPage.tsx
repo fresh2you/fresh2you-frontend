@@ -13,7 +13,7 @@ const SignInPage = () => {
     >
       <main className="flex flex-col items-center justify-center mobile:w-11/12 max-w-[340px]">
         <header className="w-full">
-          <LogoImg aria-label="Fresh 2 You" className="mb-3 mobile:w-3/5 mobile:max-w-40 mx-auto" />
+          <LogoImg aria-label="Fresh 2 You" className="mb-3 mobile:w-3/5 mx-auto" />
         </header>
         <SignInForm />
         <section className="my-6 mx-auto">
