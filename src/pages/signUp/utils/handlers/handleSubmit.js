@@ -37,7 +37,8 @@ export const handleSubmit = async (
   } else {
     setIsLoading(true);
     try {
-      await signUpUser(false, state, state.termsAgreements, formData);
+      const storedTermsAgreements = sessionStorage.getItem("termsAgreements");
+      await signUpUser(false, state, JSON.parse(storedTermsAgreements), formData);
       await login({ email: formData.email, password: formData.password });
     } catch (error) {
       console.error("회원가입 실패", error.response ? error.response.data : error);

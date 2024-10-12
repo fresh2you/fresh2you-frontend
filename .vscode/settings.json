@@ -5,5 +5,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },
-  "cSpell.words": ["KAKAO", "kakaotalk", "NAVER", "SIGNIN", "signup", "tanstack"]
+  "cSpell.words": ["KAKAO", "kakaotalk", "mypage", "NAVER", "Pretendard", "SIGNIN", "signup", "tailwindcss", "tanstack"]
 }

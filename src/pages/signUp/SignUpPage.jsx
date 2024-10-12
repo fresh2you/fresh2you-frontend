@@ -20,7 +20,8 @@ import useLogin from "../signIn/hooks/useLogin";
 export default function SignUpPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isAgreedToTerms, setIsAgreedToTerms] = useState(location.state?.termsAgreements || false);
+  const [isAgreedToTerms, setIsAgreedToTerms] = useState(sessionStorage.getItem("termsAgreements") || false);
+  console.log(isAgreedToTerms);
   useRedirectIfNotAgreed(isAgreedToTerms);
 
   const funnel = useFunnel({
