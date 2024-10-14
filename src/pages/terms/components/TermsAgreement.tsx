@@ -1,10 +1,9 @@
 import { useState } from "react";
 import "../../../styles/styles.css";
-import TermModal from "./TermModal";
+import { openTermModal } from "../handler/termModalHandler";
 import TermItem from "./TermItem";
 import { handleIndividualCheck, handleAllCheck } from "../utils/termsHelper";
 import useTerms from "../hook/useTerms";
-import { overlay } from "overlay-kit";
 
 interface Term {
   termsId: string;
@@ -22,13 +21,6 @@ interface TermsAgreementProps {
 const TermsAgreement: React.FC<TermsAgreementProps> = ({ onAgree, termsChecked, setTermsChecked }) => {
   const [allChecked, setAllChecked] = useState<boolean>(false);
   const termsList: Term[] = useTerms(setTermsChecked);
-
-  const openModal = (content: string) => {
-    const unescapedData = JSON.parse(`"${content}"`);
-    overlay.open(({ isOpen, close }) => {
-      return <TermModal isOpen={isOpen} onClose={close} content={unescapedData} />;
-    });
-  };
 
   return (
     <section
@@ -57,7 +49,7 @@ const TermsAgreement: React.FC<TermsAgreementProps> = ({ onAgree, termsChecked, 
             handleCheck={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleIndividualCheck(e, termsChecked, setTermsChecked, setAllChecked, onAgree, termsList)
             }
-            openModal={() => openModal(term.content)}
+            openModal={openTermModal}
           />
         ))}
       </ul>
