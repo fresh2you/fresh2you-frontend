@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "json": "json-server --watch ./src/mockdata/db.json --port 5000",
-    "swagger-typescript-api": "swagger-typescript-api -p https://api.jihun-dev.kr/api-docs/v1 -r -o ./models --modular -d --extract-request-body --extract-response-body --extract-response-error"
+    "swagger-typescript-api": "swagger-typescript-api -p https://api.jihun-dev.kr/api-docs/v1 -r -o ./models -n api.ts --modular -d --extract-request-body --extract-response-body --extract-response-error --axios"
   },
   "dependencies": {
     "@stomp/stompjs": "^7.0.0",
