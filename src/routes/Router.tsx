@@ -27,11 +27,14 @@ import DeliveriesPage from "@/pages/mypage/deliveries/DeliveriesPage";
 import CommunityPage from "@/pages/community/CommunityPage";
 import CommunityPostPage from "@/pages/community/CommunityPostPage";
 import ProtectedRoute from "@/routes/ProtectedRoute";
+import TestPage from "@/pages/TestPage";
 
 /* TODO: Route들을 묶어서 파일 관리로 수정 예정 */
 const Router = (): JSX.Element => {
   return (
     <Routes>
+      <Route path="/test" element={<TestPage />} />
+
       {/* 404 Not Found */}
       <Route path="*" element={<NotFoundPage />} />
       {/* 로그인 & 회원가입 */}
