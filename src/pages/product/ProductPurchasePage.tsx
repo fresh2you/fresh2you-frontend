@@ -7,7 +7,6 @@ import { formatCurrency } from "../../utils/commonUtils";
 import { useFetchProductById } from "./hooks/useFetchProductById";
 import { handlePurchase } from "./utils/productUtils";
 import { Loading } from "../redirection/component/Loading";
-import ProductInfo from "./components/details/ProductInfo";
 import useDefaultAddress from "./hooks/useDefaultAddress";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,9 +25,7 @@ const ProductPurchasePage = () => {
   }, [setHeaderProps]);
 
   const { id: productId } = useParams();
-  const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [loading, setLoading] = useState(false);
   const [recipientDetails, setRecipientDetails] = useState({
     recipientName: "",
     phoneNumber: "",
@@ -40,11 +37,11 @@ const ProductPurchasePage = () => {
   const [addressList, setAddressList] = useState([]);
   const navigate = useNavigate();
 
-  useFetchProductById(productId, setLoading, setProduct);
+  const { fetchedProductById: product, isLoading } = useFetchProductById();
 
   useDefaultAddress(setRecipientDetails, setAddressList);
 
-  if (loading || !product) return <Loading isLayoutApplied={true} />;
+  if (isLoading || !product) return <Loading isLayoutApplied={true} />;
 
   const totalAmount = product.price * quantity;
 

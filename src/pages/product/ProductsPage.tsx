@@ -27,8 +27,6 @@ const ProductsPage = () => {
           size: itemsPerPage,
         });
 
-        console.log(newProducts);
-
         if (newProducts.productList.length === 0 || newProducts.productList.length < itemsPerPage) {
           setHasMore(false);
         }
