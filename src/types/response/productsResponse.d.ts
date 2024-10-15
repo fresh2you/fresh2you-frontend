@@ -3,7 +3,7 @@ declare interface IProductList {
   productId: number;
   sellerName: string;
   productName: string;
-  productDescription: string;
+  description: string;
   quantity: number;
   price: number;
   imageUrl: string;
