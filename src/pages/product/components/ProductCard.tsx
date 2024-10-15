@@ -1,19 +1,18 @@
 import { forwardRef } from "react";
 import { formatCurrency } from "../../../utils/commonUtils";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 
-const ProductCard = forwardRef(({ product }, ref) => {
-  const navigate = useNavigate();
+const ProductCard = forwardRef<HTMLAnchorElement, { product: IProductList }>(({ product }, ref) => {
   return (
-    <div
+    <Link
       ref={ref}
-      className="bg-white shadow-lg rounded-xl overflow-hidden max-w-xs border border-custom-gray-light 
+      className="block hover:text-inherit bg-white shadow-lg rounded-xl overflow-hidden max-w-xs border border-custom-gray-light 
       cursor-pointer pt-2 mobile:w-40 mobile:h-[200px]
      tablet-sm:w-44 tablet-sm:h-[223px] tablet:h-[240px]"
-      onClick={() => navigate(`./${product.productId}`)}
+      to={`./${product.productId}`}
     >
-      <div className="flex justify-center items-center w-full">
+      <div className="flex items-center justify-center w-full">
         <img
           src={product.imageUrl || fallbackImg}
           alt={product.productName}
@@ -22,12 +21,12 @@ const ProductCard = forwardRef(({ product }, ref) => {
            border rounded"
         />
       </div>
-      <div className="py-2 px-4 flex flex-col text-custom-btn-text mobile:leading-5 tablet-sm:leading-6">
+      <div className="flex flex-col px-4 py-2 text-custom-btn-text mobile:leading-5 tablet-sm:leading-6">
         <h2 className="font-bold ">{product.productName}</h2>
         <p className="text-custom-gray-dark">{product.sellerName}</p>
-        <p className="text-custom-green font-semibold text-custom-span">{formatCurrency(product.price)} 원</p>
+        <p className="font-semibold text-custom-green text-custom-span">{formatCurrency(product.price)} 원</p>
       </div>
-    </div>
+    </Link>
   );
 });
 
