@@ -10,6 +10,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import PlusIcon from "../../assets/icons/plus.svg";
 import { useNavigate } from "react-router-dom";
 import useMyPageLogics from "../mypage/mypage/hooks/useMyPageLogics";
+
 const ProductsPage = () => {
   const queryClient = useQueryClient();
   const [products, setProducts] = useState([]);
@@ -56,12 +57,12 @@ const ProductsPage = () => {
   }, [pageNumber, loadProducts]);
 
   const { userInfo } = useMyPageLogics();
-  const isSeller = userInfo.isSeller;
+  const isSeller = userInfo?.isSeller;
 
   return (
     <div className="mx-auto py-2.5 text-custom-black product-page">
       <CategoryButtons handleCategoryChange={handleCategoryChange} />
-      <h2 className="font-bold text-center text-custom-green my-6 text-custom-h2">갓 수확했어요!</h2>
+      <h2 className="my-6 font-bold text-center text-custom-green text-custom-h2">갓 수확했어요!</h2>
       <ProductList products={products} lastProductRef={lastProductRef} itemsPerPage={itemsPerPage} />
       {isSeller && (
         <button
