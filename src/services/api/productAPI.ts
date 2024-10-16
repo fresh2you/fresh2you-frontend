@@ -21,6 +21,30 @@ const productAPI = {
     return response;
   },
 
+  fetchProducts: async ({
+    categoryId = undefined,
+    page = 0,
+    size = 20,
+  }: {
+    categoryId?: number;
+    page: number;
+    size: number;
+  }) => {
+    const params: { categoryId?: number; page: number; size: number } = {
+      page,
+      size,
+    };
+
+    // categoryId가 정의되어 있을 경우 params에 추가
+    if (categoryId !== undefined) {
+      params.categoryId = categoryId;
+    }
+
+    const { data: response } = await instance.get("/products", { params });
+
+    return response;
+  },
+
   getAllProducts: async ({ page = 0, size = 20 }: { page: number; size: number }) => {
     const { data: response } = await instance.get("/products", {
       params: {

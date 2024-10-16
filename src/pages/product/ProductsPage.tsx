@@ -1,50 +1,50 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import ProductCard from "./components/ProductCard";
-import { mockProducts } from "../../mockdata/MockData";
+import { useState, useEffect, useCallback } from "react";
 import CategoryButtons from "./components/buttons/CategoryButtons";
 import useInfiniteScroll from "./hooks/useInfiniteScroll";
 import ProductList from "./components/ProductList";
-import "../../styles/styles.css";
-import { fetchProducts } from "./api/productApis";
-import { useQueryClient } from "@tanstack/react-query";
+import "@/styles/styles.css";
 import PlusIcon from "../../assets/icons/plus.svg";
-import { useNavigate } from "react-router-dom";
-import useMyPageLogics from "../mypage/mypage/hooks/useMyPageLogics";
+import { Link } from "react-router-dom";
+import useMyPageLogics from "@/pages/mypage/mypage/hooks/useMyPageLogics";
+import { api } from "@/services/api";
 
 const ProductsPage = () => {
-  const queryClient = useQueryClient();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<IProductList[]>([]);
   const [loading, setLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-  const [selectedCategoryId, setSelectedCategoryId] = useState(undefined);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<undefined | number>(undefined);
   const itemsPerPage = 12;
 
-  const navigate = useNavigate();
-  const observer = useRef();
-
   const loadProducts = useCallback(
-    async (pageNumber) => {
+    async (pageNumber: number) => {
       if (!hasMore) return;
       setLoading(true);
       try {
-        const newProducts = await fetchProducts(selectedCategoryId, undefined, pageNumber, itemsPerPage);
+        const { data: newProducts } = await api.product.fetchProducts({
+          categoryId: selectedCategoryId,
+          page: pageNumber,
+          size: itemsPerPage,
+        });
+
         if (newProducts.productList.length === 0 || newProducts.productList.length < itemsPerPage) {
           setHasMore(false);
         }
-        setProducts([...products, ...newProducts.productList]);
+
+        setProducts((prev) => [...prev, ...newProducts.productList]);
+        //setProducts([...products, ...newProducts.productList]);
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {
         setLoading(false);
       }
     },
-    [hasMore, selectedCategoryId, pageNumber],
+    [hasMore, selectedCategoryId],
   );
 
   const { lastProductRef } = useInfiniteScroll(loading, hasMore, setPageNumber);
 
-  const handleCategoryChange = (categoryId) => {
+  const handleCategoryChange = (categoryId: number) => {
     if (selectedCategoryId === categoryId) return;
     setSelectedCategoryId(categoryId);
     setProducts([]);
@@ -64,14 +64,15 @@ const ProductsPage = () => {
       <CategoryButtons handleCategoryChange={handleCategoryChange} />
       <h2 className="my-6 font-bold text-center text-custom-green text-custom-h2">갓 수확했어요!</h2>
       <ProductList products={products} lastProductRef={lastProductRef} itemsPerPage={itemsPerPage} />
+
       {isSeller && (
-        <button
+        <Link
           className="fixed mobile:bottom-20 tablet:bottom-4 mobile:right-4 p-2.5 bg-custom-green text-white rounded-full 
       shadow-lg hover:bg-custom-green-hover z-50"
-          onClick={() => navigate("/product/register")}
+          to={"/product/register"}
         >
           <PlusIcon className="mobile:w-7 mobile:h-7 tablet:w-8 tablet:h-8" />
-        </button>
+        </Link>
       )}
     </div>
   );

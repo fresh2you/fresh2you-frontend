@@ -18,14 +18,14 @@ const ProductImageSlider = () => {
   };
 
   return (
-    <div className="w-full relative">
+    <div className="relative w-full">
       <Slider {...settings}>
         {images.map((img, index) => (
           <div key={index} className="relative w-full focus:outline-none">
             <img
               src={img}
               alt={`Product ${index + 1}`}
-              className="w-full h-auto max-h-96 object-contain"
+              className="object-contain w-full h-auto max-h-96"
               style={{ aspectRatio: "16/9" }}
             />
           </div>

@@ -1,16 +1,17 @@
 /* 모든 상품 목록 조회 */
+declare interface IProductList {
+  productId: number;
+  sellerName: string;
+  productName: string;
+  description: string;
+  quantity: number;
+  price: number;
+  imageUrl: string;
+}
+
 declare interface IGetAllProductsResponse extends defaultApiResponse {
   data: {
-    productList: {
-      productId: number;
-      sellerName: string;
-      productName: string;
-      productDescription: string;
-      quantity: number;
-      price: number;
-      imageUrl: string;
-    }[];
-
+    productList: IProductList[];
     pageNumber: number;
     pageSize: number;
     totalPageNumber: number;
