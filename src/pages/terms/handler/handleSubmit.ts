@@ -1,4 +1,4 @@
-import { signUpUser } from "@/pages/signUp/api/signUpUser";
+import authAPI from "@/services/api/authAPI";
 import { checkRequiredTermsAgreed } from "../utils/termsHelper";
 import { toast } from "react-toastify";
 import { NavigateFunction } from "react-router-dom";
@@ -8,17 +8,13 @@ interface Token {
   accessExpiredAt: string;
 }
 
-interface State {
-  someData: string;
-}
-
 interface TermsChecked {
   [key: string]: boolean;
 }
 
 export const handleSubmit = async (
   isSocialLoginRedirect: boolean,
-  state: State | null,
+  state: SocialSignUpRequest,
   termsChecked: TermsChecked,
   navigate: NavigateFunction,
 ): Promise<void> => {
@@ -34,9 +30,17 @@ export const handleSubmit = async (
     isAgreed,
   }));
 
-  if (isSocialLoginRedirect && state) {
+  if (isSocialLoginRedirect) {
     try {
-      const { success, token }: { success: boolean; token: Token } = await signUpUser(true, state, termsAgreements);
+      const { success, token }: { success: boolean; token: Token } = await authAPI.signUp({
+        email: state.email,
+        nickname: state.nickname,
+        termsAgreements: termsAgreements,
+        provider: state.provider,
+        providerId: state.providerId,
+        password: null,
+        confirmPassword: null,
+      });
 
       if (success) {
         sessionStorage.clear();
@@ -44,8 +48,7 @@ export const handleSubmit = async (
         localStorage.setItem("accessExpiredAt", token.accessExpiredAt);
         navigate("/auth/signup/complete");
       }
-    } catch (error) {
-      console.log(error);
+    } catch {
       navigate("/auth/signin");
     }
   } else {

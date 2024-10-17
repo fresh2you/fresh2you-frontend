@@ -1,4 +1,4 @@
-import { CloseBtn } from "@/pages/signUp/component/buttons/CloseBtn";
+import { CloseBtn } from "@/components/CloseBtn";
 interface TermModalProps {
   isOpen: boolean;
   onClose: () => void;
