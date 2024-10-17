@@ -6,7 +6,7 @@ const NotFoundPage: React.FC = () => {
     <main className="flex flex-col items-center justify-center h-screen px-4 bg-custom-green text-custom-black">
       <section className="flex items-center justify-center w-11/12 gap-x-4">
         <div className="w-1/3 max-w-[180px]">
-          <LogoImg aria-label="Fresh 2 You" className="h-auto" />
+          <LogoImg alt="Fresh 2 You" className="h-auto" />
         </div>
         <div className="flex flex-col items-start">
           <h1 className="font-semibold text-white text-custom-h">404</h1>

@@ -30,7 +30,7 @@ const TermsAgreementPage = () => {
       "
       >
         <header className="w-1/2 mb-3">
-          <LogoImg aria-label="Fresh 2 You" />
+          <LogoImg alt="Fresh 2 You" />
         </header>
         <TermsAgreement onAgree={handleAgree} termsChecked={termsChecked} setTermsChecked={setTermsChecked} />
         <footer>
