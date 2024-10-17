@@ -7,7 +7,7 @@ import PageLayout from "@/components/pageLayout/PageLayout";
 const SignUpPage = lazy(() => import("@/pages/signUp/SignUpPage"));
 const HomePage = lazy(() => import("../pages/home/HomePage"));
 const SearchPage = lazy(() => import("../pages/search/SearchPage"));
-const SignInPage = lazy(() => import("../pages/signIn/SignInPage"));
+const SignInPage = lazy(() => import("@/pages/signIn/SignInPage"));
 const RootLayout = lazy(() => import("../components/layout/RootLayout"));
 const TermsAgreementPage = lazy(() => import("@/pages/terms/TermsAgreementPage"));
 const RedirectionPage = lazy(() => import("@/pages/redirection/RedirectionPage"));
