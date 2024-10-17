@@ -11,9 +11,9 @@ const SignInPage = () => {
       className="flex justify-center px-4 py-4 bg-custom-green text-custom-black 
     fixed top-0 bottom-0 left-0 right-0"
     >
-      <main className="flex flex-col items-center justify-center mobile:w-11/12 max-w-[340px]">
+      <main className="flex flex-col items-center justify-center mobile:w-11/12 max-w-[320px]">
         <header className="w-full">
-          <LogoImg aria-label="Fresh 2 You" className="mb-3 mobile:w-3/5 mx-auto" />
+          <LogoImg aria-label="Fresh 2 You" className="mb-3 mobile:w-1/2 mx-auto" />
         </header>
         <SignInForm />
         <section className="my-6 mx-auto">

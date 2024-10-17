@@ -5,18 +5,18 @@ import { kakaoLogin } from "../api/kakaoLogin";
 type SuccessCallback = (response: ISocialLoginResponse["data"] | null) => void;
 type ErrorCallback = () => void;
 
-interface KakaoLoginParams {
+export interface KakaoLoginParams {
   code: string;
   redirectUri: string;
   provider: "KAKAO";
 }
 
-interface LoginCredentials {
+export interface LoginCredentials {
   email: string;
   password: string;
 }
 
-type LoginResponse = ISocialLoginResponse | IEmailLoginResponse | null;
+export type LoginResponse = ISocialLoginResponse | IEmailLoginResponse | null;
 
 const useLogin = (isSocialLogin: boolean, onSuccessCallback: SuccessCallback, onErrorCallback: ErrorCallback) => {
   const queryClient = useQueryClient();

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../../../styles/styles.css";
 import { useNavigate } from "react-router-dom";
-import { useFormHandlers } from "../handler/useFromHandlers";
+import { useFormHandlers } from "../handler/useFormHandlers";
 import useLogin from "../hooks/useLogin";
 import InputWithLabel from "@/components/InputWithLabel";
 import { handleSubmit } from "../handler/handleSubmit";
@@ -58,6 +58,7 @@ export default function SignInForm() {
           placeholder="비밀번호를 입력하세요"
           autoComplete="on"
           onButtonClick={() => document.querySelector<HTMLButtonElement>(".login-btn")?.click()}
+          noIcon={true}
         />
 
         {error && <p className="mt-2 font-semibold text-white">{error}</p>}

@@ -1,4 +1,5 @@
 import authAPI from "@/services/api/authAPI";
+
 interface KakaoLoginParams {
   code: string;
   redirectUri: string;
@@ -9,8 +10,7 @@ export const kakaoLogin = async (accessToken: KakaoLoginParams): Promise<ISocial
   try {
     const response = await authAPI.socialLogin(accessToken);
     const { token, loginMember, isSignup } = response.data;
-
-    if (response.success) {
+    if (isSignup && response.success) {
       localStorage.setItem("accessToken", token.accessToken);
       localStorage.setItem("accessExpiredAt", token.accessExpiredAt);
     }
