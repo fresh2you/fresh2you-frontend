@@ -1,6 +1,7 @@
 import IconEye from "icons/eye.svg";
 import { useRef } from "react";
 import "../styles/styles.css";
+
 interface InputWithLabelProps {
   id: string;
   label: string;
@@ -12,6 +13,9 @@ interface InputWithLabelProps {
   onFocus?: () => void;
   onBlur?: () => void;
   onButtonClick?: () => void;
+  noIcon?: boolean;
+  withBtn?: React.ReactNode;
+  className?: string;
 }
 
 const InputWithLabel = ({
@@ -25,6 +29,9 @@ const InputWithLabel = ({
   onFocus,
   onBlur,
   onButtonClick,
+  noIcon,
+  withBtn,
+  className,
 }: InputWithLabelProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -49,10 +56,7 @@ const InputWithLabel = ({
       <label htmlFor={id} className="mb-1 font-semibold text-custom-black text-custom-input">
         {label}
       </label>
-      <div
-        className="flex items-center w-full border rounded border-custom-gray-light 
-      bg-white gap-2"
-      >
+      <div className="flex w-full gap-2">
         <input
           id={id}
           type={type}
@@ -64,11 +68,10 @@ const InputWithLabel = ({
           onFocus={onFocus}
           onBlur={onBlur}
           onKeyDown={handleKeyDown}
-          className="w-full text-custom-black mobile:p-2.5 rounded 
-          text-custom-input custom-focus leading-4
-          "
+          className={`w-full text-custom-black p-2.5 rounded 
+          text-custom-input custom-focus leading-4 border border-custom-gray-light ${className}`}
         />
-        {type === "password" && (
+        {!noIcon && type === "password" && (
           <button
             type="button"
             className="h-full p-0 pr-2 bg-white border-none outline-none"
@@ -83,6 +86,7 @@ const InputWithLabel = ({
             <IconEye />
           </button>
         )}
+        {withBtn}
       </div>
     </section>
   );

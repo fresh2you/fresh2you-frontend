@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const useRedirectIfNotAgreed = (isAgreedToTerms) => {
+const useRedirectIfNotAgreed = (isAgreedToTerms: object) => {
   const navigate = useNavigate();
 
   useEffect(() => {
