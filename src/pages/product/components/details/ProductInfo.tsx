@@ -4,7 +4,17 @@ import { useNavigate } from "react-router-dom";
 import ProductActionButtons from "../buttons/ProductActionButtons";
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 
-const ProductInfo = ({ inChat = false, product, noBtn = false, className = "" }) => {
+const ProductInfo = ({
+  inChat = false,
+  product,
+  noBtn = false,
+  className = "",
+}: {
+  product: IProductList;
+  inChat?: boolean;
+  noBtn?: boolean;
+  className?: string;
+}) => {
   const navigate = useNavigate();
   return (
     <div className={`flex items-center gap-x-4 ${className} relative`}>
@@ -26,7 +36,7 @@ const ProductInfo = ({ inChat = false, product, noBtn = false, className = "" })
       </div>
       {inChat && !noBtn && (
         <Button
-          className="bg-custom-green text-white hover:bg-custom-green-hover absolute left-0 bottom-0 opacity-85"
+          className="absolute bottom-0 left-0 text-white bg-custom-green hover:bg-custom-green-hover opacity-85"
           text="구매하기"
           onClick={() => navigate(`/purchase/${product.productId}`)}
         />

@@ -2,7 +2,15 @@ import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import ProductCardSkeleton from "./skeletons/ProductCardSkeleton";
 
-const ProductList = ({ products, lastProductRef, itemsPerPage }) => {
+const ProductList = ({
+  products,
+  lastProductRef,
+  itemsPerPage,
+}: {
+  products: IProductList[];
+  lastProductRef: (node: HTMLDivElement) => void;
+  itemsPerPage: number;
+}) => {
   const [isInitialRender, setIsInitialRender] = useState(true);
 
   useEffect(() => {
@@ -14,7 +22,7 @@ const ProductList = ({ products, lastProductRef, itemsPerPage }) => {
       {isInitialRender
         ? Array.from({ length: itemsPerPage }, (_, index) => <ProductCardSkeleton key={index} />)
         : products.map((product, index) => (
-            <div ref={index === products.length - 1 ? lastProductRef : null} key={`${product.product_id}-${index}`}>
+            <div ref={index === products.length - 1 ? lastProductRef : null} key={`${product.productId}-${index}`}>
               <ProductCard product={product} />
             </div>
           ))}
