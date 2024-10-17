@@ -1,5 +1,5 @@
 import LogoImg from "../assets/img/logo.svg";
-import HomeButton from "../components/HomeButton";
+import HomeButton from "@/components/HomeButton";
 
 const NotFoundPage: React.FC = () => {
   return (
@@ -13,10 +13,7 @@ const NotFoundPage: React.FC = () => {
           <p className="font-semibold text-custom-p">페이지를 찾을 수 없습니다.</p>
         </div>
       </div>
-      <HomeButton
-        className="mt-1.5 bg-white text-custom-black hover:bg-custom-gray-light
-      transition"
-      />
+      <HomeButton className="mt-1.5 bg-white text-custom-black hover:bg-custom-gray-light" />
     </div>
   );
 };
