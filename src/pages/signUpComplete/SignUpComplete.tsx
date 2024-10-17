@@ -4,12 +4,12 @@ import "slick-carousel/slick/slick-theme.css";
 import slider1 from "../../assets/img/sliders/slider1.png";
 import slider2 from "../../assets/img/sliders/slider2.png";
 import slider3 from "../../assets/img/sliders/slider3.png";
-import { useRef } from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Slide from "./component/Slide";
 import SliderControls from "./component/SliderControls";
+
 const settings = {
-  dots: true,
+  dots: false,
   infinite: false,
   speed: 500,
   slidesToShow: 1,
@@ -19,8 +19,9 @@ const settings = {
 };
 
 const SignUpCompletePage = () => {
-  const sliderRef = useRef<Slider | null>(null);
+  const sliderRef = useRef<Slider>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const totalSlides = 3;
 
   const handleNextSlide = () => {
     if (sliderRef.current) {
@@ -28,15 +29,18 @@ const SignUpCompletePage = () => {
     }
   };
 
-  const handleBeforeChange = (next: number) => {
+  const handlePreviousSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
+  };
+
+  const handleBeforeChange = (_current: number, next: number) => {
     setCurrentSlide(next);
   };
 
   return (
-    <div
-      className="flex flex-col justify-center items-center h-screen px-4 
-    mobile:w-full mobile:max-w-[420px] mx-auto tablet-sm:w-11/12 tablet-sm:max-w-[650px] desktop-sm:max-w-[800px]"
-    >
+    <div className="flex flex-col justify-center items-center h-screen px-4 mobile:w-full mobile:max-w-[420px] mx-auto tablet-sm:w-11/12 tablet-sm:max-w-[650px] desktop-sm:max-w-[800px]">
       <main className="w-full h-auto">
         <Slider {...settings} ref={sliderRef} beforeChange={handleBeforeChange}>
           <Slide
@@ -59,7 +63,12 @@ const SignUpCompletePage = () => {
           />
         </Slider>
       </main>
-      <SliderControls currentSlide={currentSlide} onNextSlide={handleNextSlide} />
+      <SliderControls
+        currentSlide={currentSlide}
+        onNextSlide={handleNextSlide}
+        onPreviousSlide={handlePreviousSlide}
+        totalSlides={totalSlides}
+      />
     </div>
   );
 };
