@@ -13,6 +13,8 @@ const useTerms = (setTermsChecked: (initialTermsChecked: Record<string, boolean>
   useEffect(() => {
     const getTerms = async () => {
       try {
+        if (localStorage.getItem("accessToken") === null || localStorage.getItem("accessExpiredAt"))
+          localStorage.clear();
         const response = await termsAPI.getAllTerms();
         const initialTermsChecked: Record<string, boolean> = {};
 
