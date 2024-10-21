@@ -15,6 +15,7 @@ export default function SignUpPage() {
     funnelId: "user-signup",
     isAgreedToTerms,
   });
+
   return (
     <>
       {isLoading ? (
@@ -23,7 +24,13 @@ export default function SignUpPage() {
         <div className="mx-auto px-4 mobile:w-11/12 max-w-[360px]">
           <form onSubmit={onSubmit} className="flex flex-col justify-center min-h-screen items-start relative">
             <ErrorMessages status={status} />
-            <StepFields steps={steps} currentStep={currentStep} formData={formData} funnel={funnel} />
+            <StepFields
+              steps={steps}
+              currentStep={currentStep}
+              formData={formData}
+              funnel={funnel}
+              isEmailValid={validity.isEmailValid}
+            />
             {currentStep === "닉네임입력" && <SubmitBtn validity={validity} />}
             <ToastContainer />
           </form>

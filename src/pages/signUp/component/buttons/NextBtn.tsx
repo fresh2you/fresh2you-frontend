@@ -1,4 +1,5 @@
 import "../../../../styles/styles.css";
+import { handleNext } from "../../utils/handlers/handleNext";
 
 interface NextButtonProps {
   currentStep: keyof SignUpSteps;
@@ -10,7 +11,7 @@ export const NextButton: React.FC<NextButtonProps> = ({ currentStep, funnel, for
   const handleNextStep = () => {
     switch (currentStep) {
       case "이메일입력":
-        funnel.history.push("비밀번호입력", { email: formData.email, password: formData.password });
+        handleNext(funnel, formData);
         break;
       case "비밀번호입력":
         funnel.history.push("비밀번호확인", {
