@@ -20,7 +20,6 @@ export type LoginResponse = ISocialLoginResponse | IEmailLoginResponse | null;
 
 const useLogin = (isSocialLogin: boolean, onSuccessCallback: SuccessCallback, onErrorCallback: ErrorCallback) => {
   const queryClient = useQueryClient();
-
   return useMutation<LoginResponse, unknown, KakaoLoginParams | LoginCredentials>({
     mutationFn: async (params: KakaoLoginParams | LoginCredentials): Promise<LoginResponse> => {
       if (isSocialLogin) {
