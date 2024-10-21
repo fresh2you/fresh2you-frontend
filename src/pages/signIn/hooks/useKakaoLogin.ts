@@ -24,7 +24,7 @@ const useKakaoLogin = ({ onSuccessCallback, onErrorCallback }: UseKakaoLoginProp
         provider: "KAKAO",
       });
     }
-  }, [mutation, redirectUri]);
+  }, []);
 
   return mutation;
 };
