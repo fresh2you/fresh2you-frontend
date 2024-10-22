@@ -3,13 +3,7 @@ declare interface defaultApiResponse {
   success: boolean;
   code: `${number}`;
   message: string;
-  data: {
-    success: boolean;
-    token: {
-      accessToken: string;
-      accessExpiredAt: string;
-    };
-  };
+  data: null;
 }
 declare interface ApiError {
   code: string;
