@@ -7,11 +7,12 @@ import { useFormValidation } from "../hooks/useFormValidation";
 import useLogin from "../../signIn/hooks/useLogin";
 import { handleSubmit, onSuccessCallback, onErrorCallback } from "../utils/handlers/callbackHandlers";
 import { useFunnel } from "@use-funnel/react-router-dom";
+import { UseFunnelResults } from "@use-funnel/react-router-dom";
 
 export function useSignUpForm({ funnelId, isAgreedToTerms }: UseSignUpFormProps) {
   const navigate = useNavigate();
 
-  const funnel: UseFunnelResults<SignUpStepContext> = useFunnel<SignUpStepContext>({
+  const funnel: UseFunnelResults<SignUpStepContext, RouteOption> = useFunnel<SignUpStepContext>({
     id: funnelId,
     initial: {
       step: "이메일입력",

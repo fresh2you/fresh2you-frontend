@@ -1,9 +1,10 @@
 import "../../../../styles/styles.css";
 import { handleNext } from "../../utils/handlers/handleNext";
+import { UseFunnelResults } from "@use-funnel/react-router-dom";
 
 interface NextButtonProps {
   currentStep: keyof SignUpSteps;
-  funnel: UseFunnelResults<SignUpStepContext>;
+  funnel: UseFunnelResults<SignUpStepContext, RouteOption>;
   formData: FormDataType;
 }
 

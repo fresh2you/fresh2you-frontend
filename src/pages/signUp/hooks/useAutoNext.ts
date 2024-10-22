@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { handleNext } from "../utils/handlers/handleNext";
+import { UseFunnelResults } from "@use-funnel/react-router-dom";
 
 const useAutoNext = (
   isEmailValid: boolean,
   currentStep: string,
-  funnel: UseFunnelResults<SignUpStepContext>,
+  funnel: UseFunnelResults<SignUpStepContext, RouteOption>,
   formData: FormDataType,
 ) => {
   useEffect(() => {

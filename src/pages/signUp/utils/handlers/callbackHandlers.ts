@@ -2,6 +2,7 @@ import { NavigateFunction } from "react-router-dom";
 import { KakaoLoginParams, LoginCredentials } from "@/pages/signIn/hooks/useLogin";
 import { toast } from "react-toastify";
 import authAPI from "@/services/api/authAPI";
+
 export const onSuccessCallback = (navigate: NavigateFunction) => {
   navigate("/auth/signup/complete");
 };

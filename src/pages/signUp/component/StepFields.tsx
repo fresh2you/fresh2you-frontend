@@ -1,11 +1,12 @@
 import InputWithLabel from "@/components/InputWithLabel";
 import { NextButton } from "./buttons/NextBtn";
 import useAutoNext from "../hooks/useAutoNext";
+import { UseFunnelResults } from "@use-funnel/react-router-dom";
 
 interface StepFieldsProps {
   steps: SignUpSteps;
   currentStep: keyof SignUpSteps;
-  funnel: UseFunnelResults<SignUpStepContext>;
+  funnel: UseFunnelResults<SignUpStepContext, RouteOption>;
   formData: FormDataType;
   isEmailValid: boolean;
 }
