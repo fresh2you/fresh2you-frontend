@@ -26,7 +26,7 @@ const ChatItem: React.FC<{ chat: ChatRoom; userId: number }> = ({ chat, userId }
         <div className="flex items-center gap-2">
           <h2 className="text-custom-p font-semibold whitespace-nowrap">{chatRoomName}</h2>
           {participants.length > 1 && (
-            <span className="text-custom-span text-custom-gray-dark">{participants.length}</span>
+            <span className="text-custom-span text-custom-gray-dark">{participants.length + 1}</span>
           )}
         </div>
         <p className="text-gray-500 text-custom-span whitespace-nowrap">{truncatedMessage}</p>
