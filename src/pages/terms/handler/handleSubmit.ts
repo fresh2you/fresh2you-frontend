@@ -3,11 +3,6 @@ import { checkRequiredTermsAgreed } from "../utils/termsHelper";
 import { toast } from "react-toastify";
 import { NavigateFunction } from "react-router-dom";
 
-interface Token {
-  accessToken: string;
-  accessExpiredAt: string;
-}
-
 interface TermsChecked {
   [key: string]: boolean;
 }
@@ -32,7 +27,7 @@ export const handleSubmit = async (
 
   if (isSocialLoginRedirect) {
     try {
-      const { success, token }: { success: boolean; token: Token } = await authAPI.signUp({
+      const response = await authAPI.signUp({
         email: state.email,
         nickname: state.nickname,
         termsAgreements: termsAgreements,
@@ -42,10 +37,10 @@ export const handleSubmit = async (
         confirmPassword: null,
       });
 
-      if (success) {
+      if (response.success) {
         sessionStorage.clear();
-        localStorage.setItem("accessToken", token.accessToken);
-        localStorage.setItem("accessExpiredAt", token.accessExpiredAt);
+        localStorage.setItem("accessToken", response.token.accessToken);
+        localStorage.setItem("accessExpiredAt", response.token.accessExpiredAt);
         navigate("/auth/signup/complete");
       }
     } catch {

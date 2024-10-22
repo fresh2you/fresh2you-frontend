@@ -10,7 +10,7 @@ const authAPI = {
     provider,
     providerId,
   }: ISignUpRequest) => {
-    const { data: response } = await instance.post<defaultApiResponse>("/members/signup", {
+    const { data: response } = await instance.post<ISignUpResponse>("/members/signup", {
       email,
       password: password,
       confirmPassword: confirmPassword,
@@ -20,7 +20,7 @@ const authAPI = {
       providerId: providerId,
     });
 
-    return { success: response.success, token: response.data.token };
+    return response;
   },
 
   emailLogin: async ({ email, password }: { email: string; password: string }) => {
@@ -72,7 +72,7 @@ const authAPI = {
   requestEmailCode: async (email: string) => {
     const { data: response } = await instance.post("/auth/email", null, {
       params: {
-        email: email,
+        email,
       },
     });
 
@@ -82,8 +82,8 @@ const authAPI = {
   verifyEmailCode: async ({ email, verificationCode }: { email: string; verificationCode: string }) => {
     const { data: response } = await instance.post("/auth/email/verify", null, {
       params: {
-        email: email,
-        verificationCode: verificationCode,
+        email,
+        verificationCode,
       },
     });
 
