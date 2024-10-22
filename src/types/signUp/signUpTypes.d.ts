@@ -55,9 +55,3 @@ declare interface RouteOption {
   unstable_flushSync?: boolean;
   unstable_viewTransition?: boolean;
 }
-declare interface ISignUpResponse extends defaultApiResponse {
-  token: {
-    accessToken: string;
-    accessExpiredAt: string;
-  };
-}

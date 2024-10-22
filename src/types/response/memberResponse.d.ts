@@ -1,4 +1,12 @@
 /* 회원가입 */
+declare interface ISignUpResponse extends defaultApiResponse {
+  data: {
+    token: {
+      accessToken: string;
+      accessExpiredAt: string;
+    };
+  };
+}
 
 /* 포인트 충전 */
 declare interface IPointChargeResponse extends defaultApiResponse {
