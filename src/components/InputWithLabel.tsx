@@ -1,5 +1,6 @@
 import IconEye from "icons/eye.svg";
 import { useRef } from "react";
+import "../styles/styles.css";
 
 interface InputWithLabelProps {
   id: string;
@@ -11,6 +12,10 @@ interface InputWithLabelProps {
   autoComplete?: "on" | "off";
   onFocus?: () => void;
   onBlur?: () => void;
+  onButtonClick?: () => void;
+  noIcon?: boolean;
+  withBtn?: React.ReactNode;
+  className?: string;
 }
 
 const InputWithLabel = ({
@@ -23,25 +28,35 @@ const InputWithLabel = ({
   autoComplete = "off",
   onFocus,
   onBlur,
+  onButtonClick,
+  noIcon,
+  withBtn,
+  className,
 }: InputWithLabelProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const onKeyDownCheckNumber = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    if (target.type !== "number") return;
 
-    // 숫자나 뒤로가기가 아닌 입력을 차단
-    if (!/[0-9]/.test(event.key) && event.key !== "Backspace") {
+    if (event.key === "Enter" && onButtonClick) {
       event.preventDefault();
+      onButtonClick();
+      return;
+    }
+
+    if (target.type === "number") {
+      if (!/[0-9]/.test(event.key) && event.key !== "Backspace") {
+        event.preventDefault();
+      }
     }
   };
 
   return (
-    <section className="flex flex-col w-full mb-2">
-      <label htmlFor={id} className="mb-1 font-bold" style={{ color: "#333333" }}>
+    <section className="flex flex-col w-full mb-2.5">
+      <label htmlFor={id} className="mb-1 font-semibold text-custom-black text-custom-input">
         {label}
       </label>
-      <div className="flex items-center w-full gap-2 p-2 border rounded border-custom-gray-dark">
+      <div className="flex w-full gap-2">
         <input
           id={id}
           type={type}
@@ -52,13 +67,14 @@ const InputWithLabel = ({
           autoComplete={autoComplete}
           onFocus={onFocus}
           onBlur={onBlur}
-          onKeyDown={onKeyDownCheckNumber}
-          className="w-full text-black outline-none max-h-10"
+          onKeyDown={handleKeyDown}
+          className={`w-full text-custom-black p-2.5 rounded 
+          text-custom-input custom-focus leading-4 border border-custom-gray-light ${className}`}
         />
-        {type === "password" && (
+        {!noIcon && type === "password" && (
           <button
             type="button"
-            className="h-full p-0 bg-white"
+            className="h-full p-0 pr-2 bg-white border-none outline-none"
             onClick={() => {
               const inputType = inputRef.current?.type;
               if (inputRef.current) {
@@ -70,6 +86,7 @@ const InputWithLabel = ({
             <IconEye />
           </button>
         )}
+        {withBtn}
       </div>
     </section>
   );

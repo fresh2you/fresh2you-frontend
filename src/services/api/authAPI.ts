@@ -12,12 +12,12 @@ const authAPI = {
   }: ISignUpRequest) => {
     const { data: response } = await instance.post<ISignUpResponse>("/members/signup", {
       email,
-      password: provider !== "EMAIL" ? null : password,
-      confirmPassword: provider !== "EMAIL" ? null : confirmPassword,
+      password: password,
+      confirmPassword: confirmPassword,
       nickname,
       termsAgreements,
       provider,
-      providerId: provider === "EMAIL" ? null : providerId,
+      providerId: providerId,
     });
 
     return response;
@@ -51,7 +51,7 @@ const authAPI = {
   },
 
   validateNickname: async (nickname: string) => {
-    const { data: response } = await instance.get("/auth/check-nickname", {
+    const { data: response } = await instance.get("/members/check-nickname", {
       params: {
         nickname,
       },
@@ -61,17 +61,16 @@ const authAPI = {
   },
 
   validateEmail: async (email: string) => {
-    const { data: response } = await instance.get("/auth/check-email", {
+    const { data: response } = await instance.get("/members/check-email", {
       params: {
         email,
       },
     });
-
     return response;
   },
 
   requestEmailCode: async (email: string) => {
-    const { data: response } = await instance.post("/auth/email", {
+    const { data: response } = await instance.post("/auth/email", null, {
       params: {
         email,
       },
@@ -81,7 +80,7 @@ const authAPI = {
   },
 
   verifyEmailCode: async ({ email, verificationCode }: { email: string; verificationCode: string }) => {
-    const { data: response } = await instance.post("/auth/email/verify", {
+    const { data: response } = await instance.post("/auth/email/verify", null, {
       params: {
         email,
         verificationCode,
