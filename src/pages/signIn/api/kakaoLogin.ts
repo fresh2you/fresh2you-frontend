@@ -8,7 +8,6 @@ interface KakaoLoginParams {
 
 export const kakaoLogin = async (accessToken: KakaoLoginParams): Promise<ISocialLoginResponse> => {
   try {
-    if (localStorage.getItem("accessToken") === null || localStorage.getItem("accessExpiredAt")) localStorage.clear();
     const response = await authAPI.socialLogin(accessToken);
     const { token, loginMember, isSignup } = response.data;
     if (isSignup && response.success) {

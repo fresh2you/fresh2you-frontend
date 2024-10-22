@@ -3,6 +3,7 @@ import { memo, Suspense, lazy } from "react";
 import NotFoundPage from "../pages/NotfoundPage";
 import ProtectedRoute from "@/routes/ProtectedRoute";
 import PageLayout from "@/components/pageLayout/PageLayout";
+import AuthWrapper from "./AuthWrapper";
 // 페이지 컴포넌트들을 React.lazy로 동적으로 임포트
 const SignUpPage = lazy(() => import("@/pages/signUp/SignUpPage"));
 const HomePage = lazy(() => import("../pages/home/HomePage"));
@@ -41,11 +42,39 @@ const Router = (): JSX.Element => {
           path="/auth/*"
           element={
             <Routes>
-              <Route path="/signin" element={<SignInPage />} />
-              <Route path="/login/kakao" element={<RedirectionPage />} />
-              <Route path="/signup/terms" element={<TermsAgreementPage />} />
-              <Route path="/signup/info" element={<SignUpPage />} />
-              <Route path="/signup/complete" element={<SignUpCompletePage />} />
+              <Route
+                path="signin"
+                element={
+                  <AuthWrapper>
+                    <SignInPage />
+                  </AuthWrapper>
+                }
+              />
+              <Route
+                path="login/kakao"
+                element={
+                  <AuthWrapper>
+                    <RedirectionPage />
+                  </AuthWrapper>
+                }
+              />
+              <Route
+                path="signup/terms"
+                element={
+                  <AuthWrapper>
+                    <TermsAgreementPage />
+                  </AuthWrapper>
+                }
+              />
+              <Route
+                path="signup/info"
+                element={
+                  <AuthWrapper>
+                    <SignUpPage />
+                  </AuthWrapper>
+                }
+              />
+              <Route path="signup/complete" element={<SignUpCompletePage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           }

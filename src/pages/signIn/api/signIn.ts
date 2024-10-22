@@ -7,7 +7,6 @@ interface LoginCredentials {
 
 export const login = async (credentials: LoginCredentials): Promise<IEmailLoginResponse> => {
   try {
-    if (localStorage.getItem("accessToken") === null || localStorage.getItem("accessExpiredAt")) localStorage.clear();
     const response = await authAPI.emailLogin({
       email: credentials.email,
       password: credentials.password,
