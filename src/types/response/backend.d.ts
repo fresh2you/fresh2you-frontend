@@ -5,3 +5,13 @@ declare interface defaultApiResponse {
   message: string;
   data: null;
 }
+declare interface ApiError {
+  code: string;
+  message: string;
+  response: {
+    data: {
+      code: string;
+      message: string;
+    };
+  };
+}
