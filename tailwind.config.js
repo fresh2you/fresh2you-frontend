@@ -32,6 +32,7 @@ export default {
         "custom-h3": "clamp(0.7rem, 5vw, 1.5rem)",
         "custom-btn-text": "clamp(0.75rem, 3vw, 1rem)",
         "custom-span": "clamp(0.8rem, 4vw, 1rem)",
+        "custom-span-sm": "clamp(0.7rem, 3vw, 0.87rem)",
       },
       grayscale: {
         40: "40%",
