@@ -1,15 +1,12 @@
-import React, { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
-interface AuthWrapperProps {
-  children: ReactNode;
-}
-
-const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
+const AuthWrapper = () => {
   useEffect(() => {
     localStorage.clear();
   }, []);
 
-  return <>{children}</>;
+  return <Outlet />;
 };
 
 export default AuthWrapper;

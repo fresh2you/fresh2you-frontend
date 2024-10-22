@@ -38,42 +38,17 @@ const Router = (): JSX.Element => {
         <Route path="*" element={<NotFoundPage />} />
 
         {/* 로그인 & 회원가입 */}
+
         <Route
           path="/auth/*"
           element={
             <Routes>
-              <Route
-                path="signin"
-                element={
-                  <AuthWrapper>
-                    <SignInPage />
-                  </AuthWrapper>
-                }
-              />
-              <Route
-                path="login/kakao"
-                element={
-                  <AuthWrapper>
-                    <RedirectionPage />
-                  </AuthWrapper>
-                }
-              />
-              <Route
-                path="signup/terms"
-                element={
-                  <AuthWrapper>
-                    <TermsAgreementPage />
-                  </AuthWrapper>
-                }
-              />
-              <Route
-                path="signup/info"
-                element={
-                  <AuthWrapper>
-                    <SignUpPage />
-                  </AuthWrapper>
-                }
-              />
+              <Route element={<AuthWrapper />}>
+                <Route path="signin" element={<SignInPage />} />
+                <Route path="login/kakao" element={<RedirectionPage />} />
+                <Route path="signup/terms" element={<TermsAgreementPage />} />
+                <Route path="signup/info" element={<SignUpPage />} />
+              </Route>
               <Route path="signup/complete" element={<SignUpCompletePage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
