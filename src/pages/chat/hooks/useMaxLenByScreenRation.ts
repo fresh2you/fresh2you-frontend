@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useMaxLengthByScreenRatio = () => {
+const useMaxLengthByScreenRatio = (threshold: number) => {
   const [maxLength, setMaxLength] = useState(0);
 
   useEffect(() => {
@@ -8,7 +8,7 @@ const useMaxLengthByScreenRatio = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
       const ratio = width / height;
-      const calculatedMaxLength = Math.floor(ratio * 40);
+      const calculatedMaxLength = Math.floor(ratio * threshold);
       setMaxLength(calculatedMaxLength);
     };
 
@@ -19,7 +19,7 @@ const useMaxLengthByScreenRatio = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [threshold]);
 
   return maxLength;
 };

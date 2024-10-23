@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, KeyboardEvent, useEffect } from "react";
-import { searchedItemsAtom, SearchedItemsTypes } from "@/mockdata/searchMockData";
+import { searchedItemsAtom, SearchedItemsTypes } from "@/mockData/searchMockData";
 import { useAtom } from "jotai";
 import { api } from "@/services/api";
 
