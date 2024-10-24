@@ -1,14 +1,6 @@
 import { fetchCategories } from "../api/productApis";
 import { buyProduct } from "../api/productApis";
 import { toast } from "react-toastify";
-export const getCategories = async () => {
-  try {
-    const categories = await fetchCategories();
-    return categories;
-  } catch (error) {
-    console.error("Failed to fetch categories:", error);
-  }
-};
 
 export const handlePurchase = async (recipientDetails, quantity, productId, navigate, product) => {
   const { recipientName, phoneNumber, addressId, address } = recipientDetails;

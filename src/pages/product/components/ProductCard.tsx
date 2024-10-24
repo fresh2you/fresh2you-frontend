@@ -16,13 +16,11 @@ const ProductCard = forwardRef<HTMLAnchorElement, { product: IProductList }>(({ 
         <img
           src={product.imageUrl || fallbackImg}
           alt={product.productName}
-          className="object-contain mobile:w-24 mobile:h-24
-          tablet-sm:w-[100px] tablet-sm:h-[100px]
-           border rounded"
+          className="object-cover w-2/3 max-w-24 aspect-square rounded border"
         />
       </div>
       <div className="flex flex-col px-4 py-2 text-custom-btn-text mobile:leading-5 tablet-sm:leading-6">
-        <h2 className="font-bold ">{product.productName}</h2>
+        <h2 className="font-bold break-all">{product.productName}</h2>
         <p className="text-custom-gray-dark">{product.sellerName}</p>
         <p className="font-semibold text-custom-green text-custom-span">{formatCurrency(product.price)} 원</p>
       </div>
