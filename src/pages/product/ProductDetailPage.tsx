@@ -21,8 +21,8 @@ const ProductDetailPage = () => {
 
   return (
     <div
-      className={`flex flex-col items-center h-full text-custom-black px-4 mobile:w-full 
-    desktop-sm:min-w-[549px] desktop-sm: max-w-[850px]`}
+      className="flex flex-col items-center h-full text-custom-black px-4 mobile:w-full 
+    desktop-sm:min-w-[549px] desktop-sm: max-w-[850px]"
     >
       <div className="flex flex-col mobile:w-11/12 pt-2 tablet-sm:w-3/5 tablet-sm:min-w-[380px]">
         {isLoading && <ProductDetailSkeleton />}
