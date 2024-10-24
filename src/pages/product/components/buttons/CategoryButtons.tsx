@@ -1,23 +1,41 @@
 import { useNavigate } from "react-router-dom";
 import useFetchCategories from "../../hooks/useFetchCategories";
 import { renderCategoryButtons, renderSkeletons, renderItems } from "../../utils/renderComponent";
-import useCategorySelection from "../../hooks/useCategorySelection";
+import { useCategoryLogic } from "../../hooks/useCategoryLogic";
 
-interface CategoryButtonsProps {
-  handleCategoryChange: (categoryId?: number) => void;
-}
-
-const CategoryButtons: React.FC<CategoryButtonsProps> = ({ handleCategoryChange }) => {
+const CategoryButtons = () => {
   const navigate = useNavigate();
   const categories = useFetchCategories();
   const isLoading = !categories.length;
-  const { selectedCategory, isOpen, handleCategoryClick } = useCategorySelection(categories, handleCategoryChange);
-
+  const {
+    selectedCategory,
+    setSelectedCategory,
+    isOpen,
+    setIsOpen,
+    setProducts,
+    setPageNumber,
+    setHasMore,
+    selectedCategoryId,
+    setSelectedCategoryId,
+  } = useCategoryLogic();
   const allCategories = [{ categoryId: undefined, categoryName: "전체" }, ...categories];
+
   return (
     <>
       <div className="flex tablet:gap-4 w-full mobile:gap-2 justify-center">
-        {isLoading ? renderSkeletons() : renderCategoryButtons(allCategories, selectedCategory, handleCategoryClick)}
+        {isLoading
+          ? renderSkeletons()
+          : renderCategoryButtons(
+              allCategories,
+              selectedCategory,
+              setSelectedCategory,
+              selectedCategoryId,
+              setSelectedCategoryId,
+              setProducts,
+              setPageNumber,
+              setHasMore,
+              setIsOpen,
+            )}
       </div>
       {selectedCategory && isOpen && renderItems(categories, selectedCategory, navigate)}
     </>

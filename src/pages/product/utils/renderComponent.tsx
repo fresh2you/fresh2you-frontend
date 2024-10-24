@@ -2,6 +2,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import SubCategoryItems from "../components/SubCategoryItems";
 import { NavigateFunction } from "react-router-dom";
+import { handleCategoryClick } from "./categoryHandlers";
 
 export const renderSkeletons = (count: number = 6) => {
   return (
@@ -20,8 +21,14 @@ export const renderSkeletons = (count: number = 6) => {
 
 export const renderCategoryButtons = (
   allCategories: (Category | { categoryId?: undefined; categoryName: string })[],
-  selectedCategory: string | null,
-  handleCategoryClick: (category: Category | { categoryId?: undefined; categoryName: string }) => void,
+  selectedCategory: string,
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>,
+  selectedCategoryId: number | undefined,
+  setSelectedCategoryId: React.Dispatch<React.SetStateAction<number | undefined>>,
+  setProducts: React.Dispatch<React.SetStateAction<IProductList[]>>,
+  setPageNumber: React.Dispatch<React.SetStateAction<number>>,
+  setHasMore: React.Dispatch<React.SetStateAction<boolean>>,
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
   return (
     <>
@@ -33,7 +40,19 @@ export const renderCategoryButtons = (
               ? "bg-custom-green text-white"
               : "bg-custom-gray-light text-custom-black hover:bg-custom-green-hover hover:text-white"
           }`}
-          onClick={() => handleCategoryClick(category)}
+          onClick={() =>
+            handleCategoryClick({
+              category,
+              setSelectedCategory,
+              setIsOpen,
+              selectedCategoryId,
+              setProducts,
+              setPageNumber,
+              setHasMore,
+              setSelectedCategoryId,
+              selectedCategory,
+            })
+          }
         >
           {category.categoryName}
         </button>
