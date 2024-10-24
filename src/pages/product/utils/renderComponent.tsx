@@ -1,8 +1,8 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import SubCategoryItems from "../components/SubCategoryItems";
-import { NavigateFunction } from "react-router-dom";
 import { handleCategoryClick } from "./categoryHandlers";
+import { RenderCategoryButtonsProps, RenderItemsProps } from "@/types/product/productProps";
 
 export const renderSkeletons = (count: number = 6) => {
   return (
@@ -19,17 +19,17 @@ export const renderSkeletons = (count: number = 6) => {
   );
 };
 
-export const renderCategoryButtons = (
-  allCategories: (Category | { categoryId?: undefined; categoryName: string })[],
-  selectedCategory: string,
-  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>,
-  selectedCategoryId: number | undefined,
-  setSelectedCategoryId: React.Dispatch<React.SetStateAction<number | undefined>>,
-  setProducts: React.Dispatch<React.SetStateAction<IProductList[]>>,
-  setPageNumber: React.Dispatch<React.SetStateAction<number>>,
-  setHasMore: React.Dispatch<React.SetStateAction<boolean>>,
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
-) => {
+export const renderCategoryButtons = ({
+  allCategories,
+  selectedCategory,
+  setSelectedCategory,
+  selectedCategoryId,
+  setSelectedCategoryId,
+  setProducts,
+  setPageNumber,
+  setHasMore,
+  setIsOpen,
+}: RenderCategoryButtonsProps) => {
   return (
     <>
       {allCategories.map((category) => (
@@ -61,10 +61,27 @@ export const renderCategoryButtons = (
   );
 };
 
-export const renderItems = (categories: Category[], selectedCategory: string, navigate: NavigateFunction) => {
+export const renderItems = ({
+  categories,
+  selectedCategory,
+  selectedCategoryId,
+  setSelectedCategoryId,
+  setProducts,
+  setPageNumber,
+  setHasMore,
+}: RenderItemsProps) => {
   const selectedCat: Category | undefined = categories.find((cat: Category) => cat.categoryName === selectedCategory);
   const items: SubCategory[] | undefined = selectedCat!.subCategories;
   if (items) {
-    return <SubCategoryItems items={items} navigate={navigate} />;
+    return (
+      <SubCategoryItems
+        items={items}
+        selectedCategoryId={selectedCategoryId}
+        setSelectedCategoryId={setSelectedCategoryId}
+        setProducts={setProducts}
+        setPageNumber={setPageNumber}
+        setHasMore={setHasMore}
+      />
+    );
   }
 };

@@ -1,13 +1,23 @@
 import "../../../styles/styles.css";
-import { handleSubCategory } from "../utils/categoryHandlers";
-import { NavigateFunction } from "react-router-dom";
+import { handleCategoryChange } from "../utils/categoryHandlers";
 
 interface SubCategoryItemsProps {
   items: SubCategory[];
-  navigate: NavigateFunction;
+  selectedCategoryId: number | undefined;
+  setSelectedCategoryId: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setProducts: React.Dispatch<React.SetStateAction<IProductList[]>>;
+  setPageNumber: React.Dispatch<React.SetStateAction<number>>;
+  setHasMore: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SubCategoryItems: React.FC<SubCategoryItemsProps> = ({ items, navigate }) => {
+const SubCategoryItems: React.FC<SubCategoryItemsProps> = ({
+  items,
+  selectedCategoryId,
+  setSelectedCategoryId,
+  setProducts,
+  setPageNumber,
+  setHasMore,
+}) => {
   return (
     <div
       className="flex flex-col pl-1.5 py-1 absolute z-10 bg-custom-green-200 
@@ -19,7 +29,16 @@ const SubCategoryItems: React.FC<SubCategoryItemsProps> = ({ items, navigate }) 
             key={item.categoryId}
             className="flex-shrink-0 w-1/4 cursor-pointer hover:text-custom-green-hover transition-colors 
               hover:scale-105 font-semibold text-sm mr-4 whitespace-nowrap"
-            onClick={() => handleSubCategory(item.categoryId, navigate)}
+            onClick={() =>
+              handleCategoryChange(
+                item.categoryId,
+                selectedCategoryId,
+                setSelectedCategoryId,
+                setProducts,
+                setPageNumber,
+                setHasMore,
+              )
+            }
           >
             {item.categoryName}
           </div>

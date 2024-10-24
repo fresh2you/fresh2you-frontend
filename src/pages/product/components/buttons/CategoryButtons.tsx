@@ -1,10 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import useFetchCategories from "../../hooks/useFetchCategories";
 import { renderCategoryButtons, renderSkeletons, renderItems } from "../../utils/renderComponent";
 import { useCategoryLogic } from "../../hooks/useCategoryLogic";
 
 const CategoryButtons = () => {
-  const navigate = useNavigate();
   const categories = useFetchCategories();
   const isLoading = !categories.length;
   const {
@@ -25,7 +23,7 @@ const CategoryButtons = () => {
       <div className="flex tablet:gap-4 w-full mobile:gap-2 justify-center">
         {isLoading
           ? renderSkeletons()
-          : renderCategoryButtons(
+          : renderCategoryButtons({
               allCategories,
               selectedCategory,
               setSelectedCategory,
@@ -35,9 +33,19 @@ const CategoryButtons = () => {
               setPageNumber,
               setHasMore,
               setIsOpen,
-            )}
+            })}
       </div>
-      {selectedCategory && isOpen && renderItems(categories, selectedCategory, navigate)}
+      {selectedCategory &&
+        isOpen &&
+        renderItems({
+          categories,
+          selectedCategory,
+          selectedCategoryId,
+          setSelectedCategoryId,
+          setProducts,
+          setPageNumber,
+          setHasMore,
+        })}
     </>
   );
 };
