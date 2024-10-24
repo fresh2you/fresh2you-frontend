@@ -1,10 +1,9 @@
 import { useEffect, useRef } from "react";
 
-const useInfiniteScroll = (loading, hasMore, setPageNumber) => {
+const useInfiniteScroll = (hasMore, setPageNumber) => {
   const observer = useRef();
 
   const lastProductRef = (node) => {
-    if (loading) return;
     if (observer.current) observer.current.disconnect();
 
     observer.current = new IntersectionObserver((entries) => {
