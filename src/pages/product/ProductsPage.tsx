@@ -12,8 +12,7 @@ const ProductsPage = () => {
   const [products] = useAtom(productsAtom);
 
   return (
-    <section className="mx-auto py-2.5 text-custom-black product-page">
-      <h1 className="hidden">갓 수확한 상품 목록</h1>
+    <div className="mx-auto py-2.5 text-custom-black product-page">
       <CategoryButtons />
       <h2 className="my-6 font-bold text-center text-custom-green text-custom-h2">갓 수확했어요!</h2>
       <ProductList products={products} lastProductRef={lastProductRef} itemsPerPage={itemsPerPage} />
@@ -22,12 +21,11 @@ const ProductsPage = () => {
           className="fixed mobile:bottom-20 tablet:bottom-4 mobile:right-4 p-2.5 bg-custom-green text-white rounded-full 
       shadow-lg hover:bg-custom-green-hover z-50"
           to={"/product/register"}
-          aria-label="상품 등록하기"
         >
-          <PlusIcon className="mobile:w-7 mobile:h-7 tablet:w-8 tablet:h-8" alt="상품 등록하기" />
+          <PlusIcon className="mobile:w-7 mobile:h-7 tablet:w-8 tablet:h-8" />
         </Link>
       )}
-    </section>
+    </div>
   );
 };
 
