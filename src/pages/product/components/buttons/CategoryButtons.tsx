@@ -16,6 +16,12 @@ const CategoryButtons = () => {
     selectedCategoryId,
     setSelectedCategoryId,
   } = useCategoryLogic();
+  const handlers = {
+    setSelectedCategoryId,
+    setProducts,
+    setPageNumber,
+    setHasMore,
+  };
   const allCategories = [{ categoryId: undefined, categoryName: "전체" }, ...categories];
 
   return (
@@ -28,10 +34,7 @@ const CategoryButtons = () => {
               selectedCategory,
               setSelectedCategory,
               selectedCategoryId,
-              setSelectedCategoryId,
-              setProducts,
-              setPageNumber,
-              setHasMore,
+              handlers,
               setIsOpen,
             })}
       </div>
@@ -41,10 +44,7 @@ const CategoryButtons = () => {
           categories,
           selectedCategory,
           selectedCategoryId,
-          setSelectedCategoryId,
-          setProducts,
-          setPageNumber,
-          setHasMore,
+          handlers,
         })}
     </>
   );

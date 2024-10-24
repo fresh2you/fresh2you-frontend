@@ -24,10 +24,7 @@ export const renderCategoryButtons = ({
   selectedCategory,
   setSelectedCategory,
   selectedCategoryId,
-  setSelectedCategoryId,
-  setProducts,
-  setPageNumber,
-  setHasMore,
+  handlers,
   setIsOpen,
 }: RenderCategoryButtonsProps) => {
   return (
@@ -46,10 +43,7 @@ export const renderCategoryButtons = ({
               setSelectedCategory,
               setIsOpen,
               selectedCategoryId,
-              setProducts,
-              setPageNumber,
-              setHasMore,
-              setSelectedCategoryId,
+              handlers,
               selectedCategory,
             })
           }
@@ -61,15 +55,7 @@ export const renderCategoryButtons = ({
   );
 };
 
-export const renderItems = ({
-  categories,
-  selectedCategory,
-  selectedCategoryId,
-  setSelectedCategoryId,
-  setProducts,
-  setPageNumber,
-  setHasMore,
-}: RenderItemsProps) => {
+export const renderItems = ({ categories, selectedCategory, selectedCategoryId, handlers }: RenderItemsProps) => {
   const selectedCat: Category | undefined = categories.find((cat: Category) => cat.categoryName === selectedCategory);
   const items: SubCategory[] | undefined = selectedCat!.subCategories;
   if (items) {
@@ -77,10 +63,8 @@ export const renderItems = ({
       <SubCategoryItems
         items={items}
         selectedCategoryId={selectedCategoryId}
-        setSelectedCategoryId={setSelectedCategoryId}
-        setProducts={setProducts}
-        setPageNumber={setPageNumber}
-        setHasMore={setHasMore}
+        handlers={handlers}
+        selectedCategory={selectedCategory}
       />
     );
   }

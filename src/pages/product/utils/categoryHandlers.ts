@@ -1,13 +1,12 @@
 import { HandleCategoryClickProps } from "@/types/product/productProps";
+import { CategoryHandlers } from "@/types/product/productProps";
 
 export const handleCategoryChange = (
   categoryId: number | undefined,
   selectedCategoryId: number | undefined,
-  setSelectedCategoryId: React.Dispatch<React.SetStateAction<number | undefined>>,
-  setProducts: React.Dispatch<React.SetStateAction<IProductList[]>>,
-  setPageNumber: React.Dispatch<React.SetStateAction<number>>,
-  setHasMore: React.Dispatch<React.SetStateAction<boolean>>,
+  handlers: CategoryHandlers,
 ) => {
+  const { setSelectedCategoryId, setProducts, setPageNumber, setHasMore } = handlers;
   if (selectedCategoryId === categoryId) return;
   setSelectedCategoryId(categoryId);
   setProducts([]);
@@ -20,27 +19,15 @@ export const handleCategoryClick = ({
   setSelectedCategory,
   setIsOpen,
   selectedCategoryId,
-  setProducts,
-  setPageNumber,
-  setHasMore,
-  setSelectedCategoryId,
+  handlers,
   selectedCategory,
 }: HandleCategoryClickProps) => {
   const { categoryId, categoryName } = category;
-
   const newCategoryId = categoryId ?? undefined;
   const isNewCategory = selectedCategory !== categoryName;
   const isCategoryAll = newCategoryId === undefined;
 
-  handleCategoryChange(
-    newCategoryId,
-    selectedCategoryId,
-    setSelectedCategoryId,
-    setProducts,
-    setPageNumber,
-    setHasMore,
-  );
-
+  handleCategoryChange(newCategoryId, selectedCategoryId, handlers);
   setSelectedCategory(isCategoryAll ? "전체" : categoryName);
   setIsOpen(isCategoryAll ? false : isNewCategory ? true : (prevIsOpen) => !prevIsOpen);
 };

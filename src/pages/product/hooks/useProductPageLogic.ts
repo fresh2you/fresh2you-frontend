@@ -19,7 +19,7 @@ const useProductsPageLogic = () => {
     [hasMore, selectedCategoryId],
   );
 
-  const { lastProductRef } = useInfiniteScroll(hasMore, setPageNumber);
+  const { lastProductRef } = useInfiniteScroll({ hasMore, setPageNumber });
 
   useEffect(() => {
     loadProducts(pageNumber);
