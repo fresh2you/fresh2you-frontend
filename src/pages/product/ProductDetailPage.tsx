@@ -5,12 +5,10 @@ import ProductDetailSkeleton from "./components/skeletons/ProductDetailSkeleton"
 import { useFetchProductById } from "./hooks/useFetchProductById";
 import { pageLayoutHeaderProps } from "@/stores/mypage";
 import { useSetAtom } from "jotai";
-import useCommon from "@/hooks/useCommon";
+import ItemNotFound from "./components/details/ItemNotFound";
 
 const ProductDetailPage = () => {
   const { fetchedProductById: product, isLoading, isError } = useFetchProductById();
-  const { goBack } = useCommon();
-
   const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
 
   useEffect(() => {
@@ -21,28 +19,20 @@ const ProductDetailPage = () => {
     });
   }, [setHeaderProps]);
 
-  useEffect(() => {
-    // TODO: 에러를 났을 경우 렌더링하는 부분 수정 필요
-    if (isError) {
-      alert("상품 정보를 불러올 수 없습니다.");
-      goBack();
-    }
-  }, [goBack, isError]);
-
   return (
     <div
-      className="flex flex-col items-center min-h-screen text-custom-black px-4 mobile:w-full 
-    desktop-sm:min-w-[549px] desktop-sm: max-w-[850px]"
+      className={`flex flex-col items-center h-full text-custom-black px-4 mobile:w-full 
+    desktop-sm:min-w-[549px] desktop-sm: max-w-[850px]`}
     >
       <div className="flex flex-col mobile:w-11/12 pt-2 tablet-sm:w-3/5 tablet-sm:min-w-[380px]">
         {isLoading && <ProductDetailSkeleton />}
-
         {!isLoading && !isError && product && (
           <>
             <ProductInfo product={product} />
             <ProductDetailsSection description={product?.description} />
           </>
         )}
+        {!isLoading && isError && <ItemNotFound />}
       </div>
     </div>
   );
