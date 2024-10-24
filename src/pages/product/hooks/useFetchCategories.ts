@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { getCategories } from "../utils/productUtils";
+import categoryAPI from "@/services/api/categoryAPI";
 
 const useFetchCategories = () => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     const fetchAndSetCategories = async () => {
-      const fetchedCategories = await getCategories();
-      setCategories(fetchedCategories);
+      const response = await categoryAPI.getCategories();
+      setCategories(response.data.categories);
     };
 
     fetchAndSetCategories();
