@@ -1,19 +1,17 @@
-import { useState, useEffect } from "react";
 import categoryAPI from "@/services/api/categoryAPI";
+import { useQuery } from "@tanstack/react-query";
 
 const useFetchCategories = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  useEffect(() => {
-    const fetchAndSetCategories = async () => {
-      const response = await categoryAPI.getCategories();
-      setCategories(response.data.categories);
-    };
-
-    fetchAndSetCategories();
-  }, []);
-
-  return categories;
+  const { data: categories = [], isLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const { data } = await categoryAPI.getCategories();
+      return data.categories as Category[];
+    },
+    staleTime: 600 * 1000,
+    retry: 0,
+  });
+  return { categories, isLoading };
 };
 
 export default useFetchCategories;

@@ -3,8 +3,7 @@ import { renderCategoryButtons, renderSkeletons, renderItems } from "../../utils
 import { useCategoryLogic } from "../../hooks/useCategoryLogic";
 
 const CategoryButtons = () => {
-  const categories = useFetchCategories();
-  const isLoading = !categories.length;
+  const { categories, isLoading } = useFetchCategories();
   const {
     selectedCategory,
     setSelectedCategory,
