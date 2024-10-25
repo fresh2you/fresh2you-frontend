@@ -3,11 +3,11 @@ import ProductDetailsSection from "@/pages/product/components/details/ProductDet
 import ProductDetailSkeleton from "./components/skeletons/ProductDetailSkeleton";
 import { useFetchProductById } from "./hooks/useFetchProductById";
 import ItemNotFound from "./components/details/ItemNotFound";
-import useHeaderProps from "./hooks/useHeaderProps";
+import useHeaderProps from "../../hooks/useHeaderProps";
 
 const ProductDetailPage = () => {
   const { fetchedProductById: product, isLoading, isError } = useFetchProductById();
-  useHeaderProps();
+  useHeaderProps("", "../", false);
 
   return (
     <div
