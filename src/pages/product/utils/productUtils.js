@@ -1,4 +1,3 @@
-import { fetchCategories } from "../api/productApis";
 import { buyProduct } from "../api/productApis";
 import { toast } from "react-toastify";
 
