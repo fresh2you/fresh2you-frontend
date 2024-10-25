@@ -4,12 +4,12 @@ import "@/styles/styles.css";
 import PlusIcon from "../../assets/icons/plus.svg";
 import { Link } from "react-router-dom";
 import useProductsPageLogic from "./hooks/useProductPageLogic";
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import { productsAtom } from "./atom/atom";
 
 const ProductsPage = () => {
   const { lastProductRef, isSeller, itemsPerPage } = useProductsPageLogic();
-  const [products] = useAtom(productsAtom);
+  const products = useAtomValue(productsAtom);
 
   return (
     <section className="mx-auto py-2.5 text-custom-black product-page">
