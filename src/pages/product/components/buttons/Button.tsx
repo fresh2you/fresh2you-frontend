@@ -1,4 +1,12 @@
-const Button = ({ className, text, onClick }) => {
+import { FC } from "react";
+
+type ButtonProps = {
+  className?: string;
+  text: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+};
+
+const Button: FC<ButtonProps> = ({ className = "", text, onClick }) => {
   return (
     <button
       className={`mobile:py-1 px-2.5 rounded-md tablet-sm:py-1.5
