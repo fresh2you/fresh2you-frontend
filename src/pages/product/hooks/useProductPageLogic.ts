@@ -1,12 +1,12 @@
 import { useEffect, useCallback } from "react";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import useInfiniteScroll from "./useInfiniteScroll";
 import useMyPageLogics from "@/pages/mypage/mypage/hooks/useMyPageLogics";
 import { loadProducts as fetchProducts } from "../utils/loadProducts";
 import { productsAtom, pageNumberAtom, hasMoreAtom, selectedCategoryIdAtom } from "../atom/atom";
 
 const useProductsPageLogic = () => {
-  const [, setProducts] = useAtom(productsAtom);
+  const setProducts = useSetAtom(productsAtom);
   const [pageNumber, setPageNumber] = useAtom(pageNumberAtom);
   const [hasMore, setHasMore] = useAtom(hasMoreAtom);
   const [selectedCategoryId] = useAtom(selectedCategoryIdAtom);
