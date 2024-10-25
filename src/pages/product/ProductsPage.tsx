@@ -19,8 +19,8 @@ const ProductsPage = () => {
       <ProductList products={products} lastProductRef={lastProductRef} itemsPerPage={itemsPerPage} />
       {isSeller && (
         <Link
-          className="fixed mobile:bottom-20 tablet:bottom-4 mobile:right-4 p-2.5 bg-custom-green text-white rounded-full 
-    shadow-lg hover:bg-custom-green-hover z-50"
+          className="fixed mobile:bottom-20 tablet:bottom-4 mobile:right-4 desktop-sm:right-12 p-2.5 bg-custom-green text-white rounded-full 
+    shadow-lg hover:bg-custom-green-hover z-50 hover:text-white"
           to={"/product/register"}
           aria-label="상품 등록하기"
         >

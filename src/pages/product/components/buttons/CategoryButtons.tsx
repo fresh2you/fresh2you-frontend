@@ -25,7 +25,7 @@ const CategoryButtons = () => {
 
   return (
     <>
-      <div className="flex tablet:gap-4 w-full mobile:gap-2 justify-center">
+      <div className="flex justify-between max-w-[420px] mx-auto">
         {isLoading
           ? renderSkeletons()
           : renderCategoryButtons({
