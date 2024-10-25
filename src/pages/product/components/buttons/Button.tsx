@@ -1,11 +1,11 @@
 import { FC } from "react";
 
 type ButtonProps = {
-  className?: string,
-  text: string,
-  onClick?: React.MouseEventHandler<HTMLButtonElement>,
-  type?: "button" | "submit" | "reset",
-  disabled?: boolean,
+  className?: string;
+  text: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 };
 
 const Button: FC<ButtonProps> = ({ className = "", text, onClick, type = "button", disabled = false }) => {
