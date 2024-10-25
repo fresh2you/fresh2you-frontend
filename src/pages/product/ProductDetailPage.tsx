@@ -1,23 +1,13 @@
-import { useEffect } from "react";
 import ProductInfo from "./components/details/ProductInfo";
 import ProductDetailsSection from "@/pages/product/components/details/ProductDetailSection";
 import ProductDetailSkeleton from "./components/skeletons/ProductDetailSkeleton";
 import { useFetchProductById } from "./hooks/useFetchProductById";
-import { pageLayoutHeaderProps } from "@/stores/mypage";
-import { useSetAtom } from "jotai";
 import ItemNotFound from "./components/details/ItemNotFound";
+import useHeaderProps from "./hooks/useHeaderProps";
 
 const ProductDetailPage = () => {
   const { fetchedProductById: product, isLoading, isError } = useFetchProductById();
-  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
-
-  useEffect(() => {
-    setHeaderProps({
-      title: "",
-      hasConfirm: false,
-      backRoute: "../",
-    });
-  }, [setHeaderProps]);
+  useHeaderProps();
 
   return (
     <div
