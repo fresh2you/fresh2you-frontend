@@ -3,31 +3,12 @@ import ProductInfo from "./components/details/ProductInfo";
 import ProductDetailsSection from "@/pages/product/components/details/ProductDetailSection";
 import ProductDetailSkeleton from "./components/skeletons/ProductDetailSkeleton";
 import { useFetchProductById } from "./hooks/useFetchProductById";
-import { pageLayoutHeaderProps } from "@/stores/mypage";
-import { useSetAtom } from "jotai";
-import useCommon from "@/hooks/useCommon";
+import ItemNotFound from "./components/details/ItemNotFound";
+import useHeaderProps from "../../hooks/useHeaderProps";
 
 const ProductDetailPage = () => {
   const { fetchedProductById: product, isLoading, isError } = useFetchProductById();
-  const { goBack } = useCommon();
-
-  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
-
-  useEffect(() => {
-    setHeaderProps({
-      title: "",
-      hasConfirm: false,
-      backRoute: "../",
-    });
-  }, [setHeaderProps]);
-
-  useEffect(() => {
-    // TODO: 에러를 났을 경우 렌더링하는 부분 수정 필요
-    if (isError) {
-      alert("상품 정보를 불러올 수 없습니다.");
-      goBack();
-    }
-  }, [goBack, isError]);
+  useHeaderProps("", "../", false);
 
   return (
     <div
