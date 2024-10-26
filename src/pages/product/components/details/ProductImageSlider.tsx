@@ -22,11 +22,9 @@ const ProductImageSlider = () => {
       <Slider {...settings}>
         {images.map((img, index) => (
           <div key={index} className="relative w-full focus:outline-none">
-            <img
-              src={img}
-              alt={`Product ${index + 1}`}
-              className="object-contain w-full h-auto max-h-96"
-              style={{ aspectRatio: "16/9" }}
+            <ImgComponent
+              alt="농부가 밭에서 작물을 가꾸고 있는 모습"
+              className="object-contain w-full h-auto max-h-96 aspect-16/9"
             />
           </div>
         ))}
