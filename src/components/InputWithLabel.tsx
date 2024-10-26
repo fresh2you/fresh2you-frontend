@@ -1,55 +1,29 @@
+import React, { useState, useRef } from "react";
 import IconEye from "icons/eye.svg";
-import { useRef } from "react";
 import "../styles/styles.css";
+import { inputUtils } from "../utils/commonUtils";
+import { InputWithLabelProps } from "@/types/common/commonProps";
 
-interface InputWithLabelProps {
-  id: string;
-  label: string;
-  type?: "text" | "password" | "email" | "number";
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  placeholder: string;
-  autoComplete?: "on" | "off";
-  onFocus?: () => void;
-  onBlur?: () => void;
-  onButtonClick?: () => void;
-  noIcon?: boolean;
-  withBtn?: React.ReactNode;
-  className?: string;
-}
-
-const InputWithLabel = ({
+const InputWithLabel: React.FC<InputWithLabelProps> = ({
   id,
   label,
   type = "text",
   value,
   onChange,
-  placeholder,
+  placeholder = "",
+  maxLength,
   autoComplete = "off",
   onFocus,
   onBlur,
   onButtonClick,
   noIcon,
   withBtn,
-  className,
-}: InputWithLabelProps) => {
+  className = "",
+  showLength = true,
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLInputElement;
-
-    if (event.key === "Enter" && onButtonClick) {
-      event.preventDefault();
-      onButtonClick();
-      return;
-    }
-
-    if (target.type === "number") {
-      if (!/[0-9]/.test(event.key) && event.key !== "Backspace") {
-        event.preventDefault();
-      }
-    }
-  };
+  const displayLength = maxLength ? Math.min(value.length, maxLength) : value.length;
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
     <section className="flex flex-col w-full mb-2.5">
@@ -59,35 +33,40 @@ const InputWithLabel = ({
       <div className="flex w-full gap-2">
         <input
           id={id}
-          type={type}
+          type={isPasswordVisible && type === "password" ? "text" : type}
           ref={inputRef}
           value={value}
-          onChange={onChange}
+          onChange={(e) => inputUtils.handleChange(e, maxLength, onChange)}
           placeholder={placeholder}
           autoComplete={autoComplete}
           onFocus={onFocus}
           onBlur={onBlur}
-          onKeyDown={handleKeyDown}
-          className={`w-full text-custom-black p-2.5 rounded 
-          text-custom-input custom-focus leading-4 border border-custom-gray-light ${className}`}
+          onKeyDown={(e) => inputUtils.handleKeyDown(e, onButtonClick, type)}
+          maxLength={maxLength}
+          className={`w-full text-custom-black p-2.5 rounded text-custom-input custom-focus leading-4 
+          border border-custom-gray-light ${className} ${id === "price" ? "w-1/2" : "w-full"}`}
+          required
+          aria-required="true"
+          aria-labelledby={`label-${id}`}
         />
         {!noIcon && type === "password" && (
           <button
             type="button"
+            aria-pressed={isPasswordVisible}
+            aria-label={isPasswordVisible ? "비밀번호 숨기기" : "비밀번호 표시"}
             className="h-full p-0 pr-2 bg-white border-none outline-none"
-            onClick={() => {
-              const inputType = inputRef.current?.type;
-              if (inputRef.current) {
-                if (inputType === "password") inputRef.current.type = "text";
-                else inputRef.current.type = type;
-              }
-            }}
+            onClick={() => inputUtils.handleTogglePasswordVisibility(inputRef, isPasswordVisible, setIsPasswordVisible)}
           >
             <IconEye />
           </button>
         )}
         {withBtn}
       </div>
+      {showLength && maxLength && (
+        <p className="text-sm text-gray-500 mt-0.5" aria-live="polite">
+          {displayLength}/{maxLength}
+        </p>
+      )}
     </section>
   );
 };
