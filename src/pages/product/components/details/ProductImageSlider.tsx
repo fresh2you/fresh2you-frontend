@@ -24,8 +24,7 @@ const ProductImageSlider = () => {
           <div key={index} className="relative w-full focus:outline-none">
             <ImgComponent
               alt="농부가 밭에서 작물을 가꾸고 있는 모습"
-              className="object-contain w-full h-auto max-h-96"
-              style={{ aspectRatio: "16/9" }}
+              className="object-contain w-full h-auto max-h-96 aspect-16/9"
             />
           </div>
         ))}
