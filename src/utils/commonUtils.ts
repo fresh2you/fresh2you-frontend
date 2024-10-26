@@ -31,10 +31,10 @@ export const inputUtils = {
     }
   },
 
-  handleChange: (
-    e: React.ChangeEvent<HTMLInputElement>,
+  handleMaxLengthChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     maxLength: number | undefined,
-    onChange: React.ChangeEventHandler<HTMLInputElement> | undefined,
+    onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined,
   ) => {
     const newValue = e.target.value;
     if ((!maxLength || newValue.length <= maxLength) && onChange) {

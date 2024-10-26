@@ -3,6 +3,7 @@ import IconEye from "icons/eye.svg";
 import "../styles/styles.css";
 import { inputUtils } from "../utils/commonUtils";
 import { InputWithLabelProps } from "@/types/common/commonProps";
+import ShowMaxLen from "@/pages/product/components/registration/ShowMaxLen";
 
 const InputWithLabel: React.FC<InputWithLabelProps> = ({
   id,
@@ -19,10 +20,9 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
   noIcon,
   withBtn,
   className = "",
-  showLength = true,
+  showLength = false,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const displayLength = maxLength ? Math.min(value.length, maxLength) : value.length;
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   return (
@@ -36,7 +36,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
           type={isPasswordVisible && type === "password" ? "text" : type}
           ref={inputRef}
           value={value}
-          onChange={(e) => inputUtils.handleChange(e, maxLength, onChange)}
+          onChange={(e) => inputUtils.handleMaxLengthChange(e, maxLength, onChange)}
           placeholder={placeholder}
           autoComplete={autoComplete}
           onFocus={onFocus}
@@ -62,11 +62,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
         )}
         {withBtn}
       </div>
-      {showLength && maxLength && (
-        <p className="text-sm text-gray-500 mt-0.5" aria-live="polite">
-          {displayLength}/{maxLength}
-        </p>
-      )}
+      {showLength && maxLength && <ShowMaxLen value={value} maxLength={maxLength} />}
     </section>
   );
 };
