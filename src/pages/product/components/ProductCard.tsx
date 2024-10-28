@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { formatCurrency } from "../../../utils/commonUtils";
+import { formatCurrency } from "@/utils/commonUtils";
 import { Link } from "react-router-dom";
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 

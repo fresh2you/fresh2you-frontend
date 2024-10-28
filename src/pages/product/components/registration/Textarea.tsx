@@ -5,8 +5,8 @@ import { InputWithLabelProps } from "@/types/common/commonProps";
 
 const Textarea: React.FC<InputWithLabelProps> = ({ id, label, value, onChange, maxLength }) => {
   return (
-    <div className="flex flex-col">
-      <label htmlFor={id} className="text-custom-input font-semibold">
+    <div className="flex flex-col mb-2.5">
+      <label htmlFor={id} className="text-custom-input font-semibold mb-1">
         {label}
       </label>
       <textarea
