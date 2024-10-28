@@ -6,7 +6,7 @@ on:
       - test-actions
   pull_request:
     branches:
-      - main
+      - test-actions
 
 jobs:
   build:
