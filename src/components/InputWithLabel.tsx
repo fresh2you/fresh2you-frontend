@@ -67,9 +67,13 @@ const InputWithLabel = ({
           autoComplete={autoComplete}
           onFocus={onFocus}
           onBlur={onBlur}
-          onKeyDown={handleKeyDown}
-          className={`w-full text-custom-black p-2.5 rounded 
-          text-custom-input custom-focus leading-4 border border-custom-gray-light ${className}`}
+          onKeyDown={(e) => inputUtils.handleKeyDown(e, onButtonClick, type)}
+          maxLength={maxLength}
+          className={`text-custom-black p-2.5 rounded text-custom-input custom-focus leading-4 
+          border border-custom-gray-light ${className} ${id === "price" || id === "quantity" ? "w-1/2" : "w-full"}`}
+          required
+          aria-required="true"
+          aria-labelledby={`label-${id}`}
         />
         {!noIcon && type === "password" && (
           <button
