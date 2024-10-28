@@ -1,0 +1,52 @@
+name: Build Process
+
+on:
+  push:
+    branches:
+      - test-actions
+  pull_request:
+    branches:
+      - test-actions
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Create .env file
+        run: |
+          echo "# Environment Variables" > .env
+          echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env
+          echo "Created .env file"
+
+      - name: Build project
+        run: |
+          yarn vite build || {
+            echo "Build failed. Check the logs below:"
+            cat yarn-error.log
+            exit 1
+          }
+
+      - name: Print success message
+        if: success()
+        run: echo "success"
+
+      - name: Upload error logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-error-logs
+          path: yarn-error.log
