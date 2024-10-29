@@ -16,7 +16,6 @@ const RegistrationButtons = () => {
         }`}
         text="등록하기"
         aria-label="등록하기"
-        disabled={!isFormValid}
       />
       <Button
         className="bg-custom-gray-light text-custom-black hover:bg-custom-gray-dark order-1 desktop-sm:order-2"
