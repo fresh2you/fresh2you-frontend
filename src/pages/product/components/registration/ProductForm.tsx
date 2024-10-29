@@ -7,11 +7,13 @@ import { handleFieldChange } from "../../utils/productDataUtils";
 import handleRegistrationSubmit from "../../utils/handleRegistrationSubmit";
 import ProductImage from "./ProductImage";
 import RegistrationButtons from "./RegistrationButtons";
+import { productDataAtom, isFormValidAtom } from "../../atom/atom";
+import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-import useRegistrationLogic from "../../hooks/useRegistrationLogic";
 
 const ProductForm: React.FC = () => {
-  const { productData, setProductData, isFormValid } = useRegistrationLogic();
+  const [productData, setProductData] = useAtom(productDataAtom);
+  const [isFormValid] = useAtom(isFormValidAtom);
   const { categories } = useFetchCategories();
   const navigate = useNavigate();
   const fields: { id: keyof ProductDataType; label: string; maxLength?: number; showLength?: boolean }[] = [
@@ -19,7 +21,7 @@ const ProductForm: React.FC = () => {
     { id: "price", label: "가격" },
     { id: "quantity", label: "수량" },
   ];
-
+  console.log(productData);
   return (
     <form
       onSubmit={(e) => handleRegistrationSubmit({ e, productData, navigate, isFormValid })}
@@ -56,8 +58,8 @@ const ProductForm: React.FC = () => {
         value={productData.categoryId}
         onChange={(e) => handleFieldChange("categoryId", Number(e.target.value), setProductData)}
       />
-      <ProductImage productData={productData} setProductData={setProductData} isFormValid={isFormValid} />
-      <RegistrationButtons isFormValid={isFormValid} navigate={navigate} />
+      <ProductImage />
+      <RegistrationButtons />
     </form>
   );
 };

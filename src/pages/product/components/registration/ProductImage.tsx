@@ -1,4 +1,3 @@
-import { ProductFormProps } from "@/types/product/productProps";
 import useDragAndDrop from "../../hooks/useDragAndDrop";
 import fileHandlers from "../../utils/fileHandlers";
 import { useRef } from "react";
@@ -7,8 +6,11 @@ import ProductImagePreview from "./ProductImagePreview";
 import "../../../../styles/styles.css";
 import { inputUtils } from "@/utils/commonUtils";
 import UploadPrompt from "./UploadPrompt";
+import { productDataAtom } from "../../atom/atom";
+import { useAtom } from "jotai";
 
-const ProductImage: React.FC<ProductFormProps> = ({ productData, setProductData }) => {
+const ProductImage: React.FC = () => {
+  const [productData, setProductData] = useAtom(productDataAtom);
   const { fileName, setFileName, isDragOver, setIsDragOver } = useDragAndDrop();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -32,11 +34,7 @@ const ProductImage: React.FC<ProductFormProps> = ({ productData, setProductData 
         onKeyDown={(e) => inputUtils.handleKeyDown(e, () => fileHandlers.handleFileInputClick(fileInputRef))}
       >
         {productData.imagePreview ? (
-          <ProductImagePreview
-            imagePreview={productData.imagePreview}
-            fileName={fileName}
-            setProductData={setProductData}
-          />
+          <ProductImagePreview imagePreview={productData.imagePreview} fileName={fileName} />
         ) : (
           <UploadPrompt isDragOver={isDragOver} />
         )}

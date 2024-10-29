@@ -1,13 +1,15 @@
 import { CloseBtn } from "@/components/CloseBtn";
 import fileHandlers from "../../utils/fileHandlers";
+import { useSetAtom } from "jotai";
+import { productDataAtom } from "../../atom/atom";
 
 interface ProductImagePreviewProps {
   imagePreview: string;
   fileName: string;
-  setProductData: React.Dispatch<React.SetStateAction<ProductDataType>>;
 }
 
-const ProductImagePreview: React.FC<ProductImagePreviewProps> = ({ imagePreview, fileName, setProductData }) => {
+const ProductImagePreview: React.FC<ProductImagePreviewProps> = ({ imagePreview, fileName }) => {
+  const setProductData = useSetAtom(productDataAtom);
   return (
     <div className="w-11/12 h-4/5" aria-label="미리보기 이미지">
       <img
