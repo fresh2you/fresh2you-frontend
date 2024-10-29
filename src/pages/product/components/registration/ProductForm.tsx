@@ -11,12 +11,17 @@ import { productDataAtom, isFormValidAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import useProductRegistration from "../../hooks/useProductRegistration";
 
 const ProductForm: React.FC = () => {
   const [productData, setProductData] = useAtom(productDataAtom);
   const [isFormValid] = useAtom(isFormValidAtom);
   const { categories } = useFetchCategories();
   const navigate = useNavigate();
+  const { mutateAsync: registerProduct } = useProductRegistration((productId) => {
+    navigate(`/product/${productId}`);
+  });
+
   const fields: { id: keyof ProductDataType; label: string; maxLength?: number; showLength?: boolean }[] = [
     { id: "name", label: "상품명", maxLength: 15, showLength: true },
     { id: "price", label: "가격" },
@@ -25,7 +30,7 @@ const ProductForm: React.FC = () => {
 
   return (
     <form
-      onSubmit={(e) => handleRegistrationSubmit({ e, productData, navigate, isFormValid })}
+      onSubmit={(e) => handleRegistrationSubmit(e, isFormValid, productData, registerProduct)}
       className="flex flex-col gap-1"
       aria-label="상품 등록 폼"
       role="form"
