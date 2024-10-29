@@ -1,5 +1,4 @@
 import ProductForm from "./components/registration/ProductForm";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useHeaderProps from "@/hooks/useHeaderProps";
 
@@ -11,7 +10,6 @@ const ProductRegistrationPage = () => {
         <h1 className="mb-6 font-bold text-center text-custom-h2 text-custom-green">상품을 등록해요</h1>
         <ProductForm />
       </div>
-      <ToastContainer />
     </section>
   );
 };

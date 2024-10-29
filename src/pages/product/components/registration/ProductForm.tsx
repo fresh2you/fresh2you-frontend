@@ -10,6 +10,7 @@ import RegistrationButtons from "./RegistrationButtons";
 import { productDataAtom, isFormValidAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const ProductForm: React.FC = () => {
   const [productData, setProductData] = useAtom(productDataAtom);
@@ -60,6 +61,7 @@ const ProductForm: React.FC = () => {
       />
       <ProductImage />
       <RegistrationButtons />
+      <ToastContainer />
     </form>
   );
 };
