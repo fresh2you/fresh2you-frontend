@@ -1,10 +1,10 @@
 import MinusImg from "../../../../assets/img/minus.png";
 import PlusImg from "../../../../assets/img/plus.png";
 import QuantityButton from "./QuantityBtn";
-const QuantitySelector = ({ quantity, setProductData }) => {
+const QuantitySelector = ({ quantity, setQuantity }) => {
   const handleQuantityChange = (newQuantity) => {
     if (newQuantity < 1) return;
-    setProductData((prev) => ({ ...prev, quantity: newQuantity }));
+    setQuantity(newQuantity);
   };
 
   return (
