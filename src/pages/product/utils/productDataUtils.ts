@@ -2,7 +2,8 @@ import { formatPriceInput } from "@/utils/commonUtils";
 
 export const validateProductData = (productData: ProductDataType): boolean => {
   const { name, description, price, image, categoryId, quantity } = productData;
-  return Boolean(name && description && price && categoryId && image !== null && Number(quantity) >= 1);
+  const rawQuantity = quantity.replace(/,/g, "");
+  return Boolean(name && description && price && categoryId && image && Number(rawQuantity) >= 1);
 };
 
 export const handleInputChange = (
