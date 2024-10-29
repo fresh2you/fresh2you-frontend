@@ -23,9 +23,6 @@ const DropdownSelect: React.FC<DropdownSelectProps> = ({ id, label, options, val
         aria-required="true"
         aria-labelledby="label-image"
       >
-        <option value="" disabled>
-          {label} 선택
-        </option>
         {options.map((option) => (
           <option key={option.categoryId} value={option.categoryId}>
             {option.categoryName}
