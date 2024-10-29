@@ -23,7 +23,6 @@ const ImageInput: React.FC<ImageInputProps> = ({ id, label, setFileName, setProd
           fileHandlers.handleImageChange(e, setFileName, setProductData)
         }
         className="hidden"
-        required
         aria-required="true"
         aria-labelledby={`label-${id}`}
       />
