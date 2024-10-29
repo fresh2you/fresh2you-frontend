@@ -4,15 +4,16 @@ import useFetchCategories from "../../hooks/useFetchCategories";
 import { handleInputChange } from "../../utils/productDataUtils";
 import InputWithLabel from "@/components/InputWithLabel";
 import { handleFieldChange } from "../../utils/productDataUtils";
+import handleRegistrationSubmit from "../../utils/handleRegistrationSubmit";
+import ProductImage from "./ProductImage";
+import RegistrationButtons from "./RegistrationButtons";
+import { useNavigate } from "react-router-dom";
+import useRegistrationLogic from "../../hooks/useRegistrationLogic";
 
-interface ProductFormProps {
-  productData: ProductDataType;
-  setProductData: React.Dispatch<React.SetStateAction<ProductDataType>>;
-}
-
-const ProductForm: React.FC<ProductFormProps> = ({ productData, setProductData }) => {
+const ProductForm: React.FC = () => {
+  const { productData, setProductData, isFormValid } = useRegistrationLogic();
   const { categories } = useFetchCategories();
-
+  const navigate = useNavigate();
   const fields: { id: keyof ProductDataType; label: string; maxLength?: number; showLength?: boolean }[] = [
     { id: "name", label: "상품명", maxLength: 15, showLength: true },
     { id: "price", label: "가격" },
@@ -20,7 +21,12 @@ const ProductForm: React.FC<ProductFormProps> = ({ productData, setProductData }
   ];
 
   return (
-    <>
+    <form
+      onSubmit={(e) => handleRegistrationSubmit({ e, productData, navigate, isFormValid })}
+      className="flex flex-col gap-1"
+      aria-label="상품 등록 폼"
+      role="form"
+    >
       {fields.map((field) => (
         <InputWithLabel
           key={field.id}
@@ -50,7 +56,9 @@ const ProductForm: React.FC<ProductFormProps> = ({ productData, setProductData }
         value={productData.categoryId}
         onChange={(e) => handleFieldChange("categoryId", Number(e.target.value), setProductData)}
       />
-    </>
+      <ProductImage productData={productData} setProductData={setProductData} isFormValid={isFormValid} />
+      <RegistrationButtons isFormValid={isFormValid} navigate={navigate} />
+    </form>
   );
 };
 
