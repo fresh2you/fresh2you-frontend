@@ -8,8 +8,8 @@ const ProductCard = forwardRef<HTMLAnchorElement, { product: IProductList }>(({ 
     <Link
       ref={ref}
       className="block hover:text-inherit bg-white shadow-lg rounded-xl overflow-hidden max-w-xs border border-custom-gray-light 
-      cursor-pointer pt-2 mobile:w-40 mobile:h-[200px]
-     tablet-sm:w-44 tablet-sm:h-[223px] tablet:h-[240px]"
+        cursor-pointer pt-2 mobile:w-40 mobile:h-[203px]
+     tablet-sm:w-44 tablet-sm:h-[220px]"
       to={`./${product.productId}`}
     >
       <div className="flex items-center justify-center w-full">
