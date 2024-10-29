@@ -51,7 +51,7 @@ const ProductPurchasePage = () => {
         className="mobile:w-11/12 tablet-sm:w-4/5 tablet-sm:min-w-[380px] mobile:max-w-[380px] tablet-sm:max-w-[450px]
       flex flex-col items-center tablet:min-w-[570px] tablet:max-w-[630px]"
       >
-        <h1 className="font-bold text-center text-custom-h2 mobile:mb-6 text-custom-green tablet:mb-8">
+        <h1 className="font-bold text-center text-custom-h1 mobile:mb-6 text-custom-green tablet:mb-8">
           구매를 진행해볼까요?
         </h1>
         <div className="flex flex-col items-center w-full">

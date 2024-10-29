@@ -28,7 +28,7 @@ const PaymentCompletePage = () => {
   return (
     <div className="flex flex-col items-center w-full min-h-screen text-custom-black">
       <div className="flex flex-col items-center w-full pt-2">
-        <h1 className="mb-6 font-bold text-center text-custom-h2 text-custom-green">결제가 완료되었어요!</h1>
+        <h1 className="mb-6 font-bold text-center text-custom-h1 text-custom-green">결제가 완료되었어요!</h1>
         <div
           className="flex flex-col items-center gap-4 rounded-md
          bg-neutral-100 mobile:w-3/5 max-w-[300px] py-2 px-4"
