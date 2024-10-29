@@ -7,11 +7,14 @@ import { handleFieldChange } from "../../utils/productDataUtils";
 import handleRegistrationSubmit from "../../utils/handleRegistrationSubmit";
 import ProductImage from "./ProductImage";
 import RegistrationButtons from "./RegistrationButtons";
+import { productDataAtom, isFormValidAtom } from "../../atom/atom";
+import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-import useRegistrationLogic from "../../hooks/useRegistrationLogic";
+import { ToastContainer } from "react-toastify";
 
 const ProductForm: React.FC = () => {
-  const { productData, setProductData, isFormValid } = useRegistrationLogic();
+  const [productData, setProductData] = useAtom(productDataAtom);
+  const [isFormValid] = useAtom(isFormValidAtom);
   const { categories } = useFetchCategories();
   const navigate = useNavigate();
   const fields: { id: keyof ProductDataType; label: string; maxLength?: number; showLength?: boolean }[] = [
@@ -56,8 +59,9 @@ const ProductForm: React.FC = () => {
         value={productData.categoryId}
         onChange={(e) => handleFieldChange("categoryId", Number(e.target.value), setProductData)}
       />
-      <ProductImage productData={productData} setProductData={setProductData} isFormValid={isFormValid} />
-      <RegistrationButtons isFormValid={isFormValid} navigate={navigate} />
+      <ProductImage />
+      <RegistrationButtons />
+      <ToastContainer />
     </form>
   );
 };
