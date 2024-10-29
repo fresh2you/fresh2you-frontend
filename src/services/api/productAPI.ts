@@ -76,37 +76,27 @@ const productAPI = {
     return response;
   },
 
-  postProduct: async ({
-    name,
-    quantity,
-    description,
-    price,
-    categoryId,
-    image,
-  }: {
-    name: string;
-    quantity: number;
-    description: string;
-    price: number;
-    categoryId: number;
-    image: File;
-  }) => {
-    const { data: response } = await instance.post(
-      "/products",
-      {
+  postProduct: async ({ name, price, description, categoryId, quantity, image }: ProductDataType) => {
+    const formData = new FormData();
+    if (image) {
+      formData.append("image", image);
+    }
+    formData.append(
+      "request",
+      JSON.stringify({
         name,
         quantity,
         description,
         price,
         categoryId,
-        image,
-      },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      },
+      }),
     );
+
+    const { data: response } = await instance.post("/products", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
     return response;
   },

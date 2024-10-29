@@ -24,7 +24,7 @@ declare interface ProductDataType {
   description: string;
   price: string;
   image: File | null;
-  imagePreview: string;
+  imagePreview?: string;
   categoryId: number;
   quantity: string;
 }

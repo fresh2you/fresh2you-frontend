@@ -21,7 +21,7 @@ const ProductForm: React.FC = () => {
     { id: "price", label: "가격" },
     { id: "quantity", label: "수량" },
   ];
-  console.log(productData);
+
   return (
     <form
       onSubmit={(e) => handleRegistrationSubmit({ e, productData, navigate, isFormValid })}
