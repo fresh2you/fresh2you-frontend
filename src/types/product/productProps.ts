@@ -30,3 +30,9 @@ export interface HandleCategoryClickProps extends CommonCategoryProps {
 export interface SubCategoryItemsProps extends CommonCategoryProps {
   items: SubCategory[];
 }
+
+export interface ProductFormProps {
+  productData: ProductDataType;
+  setProductData: React.Dispatch<React.SetStateAction<ProductDataType>>;
+  isFormValid: boolean;
+}
