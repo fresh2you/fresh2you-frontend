@@ -1,12 +1,12 @@
 import Button from "../buttons/Button";
-import { NavigateFunction } from "react-router-dom";
+import { isFormValidAtom } from "../../atom/atom";
+import { useAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
 
-interface RegistrationButtonsProps {
-  isFormValid: boolean;
-  navigate: NavigateFunction;
-}
+const RegistrationButtons = () => {
+  const [isFormValid] = useAtom(isFormValidAtom);
+  const navigate = useNavigate();
 
-const RegistrationButtons = ({ isFormValid, navigate }: RegistrationButtonsProps) => {
   return (
     <section className="flex justify-center gap-2">
       <Button
