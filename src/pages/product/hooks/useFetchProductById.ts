@@ -13,13 +13,12 @@ export const useFetchProductById = () => {
     queryKey: ["fetchedProductById", id],
     queryFn: async () => {
       if (!id) return;
-
       const { data: product } = await api.product.getProductDetails(Number(id));
-
       return product as IProductList;
     },
     enabled: id !== undefined,
     staleTime: 600 * 1000,
+    retry: 0,
   });
 
   return { fetchedProductById, isLoading, isError };
