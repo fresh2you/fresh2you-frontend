@@ -21,6 +21,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
   withBtn,
   className = "",
   showLength = false,
+  readOnly = false,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -44,10 +45,13 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
           onKeyDown={(e) => inputUtils.handleKeyDown(e, onButtonClick, type)}
           maxLength={maxLength}
           className={`text-custom-black p-2.5 rounded text-custom-input custom-focus leading-4 
-          border border-custom-gray-light ${className} ${id === "price" || id === "quantity" ? "w-1/2" : "w-full"}`}
+          border border-custom-gray-light ${className} ${
+            id === "price" || id === "quantity" || id === "recipientName" || id === "phoneNumber" ? "w-1/2" : "w-full"
+          }`}
           required
           aria-required="true"
           aria-labelledby={`label-${id}`}
+          readOnly={readOnly}
         />
         {!noIcon && type === "password" && (
           <button

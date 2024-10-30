@@ -1,7 +1,7 @@
 export interface InputWithLabelProps {
   id: string;
   label: string;
-  type?: "text" | "password" | "email" | "number";
+  type?: "text" | "password" | "email" | "number" | "tel";
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
@@ -14,4 +14,5 @@ export interface InputWithLabelProps {
   withBtn?: React.ReactNode;
   className?: string;
   showLength?: boolean;
+  readOnly?: boolean;
 }

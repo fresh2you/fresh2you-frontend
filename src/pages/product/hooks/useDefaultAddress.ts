@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { fetchDeliveryAddresses } from "../api/productApis";
 
-type SetRecipientDetails = (details: Address) => void;
+type setRecipientDetails = React.Dispatch<React.SetStateAction<PurchaseFormDataType>>;
 type SetAddressList = (addresses: Address[]) => void;
 
-const useDefaultAddress = (setRecipientDetails: SetRecipientDetails, setAddressList: SetAddressList) => {
+const useDefaultAddress = (setRecipientDetails: setRecipientDetails, setAddressList: SetAddressList) => {
   useEffect(() => {
     const fetchDefaultAddress = async () => {
       try {
@@ -17,7 +17,7 @@ const useDefaultAddress = (setRecipientDetails: SetRecipientDetails, setAddressL
             setRecipientDetails({
               recipientName: defaultAddress.recipientName,
               phoneNumber: defaultAddress.phoneNumber,
-              deliveryAddressId: defaultAddress.deliveryAddressId,
+              addressId: defaultAddress.deliveryAddressId,
               address: defaultAddress.address,
               detailedAddress: defaultAddress.detailedAddress,
               postalCode: defaultAddress.postalCode,

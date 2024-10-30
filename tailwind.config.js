@@ -6,6 +6,7 @@ export default {
       colors: {
         "custom-verify": "#47AAAD",
         "custom-green": "#40A578",
+        "custom-green-100": "#dbf0e3",
         "custom-green-200": "#b9e1ca",
         "custom-green-300": "#8bcaaa",
         "custom-green-600": "#277453",
@@ -28,6 +29,7 @@ export default {
       fontSize: {
         "custom-sm-p": "clamp(0.8rem, 4vw, 1.07rem)",
         "custom-p": "clamp(1rem, 4vw, 1.25rem)",
+        "custom-p-lg": "clamp(1.2rem, 4vw, 1.4rem)",
         "custom-h": "clamp(2.5rem, 9vw, 3.75rem)",
         "custom-h1": "clamp(1.5rem, 8vw, 2rem)",
         "custom-h3": "clamp(0.7rem, 5vw, 1.5rem)",
