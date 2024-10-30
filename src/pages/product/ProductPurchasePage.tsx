@@ -1,81 +1,39 @@
-import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Button from "./components/buttons/Button";
-import ProductMiniInfo from "./components/purchase/ProductMiniInfo";
-import PurchaseForm from "./components/purchase/PurchaseForm";
+import ProductSummary from "./components/purchase/ProductSummary";
 import { formatCurrency } from "../../utils/commonUtils";
 import { useFetchProductById } from "./hooks/useFetchProductById";
 import { handlePurchase } from "./utils/productUtils";
-import { Loading } from "../redirection/component/Loading";
-import useDefaultAddress from "./hooks/useDefaultAddress";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { pageLayoutHeaderProps } from "@/stores/mypage";
-import { useSetAtom } from "jotai";
+import TwoActionBtns from "./components/buttons/TwoActionBtns";
+import useHeaderProps from "@/hooks/useHeaderProps";
+import { quantityAtom, recipientDetailsAtom } from "./atom/atom";
+import { useAtomValue } from "jotai";
+import PurchaseForm from "./components/purchase/PurchaseForm";
+import { Loading } from "../redirection/component/Loading";
 
 const ProductPurchasePage = () => {
-  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
-
-  useEffect(() => {
-    setHeaderProps({
-      title: "",
-      hasConfirm: false,
-      backRoute: "../",
-    });
-  }, [setHeaderProps]);
-
+  useHeaderProps("", "../", false);
   const { id: productId } = useParams();
-  const [quantity, setQuantity] = useState(1);
-  const [recipientDetails, setRecipientDetails] = useState<Address>({
-    recipientName: "",
-    phoneNumber: "",
-    deliveryAddressId: "",
-    address: "",
-    detailedAddress: "",
-    postalCode: "",
-  });
-  const [addressList, setAddressList] = useState<Address[]>([]);
+  const quantity = useAtomValue(quantityAtom);
+  const recipientDetails = useAtomValue(recipientDetailsAtom);
   const navigate = useNavigate();
-
   const { fetchedProductById: product, isLoading } = useFetchProductById();
-
-  useDefaultAddress(setRecipientDetails, setAddressList);
-
   if (isLoading || !product) return <Loading isLayoutApplied={true} />;
-
-  const totalAmount = product.price * quantity;
+  const totalAmount = product ? product.price * quantity : 0;
 
   return (
-    <div className="flex flex-col items-center w-full min-h-screen text-custom-black">
-      <div
-        className="mobile:w-11/12 tablet-sm:w-4/5 tablet-sm:min-w-[380px] mobile:max-w-[380px] tablet-sm:max-w-[450px]
-      flex flex-col items-center tablet:min-w-[570px] tablet:max-w-[630px]"
-      >
-        <h1 className="font-bold text-center text-custom-h1 mobile:mb-6 text-custom-green tablet:mb-8">
-          구매를 진행해볼까요?
-        </h1>
-        <div className="flex flex-col items-center w-full">
-          <ProductMiniInfo product={product} quantity={quantity} setQuantity={setQuantity} />
-          <PurchaseForm
-            recipientDetails={recipientDetails}
-            setRecipientDetails={setRecipientDetails}
-            addressList={addressList}
-          />
-        </div>
-        <div className="mt-6 font-semibold text-custom-h3">총금액: {formatCurrency(totalAmount)} 원</div>
-        <div className="flex justify-center gap-4 mobile:mt-4 tablet-sm:mt-6">
-          <Button
-            className="text-white bg-custom-green hover:bg-custom-green-hover"
-            text="결제하기"
-            onClick={() => handlePurchase(recipientDetails, quantity, productId, navigate, product)}
-          />
-          <Button
-            className="bg-custom-gray-light text-custom-black hover:bg-custom-gray-dark"
-            text="취소"
-            onClick={() => navigate(-1)}
-          />
-        </div>
-      </div>
+    <div className="mobile:w-11/12 max-w-[600px] flex flex-col">
+      <h1 className="mb-6 font-bold text-center text-custom-h1 text-custom-green">구매를 진행해볼까요?</h1>
+      <ProductSummary product={product} />
+      <PurchaseForm />
+      <span className="my-4 font-semibold text-center text-custom-p-lg">총 금액: {formatCurrency(totalAmount)} 원</span>
+      <TwoActionBtns
+        primaryText="결제하기"
+        primaryOnClick={() => handlePurchase(recipientDetails, quantity, productId, navigate, product)}
+        secondaryText="취소"
+        secondaryOnClick={() => navigate("/")}
+      />
       <ToastContainer />
     </div>
   );
