@@ -9,7 +9,7 @@ interface ProductSummaryProps {
 
 const ProductSummary: React.FC<ProductSummaryProps> = ({ product }) => {
   return (
-    <section className="flex flex-col w-full tablet:flex-row tablet:justify-between">
+    <section className="flex flex-col w-full tablet:flex-row tablet:justify-between gap-4">
       <div className="flex gap-3 items-center">
         <div className="mobile:w-1/3 tablet:w-full max-w-[141px]">
           <img
@@ -24,7 +24,7 @@ const ProductSummary: React.FC<ProductSummaryProps> = ({ product }) => {
           <p className="text-custom-green font-semibold text-custom-p">{formatCurrency(product.price)} 원</p>
         </div>
       </div>
-      <div className="flex items-center gap-4 mt-4">
+      <div className="flex items-center gap-4">
         <label htmlFor="quantity" className="text-custom-input font-semibold whitespace-nowrap">
           수량
         </label>
