@@ -26,15 +26,15 @@ const ProductPurchasePage = () => {
 
   const { id: productId } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const [recipientDetails, setRecipientDetails] = useState({
+  const [recipientDetails, setRecipientDetails] = useState<Address>({
     recipientName: "",
     phoneNumber: "",
-    addressId: "",
+    deliveryAddressId: "",
     address: "",
     detailedAddress: "",
     postalCode: "",
   });
-  const [addressList, setAddressList] = useState([]);
+  const [addressList, setAddressList] = useState<Address[]>([]);
   const navigate = useNavigate();
 
   const { fetchedProductById: product, isLoading } = useFetchProductById();

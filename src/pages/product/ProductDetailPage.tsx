@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ProductInfo from "./components/details/ProductInfo";
 import ProductDetailsSection from "@/pages/product/components/details/ProductDetailSection";
 import ProductDetailSkeleton from "./components/skeletons/ProductDetailSkeleton";
@@ -12,18 +11,18 @@ const ProductDetailPage = () => {
 
   return (
     <div
-      className="flex flex-col items-center min-h-screen text-custom-black px-4 mobile:w-full 
+      className="flex flex-col items-center h-full text-custom-black px-4 mobile:w-full 
     desktop-sm:min-w-[549px] desktop-sm: max-w-[850px]"
     >
       <div className="flex flex-col w-full pt-2 max-w-[560px]">
         {isLoading && <ProductDetailSkeleton />}
-
         {!isLoading && !isError && product && (
           <>
             <ProductInfo product={product} />
             <ProductDetailsSection description={product?.description} />
           </>
         )}
+        {!isLoading && isError && <ItemNotFound />}
       </div>
     </div>
   );

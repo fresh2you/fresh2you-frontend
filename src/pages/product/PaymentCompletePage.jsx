@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { mockProducts } from "../../mockdata/MockData";
+import { mockProducts } from "../../mockData/MockData";
 import { formatCurrency } from "@/utils/commonUtils";
 import HomeButton from "@/components/HomeButton";
 import { useNavigate } from "react-router-dom";

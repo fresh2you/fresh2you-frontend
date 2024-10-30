@@ -63,7 +63,7 @@ const ProductRegistrationPage = () => {
     }
   };
 
-  useHeaderProps("제품 등록하기", false, "../");
+  useHeaderProps("제품 등록하기", "../", false);
 
   return (
     <div className="flex flex-col items-center w-full min-h-screen pt-2 text-custom-black">

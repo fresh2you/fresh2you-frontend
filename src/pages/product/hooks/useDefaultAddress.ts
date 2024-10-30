@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { fetchDeliveryAddresses } from "../api/productApis";
 
-const useDefaultAddress = (setRecipientDetails, setAddressList) => {
+type SetRecipientDetails = (details: Address) => void;
+type SetAddressList = (addresses: Address[]) => void;
+
+const useDefaultAddress = (setRecipientDetails: SetRecipientDetails, setAddressList: SetAddressList) => {
   useEffect(() => {
     const fetchDefaultAddress = async () => {
       try {
-        const { addressList: addresses } = await fetchDeliveryAddresses();
+        const { addressList: addresses }: { addressList: Address[] } = await fetchDeliveryAddresses();
 
         if (addresses && addresses.length > 0) {
           const defaultAddress = addresses.find((address) => address.isDefault);
@@ -14,7 +17,7 @@ const useDefaultAddress = (setRecipientDetails, setAddressList) => {
             setRecipientDetails({
               recipientName: defaultAddress.recipientName,
               phoneNumber: defaultAddress.phoneNumber,
-              addressId: defaultAddress.deliveryAddressId,
+              deliveryAddressId: defaultAddress.deliveryAddressId,
               address: defaultAddress.address,
               detailedAddress: defaultAddress.detailedAddress,
               postalCode: defaultAddress.postalCode,
@@ -27,7 +30,7 @@ const useDefaultAddress = (setRecipientDetails, setAddressList) => {
     };
 
     fetchDefaultAddress();
-  }, []);
+  }, [setRecipientDetails, setAddressList]);
 };
 
 export default useDefaultAddress;
