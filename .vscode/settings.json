@@ -15,6 +15,7 @@
     "SIGNIN",
     "signup",
     "tailwindcss",
-    "tanstack"
+    "tanstack",
+    "tosspayments"
   ]
 }
