@@ -1,13 +1,10 @@
-import AddressModal from "./AddressModal";
 import { recipientDetailsAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
 import { addressHandlers } from "../../utils/purchaseHandlers";
 import InputWithLabel from "@/components/InputWithLabel";
-import { useState } from "react";
 import DeliveryAddressSection from "./DeliveryAddressSection";
 
 const PurchaseForm = () => {
-  const [showAddressList, setShowAddressList] = useState(false);
   const [recipientDetails, setRecipientDetails] = useAtom(recipientDetailsAtom);
 
   return (
@@ -27,8 +24,7 @@ const PurchaseForm = () => {
         type="tel"
         className="max-w-[180px]"
       />
-      <DeliveryAddressSection setShowAddressList={setShowAddressList} />
-      <AddressModal isOpen={showAddressList} setShowAddressList={setShowAddressList} />
+      <DeliveryAddressSection />
     </div>
   );
 };
