@@ -14,7 +14,7 @@ const ProductsPage = () => {
   return (
     <section className="mx-auto py-2.5 text-custom-black product-page">
       <CategoryButtons />
-      <h1 className="my-6 font-bold text-center text-custom-green text-custom-h2">갓 수확했어요!</h1>
+      <h1 className="my-6 font-bold text-center text-custom-green text-custom-h1">갓 수확했어요!</h1>
       <ProductList products={products} lastProductRef={lastProductRef} itemsPerPage={itemsPerPage} />
       {isSeller && (
         <Link
