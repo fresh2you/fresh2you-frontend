@@ -1,4 +1,4 @@
-import { addressHandlers } from "../../utils/purchaseHandlers";
+import { handleAddressSelect } from "../../utils/purchaseHandlers";
 import { recipientDetailsAtom } from "../../atom/atom";
 import { useSetAtom } from "jotai";
 
@@ -17,7 +17,7 @@ const AddressList: React.FC<AddressListProps> = ({ addresses, unmount }) => {
             key={address.deliveryAddressId}
             className="w-full p-2 mb-2 transition-all border rounded cursor-pointer border-custom-green hover:bg-custom-green-100 text-custom-btn-text text-custom-dark"
             onClick={() => {
-              addressHandlers.handleAddressSelect(address, setRecipientDetails);
+              handleAddressSelect(address, setRecipientDetails);
               unmount();
             }}
           >
