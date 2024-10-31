@@ -14,7 +14,7 @@ const TwoActionBtns = ({
   primaryOnClick,
   secondaryText,
   secondaryOnClick,
-  isPrimaryDisabled,
+  isPrimaryDisabled = false,
   extraClassName,
 }: TwoActionBtnsProps) => {
   return (
@@ -22,7 +22,7 @@ const TwoActionBtns = ({
       <Button
         type="submit"
         className={`bg-custom-green text-white hover:bg-custom-green-hover order-2 desktop-sm:order-1 ${
-          isPrimaryDisabled ? "cursor-pointer" : "cursor-not-allowed"
+          isPrimaryDisabled ? "cursor-not-allowed" : "cursor-pointer"
         }`}
         text={primaryText}
         aria-label={primaryText}
