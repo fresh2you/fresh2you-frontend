@@ -6,8 +6,9 @@ import DeliveryAddressSection from "./DeliveryAddressSection";
 
 const PurchaseForm = () => {
   const [recipientDetails, setRecipientDetails] = useAtom(recipientDetailsAtom);
+
   return (
-    <div className="flex flex-col w-11/12 mt-2.5 gap-1">
+    <div className="flex flex-col w-11/12 mt-2.5 gap-1 mb-2">
       <InputWithLabel
         label="받는 사람"
         id="recipientName"

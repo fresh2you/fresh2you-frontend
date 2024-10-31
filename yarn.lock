@@ -653,6 +653,11 @@
   dependencies:
     "@tanstack/query-core" "5.53.3"
 
+"@tosspayments/tosspayments-sdk@^2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@tosspayments/tosspayments-sdk/-/tosspayments-sdk-2.3.2.tgz#860919bc180ee5c467275151b2845345866cfb2c"
+  integrity sha512-8Sq1cMc4HrxF4zaL213D51epQM7P5p7Tq/iLARooX8SMSY/16MVs8NUuIcmO1dbfpcBaX10wLwYSOZcL4ZGRtw==
+
 "@types/babel__core@^7.20.5":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.20.5.tgz#3df15f27ba85319caa07ba08d0721889bb39c017"
