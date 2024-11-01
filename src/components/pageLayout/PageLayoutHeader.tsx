@@ -15,7 +15,7 @@ const PageLayoutHeader = () => {
           goBack(backRoute);
           if (onBack) onBack();
         }}
-        className="flex items-center h-full px-4 py-0 bg-transparent"
+        className="flex items-center h-full px-4 py-0 bg-transparent desktop:hidden"
       >
         <IconLeft className="h-5 text-custom-gray-dark" />
       </button>
