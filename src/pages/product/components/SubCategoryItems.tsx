@@ -3,6 +3,7 @@ import { handleCategoryChange } from "../utils/categoryHandlers";
 import { SubCategoryItemsProps } from "@/types/product/productProps";
 
 const SubCategoryItems: React.FC<SubCategoryItemsProps> = ({ items, selectedCategoryId, handlers }) => {
+  const { onSelect } = handlers;
   return (
     <div
       className="flex flex-col pl-1.5 py-1 absolute z-10 bg-custom-green-200 opacity-90 
@@ -13,7 +14,10 @@ const SubCategoryItems: React.FC<SubCategoryItemsProps> = ({ items, selectedCate
           <div
             key={item.categoryId}
             className="flex-shrink-0 w-1/4 mr-4 text-sm font-semibold transition-colors cursor-pointer hover:text-custom-green-hover hover:scale-105 whitespace-nowrap"
-            onClick={() => handleCategoryChange(item.categoryId, selectedCategoryId, handlers)}
+            onClick={() => {
+              handleCategoryChange(item.categoryId, selectedCategoryId, handlers);
+              onSelect(item.categoryId);
+            }}
           >
             {item.categoryName}
           </div>
