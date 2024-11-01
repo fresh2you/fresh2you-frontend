@@ -4,7 +4,6 @@ import { useRef } from "react";
 import ImageInput from "./ImageInput";
 import ProductImagePreview from "./ProductImagePreview";
 import "../../../../styles/styles.css";
-import { inputUtils } from "@/utils/commonUtils";
 import UploadPrompt from "./UploadPrompt";
 import { productDataAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
@@ -23,22 +22,23 @@ const ProductImage: React.FC = () => {
         setFileName={setFileName}
         fileInputRef={fileInputRef}
       />
-      <div
-        className={`cursor-pointer rounded h-48 p-4 w-full border-2 border-dashed border-custom-green 
-          flex justify-center custom-focus-light ${isDragOver ? "bg-custom-green-200" : "bg-gray-200"}`}
+      <button
+        type="button"
+        className={`cursor-pointer rounded h-48 p-4 w-full  
+          flex justify-center items-center custom-focus-light text-left border-2 border-dashed ${
+            isDragOver ? "bg-custom-green-200 border-custom-green" : "bg-gray-200 border-custom-gray-light"
+          }`}
         onDragOver={(e) => fileHandlers.handleDragOver(e, setIsDragOver)}
         onDragLeave={() => fileHandlers.handleDragLeave(setIsDragOver)}
         onDrop={(e) => fileHandlers.handleDrop(e, setFileName, setProductData, setIsDragOver)}
         onClick={() => fileHandlers.handleFileInputClick(fileInputRef)}
-        tabIndex={0}
-        onKeyDown={(e) => inputUtils.handleKeyDown(e, () => fileHandlers.handleFileInputClick(fileInputRef))}
       >
         {productData.imagePreview ? (
           <ProductImagePreview imagePreview={productData.imagePreview} fileName={fileName} />
         ) : (
           <UploadPrompt isDragOver={isDragOver} />
         )}
-      </div>
+      </button>
     </section>
   );
 };

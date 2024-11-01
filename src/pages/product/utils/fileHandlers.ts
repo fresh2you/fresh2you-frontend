@@ -37,7 +37,7 @@ const fileHandlers = {
   },
 
   handleDragOver: (
-    e: React.DragEvent<HTMLDivElement>,
+    e: React.DragEvent<HTMLButtonElement>,
     setIsDragOver: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ const fileHandlers = {
   },
 
   handleDrop: (
-    e: React.DragEvent<HTMLDivElement>,
+    e: React.DragEvent<HTMLButtonElement>,
     setFileName: React.Dispatch<React.SetStateAction<string>>,
     setProductData: React.Dispatch<React.SetStateAction<ProductDataType>>,
     setIsDragOver: React.Dispatch<React.SetStateAction<boolean>>,
