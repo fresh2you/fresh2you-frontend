@@ -7,7 +7,13 @@ import useHeaderProps from "../../hooks/useHeaderProps";
 
 const ProductDetailPage = () => {
   const { fetchedProductById: product, isLoading, isError } = useFetchProductById();
-  useHeaderProps("", "../", false);
+  useHeaderProps({
+    title: "",
+    backRoute: "../",
+    hasConfirm: false,
+    confirmText: null,
+    onConfirm: null,
+  });
 
   return (
     <div
