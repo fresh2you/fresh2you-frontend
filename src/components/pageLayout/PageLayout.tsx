@@ -10,7 +10,7 @@ const PageLayout = () => {
       <PageLayoutHeader />
       <main
         className={`flex justify-center w-full h-full overflow-hidden overflow-y-scroll scrollbar-hide
-        ${isChattingPage ? "" : "mobile:px-4"} desktop:px-10`}
+        ${isChattingPage ? "" : "px-4"} desktop:px-10`}
       >
         <Outlet />
       </main>
