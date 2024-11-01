@@ -1,20 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
-import { instance } from "@/instance";
-import { ProductCardProps } from "@/pages/home/component/ProductCard";
+import { api } from "@/services/api";
+import { toast } from "react-toastify";
 
 const useLikeListPageLogics = () => {
-  const { data: mockProducts } = useQuery({
-    queryKey: ["mockProducts"],
+  const { data: likedProducts } = useQuery({
+    queryKey: ["likedProducts"],
     queryFn: async () => {
-      const { data: result } = await instance.get<ProductCardProps[]>("/mockProducts");
+      try {
+        const { data: result } = await api.product.getLikeProducts();
 
-      return result;
+        return result.productList;
+      } catch (error) {
+        toast.error("에러가 발생했습니다.");
+        console.debug(error);
+      }
     },
     enabled: true,
     staleTime: 60 * 1000,
   });
 
-  return { mockProducts };
+  return { likedProducts };
 };
 
 export default useLikeListPageLogics;
