@@ -7,7 +7,13 @@ import useHeaderProps from "../../hooks/useHeaderProps";
 
 const ProductDetailPage = () => {
   const { fetchedProductById: product, isLoading, isError } = useFetchProductById();
-  useHeaderProps("", "../", false);
+  useHeaderProps({
+    title: "",
+    backRoute: "../",
+    hasConfirm: false,
+    confirmText: null, // confirmText는 선택적이므로 null 설정
+    onConfirm: null,
+  });
 
   return (
     <div
