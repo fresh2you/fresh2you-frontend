@@ -11,7 +11,7 @@ const TextInput = ({ name, value, onChange, type = "text", readOnly, extraStyle 
           ? "w-full"
           : name === "detailedAddress"
           ? "w-2/3"
-          : "mobile:w-1/2 mobile:max-w-[220px] tablet:max-w-[240px] custom-focus "
+          : "mobile:w-1/2 mobile:max-w-[220px] tablet:max-w-[240px] custom-focus-light"
       }"
       }`}
       readOnly={readOnly}

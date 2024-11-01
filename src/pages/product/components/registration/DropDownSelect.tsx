@@ -11,14 +11,14 @@ interface DropdownSelectProps {
 const DropdownSelect: React.FC<DropdownSelectProps> = ({ id, label, options, value, onChange }) => {
   return (
     <section className="flex flex-col mb-2.5">
-      <label htmlFor={id} className="text-custom-input font-semibold mb-1">
+      <label htmlFor={id} className="mb-1 font-semibold text-custom-input">
         {label}
       </label>
       <select
         id={id}
         value={value}
         onChange={onChange}
-        className="border p-2 rounded custom-focus border-custom-gray-light"
+        className="p-2 border rounded custom-focus-light border-custom-gray-light"
         required
         aria-required="true"
         aria-labelledby="label-image"

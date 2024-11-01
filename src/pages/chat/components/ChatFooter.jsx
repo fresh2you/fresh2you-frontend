@@ -40,22 +40,19 @@ const ChatFooter = ({ chatInfo, navigate, setMessages }) => {
     }
   };
   return (
-    <div
-      className="bg-white py-2  flex items-center 
-    tablet:justify-center border-t w-full bottom-0 fixed left-0 mobile:justify-evenly tablet:gap-9"
-    >
-      <button className="custom-focus p-0 bg-white" onClick={toggleDropdown}>
+    <div className="fixed bottom-0 left-0 flex items-center w-full py-2 bg-white border-t tablet:justify-center mobile:justify-evenly tablet:gap-9">
+      <button className="p-0 bg-white custom-focus" onClick={toggleDropdown}>
         <ListIcon className="w-8 h-8 tablet-sm:w-9 tablet:h-9" />
       </button>
       {isOpen && <DropDownMenu action={setIsOpen} navigate={navigate} chatInfo={chatInfo} />}
       <input
         type="text"
         value={inputValue}
-        className="bg-gray-200 w-8/12 p-2 rounded custom-focus"
+        className="w-8/12 p-2 bg-gray-200 rounded custom-focus-light"
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <button className="p-0 custom-focus ml-2 bg-white" onClick={handleSendMessage}>
+      <button className="p-0 ml-2 bg-white custom-focus" onClick={handleSendMessage}>
         <SendIcon className="w-7 h-7 tablet-sm:w-9 tablet:h-9" />
       </button>
     </div>
