@@ -16,7 +16,7 @@ const ProductCard = forwardRef<HTMLAnchorElement, { product: IProductList }>(({ 
         <img
           src={product.imageUrl || fallbackImg}
           alt={product.productName}
-          className="object-cover w-2/3 max-w-24 aspect-square rounded border"
+          className="object-cover w-2/3 border rounded max-w-24 aspect-square"
         />
       </div>
       <div className="flex flex-col px-4 py-2 text-custom-btn-text mobile:leading-5 tablet-sm:leading-6">
