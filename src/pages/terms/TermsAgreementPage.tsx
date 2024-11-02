@@ -23,7 +23,7 @@ const TermsAgreementPage = () => {
   };
 
   return (
-    <div className="flex items-center w-full min-h-screen p-4 h-full">
+    <div className="flex items-center w-full h-full min-h-screen p-4">
       <main
         className="flex flex-col items-center mx-auto bg-custom-green rounded-md py-5 
         mobile:w-11/12 mobile:max-w-[360px] min-h-auto
@@ -35,7 +35,7 @@ const TermsAgreementPage = () => {
         <TermsAgreement onAgree={handleAgree} termsChecked={termsChecked} setTermsChecked={setTermsChecked} />
         <footer>
           <button
-            className={`text-custom-black font-semibold rounded-md custom-focus 
+            className={`text-custom-black font-semibold rounded-md custom-focus-light 
               text-custom-input px-3 ${isAgreed ? "cursor-pointer" : "cursor-not-allowed"}`}
             onClick={() => {
               handleSubmit(Boolean(isSocialLoginRedirect), socialInfoState, termsChecked, navigate);

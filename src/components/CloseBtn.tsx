@@ -1,13 +1,14 @@
 import "../styles/styles.css";
 interface CloseBtnProps {
-  onClick: () => void;
+  onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
 }
-export const CloseBtn: React.FC<CloseBtnProps> = ({ onClick }) => {
+export const CloseBtn: React.FC<CloseBtnProps> = ({ onClick, className }) => {
   return (
     <button
       onClick={onClick}
-      className="absolute -top-2 -right-2 text-2xl text-white bg-transparent 
-      border-transparent hover:text-gray-200"
+      className={`text-custom-p text-white border-none
+        ${className ? className : "absolute -top-2 -right-2 bg-transparent hover:text-gary-200"}`}
     >
       &times;
     </button>

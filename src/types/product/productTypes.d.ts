@@ -18,3 +18,13 @@ declare interface Address {
   detailedAddress: string;
   postalCode: string;
 }
+
+declare interface ProductDataType {
+  name: string;
+  description: string;
+  price: string;
+  image: File | null;
+  imagePreview?: string;
+  categoryId: number;
+  quantity: string;
+}

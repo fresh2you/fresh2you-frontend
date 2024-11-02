@@ -6,13 +6,13 @@ interface headerBaseProps {
   backRoute: string;
 }
 
-interface headerWithConfirm extends headerBaseProps {
+export interface headerWithConfirm extends headerBaseProps {
   hasConfirm: true; // hasConfirm이 true일 때
   confirmText: string; // confirmText는 필수
   onConfirm?: () => void;
 }
 
-interface headerWithoutConfirm extends headerBaseProps {
+export interface headerWithoutConfirm extends headerBaseProps {
   hasConfirm: false; // hasConfirm이 false일 때
   confirmText?: null; // confirmText는 선택
   onConfirm?: null;

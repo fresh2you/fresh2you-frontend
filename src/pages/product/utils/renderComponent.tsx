@@ -32,7 +32,7 @@ export const renderCategoryButtons = ({
       {allCategories.map((category) => (
         <button
           key={category.categoryName}
-          className={`px-2.5 py-1 rounded-lg custom-focus whitespace-nowrap text-custom-btn-text ${
+          className={`px-2.5 py-1 rounded-lg custom-focus-light whitespace-nowrap text-custom-btn-text ${
             selectedCategory === category.categoryName
               ? "bg-custom-green text-white"
               : "bg-custom-gray-light text-custom-black hover:bg-custom-green-hover hover:text-white"
