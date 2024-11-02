@@ -26,7 +26,7 @@ const PageLayoutHeader = () => {
       {/* 헤더 우측 버튼 */}
       {hasConfirm && (
         <button
-          className="h-full px-4 py-0 font-semibold bg-transparent text-custom-gray-dark"
+          className="h-full px-4 py-0 ml-auto font-semibold bg-transparent text-custom-gray-dark"
           onClick={() => {
             if (onConfirm) onConfirm();
           }}
