@@ -183,8 +183,19 @@ const productAPI = {
     return response;
   },
 
+  getSellingProducts: async ({ page = 0, pageSize }: { page: number; pageSize: number }) => {
+    const { data: response } = await instance.get<IGetSellingProductResponse>("/products/seller", {
+      params: {
+        page,
+        size: pageSize,
+      },
+    });
+
+    return response;
+  },
+
   getLikeProducts: async () => {
-    const { data: response } = await instance.get("/products/like");
+    const { data: response } = await instance.get<ILikeProductResponse>("/products/like");
 
     return response;
   },
