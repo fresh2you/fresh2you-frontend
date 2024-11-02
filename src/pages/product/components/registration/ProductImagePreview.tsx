@@ -1,7 +1,7 @@
-import fileHandlers from "../../utils/fileHandlers";
+import fileHandlers from "@/pages/product/utils/fileHandlers";
 import { useSetAtom } from "jotai";
 import { productDataAtom } from "../../atom/atom";
-import BinIcon from "../../../../assets/icons/bin.svg";
+import BinIcon from "@/assets/icons/bin.svg";
 
 interface ProductImagePreviewProps {
   imagePreview: string;

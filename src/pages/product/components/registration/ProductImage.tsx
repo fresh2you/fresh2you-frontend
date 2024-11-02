@@ -4,6 +4,7 @@ import { useRef } from "react";
 import ImageInput from "./ImageInput";
 import ProductImagePreview from "./ProductImagePreview";
 import "../../../../styles/styles.css";
+import { inputUtils } from "@/utils/commonUtils";
 import UploadPrompt from "./UploadPrompt";
 import { productDataAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
@@ -32,6 +33,8 @@ const ProductImage: React.FC = () => {
         onDragLeave={() => fileHandlers.handleDragLeave(setIsDragOver)}
         onDrop={(e) => fileHandlers.handleDrop(e, setFileName, setProductData, setIsDragOver)}
         onClick={() => fileHandlers.handleFileInputClick(fileInputRef)}
+        tabIndex={0}
+        onKeyDown={(e) => inputUtils.handleKeyDown(e, () => fileHandlers.handleFileInputClick(fileInputRef))}
       >
         {productData.imagePreview ? (
           <ProductImagePreview imagePreview={productData.imagePreview} fileName={fileName} />
