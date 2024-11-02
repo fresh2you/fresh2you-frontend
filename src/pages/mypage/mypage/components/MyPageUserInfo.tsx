@@ -5,7 +5,7 @@ const MyPageUserInfo = ({ isSeller }: { isSeller: boolean }) => {
 
   return (
     <section className="flex flex-col w-full gap-4">
-      <article className="flex items-center w-full gap-2 px-4 py-3 bg-white">
+      <article className="flex items-center w-full gap-2 px-4 py-3">
         <div
           className="flex items-center justify-center h-16 bg-center bg-no-repeat bg-cover rounded-full aspect-square bg-custom-gray-dark"
           style={
