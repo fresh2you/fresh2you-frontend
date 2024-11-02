@@ -22,8 +22,8 @@ const ProductImage: React.FC = () => {
         setFileName={setFileName}
         fileInputRef={fileInputRef}
       />
-      <button
-        type="button"
+      <div
+        role="button"
         className={`cursor-pointer rounded h-48 p-4 w-full  
           flex justify-center items-center custom-focus-light text-left border-2 border-dashed ${
             isDragOver ? "bg-custom-green-200 border-custom-green" : "bg-gray-200 border-custom-gray-light"
@@ -38,7 +38,7 @@ const ProductImage: React.FC = () => {
         ) : (
           <UploadPrompt isDragOver={isDragOver} />
         )}
-      </button>
+      </div>
     </section>
   );
 };
