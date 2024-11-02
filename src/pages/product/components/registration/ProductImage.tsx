@@ -24,6 +24,7 @@ const ProductImage: React.FC = () => {
         fileInputRef={fileInputRef}
       />
       <div
+        role="button"
         className={`cursor-pointer rounded h-48 p-4 w-full border-2 border-dashed border-custom-green 
           flex justify-center custom-focus-light ${isDragOver ? "bg-custom-green-200" : "bg-gray-200"}`}
         onDragOver={(e) => fileHandlers.handleDragOver(e, setIsDragOver)}
