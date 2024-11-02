@@ -9,20 +9,16 @@
   hover:bg-custom-green-hover hover:text-white text-custom-input py-2.5;
 }
 .sign-up-link {
-  @apply ml-2 text-custom-span underline underline-offset-4 text-white 
-hover:text-gray-200 transition-all custom-focus rounded-sm;
+  @apply ml-2 text-white underline transition-all rounded-sm text-custom-span underline-offset-4 hover:text-gray-200 custom-focus;
 }
 .kakao-btn {
-  @apply bg-custom-kakao flex items-center justify-center space-x-2 mt-6 rounded-full 
-  font-bold hover:grayscale-40 transition-all text-custom-input py-3 custom-focus;
+  @apply flex items-center justify-center w-full py-3 mt-6 space-x-2 font-bold transition-all rounded-full bg-custom-kakao hover:grayscale-40 text-custom-input custom-focus-light;
 }
 .next-btn {
-  @apply bg-custom-gray-light whitespace-nowrap px-4 hover:bg-custom-gray-dark  
-  hover:text-white transition-all common-btn;
+  @apply px-4 transition-all bg-custom-gray-light whitespace-nowrap hover:bg-custom-gray-dark hover:text-white common-btn;
 }
 .action-btn {
-  @apply transition-colors whitespace-nowrap border-none
-  custom-focus text-custom-span rounded-md font-semibold;
+  @apply font-semibold transition-colors border-none rounded-md whitespace-nowrap custom-focus-light text-custom-span;
 }
 .product-page {
   @apply mobile:w-full mobile:px-4 mobile:max-w-[447px]
@@ -36,7 +32,7 @@ hover:text-gray-200 transition-all custom-focus rounded-sm;
 }
 .common-btn {
   @apply absolute left-1/2 -translate-x-1/2 bottom-5 w-full
-  py-2.5 rounded-md custom-focus text-custom-black text-custom-input font-semibold;
+  py-2.5 rounded-md custom-focus-light text-custom-black text-custom-input font-semibold;
 }
 
 @keyframes shake {

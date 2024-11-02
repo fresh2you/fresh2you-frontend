@@ -33,10 +33,10 @@ const TermsAgreement: React.FC<TermsAgreementProps> = ({ onAgree, termsChecked, 
           id="all"
           checked={allChecked}
           onChange={(e) => handleAllCheck(e, termsList, setAllChecked, setTermsChecked, onAgree)}
-          className="custom-focus"
+          className="custom-focus-light"
           aria-label="전체 약관에 동의"
         />
-        <label htmlFor="all" className="ml-2 text-custom-span font-semibold">
+        <label htmlFor="all" className="ml-2 font-semibold text-custom-span">
           전체 약관에 동의합니다
         </label>
       </div>
