@@ -22,7 +22,11 @@ export const inputUtils = {
     }
   },
 
-  handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>, onButtonClick: (() => void) | undefined, type: string) => {
+  handleKeyDown: (
+    e: React.KeyboardEvent<HTMLInputElement | HTMLDivElement>,
+    onButtonClick: (() => void) | undefined,
+    type?: string,
+  ) => {
     if (e.key === "Enter" && onButtonClick) {
       e.preventDefault();
       onButtonClick();

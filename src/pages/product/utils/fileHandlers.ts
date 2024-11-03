@@ -69,7 +69,7 @@ const fileHandlers = {
   },
 
   handleCloseClick: (
-    e: React.MouseEvent<HTMLDivElement> | undefined,
+    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>,
     setProductData: React.Dispatch<React.SetStateAction<ProductDataType>>,
   ) => {
     if (e) {
