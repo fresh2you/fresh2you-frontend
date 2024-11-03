@@ -8,8 +8,13 @@ export const handleRenderPayment = (
   recipientDetails: PurchaseFormDataType,
   setShowPaymentMethod: React.Dispatch<React.SetStateAction<boolean>>,
   totalAmount: number,
+  quantity: number,
 ) => {
   const { recipientName, phoneNumber, address } = recipientDetails;
+  if (!quantity) {
+    toast.error("수량은 1개 이상이어야 합니다.");
+    return;
+  }
   if (!recipientName || !phoneNumber || !address) {
     toast.error("모든 필드를 입력해 주세요.");
     return;

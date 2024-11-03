@@ -60,7 +60,7 @@ const ProductPurchasePage = () => {
           </span>
           <TwoActionBtns
             primaryText="결제하기"
-            primaryOnClick={() => handleRenderPayment(recipientDetails, setShowPaymentMethod, totalAmount)}
+            primaryOnClick={() => handleRenderPayment(recipientDetails, setShowPaymentMethod, totalAmount, quantity)}
             secondaryText="취소"
             secondaryOnClick={() => navigate("/")}
             extraClassName="mb-8"
