@@ -5,8 +5,8 @@ import { InputWithLabelProps } from "@/types/common/commonProps";
 
 const Textarea: React.FC<InputWithLabelProps> = ({ id, label, value, onChange, maxLength }) => {
   return (
-    <div className="flex flex-col mb-2.5">
-      <label htmlFor={id} className="text-custom-input font-semibold mb-1">
+    <section className="flex flex-col mb-2.5">
+      <label htmlFor={id} className="mb-1 font-semibold text-custom-input">
         {label}
       </label>
       <textarea
@@ -17,13 +17,13 @@ const Textarea: React.FC<InputWithLabelProps> = ({ id, label, value, onChange, m
         }
         maxLength={maxLength}
         rows={4}
-        className="border rounded custom-focus px-2 py-1"
+        className="px-2 py-1 border rounded custom-focus-light border-custom-gray-light"
         required
         aria-required="true"
         aria-labelledby={`label-${id}`}
       />
       <ShowMaxLen value={value} maxLength={maxLength} />
-    </div>
+    </section>
   );
 };
 

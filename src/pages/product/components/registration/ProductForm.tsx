@@ -4,14 +4,23 @@ import useFetchCategories from "../../hooks/useFetchCategories";
 import { handleInputChange } from "../../utils/productDataUtils";
 import InputWithLabel from "@/components/InputWithLabel";
 import { handleFieldChange } from "../../utils/productDataUtils";
+import handleRegistrationSubmit from "../../utils/handleRegistrationSubmit";
+import ProductImage from "./ProductImage";
+import RegistrationButtons from "./RegistrationButtons";
+import { productDataAtom, isFormValidAtom } from "../../atom/atom";
+import { useAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import useProductRegistration from "../../hooks/useProductRegistration";
 
-interface ProductFormProps {
-  productData: ProductDataType;
-  setProductData: React.Dispatch<React.SetStateAction<ProductDataType>>;
-}
-
-const ProductForm: React.FC<ProductFormProps> = ({ productData, setProductData }) => {
+const ProductForm: React.FC = () => {
+  const [productData, setProductData] = useAtom(productDataAtom);
+  const [isFormValid] = useAtom(isFormValidAtom);
   const { categories } = useFetchCategories();
+  const navigate = useNavigate();
+  const { mutateAsync: registerProduct } = useProductRegistration((productId) => {
+    navigate(`/product/${productId}`);
+  });
 
   const fields: { id: keyof ProductDataType; label: string; maxLength?: number; showLength?: boolean }[] = [
     { id: "name", label: "상품명", maxLength: 15, showLength: true },
@@ -20,7 +29,12 @@ const ProductForm: React.FC<ProductFormProps> = ({ productData, setProductData }
   ];
 
   return (
-    <>
+    <form
+      onSubmit={(e) => handleRegistrationSubmit(e, isFormValid, productData, registerProduct)}
+      className="flex flex-col gap-1"
+      aria-label="상품 등록 폼"
+      role="form"
+    >
       {fields.map((field) => (
         <InputWithLabel
           key={field.id}
@@ -50,7 +64,10 @@ const ProductForm: React.FC<ProductFormProps> = ({ productData, setProductData }
         value={productData.categoryId}
         onChange={(e) => handleFieldChange("categoryId", Number(e.target.value), setProductData)}
       />
-    </>
+      <ProductImage />
+      <RegistrationButtons />
+      <ToastContainer />
+    </form>
   );
 };
 

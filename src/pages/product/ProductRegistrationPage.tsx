@@ -3,7 +3,8 @@ import "react-toastify/dist/ReactToastify.css";
 import useHeaderProps from "@/hooks/useHeaderProps";
 
 const ProductRegistrationPage = () => {
-  useHeaderProps("", "../", false);
+  useHeaderProps({ title: "", backRoute: "../", hasConfirm: false, confirmText: null, onConfirm: null });
+
   return (
     <section className="flex flex-col items-center w-full min-h-screen text-custom-black">
       <div className="flex flex-col mobile:w-full tablet-sm:w-3/5 tablet-sm:min-w-[447px] tablet-sm:max-w-[540px]">

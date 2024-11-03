@@ -1,6 +1,7 @@
 import useFetchCategories from "../../hooks/useFetchCategories";
 import { renderCategoryButtons, renderSkeletons, renderItems } from "../../utils/renderComponent";
 import { useCategoryLogic } from "../../hooks/useCategoryLogic";
+import { handleCategorySelect } from "../../utils/categoryHandlers";
 
 const CategoryButtons = () => {
   const { categories, isLoading } = useFetchCategories();
@@ -20,6 +21,7 @@ const CategoryButtons = () => {
     setProducts,
     setPageNumber,
     setHasMore,
+    onSelect: (categoryId: number | undefined) => handleCategorySelect(categoryId, setSelectedCategoryId, setIsOpen),
   };
   const allCategories = [{ categoryId: undefined, categoryName: "전체" }, ...categories];
 

@@ -31,3 +31,12 @@ export const handleCategoryClick = ({
   setSelectedCategory(isCategoryAll ? "전체" : categoryName);
   setIsOpen(isCategoryAll ? false : isNewCategory ? true : (prevIsOpen) => !prevIsOpen);
 };
+
+export const handleCategorySelect = (
+  categoryId: number | undefined,
+  setSelectedCategoryId: React.Dispatch<React.SetStateAction<number | undefined>>,
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+) => {
+  setSelectedCategoryId(categoryId);
+  setIsOpen(false);
+};

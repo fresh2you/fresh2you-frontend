@@ -10,21 +10,26 @@ interface DropdownSelectProps {
 
 const DropdownSelect: React.FC<DropdownSelectProps> = ({ id, label, options, value, onChange }) => {
   return (
-    <div className="flex flex-col mb-2.5">
-      <label htmlFor={id} className="text-custom-input font-semibold mb-1">
+    <section className="flex flex-col mb-2.5">
+      <label htmlFor={id} className="mb-1 font-semibold text-custom-input">
         {label}
       </label>
-      <select id={id} value={value} onChange={onChange} className="border p-2 rounded custom-focus" required>
-        <option value="" disabled>
-          {label} 선택
-        </option>
+      <select
+        id={id}
+        value={value}
+        onChange={onChange}
+        className="p-2 border rounded custom-focus-light border-custom-gray-light"
+        required
+        aria-required="true"
+        aria-labelledby="label-image"
+      >
         {options.map((option) => (
           <option key={option.categoryId} value={option.categoryId}>
             {option.categoryName}
           </option>
         ))}
       </select>
-    </div>
+    </section>
   );
 };
 

@@ -15,7 +15,7 @@ const RedirectionPage = lazy(() => import("@/pages/redirection/RedirectionPage")
 const SignUpCompletePage = lazy(() => import("../pages/signUpComplete/SignUpComplete"));
 const ProductsPage = lazy(() => import("../pages/product/ProductsPage"));
 const ProductDetailPage = lazy(() => import("../pages/product/ProductDetailPage"));
-const ProductRegistrationPage = lazy(() => import("../pages/product/ProductRegistrationPage"));
+const ProductRegistrationPage = lazy(() => import("@/pages/product/ProductRegistrationPage"));
 const ProductPurchasePage = lazy(() => import("../pages/product/ProductPurchasePage"));
 const PaymentCompletePage = lazy(() => import("@/pages/product/PaymentCompletePage"));
 const ChatListPage = lazy(() => import("@/pages/chat/ChatListPage"));

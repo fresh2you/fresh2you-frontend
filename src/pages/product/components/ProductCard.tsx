@@ -8,15 +8,15 @@ const ProductCard = forwardRef<HTMLAnchorElement, { product: IProductList }>(({ 
     <Link
       ref={ref}
       className="block hover:text-inherit bg-white shadow-lg rounded-xl overflow-hidden max-w-xs border border-custom-gray-light 
-      cursor-pointer pt-2 mobile:w-40 mobile:h-[205px]
-     tablet-sm:w-44 tablet-sm:h-[222px]"
+        cursor-pointer pt-2 mobile:w-40 mobile:h-[203px]
+     tablet-sm:w-44 tablet-sm:h-[220px]"
       to={`./${product.productId}`}
     >
       <div className="flex items-center justify-center w-full">
         <img
           src={product.imageUrl || fallbackImg}
           alt={product.productName}
-          className="object-cover w-2/3 max-w-24 aspect-square rounded border"
+          className="object-cover w-2/3 border rounded max-w-24 aspect-square"
         />
       </div>
       <div className="flex flex-col px-4 py-2 text-custom-btn-text mobile:leading-5 tablet-sm:leading-6">

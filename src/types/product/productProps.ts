@@ -3,6 +3,7 @@ export interface CategoryHandlers {
   setProducts: React.Dispatch<React.SetStateAction<IProductList[]>>;
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;
   setHasMore: React.Dispatch<React.SetStateAction<boolean>>;
+  onSelect: (categoryId: number) => void;
 }
 
 export interface CommonCategoryProps {
