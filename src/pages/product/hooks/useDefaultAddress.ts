@@ -1,36 +1,35 @@
-import { useEffect } from "react";
-import { fetchDeliveryAddresses } from "../api/productApis";
+import userAPI from "@/services/api/userAPI";
+import { useQuery } from "@tanstack/react-query";
 
-type SetRecipientDetails = (details: Address) => void;
+type SetRecipientDetails = React.Dispatch<React.SetStateAction<PurchaseFormDataType>>;
 type SetAddressList = (addresses: Address[]) => void;
 
 const useDefaultAddress = (setRecipientDetails: SetRecipientDetails, setAddressList: SetAddressList) => {
-  useEffect(() => {
-    const fetchDefaultAddress = async () => {
-      try {
-        const { addressList: addresses }: { addressList: Address[] } = await fetchDeliveryAddresses();
+  const { data: deliveries, isError } = useQuery({
+    queryKey: ["deliveries"],
+    queryFn: async () => {
+      const { data: result } = await userAPI.getDeliveries();
+      return result.addressList as Address[];
+    },
+    staleTime: 60 * 1000,
+    retry: 0,
+  });
 
-        if (addresses && addresses.length > 0) {
-          const defaultAddress = addresses.find((address) => address.isDefault);
-          setAddressList(addresses);
-          if (defaultAddress) {
-            setRecipientDetails({
-              recipientName: defaultAddress.recipientName,
-              phoneNumber: defaultAddress.phoneNumber,
-              deliveryAddressId: defaultAddress.deliveryAddressId,
-              address: defaultAddress.address,
-              detailedAddress: defaultAddress.detailedAddress,
-              postalCode: defaultAddress.postalCode,
-            });
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching default address:", error);
-      }
-    };
-
-    fetchDefaultAddress();
-  }, [setRecipientDetails, setAddressList]);
+  if (deliveries) {
+    setAddressList(deliveries);
+    const defaultAddress = deliveries.find((address: Address) => address.isDefault);
+    if (defaultAddress) {
+      setRecipientDetails({
+        recipientName: defaultAddress.recipientName,
+        phoneNumber: defaultAddress.phoneNumber,
+        addressId: Number(defaultAddress.deliveryAddressId),
+        address: defaultAddress.address,
+        detailedAddress: defaultAddress.detailedAddress,
+        postalCode: defaultAddress.postalCode,
+      });
+    }
+  }
+  return isError;
 };
 
 export default useDefaultAddress;
