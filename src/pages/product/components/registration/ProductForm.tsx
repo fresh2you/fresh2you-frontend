@@ -6,7 +6,7 @@ import InputWithLabel from "@/components/InputWithLabel";
 import { handleFieldChange } from "../../utils/productDataUtils";
 import handleRegistrationSubmit from "../../utils/handleRegistrationSubmit";
 import ProductImage from "./ProductImage";
-import RegistrationButtons from "./RegistrationButtons";
+import TwoActionBtns from "../buttons/TwoActionBtns";
 import { productDataAtom, isFormValidAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
@@ -65,7 +65,15 @@ const ProductForm: React.FC = () => {
         onChange={(e) => handleFieldChange("categoryId", Number(e.target.value), setProductData)}
       />
       <ProductImage />
-      <RegistrationButtons />
+      <TwoActionBtns
+        primaryText="등록하기"
+        isPrimaryDisabled={!isFormValid}
+        secondaryText="취소 "
+        secondaryOnClick={(e) => {
+          e.preventDefault();
+          navigate("/mypage");
+        }}
+      />
       <ToastContainer />
     </form>
   );
