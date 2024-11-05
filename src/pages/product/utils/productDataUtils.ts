@@ -1,4 +1,6 @@
 import { formatPriceInput } from "@/utils/commonUtils";
+import productAPI from "@/services/api/productAPI";
+import { QueryClient } from "@tanstack/react-query";
 
 export const validateProductData = (productData: ProductDataType): boolean => {
   const { name, description, price, image, categoryId, quantity } = productData;
@@ -25,4 +27,20 @@ export const handleFieldChange = (
   setProductData: React.Dispatch<React.SetStateAction<ProductDataType>>,
 ) => {
   setProductData((prev) => ({ ...prev, [id]: value }));
+};
+
+export const toggleLike = async (
+  productId: number,
+  isLiked: boolean,
+  setIsLiked: (status: boolean) => void,
+  queryClient: QueryClient,
+) => {
+  if (isLiked) {
+    await productAPI.cancelLikeProduct(productId);
+    setIsLiked(false);
+  } else {
+    await productAPI.likeProduct(productId);
+    setIsLiked(true);
+  }
+  queryClient.refetchQueries({ queryKey: ["likedProducts"] });
 };

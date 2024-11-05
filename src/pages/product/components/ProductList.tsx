@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import useInitialRender from "../hooks/useInitialRender";
 import ProductCard from "./ProductCard";
 import ProductCardSkeleton from "./skeletons/ProductCardSkeleton";
 
@@ -11,11 +11,7 @@ const ProductList = ({
   lastProductRef: (node: HTMLDivElement) => void;
   itemsPerPage: number;
 }) => {
-  const [isInitialRender, setIsInitialRender] = useState(true);
-
-  useEffect(() => {
-    setIsInitialRender(false);
-  }, []);
+  const isInitialRender = useInitialRender();
 
   return (
     <div className="grid grid-cols-2 tablet:grid-cols-3 desktop-sm:grid-cols-4 mobile:gap-y-3 tablet:gap-y-6 tablet:gap-x-3 justify-items-center">
