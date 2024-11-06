@@ -5,12 +5,12 @@ import useDefaultAddress from "../../hooks/useDefaultAddress";
 import AddressList from "./AddressList";
 import DeliveryButton from "../buttons/DeliveryButton";
 
-interface AddressModalProps {
+interface RecipientInfoModalProps {
   isOpen: boolean;
   unmount: () => void;
 }
 
-const AddressModal: React.FC<AddressModalProps> = ({ isOpen, unmount }) => {
+const RecipientInfoModal: React.FC<RecipientInfoModalProps> = ({ isOpen, unmount }) => {
   const setRecipientDetails = useSetAtom(recipientDetailsAtom);
   const [addressList, setAddressList] = useAtom(addressListAtom);
   const isError = useDefaultAddress(setRecipientDetails, setAddressList);
@@ -35,4 +35,4 @@ const AddressModal: React.FC<AddressModalProps> = ({ isOpen, unmount }) => {
   );
 };
 
-export default AddressModal;
+export default RecipientInfoModal;

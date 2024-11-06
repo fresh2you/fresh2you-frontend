@@ -14,6 +14,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
   placeholder = "",
   maxLength,
   autoComplete = "off",
+  onClick,
   onFocus,
   onBlur,
   onButtonClick,
@@ -21,6 +22,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
   withBtn,
   className = "",
   showLength = false,
+  readOnly = false,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -39,6 +41,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
           onChange={(e) => inputUtils.handleMaxLengthChange(e, maxLength, onChange)}
           placeholder={placeholder}
           autoComplete={autoComplete}
+          onClick={onClick}
           onFocus={onFocus}
           onBlur={onBlur}
           onKeyDown={(e) => inputUtils.handleKeyDown(e, onButtonClick, type)}
@@ -48,6 +51,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
           required
           aria-required="true"
           aria-labelledby={`label-${id}`}
+          readOnly={readOnly}
         />
         {!noIcon && type === "password" && (
           <button
