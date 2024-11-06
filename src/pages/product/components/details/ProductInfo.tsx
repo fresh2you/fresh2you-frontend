@@ -23,7 +23,7 @@ const ProductInfo = ({
         <img
           src={product.imageUrl || fallbackImg}
           alt={product.productName}
-          className={`object-cover border rounded-md aspect-square`}
+          className={`object-cover border rounded aspect-square`}
         />
       </div>
       <div className="flex flex-col h-5/6 justify-evenly">
