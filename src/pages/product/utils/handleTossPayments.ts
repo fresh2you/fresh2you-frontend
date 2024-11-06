@@ -12,8 +12,9 @@ export const handleRenderPayment = async (
   totalAmount: number,
   quantity: number,
   paymentWidgetRef: React.MutableRefObject<WidgetPaymentMethodWidget | null>,
+  productQuantity: number,
 ) => {
-  if (!validatePurchaseData(recipientDetails, quantity)) {
+  if (!validatePurchaseData(recipientDetails, quantity, productQuantity)) {
     return;
   }
   setShowPaymentMethod(true);

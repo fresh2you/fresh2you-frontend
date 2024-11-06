@@ -37,9 +37,9 @@ export const usePurchaseProductByPoint = () => {
     onError: (error: ApiError) => {
       const errorCode = error?.response?.data?.code;
       if (errorCode === "2101") {
-        toast.error("포인트 잔액이 부족합니다.");
+        toast.error("포인트 잔액이 부족해요");
       } else {
-        toast.error("결제 도중 오류가 발생했습니다.");
+        toast.error("결제 도중 오류가 발생했어요.");
       }
     },
   });

@@ -37,11 +37,20 @@ export const toggleModal = (setModalOpen: React.Dispatch<React.SetStateAction<bo
   setModalOpen((prev) => !prev);
 };
 
-export const validatePurchaseData = (recipientDetails: PurchaseFormDataType, quantity: number): boolean => {
+export const validatePurchaseData = (
+  recipientDetails: PurchaseFormDataType,
+  quantity: number,
+  productQuantity: number,
+): boolean => {
   const { recipientName, phoneNumber, address } = recipientDetails;
 
   if (!quantity || quantity < 1) {
-    toast.error("수량은 1개 이상이어야 합니다.");
+    toast.error("수량은 1개 이상이어야 해요.");
+    return false;
+  }
+
+  if (quantity > productQuantity) {
+    toast.error("재고 수량을 초과하여 구매할 수 없어요.");
     return false;
   }
 
@@ -51,4 +60,19 @@ export const validatePurchaseData = (recipientDetails: PurchaseFormDataType, qua
   }
 
   return true;
+};
+
+export const resetPurchaseState = (
+  setQuantity: React.Dispatch<React.SetStateAction<number>>,
+  setRecipientDetails: React.Dispatch<React.SetStateAction<PurchaseFormDataType>>,
+) => {
+  setQuantity(0);
+  setRecipientDetails({
+    recipientName: "",
+    phoneNumber: "",
+    addressId: 0,
+    address: "",
+    detailedAddress: "",
+    postalCode: "",
+  });
 };

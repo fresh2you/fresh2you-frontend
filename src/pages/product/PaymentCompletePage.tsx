@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { formatCurrency } from "@/utils/commonUtils";
 import HomeButton from "@/components/HomeButton";
 import qs, { ParsedQs } from "qs";
-import useRedirectIfNoProductQuery from "./hooks/useRedirectIfNoProduct";
+import useRedirectAndReset from "./hooks/useRedirectAndReset";
 
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 
@@ -19,7 +19,7 @@ const PaymentCompletePage: React.FC = () => {
   const { search } = location;
   const parsedQuery = qs.parse(search, { ignoreQueryPrefix: true });
   const productQuery = parsedQuery.product as ParsedQs;
-  useRedirectIfNoProductQuery(productQuery);
+  useRedirectAndReset(productQuery);
 
   const product: ProductFromQuery = {
     productName: String(productQuery?.productName),
