@@ -13,7 +13,7 @@ const handleRegistrationSubmit = async (
   } else {
     const rawQuantity = productData.quantity.replace(/,/g, "");
     if (Number(rawQuantity) < 1) {
-      toast.error("수량은 1개 이상이어야 합니다.");
+      toast.error("수량은 1개 이상이어야 해요");
       return;
     }
 

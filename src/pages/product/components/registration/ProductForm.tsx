@@ -74,7 +74,7 @@ const ProductForm: React.FC = () => {
           navigate("/mypage");
         }}
       />
-      <ToastContainer />
+      <ToastContainer limit={1} />
     </form>
   );
 };
