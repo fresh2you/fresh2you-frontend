@@ -6,22 +6,19 @@ import useCommon from "@/hooks/useCommon";
 const PageLayoutHeader = () => {
   const { goBack } = useCommon();
   const { title, onBack, backRoute, hasConfirm, confirmText, onConfirm } = useAtomValue(pageLayoutHeaderProps);
-  const isPurchaseCompletePage = location.pathname.startsWith("/purchase/complete");
 
   return (
     <header className="relative flex items-center justify-between w-full h-16 px-2">
       {/* 헤더 좌측 버튼 */}
-      {!isPurchaseCompletePage && (
-        <button
-          onClick={() => {
-            goBack(backRoute);
-            if (onBack) onBack();
-          }}
-          className="flex items-center h-full px-4 py-0 bg-transparent"
-        >
-          <IconLeft className="h-5 text-custom-gray-dark" />
-        </button>
-      )}
+      <button
+        onClick={() => {
+          goBack(backRoute);
+          if (onBack) onBack();
+        }}
+        className="flex items-center h-full px-4 py-0 bg-transparent"
+      >
+        <IconLeft className="h-5 text-custom-gray-dark" />
+      </button>
 
       {/* 헤더 중앙 제목 */}
       <h1 className="absolute text-xl font-bold -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">{title}</h1>
