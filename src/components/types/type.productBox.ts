@@ -1,10 +1,10 @@
 interface BaseProductBoxProps {
   item: {
     productId: number;
-    sellerName: string;
+    sellerName?: string;
     productName: string;
-    productDescription: string;
-    quantity: number;
+    productDescription?: string;
+    quantity?: number;
     price: number;
     imageUrl: string;
   };
