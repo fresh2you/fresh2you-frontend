@@ -29,6 +29,7 @@ const ChangeProfilePage = lazy(() => import("@/pages/mypage/profile/ChangeProfil
 const DeliveriesPage = lazy(() => import("@/pages/mypage/deliveries/DeliveriesPage"));
 const CommunityPage = lazy(() => import("@/pages/community/CommunityPage"));
 const CommunityPostPage = lazy(() => import("@/pages/community/CommunityPostPage"));
+const MyProductsPage = lazy(() => import("@/pages/mypage/myProducts/MyProductsPage"));
 
 const Router = (): JSX.Element => {
   return (
@@ -76,7 +77,7 @@ const Router = (): JSX.Element => {
                   <Routes>
                     <Route path="/:id" element={<ProductDetailPage />} />
                     <Route path="/register" element={<ProductRegistrationPage />} />
-                    <Route path="product/modify" element={<div>등록한 제품 수정</div>} />
+                    <Route path="/modify/:id" element={<div>등록한 제품 수정</div>} />
                   </Routes>
                 }
               />
@@ -109,7 +110,7 @@ const Router = (): JSX.Element => {
                     <Route path="likes" element={<LikeListPage />} />
                     <Route path="deliveries" element={<DeliveriesPage />} />
                     <Route path="password" element={<ChangePasswordPage />} />
-                    <Route path="my-products" element={<div>내 판매 상품들</div>} />
+                    <Route path="my-products" element={<MyProductsPage />} />
                   </Routes>
                 }
               />

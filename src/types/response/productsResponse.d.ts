@@ -91,7 +91,7 @@ declare interface IGetSellingProductResponse extends defaultApiResponse {
       productDescription: string;
       quantity: number;
       price: number;
-      imageUrl?: string;
+      imageUrl: string;
     }[];
     pageNumber: number;
     pageSize: number;
