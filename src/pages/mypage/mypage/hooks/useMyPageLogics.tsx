@@ -1,9 +1,9 @@
-import IconHeart from "icons/heart.svg";
-import IconChangePW from "icons/changePW.svg";
-import IconDelivery from "icons/delivery.svg";
-import IconLogout from "icons/logout.svg";
-import IconRegister from "icons/register.svg";
-import IconList from "icons/product-list.svg";
+import IconHeart from "icons/menu-heart.svg";
+import IconChangePW from "icons/menu-changePW.svg";
+import IconDelivery from "icons/menu-delivery.svg";
+import IconLogout from "icons/menu-logout.svg";
+import IconRegister from "icons/menu-register.svg";
+import IconList from "icons/menu-product-list.svg";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { removeLocalStorage } from "@/utils/storageUtils";
