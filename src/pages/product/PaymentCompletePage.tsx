@@ -1,8 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { formatCurrency } from "@/utils/commonUtils";
 import HomeButton from "@/components/HomeButton";
 import qs, { ParsedQs } from "qs";
-import useHeaderProps from "@/hooks/useHeaderProps";
+import useRedirectIfNoProductQuery from "./hooks/useRedirectIfNoProduct";
+
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 
 interface ProductFromQuery {
@@ -15,11 +16,10 @@ interface ProductFromQuery {
 
 const PaymentCompletePage: React.FC = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const { search } = location;
   const parsedQuery = qs.parse(search, { ignoreQueryPrefix: true });
-
   const productQuery = parsedQuery.product as ParsedQs;
+  useRedirectIfNoProductQuery(productQuery);
 
   const product: ProductFromQuery = {
     productName: String(productQuery?.productName),
@@ -28,17 +28,8 @@ const PaymentCompletePage: React.FC = () => {
     sellerName: String(productQuery?.sellerName),
     quantity: Number(productQuery?.quantity),
   };
-  if (!product) navigate("/");
 
-  useHeaderProps({
-    title: "",
-    backRoute: "../",
-    hasConfirm: false,
-    confirmText: null,
-    onConfirm: null,
-  });
-
-  return (
+  return productQuery ? (
     <section className="flex flex-col items-center w-full min-h-screen text-custom-black">
       <div className="flex flex-col items-center w-full pt-2">
         <h1 className="mb-6 font-bold text-center text-custom-h2 text-custom-green">결제가 완료되었어요!</h1>
@@ -62,7 +53,7 @@ const PaymentCompletePage: React.FC = () => {
         <HomeButton className="mt-5 text-white transition bg-custom-green hover:bg-custom-green-hover hover:text-white" />
       </div>
     </section>
-  );
+  ) : null;
 };
 
 export default PaymentCompletePage;
