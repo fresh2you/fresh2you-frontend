@@ -1,13 +1,17 @@
 import InputWithLabel from "@/components/InputWithLabel";
-import { pageLayoutHeaderProps } from "@/stores/mypage";
-import { useSetAtom } from "jotai";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import IconCamera from "icons/camera.svg";
 import useChangeProfilePageLogics from "@/pages/mypage/profile/hooks/useChangeProfilePageLogics";
 import BackButton from "@/components/BackButton";
+import useHeaderProps from "@/hooks/useHeaderProps";
 
 const ChangeProfilePage = () => {
-  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
+  useHeaderProps({
+    title: "프로필 수정",
+    hasConfirm: false,
+    backRoute: "/mypage",
+  });
+
   const { userInfo, newProfile, previewAvatar, onChangeFileChange, onChangeNicknameChange, patchUserProfile } =
     useChangeProfilePageLogics();
   const avatarRef = useRef<HTMLInputElement>(null);
@@ -15,14 +19,6 @@ const ChangeProfilePage = () => {
     previewAvatar || userInfo?.profileImage
       ? { backgroundImage: `url('${previewAvatar || userInfo?.profileImage}')` }
       : undefined;
-
-  useEffect(() => {
-    setHeaderProps({
-      title: "프로필 수정",
-      hasConfirm: false,
-      backRoute: "/mypage",
-    });
-  }, [setHeaderProps]);
 
   return (
     <div className="flex justify-center w-full h-full">
