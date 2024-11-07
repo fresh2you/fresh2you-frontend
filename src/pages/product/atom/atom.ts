@@ -15,3 +15,13 @@ export const productDataAtom = atom<ProductDataType>({
   quantity: "",
 });
 export const isFormValidAtom = atom((get) => validateProductData(get(productDataAtom)));
+export const quantityAtom = atom<number>(1);
+export const recipientDetailsAtom = atom<PurchaseFormDataType>({
+  recipientName: "",
+  phoneNumber: "",
+  addressId: 0,
+  address: "",
+  detailedAddress: "",
+  postalCode: "",
+});
+export const addressListAtom = atom<Address[]>([]);

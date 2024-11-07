@@ -13,7 +13,7 @@ const NotFoundPage: React.FC = () => {
           <p className="font-semibold text-custom-p">페이지를 찾을 수 없습니다.</p>
         </div>
       </section>
-      <HomeButton className="mt-1.5 bg-white text-custom-black hover:bg-custom-gray-light" />
+      <HomeButton className="mt-1.5 bg-white text-custom-black hover:bg-custom-gray-light hover:text-custom-black" />
     </main>
   );
 };

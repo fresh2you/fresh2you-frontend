@@ -1,11 +1,9 @@
 import ErrorMessages from "./component/errorMsg/ErrorMessages";
 import StepFields from "./component/StepFields";
 import SubmitBtn from "./component/buttons/SubmitBtn";
-import { Loading } from "../redirection/component/Loading";
+import Loading from "../redirection/component/Loading";
 import useRedirectIfNotAgreed from "./hooks/useRedirectIfNotAgreed";
 import { useSignUpForm } from "./hooks/useSignUpForm";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUpPage() {
   const termsAgreementsString = sessionStorage.getItem("termsAgreements");
@@ -19,10 +17,10 @@ export default function SignUpPage() {
   return (
     <>
       {isLoading ? (
-        <Loading isLayoutApplied={false} />
+        <Loading />
       ) : (
         <div className="mx-auto px-4 mobile:w-11/12 max-w-[360px]">
-          <form onSubmit={onSubmit} className="flex flex-col justify-center min-h-screen items-start relative">
+          <form onSubmit={onSubmit} className="relative flex flex-col items-start justify-center min-h-screen">
             <ErrorMessages status={status} />
             <StepFields
               steps={steps}
@@ -32,7 +30,6 @@ export default function SignUpPage() {
               isEmailValid={validity.isEmailValid}
             />
             {currentStep === "닉네임입력" && <SubmitBtn validity={validity} />}
-            <ToastContainer />
           </form>
         </div>
       )}
