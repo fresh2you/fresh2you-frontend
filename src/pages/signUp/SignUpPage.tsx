@@ -4,8 +4,6 @@ import SubmitBtn from "./component/buttons/SubmitBtn";
 import Loading from "../redirection/component/Loading";
 import useRedirectIfNotAgreed from "./hooks/useRedirectIfNotAgreed";
 import { useSignUpForm } from "./hooks/useSignUpForm";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUpPage() {
   const termsAgreementsString = sessionStorage.getItem("termsAgreements");
@@ -32,7 +30,6 @@ export default function SignUpPage() {
               isEmailValid={validity.isEmailValid}
             />
             {currentStep === "닉네임입력" && <SubmitBtn validity={validity} />}
-            <ToastContainer />
           </form>
         </div>
       )}

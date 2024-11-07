@@ -10,7 +10,6 @@ import TwoActionBtns from "../buttons/TwoActionBtns";
 import { productDataAtom, isFormValidAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import useProductRegistration from "../../hooks/useProductRegistration";
 
 const ProductForm: React.FC = () => {
@@ -73,7 +72,6 @@ const ProductForm: React.FC = () => {
           navigate("/mypage");
         }}
       />
-      <ToastContainer />
     </form>
   );
 };

@@ -5,8 +5,6 @@ import { formatCurrency } from "../../utils/commonUtils";
 import { useFetchProductById } from "./hooks/useFetchProductById";
 import ProductSummary from "./components/purchase/ProductSummary";
 import Loading from "../redirection/component/Loading";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import useHeaderProps from "@/hooks/useHeaderProps";
 import { useAtomValue } from "jotai";
 import { quantityAtom, recipientDetailsAtom } from "./atom/atom";
@@ -91,7 +89,6 @@ const ProductPurchasePage = () => {
         />
       )}
       {!showPaymentMethod && <CurrentPointDisplay />}
-      <ToastContainer />
     </div>
   );
 };
