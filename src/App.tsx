@@ -15,7 +15,7 @@ const App = (): JSX.Element => {
         <BrowserRouter>
           <JotaiProvider>
             <Router />
-            <ToastContainer />
+            <ToastContainer autoClose={2000} pauseOnFocusLoss={false} stacked={false} newestOnTop={true} />
           </JotaiProvider>
         </BrowserRouter>
       </OverlayProvider>
