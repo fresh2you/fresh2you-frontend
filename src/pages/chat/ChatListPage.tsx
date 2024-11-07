@@ -14,7 +14,7 @@ const ChatListPage = () => {
       {chatRooms.length === 0 ? (
         <div className="p-4 mt-4 text-center text-gray-500 text-custom-h3">협상을 시작해보세요!</div>
       ) : (
-        chatRooms.map((chat) => <ChatItem key={chat.roomId} chat={chat} userId={userInfo?.id} />)
+        chatRooms.map((chat) => <ChatItem key={chat.chatRoomID} chat={chat} />)
       )}
     </div>
   );
