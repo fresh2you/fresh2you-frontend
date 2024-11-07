@@ -6,7 +6,11 @@ export const formatDate = (dateString: string) => {
   const startOfYesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
 
   if (messageDate >= startOfToday) {
-    return messageDate.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit", hour12: false });
+    return messageDate.toLocaleTimeString("ko-KR", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
   } else if (messageDate >= startOfYesterday) {
     return "어제";
   } else if (messageDate.getFullYear() === today.getFullYear()) {
