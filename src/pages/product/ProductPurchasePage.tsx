@@ -91,7 +91,7 @@ const ProductPurchasePage = () => {
         />
       )}
       {!showPaymentMethod && <CurrentPointDisplay />}
-      <ToastContainer limit={1} />
+      <ToastContainer />
     </div>
   );
 };

@@ -32,7 +32,7 @@ export default function SignUpPage() {
               isEmailValid={validity.isEmailValid}
             />
             {currentStep === "닉네임입력" && <SubmitBtn validity={validity} />}
-            <ToastContainer limit={1} />
+            <ToastContainer />
           </form>
         </div>
       )}

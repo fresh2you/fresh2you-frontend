@@ -67,14 +67,13 @@ const ProductForm: React.FC = () => {
       <ProductImage />
       <TwoActionBtns
         primaryText="등록하기"
-        isPrimaryDisabled={!isFormValid}
         secondaryText="취소 "
         secondaryOnClick={(e) => {
           e.preventDefault();
           navigate("/mypage");
         }}
       />
-      <ToastContainer limit={1} />
+      <ToastContainer />
     </form>
   );
 };

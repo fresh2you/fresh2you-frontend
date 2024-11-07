@@ -45,7 +45,7 @@ const TermsAgreementPage = () => {
           </button>
         </footer>
       </main>
-      <ToastContainer limit={1} />
+      <ToastContainer />
     </div>
   );
 };

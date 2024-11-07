@@ -5,7 +5,6 @@ interface TwoActionBtnsProps {
   primaryOnClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   secondaryText: string;
   secondaryOnClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  isPrimaryDisabled?: boolean;
   extraClassName?: string;
 }
 
@@ -14,20 +13,16 @@ const TwoActionBtns = ({
   primaryOnClick,
   secondaryText,
   secondaryOnClick,
-  isPrimaryDisabled = false,
   extraClassName,
 }: TwoActionBtnsProps) => {
   return (
     <section className={`flex justify-center gap-2 ${extraClassName}`}>
       <Button
         type="submit"
-        className={`bg-custom-green text-white hover:bg-custom-green-hover order-2 desktop-sm:order-1 ${
-          isPrimaryDisabled ? "cursor-not-allowed" : "cursor-pointer"
-        }`}
+        className="order-2 text-white bg-custom-green hover:bg-custom-green-hover desktop-sm:order-1"
         text={primaryText}
         aria-label={primaryText}
         onClick={primaryOnClick}
-        disabled={isPrimaryDisabled}
       />
       <Button
         className="order-1 bg-custom-gray-light text-custom-black hover:bg-custom-gray-dark desktop-sm:order-2 hover:text-white"
