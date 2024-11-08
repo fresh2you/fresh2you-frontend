@@ -9,7 +9,7 @@ const PageLayoutHeader = () => {
   const isPurchaseCompletePage = location.pathname.startsWith("/purchase/complete");
 
   return (
-    <header className="relative flex items-center justify-between w-full h-16 px-2">
+    <header className="relative flex items-center justify-between w-full h-16 px-2 shrink-0">
       {/* 헤더 좌측 버튼 */}
       {!isPurchaseCompletePage && (
         <button
