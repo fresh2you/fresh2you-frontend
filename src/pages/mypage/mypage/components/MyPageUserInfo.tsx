@@ -1,4 +1,5 @@
 import useMyPageLogics from "@/pages/mypage/mypage/hooks/useMyPageLogics";
+import IconAccount from "@/assets/icons/icon-account.svg";
 
 const MyPageUserInfo = ({ isSeller }: { isSeller: boolean }) => {
   const { moveToPath, userInfo } = useMyPageLogics();
@@ -7,13 +8,11 @@ const MyPageUserInfo = ({ isSeller }: { isSeller: boolean }) => {
     <section className="flex flex-col w-full gap-4">
       <article className="flex items-center w-full gap-2 px-4 py-3">
         <div
-          className="flex items-center justify-center h-16 bg-center bg-no-repeat bg-cover rounded-full aspect-square bg-custom-gray-dark"
-          style={
-            userInfo?.profileImage
-              ? { backgroundImage: `url(${userInfo?.profileImage})`, backgroundColor: "white" }
-              : {}
-          }
-        />
+          className="flex items-center justify-center w-16 h-16 bg-center bg-no-repeat bg-cover rounded-full aspect-square bg-custom-gray-light"
+          style={userInfo?.profileImage ? { backgroundImage: `url(${userInfo?.profileImage})` } : {}}
+        >
+          {!userInfo?.profileImage && <IconAccount className="w-12 h-12 text-custom-gray-dark" />}
+        </div>
 
         <div>
           <div className="text-lg font-semibold">{userInfo?.nickname}</div>
