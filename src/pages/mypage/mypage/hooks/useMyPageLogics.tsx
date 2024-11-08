@@ -7,7 +7,7 @@ import IconList from "icons/menu-product-list.svg";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { removeLocalStorage } from "@/utils/storageUtils";
-import { api } from "@/services/api";
+import userAPI from "@/services/api/userAPI";
 
 const useMyPageLogics = () => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const useMyPageLogics = () => {
   const { data: userInfo } = useQuery({
     queryKey: ["userInfo"],
     queryFn: async () => {
-      const { data: result } = await api.user.getUserInfo();
+      const { data: result } = await userAPI.getUserInfo();
 
       return result.loginMember;
     },

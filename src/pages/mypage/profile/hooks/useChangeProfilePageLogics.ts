@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import useCommon from "@/hooks/useCommon";
-import { api } from "@/services/api";
 import useMyPageLogics from "@/pages/mypage/mypage/hooks/useMyPageLogics";
+import userAPI from "@/services/api/userAPI";
 
 const useChangeProfilePageLogics = () => {
   const queryClient = useQueryClient();
@@ -23,7 +23,7 @@ const useChangeProfilePageLogics = () => {
 
       // 빈 객체가 아닌 경우에만 PATCH 요청을 보냄
       if (Object.keys(updateData).length > 0) {
-        const result = await api.user.patchUserProfile(updateData);
+        const result = await userAPI.patchUserProfile(updateData);
 
         return result.success;
       }
