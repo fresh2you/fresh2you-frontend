@@ -1,7 +1,7 @@
 // components/InfiniteScrollList.tsx
 import React from "react";
 import { useMyProductsPageLogics } from "@/pages/mypage/myProducts/hooks/useMyProductsPageLogics";
-import ProductBox from "@/components/ProductBox";
+import WideProductBox from "@/components/WideProductBox";
 
 const MyProductList = () => {
   const { loadMoreRef, data, hasNextPage, isFetchingNextPage, isLoading, isError, error } = useMyProductsPageLogics();
@@ -25,7 +25,7 @@ const MyProductList = () => {
           return (
             <React.Fragment key={`page-${pageNumber}`}>
               {productList.map((product) => (
-                <ProductBox
+                <WideProductBox
                   key={`product-${product.productId}`}
                   item={product}
                   hasOption={true}

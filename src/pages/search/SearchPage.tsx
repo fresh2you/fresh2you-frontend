@@ -1,13 +1,10 @@
 //import { useState } from "react";
 import useSearchPageLogics from "./hooks/useSearchPageLogics";
 //import DropDown from "../../components/DropDown";
-import ProductBox from "../../components/ProductBox";
+import WideProductBox from "@/components/WideProductBox";
 
 const SearchPage = () => {
   const { searchedItems } = useSearchPageLogics();
-  // TODO: API를 통해 서버로 부터 카테고리 목록 불러오기
-  /*  const mockCategories = ["야채류", "과일류", "해조류"];
-  const [currentCategory, setCurrrentCategory] = useState(""); */
 
   return (
     <div className="flex flex-col w-full h-full">
@@ -21,7 +18,7 @@ const SearchPage = () => {
         {searchedItems.length <= 0 && "검색 결과가 없습니다."}
 
         {searchedItems.map((item) => (
-          <ProductBox key={item.productId} item={item} />
+          <WideProductBox key={item.productId} item={item} />
         ))}
       </section>
     </div>

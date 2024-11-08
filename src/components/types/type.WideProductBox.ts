@@ -28,4 +28,4 @@ type OptionTypes =
       hasOption: false;
     };
 
-export type ProductBoxProps = BaseProductBoxProps & OptionTypes;
+export type WideProductBoxProps = BaseProductBoxProps & OptionTypes;

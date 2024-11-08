@@ -1,4 +1,4 @@
-import ProductBox from "@/components/ProductBox";
+import WideProductBox from "@/components/WideProductBox";
 import useLikeListPageLogics from "@/pages/mypage/likes/hooks/useLikeListPageLogics";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,7 +28,7 @@ const LikeListPage = () => {
       )}
 
       {likedProducts?.map((likedProduct) => (
-        <ProductBox
+        <WideProductBox
           key={likedProduct.productId}
           item={likedProduct}
           hasOption={true}
