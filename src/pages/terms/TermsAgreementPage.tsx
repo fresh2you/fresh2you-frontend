@@ -3,8 +3,6 @@ import TermsAgreement from "./components/TermsAgreement";
 import LogoImg from "../../assets/img/logo.svg";
 import { handleSubmit } from "./handler/handleSubmit";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "../../styles/styles.css";
 
 type TermsCheckedState = {
@@ -45,7 +43,6 @@ const TermsAgreementPage = () => {
           </button>
         </footer>
       </main>
-      <ToastContainer />
     </div>
   );
 };

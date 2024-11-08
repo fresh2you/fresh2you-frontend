@@ -1,82 +1,94 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Button from "./components/buttons/Button";
-import ProductMiniInfo from "./components/purchase/ProductMiniInfo";
 import PurchaseForm from "./components/purchase/PurchaseForm";
 import { formatCurrency } from "../../utils/commonUtils";
 import { useFetchProductById } from "./hooks/useFetchProductById";
-import { handlePurchase } from "./utils/productUtils";
-import { Loading } from "../redirection/component/Loading";
-import useDefaultAddress from "./hooks/useDefaultAddress";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { pageLayoutHeaderProps } from "@/stores/mypage";
-import { useSetAtom } from "jotai";
+import ProductSummary from "./components/purchase/ProductSummary";
+import Loading from "../redirection/component/Loading";
+import useHeaderProps from "@/hooks/useHeaderProps";
+import { useAtomValue } from "jotai";
+import { quantityAtom, recipientDetailsAtom } from "./atom/atom";
+import { handleRenderPayment, handleDestroyWidget } from "./utils/handleTossPayments";
+import useWindowResize from "./hooks/useWindowResize";
+import { usePurchaseProductByPoint } from "./hooks/usePurchaseProductByPoint";
+import { validatePurchaseData } from "./utils/purchaseHandlers";
+import PaymentOptionBtns from "./components/buttons/PaymentOptionBtns";
+import { useRef } from "react";
+import { WidgetPaymentMethodWidget } from "@tosspayments/tosspayments-sdk";
+import TwoActionBtns from "./components/buttons/TwoActionBtns";
+import { handleRequestTossPayment } from "./utils/handleTossPayments";
+import CurrentPointDisplay from "./components/purchase/CurrentPointDisplay";
+import usePaymentMethodReady from "./hooks/usePaymentMethodReady";
 
 const ProductPurchasePage = () => {
-  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
-
-  useEffect(() => {
-    setHeaderProps({
-      title: "",
-      hasConfirm: false,
-      backRoute: "../",
-    });
-  }, [setHeaderProps]);
-
-  const { id: productId } = useParams();
-  const [quantity, setQuantity] = useState(1);
-  const [recipientDetails, setRecipientDetails] = useState<Address>({
-    recipientName: "",
-    phoneNumber: "",
-    deliveryAddressId: "",
-    address: "",
-    detailedAddress: "",
-    postalCode: "",
+  const isDesktop = useWindowResize(1024);
+  useHeaderProps({
+    title: isDesktop ? "" : "상품 구매하기",
+    backRoute: "../",
+    hasConfirm: false,
+    confirmText: null,
+    onConfirm: null,
   });
-  const [addressList, setAddressList] = useState<Address[]>([]);
+  const { id: productId } = useParams();
+  const quantity = useAtomValue(quantityAtom);
+  const recipientDetails = useAtomValue(recipientDetailsAtom);
   const navigate = useNavigate();
-
+  const [showPaymentMethod, setShowPaymentMethod] = useState(false);
   const { fetchedProductById: product, isLoading } = useFetchProductById();
+  const { mutate: purchaseProduct } = usePurchaseProductByPoint();
+  const paymentWidgetRef = useRef<WidgetPaymentMethodWidget | null>(null);
+  const isPaymentMethodReady = usePaymentMethodReady(showPaymentMethod);
 
-  useDefaultAddress(setRecipientDetails, setAddressList);
-
-  if (isLoading || !product) return <Loading isLayoutApplied={true} />;
+  if (isLoading || !product) return <Loading />;
 
   const totalAmount = product.price * quantity;
 
   return (
-    <div className="flex flex-col items-center w-full min-h-screen text-custom-black">
-      <div
-        className="mobile:w-11/12 tablet-sm:w-4/5 tablet-sm:min-w-[380px] mobile:max-w-[380px] tablet-sm:max-w-[450px]
-      flex flex-col items-center tablet:min-w-[570px] tablet:max-w-[630px]"
-      >
-        <h1 className="font-bold text-center text-custom-h2 mobile:mb-6 text-custom-green tablet:mb-8">
-          구매를 진행해볼까요?
-        </h1>
-        <div className="flex flex-col items-center w-full">
-          <ProductMiniInfo product={product} quantity={quantity} setQuantity={setQuantity} />
-          <PurchaseForm
-            recipientDetails={recipientDetails}
-            setRecipientDetails={setRecipientDetails}
-            addressList={addressList}
-          />
-        </div>
-        <div className="mt-6 font-semibold text-custom-h3">총금액: {formatCurrency(totalAmount)} 원</div>
-        <div className="flex justify-center gap-4 mobile:mt-4 tablet-sm:mt-6">
-          <Button
-            className="text-white bg-custom-green hover:bg-custom-green-hover"
-            text="결제하기"
-            onClick={() => handlePurchase(recipientDetails, quantity, productId, navigate, product)}
-          />
-          <Button
-            className="bg-custom-gray-light text-custom-black hover:bg-custom-gray-dark"
-            text="취소"
-            onClick={() => navigate(-1)}
-          />
-        </div>
-      </div>
-      <ToastContainer />
+    <div
+      className={`text-custom-black mobile:w-11/12 max-w-[600px] flex flex-col h-full pb-8 ${
+        !isDesktop ? "pt-4" : "pt-2"
+      }`}
+    >
+      {isDesktop && (
+        <h1 className="mb-6 font-bold text-center text-custom-h2 text-custom-green">구매를 진행해볼까요?</h1>
+      )}
+      <ProductSummary product={product} />
+      <PurchaseForm />
+      <span className="mt-2 font-semibold text-center text-custom-p-lg">총 금액: {formatCurrency(totalAmount)} 원</span>
+      <PaymentOptionBtns
+        onPointPurchaseClick={() => {
+          const isValid = validatePurchaseData(recipientDetails, quantity, product.quantity);
+          if (isValid) purchaseProduct({ recipientDetails, quantity, productId, product, navigate });
+        }}
+        onGeneralPurchaseClick={() => {
+          const isValid = validatePurchaseData(recipientDetails, quantity, product.quantity);
+          if (isValid)
+            handleRenderPayment(
+              recipientDetails,
+              setShowPaymentMethod,
+              totalAmount,
+              quantity,
+              paymentWidgetRef,
+              product.quantity,
+            );
+        }}
+      />
+      {showPaymentMethod && (
+        <div id="payment-method" className="flex items-center justify-center h-full mt-4 rounded shadow-lg" />
+      )}
+      {isPaymentMethodReady && (
+        <TwoActionBtns
+          primaryText="결제하기"
+          primaryOnClick={() => handleRequestTossPayment({ product, quantity })}
+          secondaryText="닫기"
+          secondaryOnClick={() => {
+            setShowPaymentMethod(false);
+            handleDestroyWidget(paymentWidgetRef);
+          }}
+          extraClassName="bg-transparent mt-2"
+        />
+      )}
+      {!showPaymentMethod && <CurrentPointDisplay />}
     </div>
   );
 };

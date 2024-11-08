@@ -28,3 +28,12 @@ declare interface ProductDataType {
   categoryId: number;
   quantity: string;
 }
+
+declare interface PurchaseFormDataType {
+  recipientName: string;
+  phoneNumber: string;
+  addressId: number;
+  address: string;
+  detailedAddress: string;
+  postalCode: string;
+}

@@ -16,7 +16,7 @@ export const handleSubmit = async (
   const areAllRequiredTermsAgreed = checkRequiredTermsAgreed(termsChecked);
 
   if (!areAllRequiredTermsAgreed) {
-    toast.error("회원가입을 진행하기 위해서는 필수 약관에 동의해야 합니다");
+    toast.error("회원가입을 진행하기 위해서는 필수 약관에 동의해야 해요.");
     return;
   }
 

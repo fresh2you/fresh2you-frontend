@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useKakaoLogin from "../signIn/hooks/useKakaoLogin";
-import { Loading } from "./component/Loading";
+import Loading from "./component/Loading";
 
 const RedirectionPage = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const RedirectionPage = () => {
 
   return (
     <>
-      <Loading isLayoutApplied={false} />
+      <Loading />
     </>
   );
 };

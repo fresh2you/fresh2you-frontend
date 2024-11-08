@@ -18,7 +18,7 @@ const ProductDetailPage = () => {
   return (
     <div
       className="flex flex-col items-center h-full text-custom-black px-4 mobile:w-full 
-    desktop-sm:min-w-[549px] desktop-sm: max-w-[850px]"
+    desktop-sm:min-w-[549px] desktop-sm: max-w-[850px] pb-16"
     >
       <div className="flex flex-col w-full pt-2 max-w-[560px]">
         {isLoading && <ProductDetailSkeleton />}
