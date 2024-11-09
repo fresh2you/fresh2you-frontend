@@ -1,11 +1,11 @@
 // import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { fetchChatRooms } from "../api/chatApis";
-import exampleChats from "@/mockData/chatListMockData";
+import chatRoomsMockData from "@/mockData/chatListMockData";
 
 const useChatRooms = (userId: number) => {
   console.log(userId);
-  const chatRooms = exampleChats;
+  const chatRooms = chatRoomsMockData;
   // const [chatRooms, setChatRooms] = useState(exampleChats);
   // const navigate = useNavigate();
 

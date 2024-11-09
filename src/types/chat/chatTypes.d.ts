@@ -11,14 +11,19 @@ declare interface Message {
   senderId: string;
 }
 
+declare interface Product {
+  productId: number;
+  productName: string;
+  price: number;
+  imageUrl: string;
+}
+
 declare interface ChatRoom {
-  roomId: number;
-  roomName: string;
-  roomType: string;
-  participants: Participant[];
+  chatRoomID: string;
+  name: string;
+  userCount: number;
+  product: Product;
+  imgUrl: string;
   lastMessage: string;
-  lastMessageSender: string;
-  lastMessageTime: string;
-  unreadMessageCount: number;
-  createdAt: string;
+  lastMessageTimeStamp: string;
 }
