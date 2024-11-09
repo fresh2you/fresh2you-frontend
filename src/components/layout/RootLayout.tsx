@@ -7,13 +7,13 @@ const RootLayout = () => {
   const validPaths = ["/", "/community", "/product", "/chatting", "/mypage", "/search"];
 
   return (
-    <div className="relative z-0 flex flex-col justify-between w-full h-full">
+    <div className="relative z-0 flex flex-col justify-between w-full h-full overflow-y-auto">
       <Header />
 
       <main
         className={`${
           validPaths.includes(pathname) ? "pb-[72px]" : ""
-        } tablet:pb-0 z-20 w-full h-full overflow-y-scroll tablet:px-4 desktop:px-8 `}
+        } tablet:pb-0 z-20 w-full h-full overflow-y-auto tablet:px-4 desktop:px-8 `}
       >
         <Outlet />
       </main>
