@@ -3,6 +3,7 @@ import { formatCurrency } from "@/utils/commonUtils";
 import HomeButton from "@/components/HomeButton";
 import qs, { ParsedQs } from "qs";
 import useRedirectAndReset from "./hooks/useRedirectAndReset";
+import useHeaderProps from "@/hooks/useHeaderProps";
 
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 
@@ -17,10 +18,14 @@ interface ProductFromQuery {
 const PaymentCompletePage: React.FC = () => {
   const location = useLocation();
   const { search } = location;
+  useHeaderProps({
+    title: "",
+    backRoute: "../",
+    hasConfirm: false,
+  });
   const parsedQuery = qs.parse(search, { ignoreQueryPrefix: true });
   const productQuery = parsedQuery.product as ParsedQs;
   useRedirectAndReset(productQuery);
-
   const product: ProductFromQuery = {
     productName: String(productQuery?.productName),
     imageUrl: String(productQuery?.imageUrl || fallbackImg),

@@ -26,8 +26,6 @@ const ProductPurchasePage = () => {
     title: isDesktop ? "" : "상품 구매하기",
     backRoute: "../",
     hasConfirm: false,
-    confirmText: null,
-    onConfirm: null,
   });
   const { id: productId } = useParams();
   const quantity = useAtomValue(quantityAtom);
