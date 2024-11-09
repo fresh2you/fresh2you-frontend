@@ -41,11 +41,12 @@ export const validatePurchaseData = (
   recipientDetails: PurchaseFormDataType,
   quantity: number,
   productQuantity: number,
+  minQuantity = 1,
 ): boolean => {
   const { recipientName, phoneNumber, address } = recipientDetails;
 
-  if (!quantity || quantity < 1) {
-    toast.error("수량은 1개 이상이어야 해요.");
+  if (!quantity || quantity < minQuantity) {
+    toast.error(`수량은 ${minQuantity}개 이상이어야 해요.`);
     return false;
   }
 

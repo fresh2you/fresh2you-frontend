@@ -29,6 +29,7 @@ const ChangeProfilePage = lazy(() => import("@/pages/mypage/profile/ChangeProfil
 const DeliveriesPage = lazy(() => import("@/pages/mypage/deliveries/DeliveriesPage"));
 const CommunityPage = lazy(() => import("@/pages/community/CommunityPage"));
 const CommunityPostPage = lazy(() => import("@/pages/community/CommunityPostPage"));
+const NegotiationPage = lazy(() => import("@/pages/chat/components/NegotiationPage"));
 
 const Router = (): JSX.Element => {
   return (
@@ -94,7 +95,7 @@ const Router = (): JSX.Element => {
                   </Routes>
                 }
               />
-
+              <Route path="negotiate/:id" element={<NegotiationPage />} />
               {/* 채팅 관련 페이지들 */}
               <Route path="chatting/:id" element={<ChatPage />} />
 
