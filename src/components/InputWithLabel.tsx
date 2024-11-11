@@ -3,7 +3,7 @@ import IconEye from "icons/eye.svg";
 import "../styles/styles.css";
 import { inputUtils } from "../utils/commonUtils";
 import { InputWithLabelProps } from "@/types/common/commonProps";
-import ShowMaxLen from "@/pages/product/components/registration/ShowMaxLen";
+import ShowMaxLen from "@/pages/product/registration/components/ShowMaxLen";
 
 const InputWithLabel: React.FC<InputWithLabelProps> = ({
   id,
