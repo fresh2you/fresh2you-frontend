@@ -4,6 +4,7 @@ import IconCamera from "icons/camera.svg";
 import useChangeProfilePageLogics from "@/pages/mypage/profile/hooks/useChangeProfilePageLogics";
 import BackButton from "@/components/BackButton";
 import useHeaderProps from "@/hooks/useHeaderProps";
+import IconAccount from "@/assets/icons/icon-account.svg";
 
 const ChangeProfilePage = () => {
   useHeaderProps({
@@ -32,11 +33,12 @@ const ChangeProfilePage = () => {
       >
         <label
           htmlFor="avatar"
-          className={`relative w-40 bg-cover border rounded-full aspect-square ${
+          className={`flex center relative w-40 bg-cover border rounded-full aspect-square ${
             previewAvatar || userInfo?.profileImage || "bg-custom-gray-light border-custom-gray-dark"
           }`}
           style={backgroundImageStyle}
         >
+          {!userInfo?.profileImage && <IconAccount className="w-3/4 h-3/4 text-custom-gray-dark" />}
           <IconCamera className="absolute bottom-0 right-0 p-1 bg-white border rounded-full text-custom-gray-dark border-custom-gray-dark" />
         </label>
 
