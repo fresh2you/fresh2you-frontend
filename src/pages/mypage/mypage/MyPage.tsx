@@ -8,7 +8,7 @@ const MyPage = () => {
   const { userInfo } = useMyPageLogics();
 
   return (
-    <div className="flex flex-col w-full h-full gap-6 overflow-y-scroll scrollbar-hide">
+    <div className="flex flex-col w-full min-h-full">
       {userInfo ? (
         <>
           <MyPageHeader />

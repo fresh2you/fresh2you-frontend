@@ -1,11 +1,15 @@
 import usePointPagelogics from "@/pages/mypage/charge/hooks/usePointPagelogics";
-import { pageLayoutHeaderProps } from "@/stores/mypage";
-import { useSetAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useHeaderProps from "@/hooks/useHeaderProps";
 
 const PointPage = () => {
   const [inputValue, setInputValue] = useState<number | "">("");
   const { patchUserPoint } = usePointPagelogics();
+  useHeaderProps({
+    title: "포인트 충전",
+    hasConfirm: false,
+    backRoute: "/mypage",
+  });
 
   const onChangePoint = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -14,16 +18,6 @@ const PointPage = () => {
 
     setInputValue(value === "" ? "" : Number(value));
   };
-
-  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
-
-  useEffect(() => {
-    setHeaderProps({
-      title: "포인트 충전",
-      hasConfirm: false,
-      backRoute: "/mypage",
-    });
-  }, [setHeaderProps]);
 
   return (
     <div className="flex flex-col items-center w-full h-full tablet:pb-[4.5rem] max-w-2xl">

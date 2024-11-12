@@ -1,28 +1,43 @@
-import { pageLayoutHeaderProps } from "@/stores/mypage";
-import { useSetAtom } from "jotai";
-import { useEffect } from "react";
-import ProductBox from "@/components/ProductBox";
+import WideProductBox from "@/components/WideProductBox";
 import useLikeListPageLogics from "@/pages/mypage/likes/hooks/useLikeListPageLogics";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
+import IconChevronRight from "@/assets/icons/chevron-right.svg";
+import useHeaderProps from "@/hooks/useHeaderProps";
 
 const LikeListPage = () => {
-  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
-  const { mockProducts } = useLikeListPageLogics();
+  useHeaderProps({
+    title: "찜 목록",
+    hasConfirm: false,
+    backRoute: "/mypage",
+  });
 
-  useEffect(() => {
-    setHeaderProps({
-      title: "찜 목록",
-      hasConfirm: false,
-      backRoute: "/mypage",
-    });
-  }, [setHeaderProps]);
+  const { likedProducts, cancelLikeProduct } = useLikeListPageLogics();
 
   return (
-    <div className="flex flex-col w-full h-full p-4">
-      {!mockProducts && <div>찜한 상품이 없습니다</div>}
+    <section className="flex flex-col w-full h-full gap-0 py-0">
+      {(!likedProducts || likedProducts.length === 0) && (
+        <div className="flex flex-col items-center gap-4 mt-4 text-xl font-bold">
+          <h2 className="font-medium text-custom-h2">찜한 상품이 없습니다.</h2>
+          <Link to="/product" className="flex items-center hover:text-custom-green">
+            <span>상품 둘러보러 가기</span>
+            <IconChevronRight />
+          </Link>
+        </div>
+      )}
 
-      {/* TODO: API명세서에 따른 데이터 타입 정의로 맞출 예정 */}
-      {mockProducts && mockProducts.map((v) => <ProductBox key={v.product_id} item={v} />)}
-    </div>
+      {likedProducts?.map((likedProduct) => (
+        <WideProductBox
+          key={likedProduct.productId}
+          item={likedProduct}
+          hasOption={true}
+          deleteCallback={cancelLikeProduct(likedProduct.productId)}
+        />
+      ))}
+
+      <ToastContainer />
+    </section>
   );
 };
 

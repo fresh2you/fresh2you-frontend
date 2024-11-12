@@ -37,10 +37,12 @@ declare interface IDeleteProductResponse extends defaultApiResponse {
 /* 상품 좋아요 */
 declare interface ILikeProductResponse extends defaultApiResponse {
   data: {
-    productLikeId: number;
-    productId: number;
-    productName: string;
-    likedAt: string;
+    productList: {
+      productId: number;
+      productName: string;
+      imageUrl: string;
+      price: number;
+    }[];
   };
 }
 
@@ -76,6 +78,24 @@ declare interface IGetProductInfoResponse extends defaultApiResponse {
 declare interface IPatchProductInfoResponse extends defaultApiResponse {
   data: {
     productId: 0;
+  };
+}
+
+/* 판매자의 판매 상품 목록 조회 */
+declare interface IGetSellingProductResponse extends defaultApiResponse {
+  data: {
+    productList: {
+      productId: number;
+      sellerName: string;
+      productName: string;
+      productDescription: string;
+      quantity: number;
+      price: number;
+      imageUrl: string;
+    }[];
+    pageNumber: number;
+    pageSize: number;
+    totalPageNumber: number;
   };
 }
 

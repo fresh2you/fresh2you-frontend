@@ -2,16 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import productAPI from "@/services/api/productAPI";
 
 const useFetchLikedProducts = () => {
-  const { data } = useQuery({
+  const { data: likedProducts } = useQuery({
     queryKey: ["likedProducts"],
     queryFn: async () => {
-      const { data } = await productAPI.getLikeProducts();
-      return data;
+      const { data: result } = await productAPI.getLikeProducts();
+
+      return result.productList;
     },
     staleTime: 600 * 1000,
     retry: 0,
   });
-  const likedProductIds = data?.productList.map((product: IProductList) => product.productId) || [];
+
+  const likedProductIds = likedProducts?.map((product: IProductList) => product.productId) || [];
 
   return likedProductIds;
 };
