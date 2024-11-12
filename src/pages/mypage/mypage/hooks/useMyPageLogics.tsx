@@ -39,18 +39,21 @@ const useMyPageLogics = () => {
       name: "찜 목록",
       path: "/mypage/likes",
       iconComponent: <IconHeart className="w-8 h-8 dark:text-white" />,
+      ariaLabel: "찜 목록 페이지로 이동",
     },
     {
       id: 2,
       name: "내 배송지 관리",
       path: "/mypage/deliveries",
       iconComponent: <IconDelivery className="w-8 h-8 dark:text-white" />,
+      ariaLabel: "내 배송지 관리 페이지로 이동",
     },
     {
       id: 3,
       name: "비밀번호 변경",
       path: "/mypage/password",
       iconComponent: <IconChangePW className="w-8 h-8 dark:text-white" />,
+      ariaLabel: "비밀번호 변경하기",
     },
     {
       id: 4,
@@ -58,6 +61,7 @@ const useMyPageLogics = () => {
       path: null,
       iconComponent: <IconLogout className="w-8 h-8 dark:text-white" />,
       onClick: logout,
+      ariaLabel: "로그아웃 하기",
     },
   ];
 
@@ -67,12 +71,14 @@ const useMyPageLogics = () => {
       name: "상품 등록",
       path: "/product/register",
       iconComponent: <IconRegister className="w-8 h-8 dark:text-white" />,
+      ariaLabel: "상품 등록 페이지로 이동",
     },
     {
       id: 2,
       name: "상품 목록 및 상품 수정",
       path: "/mypage/my-products",
       iconComponent: <IconList className="w-8 h-8 dark:text-white" />,
+      ariaLabel: "상품 목록 및 상품 수정 페이지로 이동",
     },
   ];
 
