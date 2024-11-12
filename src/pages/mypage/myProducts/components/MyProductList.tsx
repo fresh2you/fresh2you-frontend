@@ -2,21 +2,30 @@
 import React from "react";
 import { useMyProductsPageLogics } from "@/pages/mypage/myProducts/hooks/useMyProductsPageLogics";
 import WideProductBox from "@/components/WideProductBox";
+import { Link } from "react-router-dom";
+import ChevronRightIcon from "@/assets/icons/chevron-right.svg";
 
 const MyProductList = () => {
-  const { loadMoreRef, data, hasNextPage, isFetchingNextPage, isLoading, isError, error } = useMyProductsPageLogics();
+  const { loadMoreRef, myProducts, hasNextPage, isFetchingNextPage, isLoading, isError, error, deleteProduct } =
+    useMyProductsPageLogics();
 
   if (isLoading) return <div>로딩 중...</div>;
   if (isError) return <div>에러 발생: {error?.message}</div>;
 
-  //console.log(2, data.pages);
-
   return (
     <section className="w-full">
-      {!data?.pages?.length ? (
-        <div>상품이 없습니다.</div>
+      {!myProducts?.pages[0].data.pageSize ? (
+        <div className="flex flex-col items-center justify-center h-96">
+          <h3 className="font-bold text-custom-h3">상품이 없습니다.</h3>
+          <Link
+            to="/product/register"
+            className="flex items-center gap-1 p-2 mt-2 rounded hover:bg-custom-green-hover hover:text-white"
+          >
+            제품 등록하러 가기 <ChevronRightIcon className="w-4 h-4" />
+          </Link>
+        </div>
       ) : (
-        data.pages.map((group) => {
+        myProducts.pages.map((group) => {
           const productList = group?.data?.productList;
           const pageNumber = group?.data?.pageNumber;
 
@@ -33,7 +42,7 @@ const MyProductList = () => {
                     console.log("edit", product.productId);
                   }}
                   deleteCallback={() => {
-                    console.log("delete", product.productId);
+                    deleteProduct(product.productId);
                   }}
                 />
               ))}
