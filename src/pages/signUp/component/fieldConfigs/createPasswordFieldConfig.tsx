@@ -1,4 +1,4 @@
-import { handleConfirmPasswordChange } from "../passwordUtils";
+import { handleConfirmPasswordChange } from "../../utils/passwordUtils";
 
 export const createPasswordFieldConfig = (
   formData: FormDataType,
@@ -15,5 +15,4 @@ export const createPasswordFieldConfig = (
       : setFormData((prev) => ({ ...prev, password: value })),
   placeholder: isConfirmPasswordField ? "비밀번호를 다시 입력하세요" : "비밀번호를 입력하세요",
   autoComplete: "new-password",
-  button: null,
 });

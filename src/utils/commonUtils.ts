@@ -23,7 +23,7 @@ export const inputUtils = {
   },
 
   handleKeyDown: (
-    e: React.KeyboardEvent<HTMLInputElement | HTMLDivElement>,
+    e: React.KeyboardEvent<HTMLInputElement | HTMLDivElement | HTMLButtonElement>,
     onButtonClick: (() => void) | undefined,
     type?: string,
   ) => {

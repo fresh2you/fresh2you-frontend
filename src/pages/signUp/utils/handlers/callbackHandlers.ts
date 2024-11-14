@@ -1,7 +1,5 @@
 import { NavigateFunction } from "react-router-dom";
-import { KakaoLoginParams, LoginCredentials } from "@/pages/signIn/hooks/useLogin";
 import { toast } from "react-toastify";
-import authAPI from "@/services/api/authAPI";
 
 export const onSuccessCallback = (navigate: NavigateFunction) => {
   navigate("/auth/signup/complete");
@@ -14,11 +12,8 @@ export const onErrorCallback = () => {
 export const handleSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   validity: ValidityType,
-  formData: FormDataType,
-  navigate: NavigateFunction,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
-  login: (variables: KakaoLoginParams | LoginCredentials) => void,
-  isAgreedToTerms: TermAgreement[],
+  signUp: () => void,
 ) => {
   e.preventDefault();
 
@@ -33,22 +28,7 @@ export const handleSubmit = async (
     toast.error(errorMessage);
   } else {
     setIsLoading(true);
-    try {
-      await authAPI.signUp({
-        email: formData.email,
-        password: formData.password,
-        confirmPassword: formData.confirmPassword,
-        nickname: formData.nickname,
-        termsAgreements: isAgreedToTerms,
-        provider: "EMAIL",
-        providerId: null,
-      });
-      login({ email: formData.email, password: formData.password });
-      onSuccessCallback(navigate);
-    } catch {
-      onErrorCallback();
-    } finally {
-      setIsLoading(false);
-    }
+    signUp();
+    setIsLoading(false);
   }
 };
