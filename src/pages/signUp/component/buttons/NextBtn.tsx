@@ -14,6 +14,7 @@ export const NextButton: React.FC<NextButtonProps> = ({ currentStep, funnel, for
       type="button"
       onClick={() => handleNext(funnel, formData, currentStep)}
       className="next-btn text-custom-span-text"
+      aria-label="다음 단계로 이동"
     >
       다음
     </button>
