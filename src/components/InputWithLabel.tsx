@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import IconEye from "icons/eye.svg";
 import "../styles/styles.css";
 import { inputUtils } from "../utils/commonUtils";

@@ -8,9 +8,11 @@ export const handleConfirmPasswordChange = (
     ...prevFormData,
     confirmPassword: value,
   }));
+
   if (!validatePassword(password).isValid) return;
+
   setStatus((prevStatus) => {
-    if (value !== password && !!password && !!value) {
+    if (value === "" || password === "" || value !== password) {
       return { ...prevStatus, passwordStatus: "비밀번호가 일치하지 않습니다." };
     } else {
       return { ...prevStatus, passwordStatus: "SUCCESS" };

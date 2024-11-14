@@ -1,16 +1,12 @@
 import { forwardRef } from "react";
 import { formatCurrency } from "@/utils/commonUtils";
 import { Link } from "react-router-dom";
-import HeartIcon from "@/assets/icons/heart.svg";
-import FilledHeartIcon from "@/assets/icons/filled-heart.svg";
 import useLikedStatus from "../hooks/useLikedStatus";
-import { toggleLike } from "../utils/productDataUtils";
-import { useQueryClient } from "@tanstack/react-query";
+import LikeButton from "../../common/components/LikeButton";
 
 const fallbackImg = "https://i.postimg.cc/SK4GnMjT/fallback.png";
 
 const ProductCard = forwardRef<HTMLAnchorElement, { product: IProductList }>(({ product }, ref) => {
-  const queryClient = useQueryClient();
   const [isLiked, setIsLiked] = useLikedStatus(product.productId);
 
   return (
@@ -32,21 +28,13 @@ const ProductCard = forwardRef<HTMLAnchorElement, { product: IProductList }>(({ 
         <p className="text-custom-gray-dark">{product.sellerName}</p>
         <p className="font-semibold text-custom-green text-custom-span">{formatCurrency(product.price)} 원</p>
       </div>
-      <button
-        type="button"
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          toggleLike(product.productId, isLiked, setIsLiked, queryClient);
-        }}
-        className="absolute bottom-2 right-1.5 bg-transparent p-0"
-      >
-        {isLiked ? (
-          <FilledHeartIcon alt={`${product.productName} 찜 목록에서 제거`} className="text-red-500 w-7 h-7" />
-        ) : (
-          <HeartIcon alt={`${product.productName} 찜 목록에 추가`} className="text-red-500 w-7 h-7" />
-        )}
-      </button>
+      <LikeButton
+        productId={product.productId}
+        productName={product.productName}
+        isLiked={isLiked}
+        setIsLiked={setIsLiked}
+        extraClassName="absolute bottom-2 right-1.5"
+      />
     </Link>
   );
 });

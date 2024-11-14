@@ -30,9 +30,9 @@ export const handleFieldChange = (
 };
 
 export const toggleLike = async (
-  productId: number,
+  productId: number | number,
   isLiked: boolean,
-  setIsLiked: (status: boolean) => void,
+  setIsLiked: React.Dispatch<React.SetStateAction<boolean>>,
   queryClient: QueryClient,
 ) => {
   if (isLiked) {

@@ -1,12 +1,13 @@
-import { ActionButton } from "../../component/buttons/ActionButton";
-import { handleNicknameCheck } from "../handlers/handleNicknameCheck";
+import { ActionButton } from "../buttons/ActionButton";
+import { useNicknameCheck } from "../../hooks/useNicknameCheck";
 
-export const createNicknameFieldConfig = (
+export const useNicknameFieldConfig = (
   formData: FormDataType,
   setFormData: React.Dispatch<React.SetStateAction<FormDataType>>,
   setStatus: React.Dispatch<React.SetStateAction<StatusType>>,
   validity: ValidityType,
 ): Field => {
+  const { nicknameCheck } = useNicknameCheck(setStatus);
   return {
     label: "닉네임",
     type: "text",
@@ -20,7 +21,7 @@ export const createNicknameFieldConfig = (
           if (formData.nickname.length > 20) {
             setStatus((prevStatus) => ({ ...prevStatus, nicknameStatus: "닉네임은 20자 미만이어야 합니다." }));
           } else {
-            handleNicknameCheck(formData, setStatus);
+            nicknameCheck(formData.nickname);
           }
         }}
         text={{ valid: "완료", invalid: "확인" }}

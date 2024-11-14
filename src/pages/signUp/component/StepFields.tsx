@@ -1,6 +1,5 @@
 import InputWithLabel from "@/components/InputWithLabel";
 import { NextButton } from "./buttons/NextBtn";
-import useAutoNext from "../hooks/useAutoNext";
 import { UseFunnelResults } from "@use-funnel/react-router-dom";
 
 interface StepFieldsProps {
@@ -8,10 +7,8 @@ interface StepFieldsProps {
   currentStep: keyof SignUpSteps;
   funnel: UseFunnelResults<SignUpStepContext, RouteOption>;
   formData: FormDataType;
-  isEmailValid: boolean;
 }
-const StepFields: React.FC<StepFieldsProps> = ({ steps, currentStep, funnel, formData, isEmailValid }) => {
-  useAutoNext(isEmailValid, currentStep, funnel, formData);
+const StepFields: React.FC<StepFieldsProps> = ({ steps, currentStep, funnel, formData }) => {
   return (
     <>
       {steps[currentStep].map((field: Field, index: number) => (
