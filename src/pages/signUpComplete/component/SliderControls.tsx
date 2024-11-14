@@ -1,6 +1,6 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/styles.css";
+
 interface SliderControlsProps {
   currentSlide: number;
   totalSlides: number;
