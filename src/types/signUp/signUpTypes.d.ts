@@ -2,6 +2,7 @@ declare type ValidityType = {
   isEmailValid: boolean;
   isConfirmPasswordValid: boolean;
   isNicknameValid: boolean;
+  isPasswordValid: boolean;
 };
 
 declare type FormDataType = {

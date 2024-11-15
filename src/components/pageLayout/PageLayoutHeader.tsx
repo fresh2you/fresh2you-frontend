@@ -9,7 +9,7 @@ const PageLayoutHeader = () => {
   const isPurchaseCompletePage = location.pathname.startsWith("/purchase/complete");
 
   return (
-    <header className="relative flex items-center justify-between w-full h-16 px-2">
+    <header className="relative flex items-center justify-between w-full h-16 px-2 shrink-0">
       {/* 헤더 좌측 버튼 */}
       {!isPurchaseCompletePage && (
         <button
@@ -29,7 +29,7 @@ const PageLayoutHeader = () => {
       {/* 헤더 우측 버튼 */}
       {hasConfirm && (
         <button
-          className="h-full px-4 py-0 font-semibold bg-transparent text-custom-gray-dark"
+          className="h-full px-4 py-0 ml-auto font-semibold bg-transparent text-custom-gray-dark"
           onClick={() => {
             if (onConfirm) onConfirm();
           }}

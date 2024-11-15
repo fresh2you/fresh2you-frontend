@@ -3,7 +3,7 @@ import { Address } from "react-daum-postcode";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import DaumAddressModal from "@/pages/mypage/deliveries/components/DaumAddressModal";
-import { api } from "@/services/api";
+import userAPI from "@/services/api/userAPI";
 
 const useAddDeliveryModalLogics = () => {
   const queryClient = useQueryClient();
@@ -69,7 +69,7 @@ const useAddDeliveryModalLogics = () => {
       address,
       detailedAddress,
       postalCode,
-      isDefault,
+      isDefault = false,
     }: {
       recipientName: string;
       phone: `${string}`;
@@ -84,10 +84,10 @@ const useAddDeliveryModalLogics = () => {
         address,
         detailedAddress,
         postalCode,
-        isDefault: false,
+        isDefault,
       };
 
-      const result = await api.user.addDelivery(data);
+      const result = await userAPI.addDelivery(data);
 
       console.log(result);
 

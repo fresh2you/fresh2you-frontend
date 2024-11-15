@@ -1,5 +1,5 @@
 import { instance } from "@/instance";
-import { api } from "@/services/api";
+import userAPI from "@/services/api/userAPI";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,7 @@ const useVerifySellerPageLogics = () => {
       return alert("올바르지 않은 전화번호 입니다.");
     }
 
-    const result = await api.user.requestSMSCode(formData.phone);
+    const result = await userAPI.requestSMSCode(formData.phone);
 
     if (result.success) {
       alert("인증 문자가 전송되었습니다");
@@ -75,7 +75,7 @@ const useVerifySellerPageLogics = () => {
 
     /* patchUserRole(); */
     try {
-      const result = await api.user.verifySMSCode({ phoneNumber: formData.phone, verificationCode: formData.code });
+      const result = await userAPI.verifySMSCode({ phoneNumber: formData.phone, verificationCode: formData.code });
 
       if (result.success) {
         alert("휴대전화 인증이 완료되었습니다!");

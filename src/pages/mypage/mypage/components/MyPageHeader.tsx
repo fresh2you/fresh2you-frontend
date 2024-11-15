@@ -5,7 +5,7 @@ const MyPageHeader = () => {
   const { moveToPath, userInfo } = useMyPageLogics();
 
   return (
-    <header className="flex items-center justify-between w-full p-6 pb-0 f-auto">
+    <header className="flex items-center justify-between w-full h-auto px-6 pt-4 pb-0">
       <h2 className="text-2xl font-bold">마이 페이지</h2>
 
       <button

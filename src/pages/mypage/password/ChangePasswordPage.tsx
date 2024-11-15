@@ -1,15 +1,19 @@
-import { pageLayoutHeaderProps } from "@/stores/mypage";
-import { useSetAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import InputWithLabel from "@/components/InputWithLabel";
+import useHeaderProps from "@/hooks/useHeaderProps";
 
 const ChangePasswordPage = () => {
+  useHeaderProps({
+    title: "비밀번호 변경",
+    hasConfirm: false,
+    backRoute: "/mypage",
+  });
+
   const [formData, setFormData] = useState({
     prevPassword: "",
     newPassword: "",
     confirmNewPassword: "",
   });
-  const setHeaderProps = useSetAtom(pageLayoutHeaderProps);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.id;
@@ -17,14 +21,6 @@ const ChangePasswordPage = () => {
 
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
-
-  useEffect(() => {
-    setHeaderProps({
-      title: "비밀번호 변경",
-      hasConfirm: false,
-      backRoute: "/mypage",
-    });
-  }, [setHeaderProps]);
 
   // TODO: API 및 비밀번호 포맷 검사 추가 예정
 

@@ -1,4 +1,4 @@
-import ProductInfo from "../product/components/details/ProductInfo";
+import ProductInfo from "../product/detail/components/ProductInfo";
 import MessageList from "./components/MessageList";
 import ChatFooter from "./components/ChatFooter";
 import "../../styles/styles.css";

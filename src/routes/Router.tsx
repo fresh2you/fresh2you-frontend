@@ -13,11 +13,11 @@ const RootLayout = lazy(() => import("../components/layout/RootLayout"));
 const TermsAgreementPage = lazy(() => import("@/pages/terms/TermsAgreementPage"));
 const RedirectionPage = lazy(() => import("@/pages/redirection/RedirectionPage"));
 const SignUpCompletePage = lazy(() => import("../pages/signUpComplete/SignUpComplete"));
-const ProductsPage = lazy(() => import("../pages/product/ProductsPage"));
-const ProductDetailPage = lazy(() => import("../pages/product/ProductDetailPage"));
-const ProductRegistrationPage = lazy(() => import("@/pages/product/ProductRegistrationPage"));
-const ProductPurchasePage = lazy(() => import("../pages/product/ProductPurchasePage"));
-const PaymentCompletePage = lazy(() => import("@/pages/product/PaymentCompletePage"));
+const ProductsPage = lazy(() => import("../pages/product/listing/ProductsPage"));
+const ProductDetailPage = lazy(() => import("@/pages/product/detail/ProductDetailPage"));
+const ProductRegistrationPage = lazy(() => import("@/pages/product/registration/ProductRegistrationPage"));
+const ProductPurchasePage = lazy(() => import("../pages/product/purchase/ProductPurchasePage"));
+const PaymentCompletePage = lazy(() => import("@/pages/product/complete/PaymentCompletePage"));
 const ChatListPage = lazy(() => import("@/pages/chat/ChatListPage"));
 const ChatPage = lazy(() => import("@/pages/chat/ChatPage"));
 const MyPage = lazy(() => import("@/pages/mypage/mypage/MyPage"));
@@ -31,6 +31,8 @@ const CommunityPage = lazy(() => import("@/pages/community/CommunityPage"));
 const CommunityPostPage = lazy(() => import("@/pages/community/CommunityPostPage"));
 const NegotiationPage = lazy(() => import("@/pages/chat/components/NegotiationPage"));
 const ExamplePage = lazy(() => import("@/routes/Example"));
+const MyProductsPage = lazy(() => import("@/pages/mypage/myProducts/MyProductsPage"));
+
 const Router = (): JSX.Element => {
   return (
     <Suspense fallback={<div />}>
@@ -77,7 +79,7 @@ const Router = (): JSX.Element => {
                   <Routes>
                     <Route path="/:id" element={<ProductDetailPage />} />
                     <Route path="/register" element={<ProductRegistrationPage />} />
-                    <Route path="product/modify" element={<div>등록한 제품 수정</div>} />
+                    <Route path="/modify/:id" element={<div>등록한 제품 수정</div>} />
                   </Routes>
                 }
               />
@@ -110,7 +112,7 @@ const Router = (): JSX.Element => {
                     <Route path="likes" element={<LikeListPage />} />
                     <Route path="deliveries" element={<DeliveriesPage />} />
                     <Route path="password" element={<ChangePasswordPage />} />
-                    <Route path="my-products" element={<div>내 판매 상품들</div>} />
+                    <Route path="my-products" element={<MyProductsPage />} />
                   </Routes>
                 }
               />
