@@ -1,8 +1,8 @@
 import { Client } from "@stomp/stompjs";
 
 interface StompClientConfig {
-  onConnectCallback?: (client: Client) => void; // 연결 후 동작 정의
-  onErrorCallback?: (error: string) => void; // 오류 발생 시 동작 정의
+  onConnectCallback?: (client: Client) => void;
+  onErrorCallback?: (error: string) => void;
 }
 
 const createStompClient = ({ onConnectCallback, onErrorCallback }: StompClientConfig): Client => {
