@@ -3,31 +3,28 @@ import useMaxLengthByScreenRatio from "../hooks/useMaxLenByScreenRation";
 import { formatDate } from "../utils/formatUtils";
 import { getTruncatedMessage } from "../utils/getTruncatedMessage";
 import "../../../styles/styles.css";
-import ImgFallback from "@/assets/img/circle-logo.svg";
+import ImgFallback from "@/assets/img/fallback.svg";
 
-const ChatItem: React.FC<{ chat: ChatRoom }> = ({ chat }) => {
+const ChatItem: React.FC<{ chatRoom: ChatRoom }> = ({ chatRoom }) => {
   const navigate = useNavigate();
   const maxLength = useMaxLengthByScreenRatio(28, 31);
-  const truncatedMessage = getTruncatedMessage(chat.lastMessage, maxLength);
-
+  const truncatedMessage = getTruncatedMessage(chatRoom.lastMessage, maxLength);
+  const lastSentAt = chatRoom.lastSentAt ? formatDate(chatRoom.lastSentAt) : "";
+  const chatRoomName = chatRoom.name.replace(/[,[\]]/g, "");
   return (
     <div
       role="button"
       tabIndex={0}
-      className="flex items-center px-4 py-3 border-gray-200 rounded-md text-custom-black custom-focus-light"
-      onClick={() => navigate(`/chatting/${chat.chatRoomID}`)}
-      onKeyDown={(e) => e.key === "Enter" && navigate(`/chatting/${chat.chatRoomID}`)}
+      className="flex items-center py-3 px-4 rounded-md border-gray-200 text-custom-black custom-focus-light"
+      onClick={() => navigate(`/chatting/${chatRoom.chatRoomId}`)}
+      onKeyDown={(e) => e.key === "Enter" && navigate(`/chatting/${chatRoom.chatRoomId}`)}
     >
-      {chat.imgUrl ? (
-        <img src={chat.imgUrl} alt={chat.name} className="w-1/6 rounded-full max-w-16" />
-      ) : (
-        <ImgFallback className="w-full h-full rounded-full" alt={`${chat.name}님의 프로필 사진`} />
-      )}
+      <ImgFallback className="w-[10%] min-w-10 max-w-14 h-full rounded-full" alt={chatRoomName} />
       <div className="flex-grow pl-2.5 pr-3 h-full">
-        <h2 className="font-semibold text-custom-p whitespace-nowrap">{chat.name}</h2>
-        <p className="text-gray-500 text-custom-span whitespace-nowrap">{truncatedMessage}</p>
+        <h2 className="font-medium whitespace-nowrap text-custom-p">{chatRoomName}</h2>
+        <p className="text-gray-500 whitespace-nowrap text-custom-span min-h-[1rem]">{truncatedMessage}</p>
       </div>
-      <span className="self-start mt-2 text-sm whitespace-nowrap">{formatDate(chat.lastMessageTimeStamp)}</span>
+      <span className="self-start mt-1 text-sm whitespace-nowrap">{lastSentAt}</span>
     </div>
   );
 };

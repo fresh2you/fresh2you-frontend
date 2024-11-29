@@ -1,6 +1,6 @@
 import { Client } from "@stomp/stompjs";
 
-const createStompClient = (): Client => {
+const createStompClient = (callback: () => void): Client => {
   const accessToken = localStorage.getItem("accessToken");
   return new Client({
     brokerURL: "wss://api.fresh2you.shop/ws",
@@ -13,6 +13,9 @@ const createStompClient = (): Client => {
     reconnectDelay: 5000,
     heartbeatIncoming: 4000,
     heartbeatOutgoing: 4000,
+    onConnect: () => {
+      callback();
+    },
   });
 };
 export default createStompClient;
