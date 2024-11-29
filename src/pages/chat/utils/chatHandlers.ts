@@ -1,3 +1,4 @@
+import { Client } from "@stomp/stompjs";
 import { NavigateFunction } from "react-router-dom";
 
 export const handleToggleProductInfo = (setShowProductInfo: React.Dispatch<React.SetStateAction<boolean>>) => {
@@ -8,23 +9,21 @@ export const handleToggleProductInfo = (setShowProductInfo: React.Dispatch<React
   });
 };
 
-export const handleSendMessage = () => {
-  // if (inputValue.trim()) {
-  //   const messageBody = {
-  //     chatRoomId: chatInfo.chatRoomId,
-  //     senderId: chatInfo.userId,
-  //     content: inputValue,
-  //   };
-  //   chatService.sendMessage(messageBody);
-  //   setMessages((prevMessages) => [
-  //     ...prevMessages,
-  //     {
-  //       ...messageBody,
-  //       timestamp: new Date().toISOString(),
-  //     },
-  //   ]);
-  //   setInputValue("");
-  // }
+export const handleSendMessage = (inputValue: string, chatRoomId: string, stompClient: Client, userId: number) => {
+  const message = {
+    sender: userId,
+    content: inputValue,
+    timestamp: new Date().toISOString(),
+  };
+
+  try {
+    stompClient.publish({
+      destination: `/pub/chat/send/${chatRoomId}`,
+      body: JSON.stringify(message),
+    });
+  } catch (error) {
+    console.error("Failed to send message:", error);
+  }
 };
 
 export const handleAction = async (

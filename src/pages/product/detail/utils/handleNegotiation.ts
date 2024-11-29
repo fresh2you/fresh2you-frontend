@@ -1,6 +1,5 @@
 import { NavigateFunction } from "react-router-dom";
 import chatAPI from "@/services/api/chatAPI";
-import createStompClient from "./createStompClient";
 import { toast } from "react-toastify";
 
 const handleNegotiation = async (product: IProductList, navigate: NavigateFunction, refetch: () => void) => {
@@ -19,8 +18,7 @@ const handleNegotiation = async (product: IProductList, navigate: NavigateFuncti
     }
 
     sessionStorage.setItem(String(chatRoomId), JSON.stringify({ product: product }));
-    const stompClient = createStompClient(refetch);
-    stompClient.activate();
+    refetch();
     navigate(`/chatting/${chatRoomId}`);
   } catch {
     toast.error("예기치 못한 오류가 발생했습니다. 잠시 후 다시 시도해 주세요");
