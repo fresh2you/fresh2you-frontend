@@ -1,16 +1,3 @@
-declare interface Participant {
-  userId: number;
-  nickname: string;
-  profileImageUrl: string;
-}
-
-declare interface Message {
-  messageId: number;
-  content: string;
-  timestamp: string;
-  senderId: string;
-}
-
 declare interface Product {
   productId: number;
   productName: string;
@@ -26,4 +13,19 @@ declare interface ChatRoom {
   imgUrl: string;
   lastMessage: string;
   lastMessageTimeStamp: string;
+}
+
+declare interface Message {
+  text: string;
+  timestamp: string;
+  senderId: number;
+  receiverId: number;
+}
+
+declare interface Chat {
+  chatRoomID: number;
+  imgUrl: string;
+  nickname: string;
+  messages: Message[];
+  product: Product;
 }

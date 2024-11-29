@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useMaxLengthByScreenRatio from "../hooks/useMaxLenByScreenRation";
-import { formatDate } from "../utils/formatDate";
+import { formatDate } from "../utils/formatUtils";
 import { getTruncatedMessage } from "../utils/getTruncatedMessage";
 import "../../../styles/styles.css";
 import ImgFallback from "@/assets/img/circle-logo.svg";
