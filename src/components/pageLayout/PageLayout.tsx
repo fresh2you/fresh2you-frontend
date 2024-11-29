@@ -10,7 +10,7 @@ const PageLayout = () => {
     <div className={`flex flex-col w-full ${isPurchasePage ? "" : "h-full"}`}>
       <PageLayoutHeader />
       <div
-        className={`flex justify-center w-full h-full overflow-hidden scrollbar-hide
+        className={`flex justify-center w-full h-full scrollbar-hide
         ${isChattingPage ? "" : "px-4"} desktop:px-10`}
       >
         <Outlet />

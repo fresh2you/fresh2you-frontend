@@ -1,5 +1,4 @@
 import Button from "./Button";
-import useMyPageLogics from "@/pages/mypage/mypage/hooks/useMyPageLogics";
 import handleNegotiation from "../../detail/utils/handleNegotiation";
 import { NavigateFunction } from "react-router-dom";
 
@@ -9,8 +8,6 @@ interface ProductActionButtonsProps {
 }
 
 const ProductActionButtons: React.FC<ProductActionButtonsProps> = ({ product, navigate }) => {
-  const { userInfo } = useMyPageLogics();
-
   return (
     <div className="flex gap-2 mobile:mt-1 tablet-sm:mt-2">
       <Button
@@ -21,7 +18,7 @@ const ProductActionButtons: React.FC<ProductActionButtonsProps> = ({ product, na
       <Button
         className="bg-custom-gray-light text-custom-black hover:bg-custom-gray-dark"
         text="협상하기"
-        onClick={() => handleNegotiation(userInfo, product, navigate)}
+        onClick={() => handleNegotiation(product, navigate)}
       />
     </div>
   );

@@ -6,7 +6,18 @@ export const useChatPage = () => {
   const { id: chatRoomId } = useParams<{ id: string }>();
   const [messages, setMessages] = useState<Message[]>(mockData.chatMessages[0].messages);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
-  const product = mockData.chatMessages[0].product; //useQuery 사용해야함
+  let product;
+  if (chatRoomId) {
+    const storedProduct = sessionStorage.getItem(chatRoomId);
+    if (storedProduct) {
+      const parsedData = JSON.parse(storedProduct);
+      product = parsedData?.product;
+    } else {
+      product = undefined;
+    }
+  } else {
+    product = undefined;
+  }
 
   return {
     chatRoomId,

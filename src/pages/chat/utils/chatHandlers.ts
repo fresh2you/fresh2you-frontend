@@ -34,7 +34,6 @@ export const handleAction = async (
   productId?: string,
 ) => {
   if (actionType === "협상하기") {
-    console.log(productId);
     navigate(`/negotiate/${productId}`);
   }
   unmount();
