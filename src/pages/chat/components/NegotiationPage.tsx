@@ -1,16 +1,16 @@
-import ProductSummary from "@/pages/product/components/purchase/ProductSummary";
-import PurchaseForm from "@/pages/product/components/purchase/PurchaseForm";
+import ProductSummary from "@/pages/product/purchase/components/ProductSummary";
+import PurchaseForm from "@/pages/product/purchase/components/PurchaseForm";
 import { formatCurrency } from "@/utils/commonUtils";
-import CurrentPointDisplay from "@/pages/product/components/purchase/CurrentPointDisplay";
-import { useFetchProductById } from "@/pages/product/hooks/useFetchProductById";
+import CurrentPointDisplay from "@/pages/product/purchase/components/CurrentPointDisplay";
+import { useFetchProductById } from "@/pages/product/common/hooks/useFetchProductById";
 import Loading from "@/pages/redirection/component/Loading";
 import { useAtomValue } from "jotai";
-import { quantityAtom, recipientDetailsAtom } from "@/pages/product/atom/atom";
-import useWindowResize from "@/pages/product/hooks/useWindowResize";
+import { quantityAtom, recipientDetailsAtom } from "@/pages/product/common/atom/atom";
+import useWindowResize from "@/pages/product/common/hooks/useWindowResize";
 import useHeaderProps from "@/hooks/useHeaderProps";
-import Button from "@/pages/product/components/buttons/Button";
-import { validatePurchaseData } from "@/pages/product/utils/purchaseHandlers";
-import { usePurchaseProductByPoint } from "@/pages/product/hooks/usePurchaseProductByPoint";
+import Button from "@/pages/product/common/components/Button";
+import { validatePurchaseData } from "@/pages/product/purchase/utils/purchaseHandlers";
+import { usePurchaseProductByPoint } from "@/pages/product/purchase/hooks/usePurchaseProductByPoint";
 import { useNavigate } from "react-router-dom";
 
 const NegotiationPage: React.FC = () => {

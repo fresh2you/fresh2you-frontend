@@ -1,57 +1,28 @@
-import ProductInfo from "../product/detail/components/ProductInfo";
 import MessageList from "./components/MessageList";
 import ChatFooter from "./components/ChatFooter";
 import "../../styles/styles.css";
-import ArrowLeftIcon from "../../assets/icons/arrow-left-sm.svg";
-import ArrowRightIcon from "../../assets/icons/arrow-right-sm.svg";
 import { useChatPage } from "./hooks/useChatPage";
+import useHeaderProps from "@/hooks/useHeaderProps";
+import useScrollToBottom from "./hooks/useScrollToBottom";
+import ProductInfoHeader from "./components/ProductInfoHeader";
+import EmptyChatMessage from "./components/EmptyChatMsg";
 
 const ChatPage = () => {
-  const {
-    chatRoomId,
-    userId,
-    product,
-    messages,
-    setMessages,
-    showProductInfo,
-    toggleProductInfo,
-    messagesEndRef,
-    navigate,
-  } = useChatPage();
+  const { chatRoomId, product, messages, setMessages, messagesEndRef } = useChatPage();
+  useScrollToBottom(messagesEndRef, messages);
+  useHeaderProps({ title: "", hasConfirm: false, backRoute: "../" });
+  const hasProduct = Object.keys(product).length > 0;
 
   return (
-    <div className="relative w-full mx-auto bg-white text-custom-black">
-      <div
-        className={`fixed opacity-95 left-4 max-w-[450px] rounded-md mr-4 p-1.5 transition-transform duration-300 overflow-hidden flex 
-          ${showProductInfo ? "translate-x-0" : "-translate-x-[96%]"}
-          ${Object.keys(product).length > 0 ? "bg-gray-100 border" : "bg-white border-none"}`}
-      >
-        {Object.keys(product).length > 0 && (
-          <div className="flex items-start">
-            <ProductInfo inChat={true} product={product} noBtn={false} className="mr-12" />
-            <button
-              onClick={toggleProductInfo}
-              className="fixed top-0 bottom-0 right-0 p-0 bg-gray-200 rounded-none custom-focus-light"
-            >
-              {showProductInfo ? <ArrowLeftIcon /> : <ArrowRightIcon />}
-            </button>
-          </div>
-        )}
+    <section className="relative w-full max-w-[480px] mx-auto bg-white text-custom-black overflow-hidden h-full">
+      {hasProduct && <ProductInfoHeader product={product} />}
+      <div className="relative mx-auto w-full h-full bg-white">
+        <div className="overflow-y-scroll pt-2 tablet-sm:pb-0 w-full mobile:pb-14 mobile:h-full tablet-sm:h-[calc(100%-6rem)] tablet-sm:border">
+          {messages ? <MessageList messages={messages} messagesEndRef={messagesEndRef} /> : <EmptyChatMessage />}
+        </div>
+        <ChatFooter chatRoomId={chatRoomId} setMessages={setMessages} productId={String(product.productId)} />
       </div>
-      <div className="w-full h-screen max-w-lg pt-2 mx-auto rounded tablet-sm:border mobile:pb-16">
-        {messages.length ? (
-          <>
-            <MessageList messages={messages} />
-            <div ref={messagesEndRef} />
-          </>
-        ) : (
-          <div className="flex items-center justify-center h-full">
-            <p className="text-gray-500 text-custom-p">채팅을 시작해 보세요!</p>
-          </div>
-        )}
-      </div>
-      <ChatFooter chatInfo={{ chatRoomId, userId, chatPartnerId: 80 }} navigate={navigate} setMessages={setMessages} />
-    </div>
+    </section>
   );
 };
 
