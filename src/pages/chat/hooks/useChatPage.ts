@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import mockData from "@/mockData/db.json";
-import createStompClient from "@/pages/product/detail/utils/createStompClient";
+import createStompClient from "@/pages/chat/utils/createStompClient";
 import { Client } from "@stomp/stompjs";
 
 export const useChatPage = () => {
