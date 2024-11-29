@@ -1,30 +1,19 @@
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { fetchChatRooms } from "../api/chatApis";
-import chatRoomsMockData from "@/mockData/chatListMockData";
+import { useQuery } from "@tanstack/react-query";
+import chatAPI from "@/services/api/chatAPI";
 
-const useChatRooms = (userId: number) => {
-  console.log(userId);
-  const chatRooms = chatRoomsMockData;
-  // const [chatRooms, setChatRooms] = useState(exampleChats);
-  // const navigate = useNavigate();
+const useChatRooms = () => {
+  const { data: myChatList, refetch } = useQuery({
+    queryKey: ["getMyChatList"],
+    queryFn: async () => {
+      const { data: result } = await chatAPI.getChatList();
+      console.log(result);
+      return result.chatRooms;
+    },
+    staleTime: 600 * 1000,
+    retry: 0,
+  });
 
-  // useEffect(() => {
-  //   const initializeChat = async () => {
-  //     try {
-  //       const rooms = await fetchChatRooms()
-  //       setChatRooms(rooms);
-  //     } catch (error) {
-  //       console.error("채팅방 조회/생성 실패:", error);
-  //       navigate("/chat");
-  //     }
-  //   };
-
-  //   if (userId) {
-  //     initializeChat();
-  //   }
-  // }, [userId]);
-  return chatRooms;
+  return { myChatList, refetch };
 };
 
 export default useChatRooms;

@@ -3,7 +3,7 @@ import chatAPI from "@/services/api/chatAPI";
 import createStompClient from "./createStompClient";
 import { toast } from "react-toastify";
 
-const handleNegotiation = async (product: IProductList, navigate: NavigateFunction) => {
+const handleNegotiation = async (product: IProductList, navigate: NavigateFunction, refetch: () => void) => {
   try {
     const response = await chatAPI.createChatRoom({
       type: "PRIVATE",
@@ -19,7 +19,7 @@ const handleNegotiation = async (product: IProductList, navigate: NavigateFuncti
     }
 
     sessionStorage.setItem(String(chatRoomId), JSON.stringify({ product: product }));
-    const stompClient = createStompClient();
+    const stompClient = createStompClient(refetch);
     stompClient.activate();
     navigate(`/chatting/${chatRoomId}`);
   } catch {

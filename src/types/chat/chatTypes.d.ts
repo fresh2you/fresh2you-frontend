@@ -6,13 +6,12 @@ declare interface Product {
 }
 
 declare interface ChatRoom {
-  chatRoomID: string;
+  chatRoomId: number;
   name: string;
   userCount: number;
   product: Product;
-  imgUrl: string;
   lastMessage: string;
-  lastMessageTimeStamp: string;
+  lastSentAt: string;
 }
 
 declare interface Message {

@@ -133,149 +133,69 @@
   ],
   "chatMessages": [
     {
-      "id": 2,
-      "sender_avatar": "https://i.postimg.cc/y6h7zyLF/1.png",
-      "nickname": "농부철수",
+      "chatRoomID": 2,
+      "imgUrl": "https://i.postimg.cc/y6h7zyLF/1.png",
+      "nickname": "김농부씨",
+      "product": {
+        "productId": 43,
+        "productName": "싱싱한 국내산 딸기 1kg",
+        "price": 3000,
+        "imageUrl": "https://fresh2you-bucket.s3.ap-northeast-2.amazonaws.com/PRODUCT/2024/10/22/6d9d679b-strawberry.jfif"
+      },
       "messages": [
         {
           "text": "안녕하세요, 농부님! 사과는 정말 맛있어 보이네요.",
-          "timestamp": "오전 9:20",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-12"
+          "timestamp": "2023-09-12T09:20:00Z",
+          "senderId": 43,
+          "receiverId": 44
         },
         {
           "text": "사실 저는 사과를 자주 먹어서 많이 필요해요.",
-          "timestamp": "오전 9:20",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-12"
+          "timestamp": "2023-09-12T09:20:00Z",
+          "senderId": 43,
+          "receiverId": 44
         },
         {
           "text": "10kg 정도는 괜찮을까요?",
-          "timestamp": "오전 9:20",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-12"
+          "timestamp": "2024-09-12T09:21:00Z",
+          "senderId": 43,
+          "receiverId": 44
         },
         {
           "text": "10kg 괜찮습니다. 현재 유기농 사과의 가격은 15,000원입니다.",
-          "timestamp": "오전 9:25",
-          "sender": "농부철수",
-          "receiver": "고객",
-          "date": "2024-09-12"
+          "timestamp": "2024-10-12T09:25:00Z",
+          "senderId": 44,
+          "receiverId": 43
         },
         {
           "text": "언제 오셔서 가져가실 건가요?",
-          "timestamp": "오전 9:25",
-          "sender": "농부철수",
-          "receiver": "고객",
-          "date": "2024-09-12"
+          "timestamp": "2024-10-12T12:25:00Z",
+          "senderId": 44,
+          "receiverId": 43
         },
         {
           "text": "가격도 적당하고 좋네요. 오늘 오후 2시쯤 가겠습니다.",
-          "timestamp": "오전 9:30",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-12"
+          "timestamp": "2024-10-12T12:27:00Z",
+          "senderId": 43,
+          "receiverId": 44
         },
         {
           "text": "혹시 주소를 다시 한 번 확인해도 될까요?",
-          "timestamp": "오전 9:30",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-12"
+          "timestamp": "2024-10-12T12:27:00Z",
+          "senderId": 43,
+          "receiverId": 44
         },
         {
           "text": "물론이죠. 저희 주소는 서울시 강남구 청담동 123-45번지입니다.",
-          "timestamp": "오전 9:35",
-          "sender": "농부철수",
-          "receiver": "고객",
-          "date": "2024-09-12"
+          "timestamp": "2024-10-12T12:29:00Z",
+          "senderId": 44,
+          "receiverId": 43
         },
         {
           "text": "네, 주소 확인했습니다. 혹시 사과 외에 다른 농산물도 구입할 수 있나요?",
-          "timestamp": "오전 9:40",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-12"
-        },
-        {
-          "text": "토마토나 배추 같은 것도 있으면 좋겠어요.",
-          "timestamp": "오전 9:40",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-12"
-        },
-        {
-          "text": "네, 토마토와 배추도 있습니다. 토마토는 1kg에 5,000원, 배추는 1포기에 3,000원입니다.",
-          "timestamp": "오전 9:45",
-          "sender": "농부철수",
-          "receiver": "고객",
-          "date": "2024-09-12"
-        },
-        {
-          "text": "좋아요, 그러면 토마토 5kg과 배추 2포기도 함께 구매하겠습니다.",
-          "timestamp": "오전 9:50",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-12"
-        },
-        {
-          "text": "안녕하세요! 어제 주문한 사과와 채소가 아주 신선해서 기분이 좋았습니다.",
-          "timestamp": "오전 10:10",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-13"
-        },
-        {
-          "text": "오늘도 추가로 몇 가지 주문하고 싶어서 연락드렸어요.",
-          "timestamp": "오전 10:11",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-13"
-        },
-        {
-          "text": "다시 한 번 주문 가능할까요?",
-          "timestamp": "오전 10:11",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-13"
-        },
-        {
-          "text": "네, 오늘도 주문 가능합니다! 어떤 품목을 원하시나요?",
-          "timestamp": "오전 10:15",
-          "sender": "농부철수",
-          "receiver": "고객",
-          "date": "2024-09-13"
-        },
-        {
-          "text": "사과 5kg과 배추 3포기 부탁드립니다.",
-          "timestamp": "오전 10:16",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-13"
-        },
-        {
-          "text": "추가 주문 감사합니다. 오후에 준비해놓겠습니다.",
-          "timestamp": "오전 10:18",
-          "sender": "농부철수",
-          "receiver": "고객",
-          "date": "2024-09-13"
-        },
-        {
-          "text": "안녕하세요, 농부님! 오늘 오후 3시쯤 방문할 예정입니다.",
-          "timestamp": "오전 9:00",
-          "sender": "고객",
-          "receiver": "농부철수",
-          "date": "2024-09-14"
-        },
-        {
-          "text": "네, 알겠습니다. 준비해 놓을게요!",
-          "timestamp": "오전 9:05",
-          "sender": "농부철수",
-          "receiver": "고객",
-          "date": "2024-09-14"
+          "timestamp": "2024-10-12T12:43:00Z",
+          "senderId": 43,
+          "receiverId": 44
         }
       ]
     }
