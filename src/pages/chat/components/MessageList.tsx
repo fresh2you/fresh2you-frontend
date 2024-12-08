@@ -12,7 +12,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages, messagesEndRef }) =
         const previousMessageDate = index > 0 ? messages[index - 1].timestamp : undefined;
         return (
           <MessageItem
-            key={`${message.timestamp}-${message.senderId}`}
+            key={`${message.timestamp}-${message.senderId}-${index}`}
             message={message}
             previousMessageDate={previousMessageDate}
           />

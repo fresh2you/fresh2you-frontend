@@ -4,6 +4,7 @@ import NotFoundPage from "../pages/NotfoundPage";
 import ProtectedRoute from "@/routes/ProtectedRoute";
 import PageLayout from "@/components/pageLayout/PageLayout";
 import AuthWrapper from "./AuthWrapper";
+import TestPage from "@/test/TestPage";
 // 페이지 컴포넌트들을 React.lazy로 동적으로 임포트
 const SignUpPage = lazy(() => import("@/pages/signUp/SignUpPage"));
 const HomePage = lazy(() => import("../pages/home/HomePage"));
@@ -38,6 +39,7 @@ const Router = (): JSX.Element => {
       <Routes>
         {/* 404 Not Found */}
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/test" element={<TestPage />} />
 
         {/* 로그인 & 회원가입 */}
 

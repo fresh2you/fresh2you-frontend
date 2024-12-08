@@ -15,7 +15,9 @@ export const useChatPage = () => {
 
     const client = createStompClient({
       onConnectCallback: (client) => {
-        client.subscribe(`/sub/chat/room${chatRoomId}`, (message) => {
+        console.log("연결 성공");
+        client.subscribe(`/sub/chat/room/${chatRoomId}`, (message) => {
+          console.log("수신 성공");
           const newMessage = JSON.parse(message.body);
           setMessages((prevMessages) => [...prevMessages, newMessage]);
         });
@@ -33,18 +35,24 @@ export const useChatPage = () => {
     };
   }, [chatRoomId]);
 
-  let product;
-  if (chatRoomId) {
-    const storedProduct = sessionStorage.getItem(chatRoomId);
-    if (storedProduct) {
-      const parsedData = JSON.parse(storedProduct);
-      product = parsedData?.product;
+  const [product, setProduct] = useState<Product | undefined>(undefined);
+
+  useEffect(() => {
+    console.log(1, chatRoomId);
+
+    if (chatRoomId) {
+      const storedProduct = sessionStorage.getItem(chatRoomId);
+
+      if (storedProduct) {
+        const parsedData = JSON.parse(storedProduct);
+        setProduct(parsedData?.product);
+      } else {
+        setProduct(undefined);
+      }
     } else {
-      product = undefined;
+      setProduct(undefined);
     }
-  } else {
-    product = undefined;
-  }
+  }, [chatRoomId]);
 
   return {
     chatRoomId,
